@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+slugify() {
+    echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
+}
+
+# remove first blank line and any leading whitespace
+dedent() {
+    local text="${1}"
+    local output
+
+    output=$(echo "${text}" | sed 's/^[ \t]*//')
+    output=$(echo "${output}" | sed '1d')
+
+    echo "${output}"
+}
+
+create_new_post() {
+
+    local title
+    local date
+
+    title="${1}"
+    date=$(date +"%Y-%m-%d")
+    filepath="./content/data/posts/${date}-$(slugify "$title").md"
+
+    touch "${filepath}"
+
+    dedent """
+        ---
+        date: ${date}
+        title: ${title}
+        draft: true
+        ---
+    """ >"${filepath}"
+
+}
+
+arg_or_prompt() {
+    if [ -z "${*}" ]; then
+        read -r -p "Enter the title of the post: " title
+        echo "${title}"
+    else
+        echo "${*}"
+    fi
+}
+
+create_new_post "$(arg_or_prompt "${*}")"

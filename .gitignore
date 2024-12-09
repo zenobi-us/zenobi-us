@@ -1,0 +1,12 @@
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+dist/
+
+.content-collections/
+content/private/
+
+*storybook.log

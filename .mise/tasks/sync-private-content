@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#MISE description="Fetch or syncs private content from a remote source"
+repo="git@github.com:airtonix/zenobi.us-private-data.git"
+
+sync_private_content() {
+    rm -rf ./content/private
+    git clone "${repo}" ./content/private
+    git -C ./content/private pull
+}
+
+sync_private_content

@@ -1,0 +1,76 @@
+@layer components {
+  code[data-theme*=' '],
+  code[data-theme*=' '] span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    code[data-theme*=' '],
+    code[data-theme*=' '] span {
+      color: var(--shiki-dark);
+      background-color: var(--shiki-dark-bg);
+    }
+  }
+}
+
+@layer components {
+  [data-rehype-pretty-code-figure] {
+    @apply text-mono-font-family;
+    @apply mx-2;
+  }
+
+  [data-rehype-pretty-code-figure]:focus-within pre {
+    @apply outline-none;
+    box-shadow: 0 0 0 2px theme(colors.border-focused);
+  }
+
+  [data-rehype-pretty-code-figure]:focus-within figcaption {
+    color: theme(colors.border-focused);
+  }
+
+  [data-rehype-pretty-code-figure] [data-rehype-pretty-code-title],
+  [data-rehype-pretty-code-figure] [data-rehype-pretty-code-caption] {
+    @apply text-mono-font-family text-xs text-text-muted text-center;
+    @apply p-1 pt-2;
+  }
+
+  [data-rehype-pretty-code-figure] [data-line] {
+    @apply px-2;
+  }
+
+  [data-rehype-pretty-code-figure] code[data-line-numbers] {
+    counter-reset: line;
+  }
+  [data-rehype-pretty-code-figure]
+    code[data-line-numbers]
+    > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply inline-block w-8 mr-4 text-right text-text-muted;
+  }
+  [data-rehype-pretty-code-figure]
+    code[data-line-numbers-max-digits='2']
+    > [data-line]::before {
+    @apply w-8;
+  }
+  [data-rehype-pretty-code-figure]
+    code[data-line-numbers-max-digits='3']
+    > [data-line]::before {
+    @apply w-6;
+  }
+  [data-rehype-pretty-code-figure]
+    pre:has([data-highlighted-line])
+    [data-line]:not([data-highlighted-line]) {
+    @apply opacity-40 transition-opacity;
+  }
+
+  [data-rehype-pretty-code-figure]:has([data-highlighted-line]):hover
+    [data-line]:not([data-highlighted-line]),
+  [data-rehype-pretty-code-figure]:has([data-highlighted-line]):focus
+    [data-line]:not([data-highlighted-line]),
+  [data-rehype-pretty-code-figure]:has([data-highlighted-line]):focus-visible
+    [data-line]:not([data-highlighted-line]) {
+    @apply opacity-100 blur-0;
+  }
+}

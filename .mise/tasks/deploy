@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# https://usage.jdx.dev/
+#USAGE flag "-c --configuration <configuration>" help="Build with the specified configuration" {
+#USAGE   choices "production" "development" "preview" "localproduction" "localdevelopment" "localpreview"
+#USAGE }
+
+if [ -z "${configuration}" ]; then
+    echo "No configuration specified"
+    exit 1
+fi
+
+current_branch=$(git branch --show-current)
+
+if [ "${configuration}" == "production" ]; then
+    npx wrangler pages deploy dist --branch main --project-name zenobius
+fi
+
+if [ "${configuration}" == "development" ]; then
+    npx wrangler pages deploy dist --branch develop --project-name zenobius
+fi
+
+if [ "${configuration}" == "preview" ]; then
+    npx wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
+fi
+
+if [ "${configuration}" == "localproduction" ]; then
+    gopass env cloudflare/zenobius npx wrangler pages deploy dist --branch main --project-name zenobius
+fi
+
+if [ "${configuration}" == "localdevelopment" ]; then
+    gopass env cloudflare/zenobius npx wrangler pages deploy dist --branch develop --project-name zenobius
+fi
+
+if [ "${configuration}" == "localpreview" ]; then
+    gopass env cloudflare/zenobius npx wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
+fi

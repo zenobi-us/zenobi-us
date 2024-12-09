@@ -1,0 +1,99 @@
+import type { PropsWithChildren } from 'react';
+import { tv } from 'tailwind-variants';
+
+import { classnames } from '~/core/classnames';
+import { Box } from '~/components/ds/box/Box';
+import { Page, type PageProps } from '~/components/ds/page/Page';
+import { LinkList } from '~/components/ds/linklist/LinkList';
+import { Link } from '~/components/ds/link/Link';
+import { Button } from '~/components/ds/button/Button';
+
+import { HomeAvatar } from '../favicons/Avatar';
+import { ContactFormDrawer } from '../GlobalFooter/ContactFormDrawer';
+
+const Styles = tv({
+  slots: {
+    block: '',
+    container: [
+      'flex flex-col flex-grow justify-center items-center',
+      'text-serif text-4xl font-normal max-w-screen-md',
+    ],
+
+    splash: [
+      'flex flex-col items-center justify-center',
+      'font-splash font-page-heading font-weight-bold',
+      'max-w-[640px]',
+      'px-4',
+      'grid grid-flow-col',
+      'grid-areas-[logo,content,navigation]',
+      'items-start gap-4 flex-col',
+      'landscape:sm:grid-areas-[logo_content,._navigation]',
+      'landscape:lx:grid-areas-[logo_content,._navigation]',
+      'xl:grid-areas-[logo_content,._navigation]',
+      'xl:grid-cols-[128px_auto]',
+      'xl:max-w-[768px]',
+    ],
+    logo: ['area-[logo]', 'flex justify-start', 'xl:m-0'],
+    navigation: [
+      'area-[navigation]',
+      'w-full px-4 flex flex-col',
+      'text-3xl',
+      '[&_.globalnav__inner]:flex-col',
+      '[&_link-list]:gap-4',
+      '[&_link-list]:flex-row',
+    ],
+    content: [
+      'area-[content]',
+      'text-3xl',
+      'lg:text-4xl',
+      'xl:text-4xl',
+      'landscape:sm:text-xl',
+      'landscape:sm:[&_p]:leading-8',
+      'landscape:sm:[&_p]:mb-2',
+      'landscape:md:text-2xl',
+      'landscape:md:[&_p]:leading-12',
+      'landscape:lg:text-4xl',
+      'portait:md:text-4xl',
+      '[&_p]:mb-8',
+      '[&_p]:leading-10',
+      '[&>*]:font-serif',
+      // 'md:[&>*]:leading-10',
+    ],
+  },
+});
+
+export function HomePage({
+  children,
+  className,
+}: PropsWithChildren<PageProps & { currentPath: string }>) {
+  const styles = Styles();
+
+  return (
+    <Page className={classnames('homepage', styles.block(), className)}>
+      <Page.Block
+        className={classnames('homepage__container', styles.container())}
+      >
+        <div className={classnames('homepage__splash', styles.splash())}>
+          <HomeAvatar
+            className={classnames('homepage__logo', styles.logo())}
+            size={128}
+          />
+
+          <Box className={classnames('homepage__content', styles.content())}>
+            {children}
+          </Box>
+
+          <LinkList
+            direction="row"
+            className={classnames(styles.navigation())}
+          >
+            <Link href="/b">Posts</Link>
+            <ContactFormDrawer>
+              <Button link>Contact Me</Button>
+            </ContactFormDrawer>
+          </LinkList>
+        </div>
+      </Page.Block>
+    </Page>
+  );
+}

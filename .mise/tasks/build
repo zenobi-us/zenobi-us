@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#MISE description="Builds the site"
+
+npx remix vite:build
+
+npx tsx ./ssg-cli.ts \
+    --build ./build/server/index.js \
+    --output ./dist
+
+cp -r ./build/client/* ./dist

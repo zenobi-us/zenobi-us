@@ -1,0 +1,42 @@
+name: Pr
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Needed for nx-set-shas within nx-cloud-main.yml, when run on the master branch
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: jdx/mise-action@63a673876c7072c1d6ecb2049c0d572976c83b22 # v2
+        with:
+          version: 2024.11.4
+
+      - name: Install Node Modules
+        uses: ./.github/actions/setup-yarn
+
+      - name: Lint, Test, Build, Typecheck
+        run: |
+          mise task run typecheck
+          mise task run lint
+          mise task run build
+
+      - name: Deploy to Preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          mise task run deploy --configuration=preview

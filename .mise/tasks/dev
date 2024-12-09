@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+#MISE description="Run site in development mode"
+
+npx remix vite:dev

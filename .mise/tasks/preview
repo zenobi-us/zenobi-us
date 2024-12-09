@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+#MISE description="get a preview of the site"
+
+npx wrangler pages dev ./dist

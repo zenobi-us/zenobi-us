@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# https://usage.jdx.dev/
+#USAGE flag "-b --build" help="Build storybook"
+
+#MISE description="Storybook."
+#MISE env={STORYBOOK=1}
+
+# - global
+# shellcheck disable=SC2154
+if [ "$usage_build" = "true" ]; then
+    echo "Building storybook... $STORYBOOK"
+    npx storybook build
+else
+    echo "Starting storybook... $STORYBOOK"
+    npx storybook dev -p 6006
+fi

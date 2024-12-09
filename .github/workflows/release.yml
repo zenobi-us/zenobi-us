@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  HUSKY: 0 # https://typicode.github.io/husky/how-to.html#ci-server-and-docker
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  actions: read
+  contents: write
+  deployments: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  Process:
+    runs-on: ubuntu-latest
+    outputs:
+      releases_created: ${{ steps.release-please.outputs.releases_created }}
+      prs_created: ${{ steps.release-please.outputs.prs_created }}
+    steps:
+      - uses: googleapis/release-please-action@7987652d64b4581673a76e33ad5e98e3dd56832f #v4
+        id: release-please
+        with:
+          token: ${{secrets.ZENOBIUS_MONOREPO_RELEASE_PLEASE_TOKEN}}
+      - name: Print Release Data
+        run: |
+          echo 'Release Data:'
+
+          echo '''
+            ${{ toJSON(steps.release-please.outputs) }}
+          '''
+
+  Deploy:
+    needs: Process
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: jdx/mise-action@63a673876c7072c1d6ecb2049c0d572976c83b22 # v2
+        with:
+          version: 2024.11.4
+
+      - name: Yarn
+        uses: ./.github/actions/setup-yarn
+
+      - name: Configure Publishing
+        uses: ./.github/actions/setup-npm-publish
+        with:
+          NpmRegistryUrl: https://registry.npmjs.org/
+          NpmRcFile: .npmrc
+
+      - if: ${{ needs.Process.outputs.releases_created == 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
+        run: mise task run deploy --configuration=production
+
+      - if: ${{ needs.Process.outputs.prs_created == 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
+        run: mise task run deploy --configuration=development

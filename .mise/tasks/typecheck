@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+#MISE description="Run typechecking on the project"
+
+npx tsc -p ./tsconfig.json --noEmit --incremental

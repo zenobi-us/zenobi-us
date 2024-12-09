@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# https://usage.jdx.dev/
+#USAGE flag "-w --watch" help="Run in watch mode"
+
+#MISE description="Prepares content for building the site"
+
+# - global
+# shellcheck disable=SC2154
+if [ "$usage_watch" = "true" ]; then
+    npx content-collections watch
+else
+    npx content-collections build
+fi
