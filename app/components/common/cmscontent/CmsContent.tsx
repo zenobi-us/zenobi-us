@@ -6,7 +6,6 @@ import { Button } from '~/components/ds/button/Button';
 import { Icon } from '~/components/ds/icon/Icon';
 
 import { PdfButton } from '../pdf/PdfButton';
-import { ResumePdfButton } from '../pdf/ResmePdfButton';
 
 import { Heading } from './Heading';
 import { Link } from './Link';
@@ -84,7 +83,6 @@ export function RenderMdxContent({
           blockquote: Blockquote,
           Button,
           PdfButton,
-          ResumePdfButton,
           Widgets: {
             RoleFlipper,
             //   LogoThemer,

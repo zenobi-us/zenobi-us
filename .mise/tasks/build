@@ -2,9 +2,9 @@
 
 #MISE description="Builds the site"
 
-npx remix vite:build
+yarn remix vite:build
 
-npx tsx ./ssg-cli.ts \
+yarn tsx ./ssg-cli.ts \
     --build ./build/server/index.js \
     --output ./dist
 

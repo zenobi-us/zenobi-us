@@ -1,15 +1,21 @@
 {
   "extends": "./tsconfig.json",
-  // "files": ["src/main.ts", "src/polyfills.ts"],
   "compilerOptions": {
     "types": ["@remix-run/node", "vite/client"]
   },
   "include": [
-    "**/*.d.ts",
+    "remix.env.d.ts",
     "content-collections.ts",
     "tailwind.config.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "app/**/*.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx"
   ],
-  "exclude": ["jest.config.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx"
+  ]
 }

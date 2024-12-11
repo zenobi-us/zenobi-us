@@ -5,6 +5,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "preserve",
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "~/*": ["./app/*"],
       "content-collections": ["./.content-collections/generated"]

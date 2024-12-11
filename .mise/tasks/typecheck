@@ -2,4 +2,4 @@
 
 #MISE description="Run typechecking on the project"
 
-npx tsc -p ./tsconfig.json --noEmit --incremental
+yarn tsc -p ./tsconfig.app.json --noEmit --incremental

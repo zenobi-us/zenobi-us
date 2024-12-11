@@ -40,6 +40,7 @@
     "@storybook/test": "8.3.5",
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/typography": "^0.5.15",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/jest": "^29.5.14",
     "@types/micromatch": "^4.0.9",
@@ -107,5 +108,6 @@
     "vite": "^5.4.11",
     "vite-tsconfig-paths": "^5.0.1",
     "wrangler": "^3.57.2"
-  }
+  },
+  "packageManager": "yarn@4.5.3"
 }

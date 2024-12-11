@@ -8,7 +8,7 @@
 # - global
 # shellcheck disable=SC2154
 if [ "$usage_watch" = "true" ]; then
-    npx content-collections watch
+    yarn content-collections watch
 else
-    npx content-collections build
+    yarn content-collections build
 fi

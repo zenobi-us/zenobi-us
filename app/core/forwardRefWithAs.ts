@@ -5,7 +5,7 @@ export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = any,
-  AsComponent extends As = As,
+  AsComponent extends As = As
 > = RightJoinProps<ComponentProps, AdditionalProps> &
   RightJoinProps<AsProps, AdditionalProps> & {
     as?: AsComponent;
@@ -13,7 +13,7 @@ export type MergeWithAs<
 
 export type ComponentWithAs<
   Component extends As,
-  Props extends object = any,
+  Props extends object = any
 > = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<
@@ -21,7 +21,7 @@ export type ComponentWithAs<
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent
-    >,
+    >
   ): JSX.Element;
 
   displayName?: string;
@@ -38,9 +38,10 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
 };
 
 export type As<Props = any> = React.ElementType<Props>;
+
 export type OmitCommonProps<
   Target,
-  OmitAdditionalProps extends keyof any = never,
+  OmitAdditionalProps extends keyof any = never
 > = Omit<
   Target,
   'transition' | 'as' | 'color' | 'translate' | OmitAdditionalProps
@@ -50,16 +51,18 @@ export type OmitCommonProps<
 
 export type RightJoinProps<
   SourceProps extends object = any,
-  OverrideProps extends object = any,
+  OverrideProps extends object = any
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps;
 
 export function forwardRef<Props extends object, Component extends As>(
   component: React.ForwardRefRenderFunction<
     any,
-    RightJoinProps<PropsOf<Component>, Props> & {
-      as?: As;
-    }
-  >,
+    React.PropsWithoutRef<
+      RightJoinProps<PropsOf<Component>, Props> & {
+        as?: As;
+      }
+    >
+  >
 ) {
   return forwardReactRef(component) as unknown as ComponentWithAs<
     Component,

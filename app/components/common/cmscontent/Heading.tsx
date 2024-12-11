@@ -81,6 +81,7 @@ export function Heading({
     </HeadingElement>
   );
 }
+Heading.H1 = MakeHeadingElement(1);
 Heading.H2 = MakeHeadingElement(2);
 Heading.H3 = MakeHeadingElement(3);
 Heading.H4 = MakeHeadingElement(4);

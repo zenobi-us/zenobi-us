@@ -19,30 +19,24 @@ function getHelpPageYear(page: Help) {
   return year.toString();
 }
 
-function getHelpPageSlug(page: Help) {
-  return page._meta.slug;
-}
-
-function getHelpPageTags(page: Help) {
-  return intersection(page.tags, ['package', 'project']);
-}
-
-function getHelpPaeHref(page: Help) {
-  return $path('/h/:slug', { slug: page._meta.id });
-}
-
 export function HelpTimelineList({ pages }: { pages: Help[] }) {
   return (
     <TimelineList
       className="mt-2"
       collection={pages}
-      getItemKey={getHelpPageSlug}
+      getItemKey={(page) => {
+        return page._meta.slug;
+      }}
       sorter={byHelpPageEntryDateSorter}
       getGroupKey={getHelpPageYear}
     >
-      <TimelineList.LinkItem
-        createHref={getHelpPaeHref}
-        tagger={getHelpPageTags}
+      <TimelineList.LinkItem<Help>
+        createHref={(page) => {
+          return $path('/h/:slug', { slug: page._meta.id });
+        }}
+        tagger={(page) => {
+          return intersection(page.tags, ['package', 'project']);
+        }}
       />
     </TimelineList>
   );

@@ -1,4 +1,4 @@
-import type { LogoProps } from '~/components/favicons/Logo';
+import type { LogoProps } from '~/components/common/favicons/Logo';
 import { FormField } from '~/components/ds/form/FormField';
 import { FormItem } from '~/components/ds/form/FormItem';
 import { FormLabel } from '~/components/ds/form/FormLabel';
@@ -9,13 +9,13 @@ import { Colours } from './Colours';
 import { ColorPaletteInput } from './ColorPaletteInput';
 import type { useLogoThemerForm } from './useLogoThemerForm';
 
-export function LogoFormField({
+export function LogoFormField<TName extends keyof LogoProps>({
   form,
   name,
   label,
 }: {
   form: ReturnType<typeof useLogoThemerForm>['form'];
-  name: keyof LogoProps;
+  name: TName;
   label: string;
 }) {
   return (
