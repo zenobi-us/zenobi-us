@@ -1,4 +1,3 @@
-import React from 'react';
 import { z } from 'zod';
 import type { ComponentProps } from 'react';
 import { motion } from 'framer-motion';
