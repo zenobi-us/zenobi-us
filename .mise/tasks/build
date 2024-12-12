@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
 #MISE description="Builds the site"
+#MISE depends=["content", "typecheck"]
+#MISE sources=["./app/**/*", "./content/**/*"]
+#MISE outputs=["./dist/**/*"]
 
 yarn remix vite:build
 

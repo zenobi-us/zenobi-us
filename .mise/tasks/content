@@ -4,6 +4,9 @@
 #USAGE flag "-w --watch" help="Run in watch mode"
 
 #MISE description="Prepares content for building the site"
+#MISE depends=["content"]
+#MISE sources=["./content/**/*"]
+#MISE outputs=[".content-collections/**/*"]
 
 # - global
 # shellcheck disable=SC2154

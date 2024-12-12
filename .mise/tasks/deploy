@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#MISE depends=["content", "build", "typecheck"]
 # https://usage.jdx.dev/
 #USAGE flag "-c --configuration <configuration>" help="Build with the specified configuration" {
 #USAGE   choices "production" "development" "preview" "localproduction" "localdevelopment" "localpreview"
