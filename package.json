@@ -23,10 +23,14 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@react-hookz/web": "^24.0.4",
     "@react-pdf/renderer": "^4.0.0",
+    "@react-spring/three": "^9.7.5",
+    "@react-three/fiber": "^8.17.10",
     "@remix-run/dev": "^2.14.0",
     "@remix-run/node": "^2.14.0",
     "@remix-run/react": "^2.14.0",
     "@remix-run/serve": "^2.14.0",
+    "@remix-run/testing": "^2.15.1",
+    "@shadergradient/react": "^2.0.15",
     "@shikijs/transformers": "^1.22.0",
     "@storybook/addon-essentials": "8.3.5",
     "@storybook/addon-interactions": "8.3.5",
@@ -51,6 +55,7 @@
     "autoprefixer": "^10.4.20",
     "chroma-js": "^3.1.2",
     "classnames": "^2.5.1",
+    "cobe": "^0.6.3",
     "comlink": "^4.4.1",
     "copy-to-clipboard": "^3.3.3",
     "eslint": "^8.57.1",
@@ -98,6 +103,7 @@
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-grid-areas": "^0.1.1",
+    "three": "^0.171.0",
     "tsx": "^4.19.1",
     "tw-colors": "^3.3.2",
     "typescript": "^5.6.3",
@@ -109,5 +115,8 @@
     "vite-tsconfig-paths": "^5.0.1",
     "wrangler": "^3.57.2"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.5.3",
+  "devDependencies": {
+    "@types/three": "^0"
+  }
 }
