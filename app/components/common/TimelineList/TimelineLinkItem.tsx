@@ -7,9 +7,11 @@ export function TimelineLinkItem<
   TItem extends {
     _meta: {
       slug: string;
+      id: string;
     };
+    tags?: string[];
     content: string;
-    date?: string;
+    date: Date;
     title: string;
     mdx: string;
   }
@@ -17,7 +19,7 @@ export function TimelineLinkItem<
   createHref,
   tagger,
 }: {
-  createHref: (post: TItem) => string;
+  createHref: (item: TItem) => string;
   tagger?: (item: TItem) => string[];
 }) {
   const item = useTimelineItem<TItem>();
@@ -25,7 +27,7 @@ export function TimelineLinkItem<
   return (
     <TimelineItem
       key={item._meta.slug}
-      date={new Date(item.date)}
+      date={item.date}
       tags={tagsToDisplay}
     >
       <Link href={createHref(item)}>{item.title}</Link>

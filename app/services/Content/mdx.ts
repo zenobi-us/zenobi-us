@@ -37,6 +37,7 @@ export const rehypeOptions: Options['rehypePlugins'] = [
 export const remarkOptions: Options['remarkPlugins'] = [
   // remarkParse,
   [
+    // @ts-expect-error - types are wrong
     remarkNomnoml,
     {
       style: [

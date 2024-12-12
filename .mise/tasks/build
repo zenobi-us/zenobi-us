@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-
 #MISE description="Builds the site"
+#MISE depends=["content", "typecheck"]
+#MISE sources=["./app/**/*", "./content/**/*"]
+#MISE outputs=["./dist/**/*"]
 
-npx remix vite:build
+yarn remix vite:build
 
-npx tsx ./ssg-cli.ts \
+yarn tsx ./ssg-cli.ts \
     --build ./build/server/index.js \
     --output ./dist
 

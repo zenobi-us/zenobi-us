@@ -1,13 +1,13 @@
 import {
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
   useMatches,
   useLocation,
   useLoaderData,
   Link,
+  useOutlet,
 } from '@remix-run/react';
 import { AnimatePresence } from 'framer-motion';
 
@@ -22,10 +22,10 @@ import { GlobalFooter } from '~/components/common/GlobalFooter/GlobalFooter';
 import { useDarkMode } from '~/services/Theme/Init';
 import { useClientSideFaviconColourStorage } from '~/components/common/favicons/useClientSideFaviconColourStorage';
 import { useClientSideFavicon } from '~/components/common/favicons/useClientSideFavicon';
+import { ContactFormDrawer } from '~/components/common/GlobalFooter/ContactFormDrawer';
 
 import './theme/fonts/robotoslab';
 import './main.css';
-import { ContactFormDrawer } from './components/common/GlobalFooter/ContactFormDrawer';
 
 export async function loader() {
   return getFooterData();
@@ -43,13 +43,14 @@ function LinkInterop({
   );
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export default function App() {
   const matches = useMatches();
   const currentPath = matches.at(-1)?.pathname ?? '/';
   const data = useLoaderData<typeof loader>();
   const storage = useClientSideFaviconColourStorage();
   const handles = useRouteHandles();
   const location = useLocation();
+  const outlet = useOutlet();
 
   const darkmode = useDarkMode((theme) => {
     console.log(`root: Theme changed ${theme}`);
@@ -115,7 +116,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 initial={false}
                 mode="wait"
               >
-                <Site.Main>{children}</Site.Main>
+                <Site.Main>{outlet}</Site.Main>
               </AnimatePresence>
 
               {handles.globalFooter && data?.mdx && (
@@ -133,8 +134,4 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }

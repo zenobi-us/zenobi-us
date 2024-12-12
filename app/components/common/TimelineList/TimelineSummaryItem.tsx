@@ -10,7 +10,6 @@ export function TimelineSummaryItem<
     };
     template: string;
     date: string;
-    title: string;
     mdx: string;
     tags: string[];
   }
@@ -24,10 +23,7 @@ export function TimelineSummaryItem<
   return (
     <TimelineItem
       key={item._meta.slug}
-      slug={item._meta.slug}
-      type={item.template}
       date={new Date(item.date)}
-      title={item.title}
       tags={item.tags}
     >
       <BrowserCmsContent content={item.mdx} />

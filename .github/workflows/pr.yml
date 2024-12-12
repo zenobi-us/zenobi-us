@@ -30,6 +30,7 @@ jobs:
 
       - name: Lint, Test, Build, Typecheck
         run: |
+          mise task run content
           mise task run typecheck
           mise task run lint
           mise task run build

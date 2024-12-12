@@ -2,4 +2,4 @@
 
 #MISE description="get a preview of the site"
 
-npx wrangler pages dev ./dist
+yarn wrangler pages dev ./dist

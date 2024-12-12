@@ -1,5 +1,7 @@
 import type { HTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
+import { motion, type Transition } from 'framer-motion';
+import { useLocation } from '@remix-run/react';
 
 import { classnames } from '~/core/classnames';
 
@@ -10,6 +12,34 @@ export interface PageProps {
   className?: string;
   asideSlot?: ReactNode;
 }
+
+const PageAnimationVariants = {
+  Fade: {
+    start: { opacity: 0 },
+    end: { opacity: 1 },
+    exit: { opacity: 0 },
+  },
+  FadeSquash: {
+    start: { x: '0', opacity: 0, webkitMaskSize: '0' },
+    end: { x: '0', opacity: 1, width: '100%' },
+    exit: { x: '0', opacity: 1, width: '0' },
+  },
+  FadeSlide: {
+    start: { opacity: 0, y: -1000 },
+    end: { opacity: 1, y: 0 },
+    exit: { opacity: 1, y: 1000 },
+  },
+  FadeBump: {
+    start: { opacity: 0, x: 30 },
+    end: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -30 },
+  },
+};
+
+const PageTransitions: Transition = {
+  delay: 0.25,
+  easings: 'easeInOut',
+};
 
 const PageStyles = tv({
   slots: {
@@ -25,12 +55,18 @@ export const Page = ({
   const styles = PageStyles();
 
   return (
-    <article
-      {...props}
+    <motion.article
+      key={useLocation().key}
+      variants={PageAnimationVariants.Fade}
+      transition={PageTransitions}
+      initial="start"
+      animate="end"
+      exit="exit"
       className={classnames('page', className, styles.block())}
+      {...props}
     >
       {children}
-    </article>
+    </motion.article>
   );
 };
 

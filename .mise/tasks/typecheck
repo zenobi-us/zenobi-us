@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
 #MISE description="Run typechecking on the project"
+#MISE depends=["content"]
+#MISE sources=["./app/**/*"]
+#MISE outputs=["tsconfig.tsbuildinfo", "tsconfig.app.tsbuildinfo"]
 
-npx tsc -p ./tsconfig.json --noEmit --incremental
+yarn tsc -p ./tsconfig.app.json --noEmit --incremental

@@ -28,6 +28,14 @@ function getFsModifiedDate(filePath: string) {
   return stats.mtime;
 }
 
+function getDocumentDate(document) {
+  const date = document.date;
+
+  return !date
+    ? getFsModifiedDate(join('content', document._meta.filePath))
+    : new Date(date);
+}
+
 function assert(condition?: boolean, message?: string): asserts condition {
   if (!condition) {
     throw new Error(message || 'Assertion failed');
@@ -93,16 +101,21 @@ const me = normalisedCollection(
       schema: (z) => ({
         title: z.string(),
         description: z.string().optional(),
-        date: z.string().optional(),
+        date: z.string().optional().default(''),
         tags: z.array(z.string()).default([]),
-        content: z.string(),
+        content: z.string().default(''),
       }),
       transform: async (document, context) => {
-        assert(isDocumentWithContent(document), 'Document has no content');
+        assert(
+          isDocumentWithContent(document),
+          `[${document._meta.filePath}] Document has no content`
+        );
         const mdx = await compileMDX(context, document, mdxOptions());
+        const date = getDocumentDate(document);
         return {
           ...document,
           mdx,
+          date,
           _meta: {
             ...document._meta,
             slug: documentSlug(
@@ -130,15 +143,20 @@ const siteData = normalisedCollection(
         title: z.string(),
         description: z.string().optional(),
         tags: z.array(z.string()).default([]),
-        content: z.string(),
+        content: z.string().default(''),
       }),
       transform: async (document, context) => {
-        assert(isDocumentWithContent(document), 'Document has no content');
+        assert(
+          isDocumentWithContent(document),
+          `[${document._meta.filePath}] Document has no content`
+        );
         const mdx = await compileMDX(context, document, mdxOptions());
 
+        const date = getDocumentDate(document);
         return {
           ...document,
           mdx,
+          date,
           _meta: {
             ...document._meta,
             slug: documentSlug(
@@ -164,20 +182,24 @@ const help = normalisedCollection(
       include: globs,
       schema: (z) => ({
         title: z.string(),
-        date: z.string().optional(),
+        date: z.string().optional().default(''),
         description: z.string().optional(),
         tags: z.array(z.string()).default([]),
-        content: z.string(),
+        content: z.string().default(''),
       }),
       transform: async (document, context) => {
-        assert(isDocumentWithContent(document), 'Document has no content');
+        assert(
+          isDocumentWithContent(document),
+          `[${document._meta.filePath}] Document has no content`
+        );
         const mdx = await compileMDX(context, document, mdxOptions());
+        const date = getDocumentDate(document);
+        const tags = document.tags || [];
         return {
           ...document,
           mdx,
-          date:
-            document.date ||
-            getFsModifiedDate(join('content', document._meta.filePath)),
+          date,
+          tags,
           _meta: {
             ...document._meta,
             slug: documentSlug(
@@ -213,14 +235,19 @@ const posts = normalisedCollection(
           .optional(),
         template: z.enum(['article', 'summary', 'link']).default('article'),
         tags: z.array(z.string()).default([]),
-        content: z.string(),
+        content: z.string().default(''),
       }),
       transform: async (document, context) => {
-        assert(isDocumentWithContent(document), 'Document has no content');
+        assert(
+          isDocumentWithContent(document),
+          `[${document._meta.filePath}] Document has no content`
+        );
         const mdx = await compileMDX(context, document, mdxOptions());
+        const date = getDocumentDate(document);
         return {
           ...document,
           mdx,
+          date,
           _meta: {
             ...document._meta,
             slug: documentSlug(

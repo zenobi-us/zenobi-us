@@ -26,7 +26,7 @@ export const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
           TextInputStyles({
             isDirty: !!isDirty,
             isEmpty: !props.value,
-            isInvalid: !!invalid,
+            invalid: !!invalid,
             isValidating: !!isValidating,
             isTouched: !!isTouched,
           })

@@ -24,7 +24,9 @@ function getPostSlug(post: Post) {
 }
 
 function getPostTags(post: Post) {
-  return intersection(post.tags, ['package', 'project']);
+  const tags = intersection(post.tags, ['package', 'project']);
+
+  return [...tags, post.stage === 'draft' ? 'draft' : ''];
 }
 
 function getPostHref(post: Post) {

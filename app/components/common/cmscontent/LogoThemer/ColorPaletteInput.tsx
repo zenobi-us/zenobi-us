@@ -48,7 +48,7 @@ export const ColorPaletteInput = forwardRef<
           TextInputStyles({
             isDirty: !!isDirty,
             isEmpty: !props.value,
-            isInvalid: !!invalid,
+            invalid: !!invalid,
             isValidating: !!isValidating,
           }),
           styles.block()

@@ -25,22 +25,6 @@ export function LogoThemer() {
   const hashState = useHashFormState('theme', LogoPropSchema);
   const storage = useClientSideFaviconColourStorage();
 
-  // useEffect(
-  //   function UpdateHash() {
-  //     setStatus('idle');
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [themerForm.form, hashState, values]
-  // );
-
-  // useEffect(
-  //   function StoreColoursInLocalStorage() {
-  //     storage.set(values);
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [themerForm.form]
-  // );
-
   return (
     <Box
       className="flex flex-col md:flex-row bg-background-card rounded-lg overflow-hidden items-stretch gap-8"

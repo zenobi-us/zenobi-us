@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-npx eslint ./app
+#MISE sources=["./app/**/*"]
+
+yarn eslint ./app
