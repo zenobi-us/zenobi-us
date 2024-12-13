@@ -31,6 +31,7 @@ jobs:
         id: release-please
         with:
           token: ${{secrets.ZENOBIUS_MONOREPO_RELEASE_PLEASE_TOKEN}}
+          release-type: node
       - name: Print Release Data
         run: |
           echo 'Release Data:'
