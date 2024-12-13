@@ -1,5 +1,7 @@
 import { firstOrNull, from, query } from 'linq-functional';
+import execa from 'execa';
 
+import { version as pkgVersion } from '../../../package.json';
 import { allSiteData } from 'content-collections';
 
 import { whereIdEquals } from './selectors';
@@ -17,11 +19,27 @@ export async function getSiteData() {
 export async function getFooterData() {
   try {
     const items = allSiteData;
-
     const footer = query(from(items), whereIdEquals('footer'), firstOrNull());
-    return Response.json(footer);
+    return footer;
   } catch (error) {
     console.error('Failed to load footer data', error);
     throw new Error('Failed to load footer data');
+  }
+}
+
+export async function getAppVersion() {
+  try {
+    const version = pkgVersion;
+    const { stdout: hash } = await execa('git', ['rev-parse', 'HEAD']);
+    const { stdout: branchname } = await execa('git', [
+      'rev-parse',
+      '--abbrev-ref',
+      'HEAD',
+    ]);
+
+    return { version, hash, branchname };
+  } catch (error) {
+    console.error('Failed to load app version', error);
+    throw new Error('Failed to load app version');
   }
 }
