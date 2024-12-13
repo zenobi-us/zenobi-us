@@ -13,6 +13,7 @@
   ],
   "exclude": [
     "jest.config.ts",
+    "**/*.glsl",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",

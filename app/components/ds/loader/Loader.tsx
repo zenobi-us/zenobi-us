@@ -1,21 +1,52 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 import { useId } from 'react';
 
+import { classnames } from '~/core/classnames';
+
 import { Box } from '../box/Box';
 
 const Styles = tv({
   slots: {
     base: 'flex flex-grow items-center justify-center gap-1',
     dots: 'flex gap-1',
-    dot: 'w-1 h-1 bg-background-elevated rounded-full animate-ping',
+    dot: 'w-1 h-1 rounded-full',
     label: 'sr-only',
   },
   variants: {
     effect: {
       blurred: {
-        base: 'contrast-0 mix-blend-multiply blur-xl',
+        base: 'contrast-0 mix-blend-multiply blur-md',
       },
     },
+    tone: {
+      base: {
+        dot: 'bg-background-informative',
+      },
+      muted: {
+        dot: 'bg-background-muted',
+      },
+      cautious: {
+        dot: 'bg-background-cautious',
+      },
+      critical: {
+        dot: 'bg-background-critical',
+      },
+      positive: {
+        dot: 'bg-background-positive',
+      },
+    },
+    blurred: {
+      extreme: {
+        base: 'contrast-0 mix-blend-multiply blur-xl',
+      },
+      more: {
+        base: 'contrast-0 mix-blend-multiply blur-md',
+      },
+      some: {
+        base: 'contrast-0 mix-blend-multiply blur-sm',
+      },
+    },
+
     direction: {
       row: {
         base: 'flex-row',
@@ -51,6 +82,7 @@ const Styles = tv({
     },
   },
   defaultVariants: {
+    tone: 'base',
     direction: 'column',
     size: 'md',
     labelVisible: false,
@@ -60,43 +92,20 @@ const Styles = tv({
 type LoaderStyleProps = VariantProps<typeof Styles>;
 
 export function Loader({
-  direction,
-  size = 'sm',
-  effect,
   label = 'Loading...',
-  labelVisible = false,
-}: {
-  label: string;
-  effect?: LoaderStyleProps['effect'];
-  direction?: LoaderStyleProps['direction'];
-  size?: LoaderStyleProps['size'];
-  labelVisible?: LoaderStyleProps['labelVisible'];
-}) {
-  const styles = Styles({ direction, effect, size, labelVisible });
+  ...props
+}: { label: string } & LoaderStyleProps) {
+  const styles = Styles(props);
   const id = useId();
   return (
     <Box
       aria-labelledby={id}
-      className={styles.base({
-        className: '',
-      })}
+      className={styles.base()}
     >
       <Box className={styles.dots()}>
-        <Box
-          className={styles.dot({
-            className: 'animate-bounce delay-500',
-          })}
-        />
-        <Box
-          className={styles.dot({
-            className: 'animate-bounce delay-300',
-          })}
-        />
-        <Box
-          className={styles.dot({
-            className: 'animate-bounce delay-100',
-          })}
-        />
+        <Dot className="delay-500" />
+        <Dot className="delay-300" />
+        <Dot className="delay-100" />
       </Box>
       <Box
         className={styles.label()}
@@ -104,6 +113,34 @@ export function Loader({
       >
         {label}
       </Box>
+    </Box>
+  );
+}
+
+function Dot({
+  className,
+  ...props
+}: { className: string } & LoaderStyleProps) {
+  const styles = Styles(props);
+  return (
+    <Box
+      className={classnames(className, 'flex flex-col relative', styles.dot())}
+    >
+      <Box
+        className={classnames(
+          'absolute animate-bounce',
+          className,
+          styles.dot()
+        )}
+      />
+      <Box
+        className={classnames(
+          'absolute',
+          'opacity-60',
+          'animate-ping',
+          styles.dot()
+        )}
+      />
     </Box>
   );
 }
