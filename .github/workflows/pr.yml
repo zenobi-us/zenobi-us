@@ -7,8 +7,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Needed for nx-set-shas within nx-cloud-main.yml, when run on the master branch
 permissions:
+  issues: write
+  pull-requests: write
   actions: read
   contents: read
 
@@ -28,16 +29,47 @@ jobs:
       - name: Install Node Modules
         uses: ./.github/actions/setup-yarn
 
-      - name: Lint, Test, Build, Typecheck
+      - name: Lint, Test, Typecheck
         run: |
           mise task run content
           mise task run typecheck
           mise task run lint
-          mise task run build
+
+      - name: Build
+        run: |
+          COMMITS=$(git rev-list --count ${{ github.event.before }}..HEAD)
+          VERSION=$(jq -r '.version' package.json)
+          APP_VERSION="$VERSION.$COMMITS" mise task run build
+
+      - name: Comment
+        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          id: preview-deployment-url
+          message: 'Preview deployment started'
 
       - name: Deploy to Preview
+        id: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          mise task run deploy --configuration=preview
+          mise task run deploy --configuration=preview |
+            .github/scripts/extract-cloudflare-deployment-urls.sh \
+              github_output "$GITHUB_OUTPUT"
+
+      - name: Comment
+        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          id: preview-deployment-url
+          message: |
+            Preview deployment complete
+
+            URL: ${{ steps.deploy.outputs.url }}
+            ALIAS_URL: ${{ steps.deploy.outputs.alias_url }}
+          recreate: true

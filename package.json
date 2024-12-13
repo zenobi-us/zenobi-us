@@ -26,6 +26,7 @@
     "@react-pdf/renderer": "^4.0.0",
     "@react-spring/three": "^9.7.5",
     "@react-three/fiber": "^8.17.10",
+    "@remix-run/cloudflare-pages": "^2.15.1",
     "@remix-run/dev": "^2.14.0",
     "@remix-run/node": "^2.14.0",
     "@remix-run/react": "^2.14.0",
