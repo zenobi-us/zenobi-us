@@ -8,6 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
+  issues: write
+  pull-requests: write
   actions: read
   contents: read
 
