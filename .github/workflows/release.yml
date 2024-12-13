@@ -24,6 +24,8 @@ jobs:
     outputs:
       releases_created: ${{ steps.release-please.outputs.releases_created }}
       prs_created: ${{ steps.release-please.outputs.prs_created }}
+      prs: ${{ steps.release-please.outputs.prs }}
+      pr: ${{ steps.release-please.outputs.pr }}
     steps:
       - uses: googleapis/release-please-action@7987652d64b4581673a76e33ad5e98e3dd56832f #v4
         id: release-please
@@ -64,11 +66,21 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
-        run: mise task run deploy --configuration=production
+        run: |
+          mise task run deploy --configuration=production |
+            .github/scripts/extract-cloudflare-deployment-urls.sh json |
+              .github/scripts/deployment-urls-comment.sh \
+                "${{ needs.Process.outputs.pr }}" \
+                "Deployed to Cloudflare: \(.url) \(.alias_url)"
 
       - if: ${{ needs.Process.outputs.prs_created == 'true' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
-        run: mise task run deploy --configuration=development
+        run: |
+          mise task run deploy --configuration=development |
+            .github/scripts/extract-cloudflare-deployment-urls.sh |
+              .github/scripts/deployment-urls-comment.sh \
+                "${{ needs.Process.outputs.pr }}" \
+                "Deployed to Cloudflare: \(.url) \(.alias_url)"
