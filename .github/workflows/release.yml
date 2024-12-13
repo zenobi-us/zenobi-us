@@ -81,7 +81,8 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
           mise task run deploy --configuration=production |
-            .github/scripts/extract-cloudflare-deployment-urls.sh github_output "$GITHUB_OUTPUT"
+            .github/scripts/extract-cloudflare-deployment-urls.sh \
+              github_output "$GITHUB_OUTPUT"
 
       - if: ${{ needs.Process.outputs.releases_created == 'true' }}
         name: Production Deployment Comment
@@ -115,7 +116,8 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
           mise task run deploy --configuration=development |
-            .github/scripts/extract-cloudflare-deployment-urls.sh github_output "$GITHUB_OUTPUT"
+            .github/scripts/extract-cloudflare-deployment-urls.sh \
+              github_output "$GITHUB_OUTPUT"
 
       - if: ${{ needs.Process.outputs.prs_created == 'true' }}
         name: Development Deployment Comment
