@@ -69,7 +69,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr }}'
+          number: '${{ needs.Process.outputs.pr.number }}'
           id: production-deployment-url
           message: 'Production deployment started'
 
@@ -90,7 +90,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr }}'
+          number: '${{ needs.Process.outputs.pr.number }}'
           id: production-deployment-url
           message: |
             Production deployment successful
@@ -104,7 +104,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr }}'
+          number: '${{ needs.Process.outputs.pr.number }}'
           id: production-deployment-url
           message: Development Deployment Started
 
@@ -125,7 +125,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr }}'
+          number: '${{ needs.Process.outputs.pr.number }}'
           id: development-deployment-url
           message: |
             Development deployment successful
