@@ -7,7 +7,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Needed for nx-set-shas within nx-cloud-main.yml, when run on the master branch
 permissions:
   actions: read
   contents: read
@@ -35,9 +34,35 @@ jobs:
           mise task run lint
           mise task run build
 
+      - name: Comment
+        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          id: preview-deployment-url
+          message: 'Preview deployment started'
+
       - name: Deploy to Preview
+        id: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          mise task run deploy --configuration=preview
+          mise task run deploy --configuration=preview |
+            .github/scripts/extract-cloudflare-deployment-urls.sh \
+              github_output "$GITHUB_OUTPUT"
+
+      - name: Comment
+        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          id: preview-deployment-url
+          message: |
+            Preview deployment complete
+
+            URL: ${{ steps.deploy.outputs.url }}
+            ALIAS_URL: ${{ steps.deploy.outputs.alias_url }}
+          recreate: true
