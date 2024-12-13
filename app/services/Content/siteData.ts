@@ -32,9 +32,8 @@ export async function getAppVersion() {
     const version = pkgVersion;
     const { stdout: hash } = await execa('git', ['rev-parse', 'HEAD']);
     const { stdout: branchname } = await execa('git', [
-      'rev-parse',
-      '--abbrev-ref',
-      'HEAD',
+      'branch',
+      '--show-current',
     ]);
 
     return { version, hash, branchname };
