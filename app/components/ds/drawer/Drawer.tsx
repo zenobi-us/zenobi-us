@@ -24,21 +24,17 @@ const DrawerPortal = DrawerPrimitive.Portal;
 const DrawerClose = DrawerPrimitive.Close;
 
 const DrawerAnchorStyles = tv({
+  base: 'drawer-anchored top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
   variants: {
     anchor: {
-      bottomleft: ['bottom-0 w-full flex flex-col justify-end items-start'],
-      bottomright: ['bottom-0 w-full flex flex-col justify-end items-end'],
-      bottom: ['bottom-0 w-full flex flex-col justify-end items-center'],
-      topleft: ['top-0 w-full flex flex-col justify-start items-start'],
-      topright: ['top-0 w-full flex flex-col justify-start items-end'],
-      top: ['top-0 w-full flex flex-col justify-start items-center'],
-
-      left: [
-        'top-0 left-0 h-full w-full flex flex-col justify-center items-start',
-      ],
-      right: [
-        'top-0 right-0 h-full w-full flex flex-col justify-center items-end',
-      ],
+      bottomleft: ['justify-end items-start'],
+      bottomright: ['justify-end items-end'],
+      bottom: ['justify-end items-center'],
+      topleft: ['justify-start items-start'],
+      topright: ['justify-start items-end'],
+      top: ['justify-start items-center'],
+      left: ['justify-center items-start'],
+      right: ['justify-center items-end'],
     },
   },
   defaultVariants: {
@@ -54,7 +50,7 @@ const DrawerOverlay = forwardRef<
   return (
     <DrawerPrimitive.Overlay
       ref={ref}
-      className={cn('fixed inset-0 z-50 bg-black/80', className)}
+      className={cn('fixed inset-0 z-50 bg-black/40', className)}
       {...props}
     />
   );
@@ -72,7 +68,7 @@ const DrawerContent = forwardRef<
   return (
     <DrawerPortal>
       <DrawerOverlay />
-      <Box className={cn('fixed z-50', styles, className)}>
+      <Box className={cn('fixed z-50 ', styles, className)}>
         <DrawerPrimitive.Content
           ref={ref}
           {...props}
@@ -81,15 +77,13 @@ const DrawerContent = forwardRef<
             tone={tone}
             rounded={rounded}
             size={size}
-            className={cn(className)}
+            className={cn('overflow-y-auto max-h-screen', className)}
             {...props}
           >
-            {anchor.startsWith('bottom') && (
-              <div className="mx-auto mt-1 h-2 w-[100px] rounded-full bg-background-shadow" />
-            )}
-            {anchor.startsWith('top') && (
-              <div className="mx-auto mb-1 h-2 w-[100px] rounded-full bg-background-shadow" />
-            )}
+            <DrawerHandle
+              edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
+            />
+
             {children}
           </DrawerFrame>
         </DrawerPrimitive.Content>
@@ -100,17 +94,17 @@ const DrawerContent = forwardRef<
 DrawerContent.displayName = 'DrawerContent';
 
 const DrawerFrameStyles = tv({
-  base: ['bg-background shadow-lg', 'max-w-full ', 'flex flex-col'],
+  base: ['bg-background-base shadow-lg', 'max-w-full ', 'flex flex-col'],
   variants: {
     tone: {
       primary: ['text-text-base bg-background-overlay'],
     },
     rounded: { true: ['rounded-t-[10px] rounded-b-[10px]'] },
     size: {
-      sm: ['w-[320px]'],
-      md: ['w-[480px]'],
-      lg: ['w-[640px]'],
-      xl: ['w-[800px]'],
+      sm: ['w-full md:w-[320px]'],
+      md: ['w-full md:w-[480px]'],
+      lg: ['w-full md:w-[640px]'],
+      xl: ['w-full md:w-[800px]'],
     },
   },
   defaultVariants: {
@@ -199,7 +193,19 @@ const DrawerDescription = forwardRef<
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
+function DrawerHandle({ edge }: { edge: 'top' | 'bottom' }) {
+  return (
+    <div
+      className="mx-auto p-4 cursor-grab"
+      data-edge={edge}
+    >
+      <DrawerPrimitive.Handle className="h-2 w-[100px] rounded-full bg-background-shadow/45" />
+    </div>
+  );
+}
+
 Drawer.Overlay = DrawerOverlay;
+Drawer.Handle = DrawerHandle;
 Drawer.Trigger = DrawerTrigger;
 Drawer.Close = DrawerClose;
 Drawer.Content = DrawerContent;

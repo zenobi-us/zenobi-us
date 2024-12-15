@@ -6,28 +6,24 @@ import { Divider } from '~/components/ds/divider/Divider';
 import { SimpleDrawer } from '~/components/ds/drawer/SimpleDrawer';
 
 import { ContactForm } from '../forms/ContactForm';
-import { GithubLink } from '../GlobalNav/GithubLink';
 import { LinkedinLink } from '../GlobalNav/LinkedinLink';
-import { InstagramLink } from '../GlobalNav/InstagramLink';
 
-export function ContactFormDrawer({ children }: PropsWithChildren) {
+export function ContactFormDrawer({
+  children,
+  open,
+}: PropsWithChildren<{ open: boolean }>) {
   return (
     <SimpleDrawer
+      open={open}
       trigger={children}
       title="Contact Me"
       description="Get in touch with me..."
       className="w-full p-4"
     >
       <Box className="flex flex-col justify-center w-full gap-4">
-        <GithubLink className="flex gap-2 hover:text-text-link-active hover:cursor-pointer">
-          on Github
-        </GithubLink>
         <LinkedinLink className="flex gap-2 hover:text-text-link-active hover:cursor-pointer">
           on LinkedIn
         </LinkedinLink>
-        <InstagramLink className="flex gap-2 hover:text-text-link-active hover:cursor-pointer">
-          on Instagram
-        </InstagramLink>
         <Divider
           size="small"
           label="Or"

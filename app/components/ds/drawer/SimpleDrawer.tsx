@@ -40,6 +40,7 @@ export function SimpleDrawer({
 
   return (
     <Drawer
+      repositionInputs={false}
       direction={direction}
       {...drawerProps}
     >
