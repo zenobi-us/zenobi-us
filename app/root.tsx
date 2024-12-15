@@ -11,26 +11,24 @@ import {
   json,
 } from '@remix-run/react';
 import { AnimatePresence } from 'framer-motion';
-import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
-import { type ComponentProps } from 'react';
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
 
 import { classnames } from '~/core/classnames';
 import { getAppVersion, getFooterData } from '~/services/Content/siteData';
 import { useRouteHandles } from '~/services/routeHandles';
+import { useDarkMode } from '~/services/Theme/Init';
+import { Box } from '~/components/ds/box/Box';
+import { GlobalFooter } from '~/components/common/GlobalFooter/GlobalFooter';
+import { GlobalNav } from '~/components/common/GlobalNav/GlobalNav';
 import { LinkProvider } from '~/components/ds/link/LinkProvider';
 import { NavigationProvider } from '~/components/common/GlobalNav/NavigationProvider';
 import { Site } from '~/components/ds/sitelayout/Site';
-import { GlobalNav } from '~/components/common/GlobalNav/GlobalNav';
-import { GlobalFooter } from '~/components/common/GlobalFooter/GlobalFooter';
-import { useDarkMode } from '~/services/Theme/Init';
-import { useClientSideFaviconColourStorage } from '~/components/common/favicons/useClientSideFaviconColourStorage';
 import { useClientSideFavicon } from '~/components/common/favicons/useClientSideFavicon';
-import { Box } from '~/components/ds/box/Box';
+import { useClientSideFaviconColourStorage } from '~/components/common/favicons/useClientSideFaviconColourStorage';
+import { DisplayVersion } from '~/components/common/DisplayVersion';
+import { VersionTooltip } from '~/components/common/VersionTooltip';
 
 import './theme/fonts/robotoslab';
 import './main.css';
-import { PopoverArrow, PopoverContent } from './components/ds/popover/Popover';
 
 export async function loader() {
   const footer = await getFooterData();
@@ -135,51 +133,12 @@ export default function App() {
                 </Site.Footer>
               )}
               <Box className="flex gap-2 justify-center p-4">
-                <Tooltip
-                  sideAlign="start"
-                  side="bottom"
-                  trigger={
-                    <Box className="flex gap-2 text-text-muted text-xs">
-                      <Box className="font-semibold">version</Box>
-                      <Box>{data.version.version}</Box>
-                    </Box>
-                  }
-                >
-                  <Box className="flex flex-col gap-2 divide-y-2 divide-dotted divide-opacity-80 divide-border-informative">
-                    <Box className="flex gap-2 items-center">
-                      <GitHubLogoIcon />
-                      <Box className="font-semibold">zenobi-us/zenobi-us</Box>
-                    </Box>
-                    <Box className="flex flex-col gap-2 pt-2">
-                      <Box className="flex gap-2">
-                        <Box className="font-semibold">hash</Box>
-                        <Box asChild>
-                          <a
-                            className="text-link"
-                            target="_blank"
-                            href={`https://github.com/zenobi-us/zenobi-us/commit/${data.version.hash}`}
-                            rel="noreferrer"
-                          >
-                            {data.version.hash}
-                          </a>
-                        </Box>
-                      </Box>
-                      <Box className="flex gap-2">
-                        <Box className="font-semibold">branch</Box>
-                        <Box asChild>
-                          <a
-                            className="text-link"
-                            target="_blank"
-                            href={`https://github.com/zenobi-us/zenobi-us/compare/${data.version.branchname}`}
-                            rel="noreferrer"
-                          >
-                            {data.version.branchname}
-                          </a>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Box>
-                </Tooltip>
+                <VersionTooltip version={data.version}>
+                  <DisplayVersion
+                    version={data.version}
+                    className="text-text-muted text-xs"
+                  />
+                </VersionTooltip>
               </Box>
             </Site>
           </NavigationProvider>
@@ -188,37 +147,5 @@ export default function App() {
         <Scripts />
       </body>
     </html>
-  );
-}
-
-function Tooltip({
-  trigger,
-  children,
-  side,
-  sideAlign,
-}: {
-  trigger: React.ReactNode;
-  children: React.ReactNode;
-} & Pick<ComponentProps<typeof PopoverContent>, 'side' | 'sideAlign'>) {
-  return (
-    <Popover>
-      <PopoverTrigger>{trigger}</PopoverTrigger>
-
-      <PopoverContent
-        side={side}
-        sideAlign={sideAlign}
-        className={classnames(
-          'flex flex-col justify-center gap-2',
-          'border-border-informative',
-          'bg-background-overlay',
-          'text-text-hover',
-          'rounded-md',
-          'border-2'
-        )}
-      >
-        <PopoverArrow />
-        <Box className="flex flex-col gap-2">{children}</Box>
-      </PopoverContent>
-    </Popover>
   );
 }

@@ -1,22 +1,6 @@
 @layer components {
-  code[data-theme*=' '],
-  code[data-theme*=' '] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    code[data-theme*=' '],
-    code[data-theme*=' '] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
-    }
-  }
-}
-
-@layer components {
   [data-rehype-pretty-code-figure] {
-    @apply text-mono-font-family;
+    @apply font-mono;
     @apply mx-2;
   }
 
@@ -73,4 +57,16 @@
     [data-line]:not([data-highlighted-line]) {
     @apply opacity-100 blur-0;
   }
+}
+
+html.light pre[data-theme*=' '] code,
+html.light pre[data-theme*=' '] code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+html.dark pre[data-theme*=' '] code,
+html.dark pre[data-theme*=' '] code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
 }

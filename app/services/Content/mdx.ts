@@ -19,6 +19,10 @@ export const rehypeOptions: Options['rehypePlugins'] = [
   [
     rehypePrettyCode,
     {
+      theme: {
+        dark: 'github-dark-dimmed',
+        light: 'github-light',
+      },
       keepBackground: false,
       tokensMap: {
         fn: 'entity.name.function',

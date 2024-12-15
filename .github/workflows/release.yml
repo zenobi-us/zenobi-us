@@ -80,9 +80,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
-          APP_VERISON=$(jq -r '.version' package.json) \
-            mise task run build
-
           mise task run deploy --configuration=production |
             .github/scripts/extract-cloudflare-deployment-urls.sh \
               github_output "$GITHUB_OUTPUT"
@@ -118,9 +115,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
-          APP_VERISON=$(jq -r '.version' package.json) \
-            mise task run build
-
           mise task run deploy --configuration=development |
             .github/scripts/extract-cloudflare-deployment-urls.sh \
               github_output "$GITHUB_OUTPUT"
