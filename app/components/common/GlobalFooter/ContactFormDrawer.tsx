@@ -16,7 +16,7 @@ export function ContactFormDrawer({ children }: PropsWithChildren) {
       trigger={children}
       title="Contact Me"
       description="Get in touch with me..."
-      className="m-4"
+      className="m-4 p-4"
     >
       <Box className="flex flex-col justify-center w-full gap-4">
         <GithubLink className="flex gap-2 hover:text-text-link-active hover:cursor-pointer">

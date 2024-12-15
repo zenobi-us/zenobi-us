@@ -3,6 +3,7 @@ import { vitePlugin as remix } from '@remix-run/dev';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import contentCollections from '@content-collections/remix-vite';
+import glsl from 'vite-plugin-glsl';
 
 export default defineConfig({
   server: {
@@ -19,6 +20,7 @@ export default defineConfig({
     tsconfigPaths(),
     !process.env.STORYBOOK && contentCollections(),
     !!process.env.STORYBOOK && react(),
+    glsl(),
   ],
 
   worker: {
