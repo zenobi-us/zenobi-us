@@ -23,29 +23,9 @@ const DrawerPortal = DrawerPrimitive.Portal;
 
 const DrawerClose = DrawerPrimitive.Close;
 
-const DrawerAnchorStyles = tv({
-  base: 'drawer-anchored top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
-  variants: {
-    anchor: {
-      bottomleft: ['justify-end items-start'],
-      bottomright: ['justify-end items-end'],
-      bottom: ['justify-end items-center'],
-      topleft: ['justify-start items-start'],
-      topright: ['justify-start items-end'],
-      top: ['justify-start items-center'],
-      left: ['justify-center items-start'],
-      right: ['justify-center items-end'],
-    },
-  },
-  defaultVariants: {
-    anchor: 'bottomright',
-  },
-});
-
 const DrawerOverlay = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay> &
-    VariantProps<typeof DrawerAnchorStyles>
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
 >(({ className, ...props }, ref) => {
   return (
     <DrawerPrimitive.Overlay
@@ -56,42 +36,6 @@ const DrawerOverlay = forwardRef<
   );
 });
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
-
-const DrawerContent = forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
-    VariantProps<typeof DrawerFrameStyles> &
-    VariantProps<typeof DrawerAnchorStyles>
->(({ className, children, anchor, tone, rounded, size, ...props }, ref) => {
-  const styles = DrawerAnchorStyles({ anchor });
-
-  return (
-    <DrawerPortal>
-      <DrawerOverlay />
-      <Box className={cn('fixed z-50 ', styles, className)}>
-        <DrawerPrimitive.Content
-          ref={ref}
-          {...props}
-        >
-          <DrawerFrame
-            tone={tone}
-            rounded={rounded}
-            size={size}
-            className={cn('overflow-y-auto max-h-screen', className)}
-            {...props}
-          >
-            <DrawerHandle
-              edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
-            />
-
-            {children}
-          </DrawerFrame>
-        </DrawerPrimitive.Content>
-      </Box>
-    </DrawerPortal>
-  );
-});
-DrawerContent.displayName = 'DrawerContent';
 
 const DrawerFrameStyles = tv({
   base: ['bg-background-base shadow-lg', 'max-w-full ', 'flex flex-col'],
@@ -128,6 +72,59 @@ const DrawerFrame = ({
   );
 };
 DrawerFrame.displayName = 'DrawerFrame';
+const DrawerAnchorStyles = tv({
+  base: 'drawer-anchored top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
+  variants: {
+    anchor: {
+      bottomleft: ['justify-end items-start'],
+      bottomright: ['justify-end items-end'],
+      bottom: ['justify-end items-center'],
+      topleft: ['justify-start items-start'],
+      topright: ['justify-start items-end'],
+      top: ['justify-start items-center'],
+      left: ['justify-center items-start'],
+      right: ['justify-center items-end'],
+    },
+  },
+  defaultVariants: {
+    anchor: 'bottomright',
+  },
+});
+const DrawerContent = forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
+    VariantProps<typeof DrawerFrameStyles> &
+    VariantProps<typeof DrawerAnchorStyles>
+>(({ className, children, anchor, tone, rounded, size, ...props }, ref) => {
+  const styles = DrawerAnchorStyles({ anchor });
+
+  return (
+    <DrawerPortal>
+      <DrawerOverlay />
+      <Box className={cn('fixed z-50 ', styles, className)}>
+        <DrawerPrimitive.Content
+          ref={ref}
+          {...props}
+        >
+          <DrawerFrame
+            tone={tone}
+            rounded={rounded}
+            size={size}
+            className={cn('overflow-y-auto max-h-screen', className)}
+            {...props}
+          >
+            <DrawerHandle
+              edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
+            />
+
+            {children}
+          </DrawerFrame>
+        </DrawerPrimitive.Content>
+      </Box>
+    </DrawerPortal>
+  );
+});
+DrawerContent.displayName = 'DrawerContent';
 
 const DrawerHeader = ({
   className,
