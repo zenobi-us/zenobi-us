@@ -84,13 +84,13 @@ export function ContactForm({
           control={form.control}
           name="message"
           render={({ field, fieldState }) => (
-            <FormItem>
+            <FormItem className="flex-grow">
               <FormLabel>Message</FormLabel>
               <FormControl>
                 <TextAreaInput
                   {...field}
                   {...fieldState}
-                  className="min-w-full max-w-full min-h-48"
+                  className="min-w-full max-w-full flex-grow max-h-60"
                   disabled={status === 'sending' || status === 'sent'}
                 />
               </FormControl>

@@ -16,7 +16,7 @@ export function ContactFormDrawer({ children }: PropsWithChildren) {
       trigger={children}
       title="Contact Me"
       description="Get in touch with me..."
-      className="m-4 p-4"
+      className="w-full p-4"
     >
       <Box className="flex flex-col justify-center w-full gap-4">
         <GithubLink className="flex gap-2 hover:text-text-link-active hover:cursor-pointer">
@@ -39,17 +39,18 @@ export function ContactFormDrawer({ children }: PropsWithChildren) {
         </Box>
       </Box>
       <FormspreeProvider>
-        <FormSpreeContactForm />
+        <FormSpreeContactForm className="flex flex-col flex-grow min-h-full" />
       </FormspreeProvider>
     </SimpleDrawer>
   );
 }
 
-function FormSpreeContactForm() {
+function FormSpreeContactForm({ className }: { className?: string }) {
   const [state, handleSubmit] = useForm('myzyaypz');
 
   return (
     <ContactForm
+      className={className}
       status={state.submitting ? 'sending' : 'idle'}
       onSubmit={handleSubmit}
     />
