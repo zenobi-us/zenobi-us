@@ -33,7 +33,7 @@ export async function getAppVersion() {
     const { stdout: commonCommit } = await execa('git', [
       'merge-base',
       'HEAD',
-      'master',
+      'origin/master',
     ]);
     const { stdout: buildno } = await execa('git', [
       'rev-list',

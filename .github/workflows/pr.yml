@@ -37,8 +37,7 @@ jobs:
 
       - name: Build
         run: |
-          mise task run build \
-            --build-no="$(git rev-list --count $(git merge-base HEAD master)..HEAD)"
+          mise task run build
 
       - name: Comment
         uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
