@@ -17,7 +17,6 @@ export function SimpleDrawer({
   className,
   tone = 'primary',
   rounded,
-  size = 'md',
   trigger,
   title,
   description,
@@ -50,7 +49,6 @@ export function SimpleDrawer({
           className={className}
           tone={tone}
           rounded={rounded}
-          size={size}
         >
           <Drawer.Header>
             {title && <Drawer.Title>{title}</Drawer.Title>}

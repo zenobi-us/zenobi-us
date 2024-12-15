@@ -24,6 +24,7 @@ const DrawerPortal = DrawerPrimitive.Portal;
 const DrawerClose = DrawerPrimitive.Close;
 
 const DrawerAnchorStyles = tv({
+  base: ['drawer-amchored'],
   variants: {
     anchor: {
       bottomleft: ['bottom-0 w-full flex flex-col justify-end items-start'],
@@ -54,25 +55,40 @@ const DrawerOverlay = forwardRef<
   return (
     <DrawerPrimitive.Overlay
       ref={ref}
-      className={cn('fixed inset-0 z-50 bg-black/80', className)}
+      className={cn('drawer-overlay fixed inset-0 z-50 bg-black/80', className)}
       {...props}
     />
   );
 });
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
+const DrawerContentStyles = tv({
+  variants: {
+    padding: {
+      none: 'p-0',
+      sm: 'p-4',
+      md: 'p-6',
+      lg: 'p-8',
+    },
+  },
+  defaultVariants: {
+    padding: 'md',
+  },
+});
+
 const DrawerContent = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
     VariantProps<typeof DrawerFrameStyles> &
-    VariantProps<typeof DrawerAnchorStyles>
->(({ className, children, anchor, tone, rounded, size, ...props }, ref) => {
+    VariantProps<typeof DrawerAnchorStyles> &
+    VariantProps<typeof DrawerContentStyles>
+>(({ className, children, anchor, tone, rounded, padding, ...props }, ref) => {
   const styles = DrawerAnchorStyles({ anchor });
-
+  const paddingStyles = DrawerContentStyles({ padding });
   return (
     <DrawerPortal>
       <DrawerOverlay />
-      <Box className={cn('fixed z-50', styles, className)}>
+      <Box className={cn('drawer-content fixed z-50', styles, paddingStyles)}>
         <DrawerPrimitive.Content
           ref={ref}
           {...props}
@@ -80,8 +96,7 @@ const DrawerContent = forwardRef<
           <DrawerFrame
             tone={tone}
             rounded={rounded}
-            size={size}
-            className={cn(className)}
+            className={className}
             {...props}
           >
             {anchor.startsWith('bottom') && (
@@ -100,21 +115,18 @@ const DrawerContent = forwardRef<
 DrawerContent.displayName = 'DrawerContent';
 
 const DrawerFrameStyles = tv({
-  base: ['bg-background shadow-lg', 'max-w-full ', 'flex flex-col'],
+  base: [
+    'drawer-frame bg-background shadow-lg',
+    'max-w-full ',
+    'flex flex-col',
+  ],
   variants: {
     tone: {
       primary: ['text-text-base bg-background-overlay'],
     },
     rounded: { true: ['rounded-t-[10px] rounded-b-[10px]'] },
-    size: {
-      sm: ['w-[320px]'],
-      md: ['w-[480px]'],
-      lg: ['w-[640px]'],
-      xl: ['w-[800px]'],
-    },
   },
   defaultVariants: {
-    size: 'md',
     tone: 'primary',
     rounded: true,
   },
@@ -140,7 +152,10 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)}
+    className={cn(
+      'drawer-header grid gap-1.5 p-4 text-center sm:text-left',
+      className
+    )}
     {...props}
   />
 );
@@ -151,7 +166,7 @@ const DrawerBody = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn('mt-auto flex flex-col gap-2 p-4', className)}
+    className={cn('drawer-body mt-auto flex flex-col gap-2 p-4', className)}
     {...props}
   />
 );
@@ -162,7 +177,7 @@ const DrawerFooter = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn('mt-auto flex flex-col gap-2 p-4', className)}
+    className={cn('drawer-footer mt-auto flex flex-col gap-2 p-4', className)}
     {...props}
   />
 );
@@ -177,6 +192,7 @@ const DrawerTitle = forwardRef<
   <DrawerPrimitive.Title
     ref={ref}
     className={cn(
+      'drawer-title',
       'text-lg font-semibold leading-none tracking-tight',
       className
     )}
@@ -193,7 +209,7 @@ const DrawerDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-text-muted', className)}
+    className={cn('drawer-description text-sm text-text-muted', className)}
     {...props}
   />
 ));

@@ -8,7 +8,7 @@ import { Box } from '../box/Box';
 const Styles = tv({
   slots: {
     base: 'flex flex-grow items-center justify-center gap-1',
-    dots: 'flex gap-1',
+    dots: 'flex gap-1 transition-all duration-1000',
     dot: 'w-1 h-1 rounded-full',
     label: 'sr-only',
   },
