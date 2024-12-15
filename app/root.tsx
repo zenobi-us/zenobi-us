@@ -134,7 +134,10 @@ export default function App() {
               )}
               <Box className="flex gap-2 justify-center p-4">
                 <VersionTooltip version={data.version}>
-                  <DisplayVersion version={data.version} />
+                  <DisplayVersion
+                    version={data.version}
+                    className="text-text-muted text-xs"
+                  />
                 </VersionTooltip>
               </Box>
             </Site>

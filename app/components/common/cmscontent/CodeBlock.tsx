@@ -5,7 +5,7 @@ import { classnames } from '~/core/classnames';
 const Styles = tv({
   slots: {
     block: [
-      'text-text-quote leading-4 p-2 text-left',
+      'leading-4 p-2 text-left',
       'backdrop-blur-sm bg-background-card dark:bg-background-card',
       'overflow-x-auto',
       '[&_code]:relative',

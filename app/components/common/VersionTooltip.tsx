@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from 'react';
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
 
 import { Tooltip } from '../ds/tooltip/ToolTip';
 import { Box } from '../ds/box/Box';
 import { Link } from '../ds/link/Link';
 
 import { useDisplayVersion } from './useDisplayVersion';
+import { DisplayVersion } from './DisplayVersion';
 
 export function VersionTooltip({
   version,
@@ -19,20 +19,14 @@ export function VersionTooltip({
       side="bottom"
       trigger={children}
     >
-      <Box className="flex flex-col gap-2 divide-y-2 divide-dotted divide-opacity-80 divide-border-informative">
-        <Box
-          className="flex gap-2 items-center"
-          asChild
+      <Box className="flex flex-col gap-2 divide-y-2 divide-dotted divide-opacity-80 divide-border-informative text-xs">
+        <Link
+          href="https://github.com/zenobi-us/zenobi-us"
+          target="_blank"
+          rel="noreferrer"
         >
-          <Link
-            href="https://github.com/zenobi-us/zenobi-us"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GitHubLogoIcon />
-            <Box className="font-semibold">zenobi-us/zenobi-us</Box>
-          </Link>
-        </Box>
+          <DisplayVersion version={version} />
+        </Link>
         <Box className="flex flex-col gap-2 pt-2">
           <Box className="flex gap-2">
             <Box className="font-semibold min-w-16 justify-end">hash</Box>
