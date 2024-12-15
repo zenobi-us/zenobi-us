@@ -10,9 +10,8 @@ import {
   useOutlet,
   json,
 } from '@remix-run/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
-import { classnames } from '~/core/classnames';
 import { getAppVersion, getFooterData } from '~/services/Content/siteData';
 import { useRouteHandles } from '~/services/routeHandles';
 import { useDarkMode } from '~/services/Theme/Init';
@@ -26,10 +25,10 @@ import { useClientSideFavicon } from '~/components/common/favicons/useClientSide
 import { useClientSideFaviconColourStorage } from '~/components/common/favicons/useClientSideFaviconColourStorage';
 import { DisplayVersion } from '~/components/common/DisplayVersion';
 import { VersionTooltip } from '~/components/common/VersionTooltip';
-import { Loader } from '~/components/ds/loader/Loader';
 
 import './theme/fonts/robotoslab';
 import './main.css';
+import { FullScreenLoader } from './components/ds/loader/FullScreenLoader';
 
 export async function loader() {
   const footer = await getFooterData();
@@ -102,88 +101,47 @@ export default function App() {
         />
         <Links />
       </head>
-      <body className="flex flex-col min-h-svh bg-background-modal">
-        <AnimatePresence
-          mode="popLayout"
-          initial={false}
-        >
-          {darkmode.loading && (
-            <motion.div
-              className="flex flex-grow transform transition-opacity opacity-100"
-              variants={{
-                start: { opacity: 0 },
-                end: { opacity: 1 },
-                exit: { opacity: 0 },
-              }}
-              transition={{ duration: 2 }}
-              initial="start"
-              animate="end"
-              exit="exit"
-            >
-              <Loader
-                label="Loading..."
-                size="sm"
-              />
-            </motion.div>
+      <body className="flex flex-col min-h-svh">
+        <FullScreenLoader loading={darkmode.loading}>
+          {() => (
+            <LinkProvider component={LinkInterop}>
+              <NavigationProvider currentPath={currentPath}>
+                <Site pathId={location.pathname}>
+                  {handles.globalNav && (
+                    <Site.Header>
+                      <GlobalNav
+                        useLogo
+                        currentPath={currentPath}
+                      />
+                    </Site.Header>
+                  )}
+
+                  <AnimatePresence
+                    initial={false}
+                    mode="wait"
+                  >
+                    <Site.Main>{outlet}</Site.Main>
+                  </AnimatePresence>
+
+                  {handles.globalFooter && data.footer?.mdx && (
+                    <Site.Footer>
+                      <GlobalFooter content={data.footer.mdx}></GlobalFooter>
+                    </Site.Footer>
+                  )}
+
+                  <Box className="flex gap-2 justify-center p-4">
+                    <VersionTooltip version={data.version}>
+                      <DisplayVersion
+                        version={data.version}
+                        className="text-text-muted text-xs"
+                      />
+                    </VersionTooltip>
+                  </Box>
+                </Site>
+              </NavigationProvider>
+            </LinkProvider>
           )}
-
-          {!darkmode.loading && (
-            <motion.div
-              className={classnames(
-                'flex flex-grow flex-col',
-                'transform transition-opacity',
-                darkmode.loading && 'opacity-0',
-                !darkmode.loading && 'opacity-100'
-              )}
-              variants={{
-                start: { opacity: 0 },
-                end: { opacity: 1 },
-                exit: { opacity: 0 },
-              }}
-              transition={{ duration: 2 }}
-              initial="start"
-              animate="end"
-              exit="exit"
-            >
-              <LinkProvider component={LinkInterop}>
-                <NavigationProvider currentPath={currentPath}>
-                  <Site pathId={location.pathname}>
-                    {handles.globalNav && (
-                      <Site.Header>
-                        <GlobalNav
-                          useLogo
-                          currentPath={currentPath}
-                        />
-                      </Site.Header>
-                    )}
-
-                    <AnimatePresence
-                      initial={false}
-                      mode="wait"
-                    >
-                      <Site.Main>{outlet}</Site.Main>
-                    </AnimatePresence>
-
-                    {handles.globalFooter && data.footer?.mdx && (
-                      <Site.Footer>
-                        <GlobalFooter content={data.footer.mdx}></GlobalFooter>
-                      </Site.Footer>
-                    )}
-
-                    <Box className="flex gap-2 justify-center p-4">
-                      <VersionTooltip version={data.version}>
-                        <DisplayVersion
-                          version={data.version}
-                          className="text-text-muted text-xs"
-                        />
-                      </VersionTooltip>
-                    </Box>
-                  </Site>
-                </NavigationProvider>
-              </LinkProvider>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </FullScreenLoader>
         <ScrollRestoration />
         <Scripts />
       </body>
