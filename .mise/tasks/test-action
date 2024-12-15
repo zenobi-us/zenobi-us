@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+#USAGE arg "<workflowname>" help="The name of the workflow to test"
+#USAGE arg "<eventname>"    default="push" help="The name of the event to test"
+
+#MISE description="a mise task that accepts some arguments to let you test an action"
+
+# shellcheck disable=SC1091
+source .mise/helpers.sh
+
+requires_command "act" "nekos/act is required. You should have installed it when you ran mise install"
+
+# shellcheck disable=SC2154
+workflow_filepath=".github/workflows/$usage_workflowname.yml"
+
+if [ ! -f "$workflow_filepath" ]; then
+    echo "Workflow file not found: $workflow_filepath"
+    echo "Existing workflows:"
+    # strip extension
+    # shellcheck disable=SC2012
+    ls -1 .github/workflows | sed 's/\.yml$//'
+    exit 1
+fi
+
+echo "Testing workflow: $workflow_filepath with event: $usage_eventname"
+
+# shellcheck disable=SC2154
+act "$usage_eventname" \
+    -W "$workflow_filepath" \
+    -P ubuntu-latest=catthehacker/ubuntu:full-22.04

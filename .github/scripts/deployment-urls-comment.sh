@@ -1,31 +1,11 @@
 #!/usr/bin/env bash
+HEREPATH=$(
+    cd "$(dirname "${BASH_SOURCE[0]}")" || exit
+    pwd
+)
 
-requires_command() {
-    local command
-    local message
-
-    command=$1
-    message=$2
-
-    if ! command -v "$command" &>/dev/null; then
-        echo "$message"
-        exit 1
-    fi
-}
-
-requires_arg() {
-    local arg
-    local message
-
-    arg=$1
-    message=$2
-
-    if [[ -z $arg ]]; then
-        echo "$message"
-        exit 1
-    fi
-
-}
+# shellcheck disable=SC1091
+source "$HEREPATH"/../../.mise/helpers.sh
 
 # use jq to interpolate a message that contains both the url and the alias_url for the release
 extract_and_write() {

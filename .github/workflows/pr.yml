@@ -37,9 +37,8 @@ jobs:
 
       - name: Build
         run: |
-          COMMITS=$(git rev-list --count ${{ github.event.before }}..HEAD)
-          VERSION=$(jq -r '.version' package.json)
-          APP_VERSION="$VERSION.$COMMITS" mise task run build
+          mise task run build \
+            --build-no="$(git rev-list --count $(git merge-base HEAD master)..HEAD)"
 
       - name: Comment
         uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0

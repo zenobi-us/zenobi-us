@@ -30,13 +30,23 @@ export async function getFooterData() {
 export async function getAppVersion() {
   try {
     const version = pkgVersion;
+    const { stdout: commonCommit } = await execa('git', [
+      'merge-base',
+      'HEAD',
+      'master',
+    ]);
+    const { stdout: buildno } = await execa('git', [
+      'rev-list',
+      '--count',
+      `${commonCommit}..HEAD`,
+    ]);
     const { stdout: hash } = await execa('git', ['rev-parse', 'HEAD']);
     const { stdout: branchname } = await execa('git', [
       'branch',
       '--show-current',
     ]);
 
-    return { version, hash, branchname };
+    return { version, buildno, hash, branchname };
   } catch (error) {
     console.error('Failed to load app version', error);
     throw new Error('Failed to load app version');

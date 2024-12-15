@@ -1,0 +1,41 @@
+name: 'LintPrTitle'
+
+on:
+  push:
+
+permissions:
+  pull-requests: read
+
+jobs:
+  GitInfo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: jdx/mise-action@63a673876c7072c1d6ecb2049c0d572976c83b22 # v2
+        with:
+          version: 2024.11.4
+          tool_versions: |
+            jq 1.6
+
+      - name: Get Git Info
+        run: |
+          echo "GitSha:"
+          git rev-parse HEAD
+
+          echo "Commits since start of PR:"
+          # count the commits from the common commit to HEAD
+          git rev-list --count $(git merge-base HEAD master)..HEAD
+
+          echo "GitBranch: revparse"
+          git rev-parse --abbrev-ref HEAD
+
+          echo "GitBranch: current"
+          git branch --show-current
+
+          echo "GitBranch: symbolic"
+          git symbolic-ref --short HEAD

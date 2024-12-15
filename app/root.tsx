@@ -12,8 +12,9 @@ import {
 } from '@remix-run/react';
 import { AnimatePresence } from 'framer-motion';
 import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
-import { type ComponentProps } from 'react';
+import { useMemo, type ComponentProps } from 'react';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import type { SerializeFrom } from '@remix-run/node';
 
 import { classnames } from '~/core/classnames';
 import { getAppVersion, getFooterData } from '~/services/Content/siteData';
@@ -138,17 +139,23 @@ export default function App() {
                 <Tooltip
                   sideAlign="start"
                   side="bottom"
-                  trigger={
-                    <Box className="flex gap-2 text-text-muted text-xs">
-                      <Box className="font-semibold">version</Box>
-                      <Box>{data.version.version}</Box>
-                    </Box>
-                  }
+                  trigger={<Version version={data.version} />}
                 >
                   <Box className="flex flex-col gap-2 divide-y-2 divide-dotted divide-opacity-80 divide-border-informative">
                     <Box className="flex gap-2 items-center">
                       <GitHubLogoIcon />
-                      <Box className="font-semibold">zenobi-us/zenobi-us</Box>
+                      <Box
+                        className="font-semibold"
+                        asChild
+                      >
+                        <a
+                          href="https://github.com/zenobi-us/zenobi-us"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          zenobi-us/zenobi-us@{useDisplayVersion(data.version)}
+                        </a>
+                      </Box>
                     </Box>
                     <Box className="flex flex-col gap-2 pt-2">
                       <Box className="flex gap-2">
@@ -221,4 +228,34 @@ function Tooltip({
       </PopoverContent>
     </Popover>
   );
+}
+
+function Version({
+  version,
+}: {
+  version: Parameters<typeof useDisplayVersion>[0];
+}) {
+  const displayVersion = useDisplayVersion(version);
+  return (
+    <Box className="flex flex-col gap-2 text-text-muted text-xs">
+      <Box className="flex gap-2">
+        <Box className="font-semibold">version</Box>
+        <Box>{displayVersion}</Box>
+      </Box>
+    </Box>
+  );
+}
+
+function useDisplayVersion(
+  version: Awaited<SerializeFrom<typeof loader>>['version']
+) {
+  const displayVersion = useMemo(() => {
+    if (version.buildno) {
+      return `${version.version}+${version.buildno}`;
+    }
+
+    return version.version;
+  }, [version.version, version.buildno]);
+
+  return displayVersion;
 }
