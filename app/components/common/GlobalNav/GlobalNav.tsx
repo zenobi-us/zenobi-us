@@ -69,7 +69,7 @@ export function GlobalNav({
               className="flex items-center gap-2"
               href="/"
             >
-              <Avatar size={32} />
+              <Avatar size={26} />
               Zenobius
             </Link>
           )}

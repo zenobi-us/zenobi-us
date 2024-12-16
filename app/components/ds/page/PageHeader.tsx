@@ -86,7 +86,7 @@ export function PageHeaderDescription({ children }: PropsWithChildren) {
 
 export function PageHeaderTags({ tags }: { tags: string[] }) {
   return (
-    <div className="flex flex-row gap-x-2">
+    <>
       {tags.map((tag) => (
         <Tag
           key={tag}
@@ -94,7 +94,7 @@ export function PageHeaderTags({ tags }: { tags: string[] }) {
           href={$path('/b/tags/:tag', { tag })}
         />
       ))}
-    </div>
+    </>
   );
 }
 

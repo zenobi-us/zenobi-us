@@ -36,7 +36,7 @@ export default function IndexRoute() {
         />
       )}
       <Page.Header title={data.post.title}>
-        <div className="flex items-center gap-2">
+        <div className="inline-flex flex-wrap items-center gap-2">
           <Page.Header.Date date={data.post.date} />
           <Page.Header.Tags tags={data.post.tags} />
         </div>
