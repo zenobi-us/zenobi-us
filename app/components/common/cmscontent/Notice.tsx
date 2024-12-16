@@ -68,7 +68,7 @@ export function Notice({
     const Icon = iconMap[props.type || 'info'];
 
     if (!Icon) {
-      return null;
+      return '';
     }
 
     return (
