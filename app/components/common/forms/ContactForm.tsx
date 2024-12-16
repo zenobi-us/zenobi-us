@@ -112,6 +112,7 @@ export function ContactForm({
           )}
           <Button
             type="submit"
+            secondary
             disabled={status === 'sending' || status === 'sent'}
             className="ml-auto"
             afterElement={

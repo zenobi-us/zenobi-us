@@ -38,42 +38,32 @@ const DrawerOverlay = forwardRef<
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
 const DrawerFrameStyles = tv({
-  base: ['bg-background-base shadow-lg', 'max-w-full ', 'flex flex-col'],
+  base: [
+    'drawer-frame bg-background-base shadow-lg',
+    'max-w-full overflow-y-auto max-h-full',
+    'after:hidden',
+  ],
   variants: {
     tone: {
       primary: ['text-text-base bg-background-overlay'],
     },
     rounded: { true: ['rounded-t-[10px] rounded-b-[10px]'] },
     size: {
-      sm: ['w-full md:w-[320px]'],
-      md: ['w-full md:w-[480px]'],
-      lg: ['w-full md:w-[640px]'],
-      xl: ['w-full md:w-[800px]'],
+      small: ['w-full md:w-80'],
+      medium: ['w-full md:w-96'],
+      large: ['w-full md:w-104'],
+      xlarge: ['w-full md:w-112'],
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'medium',
     tone: 'primary',
     rounded: true,
   },
 });
 
-const DrawerFrame = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof DrawerFrameStyles>) => {
-  const styles = DrawerFrameStyles(props);
-  return (
-    <div
-      className={cn(styles, className)}
-      {...props}
-    />
-  );
-};
-DrawerFrame.displayName = 'DrawerFrame';
 const DrawerAnchorStyles = tv({
-  base: 'drawer-anchored top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
+  base: 'drawer-anchored p-4 top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
   variants: {
     anchor: {
       bottomleft: ['justify-end items-start'],
@@ -95,30 +85,24 @@ const DrawerContent = forwardRef<
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
     VariantProps<typeof DrawerFrameStyles> &
     VariantProps<typeof DrawerAnchorStyles>
->(({ className, children, anchor, tone, rounded, size, ...props }, ref) => {
-  const styles = DrawerAnchorStyles({ anchor });
+>(({ className, children, anchor, ...props }, ref) => {
+  const anchorStyles = DrawerAnchorStyles({ anchor });
+  const frameStyles = DrawerFrameStyles(props);
 
   return (
     <DrawerPortal>
       <DrawerOverlay />
-      <Box className={cn('fixed z-50 ', styles, className)}>
+      <Box className={cn('fixed z-50 ', anchorStyles, className)}>
         <DrawerPrimitive.Content
           ref={ref}
+          className={classnames('drawer-content', frameStyles)}
           {...props}
         >
-          <DrawerFrame
-            tone={tone}
-            rounded={rounded}
-            size={size}
-            className={cn('overflow-y-auto max-h-screen', className)}
-            {...props}
-          >
-            <DrawerHandle
-              edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
-            />
+          <DrawerHandle
+            edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
+          />
 
-            {children}
-          </DrawerFrame>
+          {children}
         </DrawerPrimitive.Content>
       </Box>
     </DrawerPortal>
@@ -184,7 +168,7 @@ const DrawerDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-text-muted', className)}
+    className={cn('text-sm text-text-informative', className)}
     {...props}
   />
 ));

@@ -11,38 +11,20 @@ import { TimelineSummaryItem } from './TimelineSummaryItem';
 
 const Styles = tv({
   slots: {
-    // export const listOfYears = style({
-    //   width: '100%',
-    // });
-
     listOfYears: ['w-full'],
 
-    // export const yearList = style({
-    //   display: 'grid',
-    //   gridTemplateColumns: '64px auto',
-    //   gridTemplateAreas: `
-    //         "year . "
-    //         "posts posts"
-    //     `,
-    // });
     yearList: [
       'grid',
       'flex-col',
-      'grid-cols-[64px,auto]',
-      'grid-areas-[year .,posts posts]',
+      'grid-cols-1 md:grid-cols-[64px,auto]',
+      'grid-areas-[year ._posts posts] md:grid-areas-[year .,posts posts]',
     ],
 
-    // export const yearHeader = style({
-    //   display: 'inline',
-    //   textAlign: 'right',
-    //   gridArea: 'year',
-    //   fontFamily: Tokens.typeface.SectionHeading.fontFamily,
-    // });
     yearHeader: [
       'inline',
       'flex-col',
-      'text-right',
-      'font-bold',
+      'p-4 text-left md:p-0 md:text-right',
+      'text-xl md:text-base font-bold',
       '[grid-area: year] font-section-heading',
     ],
 

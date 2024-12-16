@@ -1,7 +1,7 @@
 export const TypefaceNames = {
-  serif: '"Roboto Slab"',
+  serif: '"Roboto Slab Variable"',
   sans: '"Open Sans"',
-  mono: '"Roboto Mono"',
+  mono: '"Roboto Mono Variable"',
 };
 
 import { kebabCase } from 'lodash-es';

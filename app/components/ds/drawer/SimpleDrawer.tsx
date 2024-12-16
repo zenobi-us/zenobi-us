@@ -14,14 +14,9 @@ type SimpleDrawerProps = DrawerProps &
 
 export function SimpleDrawer({
   anchor = 'bottomright',
-  className,
   tone = 'primary',
   rounded,
-  size = 'md',
   trigger,
-  title,
-  description,
-  footer,
   children,
   ...drawerProps
 }: SimpleDrawerProps) {
@@ -48,19 +43,10 @@ export function SimpleDrawer({
       <Drawer.Overlay>
         <Drawer.Content
           anchor={anchor}
-          className={className}
           tone={tone}
           rounded={rounded}
-          size={size}
         >
-          <Drawer.Header>
-            {title && <Drawer.Title>{title}</Drawer.Title>}
-            {description && (
-              <Drawer.Description>{description}</Drawer.Description>
-            )}
-          </Drawer.Header>
-          <Drawer.Body>{children}</Drawer.Body>
-          {footer && <Drawer.Footer>{footer}</Drawer.Footer>}
+          {children}
         </Drawer.Content>
       </Drawer.Overlay>
     </Drawer>
