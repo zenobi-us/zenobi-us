@@ -88,7 +88,7 @@ export function HomePage({
             className={classnames(styles.navigation())}
           >
             <Link href="/b">Posts</Link>
-            <ContactFormDrawer>
+            <ContactFormDrawer anchor="bottom">
               <Button link>Contact Me</Button>
             </ContactFormDrawer>
           </LinkList>
