@@ -8,7 +8,7 @@ import { Box } from '../box/Box';
 
 const cn = classnames;
 
-type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root>;
+export type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root>;
 const Drawer = ({ shouldScaleBackground = true, ...props }: DrawerProps) => (
   <DrawerPrimitive.Root
     shouldScaleBackground={shouldScaleBackground}
@@ -23,117 +23,92 @@ const DrawerPortal = DrawerPrimitive.Portal;
 
 const DrawerClose = DrawerPrimitive.Close;
 
-const DrawerAnchorStyles = tv({
-  variants: {
-    anchor: {
-      bottomleft: ['bottom-0 w-full flex flex-col justify-end items-start'],
-      bottomright: ['bottom-0 w-full flex flex-col justify-end items-end'],
-      bottom: ['bottom-0 w-full flex flex-col justify-end items-center'],
-      topleft: ['top-0 w-full flex flex-col justify-start items-start'],
-      topright: ['top-0 w-full flex flex-col justify-start items-end'],
-      top: ['top-0 w-full flex flex-col justify-start items-center'],
-
-      left: [
-        'top-0 left-0 h-full w-full flex flex-col justify-center items-start',
-      ],
-      right: [
-        'top-0 right-0 h-full w-full flex flex-col justify-center items-end',
-      ],
-    },
-  },
-  defaultVariants: {
-    anchor: 'bottomright',
-  },
-});
-
 const DrawerOverlay = forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay> &
-    VariantProps<typeof DrawerAnchorStyles>
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
 >(({ className, ...props }, ref) => {
   return (
     <DrawerPrimitive.Overlay
       ref={ref}
-      className={cn('fixed inset-0 z-50 bg-black/80', className)}
+      className={cn('fixed inset-0 z-50 bg-black/40', className)}
       {...props}
     />
   );
 });
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
-const DrawerContent = forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
-    VariantProps<typeof DrawerFrameStyles> &
-    VariantProps<typeof DrawerAnchorStyles>
->(({ className, children, anchor, tone, rounded, size, ...props }, ref) => {
-  const styles = DrawerAnchorStyles({ anchor });
-
-  return (
-    <DrawerPortal>
-      <DrawerOverlay />
-      <Box className={cn('fixed z-50', styles, className)}>
-        <DrawerPrimitive.Content
-          ref={ref}
-          {...props}
-        >
-          <DrawerFrame
-            tone={tone}
-            rounded={rounded}
-            size={size}
-            className={cn(className)}
-            {...props}
-          >
-            {anchor.startsWith('bottom') && (
-              <div className="mx-auto mt-1 h-2 w-[100px] rounded-full bg-background-shadow" />
-            )}
-            {anchor.startsWith('top') && (
-              <div className="mx-auto mb-1 h-2 w-[100px] rounded-full bg-background-shadow" />
-            )}
-            {children}
-          </DrawerFrame>
-        </DrawerPrimitive.Content>
-      </Box>
-    </DrawerPortal>
-  );
-});
-DrawerContent.displayName = 'DrawerContent';
-
 const DrawerFrameStyles = tv({
-  base: ['bg-background shadow-lg', 'max-w-full ', 'flex flex-col'],
+  base: [
+    'drawer-frame bg-background-base shadow-lg',
+    'max-w-full overflow-y-auto max-h-full',
+    'after:hidden',
+  ],
   variants: {
     tone: {
       primary: ['text-text-base bg-background-overlay'],
     },
     rounded: { true: ['rounded-t-[10px] rounded-b-[10px]'] },
     size: {
-      sm: ['w-[320px]'],
-      md: ['w-[480px]'],
-      lg: ['w-[640px]'],
-      xl: ['w-[800px]'],
+      small: ['w-full md:w-80'],
+      medium: ['w-full md:w-96'],
+      large: ['w-full md:w-104'],
+      xlarge: ['w-full md:w-112'],
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'medium',
     tone: 'primary',
     rounded: true,
   },
 });
 
-const DrawerFrame = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof DrawerFrameStyles>) => {
-  const styles = DrawerFrameStyles(props);
+const DrawerAnchorStyles = tv({
+  base: 'drawer-anchored p-4 top-0 bottom-0 left-0 right-0 flex flex-col max-h-screen',
+  variants: {
+    anchor: {
+      bottomleft: ['justify-end items-start'],
+      bottomright: ['justify-end items-end'],
+      bottom: ['justify-end items-center'],
+      topleft: ['justify-start items-start'],
+      topright: ['justify-start items-end'],
+      top: ['justify-start items-center'],
+      left: ['justify-center items-start'],
+      right: ['justify-center items-end'],
+    },
+  },
+  defaultVariants: {
+    anchor: 'bottomright',
+  },
+});
+const DrawerContent = forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> &
+    VariantProps<typeof DrawerFrameStyles> &
+    VariantProps<typeof DrawerAnchorStyles>
+>(({ className, children, anchor, ...props }, ref) => {
+  const anchorStyles = DrawerAnchorStyles({ anchor });
+  const frameStyles = DrawerFrameStyles(props);
+
   return (
-    <div
-      className={cn(styles, className)}
-      {...props}
-    />
+    <DrawerPortal>
+      <DrawerOverlay />
+      <Box className={cn('fixed z-50 ', anchorStyles, className)}>
+        <DrawerPrimitive.Content
+          ref={ref}
+          className={classnames('drawer-content', frameStyles)}
+          {...props}
+        >
+          <DrawerHandle
+            edge={(anchor.startsWith('bottom') && 'top') || 'bottom'}
+          />
+
+          {children}
+        </DrawerPrimitive.Content>
+      </Box>
+    </DrawerPortal>
   );
-};
-DrawerFrame.displayName = 'DrawerFrame';
+});
+DrawerContent.displayName = 'DrawerContent';
 
 const DrawerHeader = ({
   className,
@@ -193,13 +168,25 @@ const DrawerDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-text-muted', className)}
+    className={cn('text-sm text-text-informative', className)}
     {...props}
   />
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
+function DrawerHandle({ edge }: { edge: 'top' | 'bottom' }) {
+  return (
+    <div
+      className="mx-auto p-4 cursor-grab"
+      data-edge={edge}
+    >
+      <DrawerPrimitive.Handle className="h-2 w-[100px] rounded-full bg-background-shadow/45" />
+    </div>
+  );
+}
+
 Drawer.Overlay = DrawerOverlay;
+Drawer.Handle = DrawerHandle;
 Drawer.Trigger = DrawerTrigger;
 Drawer.Close = DrawerClose;
 Drawer.Content = DrawerContent;

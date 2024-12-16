@@ -116,11 +116,11 @@ export const RosePineDawn: Record<string, string> = flatten(
       highlight: Palette.rosePineDawn.highlightLow,
       focused: Palette.rosePineDawn.iris,
 
-      input: Palette.rosePineDawn.foam,
-      inputFocused: chroma(Palette.rosePineDawn.foam).brighten(0.2).hex(),
-      inputHovered: chroma(Palette.rosePineDawn.foam).brighten(0.2).hex(),
-      inputDisabled: chroma(Palette.rosePineDawn.foam).brighten(0.2).hex(),
-      inputValid: chroma(Palette.rosePineDawn.foam).brighten(0.5).hex(),
+      input: chroma(Palette.rosePineDawn.muted).brighten(0.2).hex(),
+      inputFocused: chroma(Palette.rosePineDawn.muted).brighten(0.2).hex(),
+      inputHovered: chroma(Palette.rosePineDawn.muted).brighten(0.2).hex(),
+      inputDisabled: chroma(Palette.rosePineDawn.muted).brighten(0.2).hex(),
+      inputValid: chroma(Palette.rosePineDawn.muted).brighten(0.5).hex(),
       inputInvalid: Palette.rosePineDawn.iris,
 
       button: Palette.rosePineDawn.iris,

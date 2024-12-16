@@ -25,10 +25,10 @@ import { useClientSideFavicon } from '~/components/common/favicons/useClientSide
 import { useClientSideFaviconColourStorage } from '~/components/common/favicons/useClientSideFaviconColourStorage';
 import { DisplayVersion } from '~/components/common/DisplayVersion';
 import { VersionTooltip } from '~/components/common/VersionTooltip';
+import { FullScreenLoader } from '~/components/ds/loader/FullScreenLoader';
 
 import './theme/fonts/robotoslab';
 import './main.css';
-import { FullScreenLoader } from './components/ds/loader/FullScreenLoader';
 
 export async function loader() {
   const footer = await getFooterData();
@@ -68,7 +68,7 @@ export default function App() {
   return (
     <html
       lang="en"
-      className="flex flex-col min-h-svh light"
+      className="flex flex-col min-h-svh light font-serif"
     >
       <head>
         <Meta />

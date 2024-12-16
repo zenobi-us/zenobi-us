@@ -91,7 +91,7 @@ export function GlobalNav({
           className={styles.sociallinks()}
           direction={direction}
         >
-          <ContactFormDrawer>
+          <ContactFormDrawer anchor="bottom">
             <Button
               link
               className="flex-shrink-0"

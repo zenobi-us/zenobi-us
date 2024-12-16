@@ -8,10 +8,9 @@ import { Box } from '../box/Box';
 
 export const TextInputStyles = tv({
   base: [
-    'text-text-input-label',
-    'bg-background-card',
+    'text-text-input-label bg-background-input border-2 border-border-input',
     'py-2 px-4',
-    'focus:outline-none focus:ring-2 focus:ring-border-muted focus:ring-opacity-50',
+    'focus:outline-none focus:ring-2 focus:ring-border-input-focused focus:ring-opacity-50',
   ],
   variants: {
     invalid: {

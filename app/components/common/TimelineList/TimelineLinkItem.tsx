@@ -30,7 +30,12 @@ export function TimelineLinkItem<
       date={item.date}
       tags={tagsToDisplay}
     >
-      <Link href={createHref(item)}>{item.title}</Link>
+      <Link
+        className="inline whitespace-normal"
+        href={createHref(item)}
+      >
+        {item.title}
+      </Link>
     </TimelineItem>
   );
 }

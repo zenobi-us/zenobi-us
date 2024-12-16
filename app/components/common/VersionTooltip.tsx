@@ -15,7 +15,7 @@ export function VersionTooltip({
 }>) {
   return (
     <Tooltip
-      sideAlign="start"
+      sideAlign="center"
       side="bottom"
       trigger={children}
     >

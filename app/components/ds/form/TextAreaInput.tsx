@@ -6,8 +6,7 @@ import { classnames } from '~/core/classnames';
 
 const Styles = tv({
   base: [
-    'text-text-input-label',
-    'bg-background-card',
+    'text-text-input-label bg-background-input border-2 border-border-input',
     'py-2 px-4',
     'focus:outline-none focus:ring-2 focus:ring-border-muted focus:ring-opacity-50',
   ],
