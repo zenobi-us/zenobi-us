@@ -8,7 +8,7 @@ import { Box } from '../box/Box';
 const Styles = tv({
   slots: {
     base: 'flex flex-grow items-center justify-center gap-1',
-    dots: 'flex gap-1 transition-all duration-1000',
+    dots: 'flex gap-1 transition-all ',
     dot: 'w-1 h-1 rounded-full',
     label: 'sr-only',
   },
@@ -20,10 +20,10 @@ const Styles = tv({
     },
     tone: {
       base: {
-        dot: 'bg-background-informative',
+        dot: 'bg-background-button dark:bg-background-button',
       },
       muted: {
-        dot: 'bg-background-muted',
+        dot: 'bg-background-muted dark:bg-background-elevated',
       },
       cautious: {
         dot: 'bg-background-cautious',
@@ -103,9 +103,9 @@ export function Loader({
       className={styles.base()}
     >
       <Box className={styles.dots()}>
-        <Dot className="delay-500" />
-        <Dot className="delay-300" />
         <Dot className="delay-100" />
+        <Dot className="delay-300" />
+        <Dot className="delay-500" />
       </Box>
       <Box
         className={styles.label()}
@@ -138,6 +138,7 @@ function Dot({
           'absolute',
           'opacity-60',
           'animate-ping',
+          className,
           styles.dot()
         )}
       />
