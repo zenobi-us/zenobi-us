@@ -15,7 +15,7 @@ export function Tag({
     <div
       className={classNames(
         'text-text-muted text-base bg-background-shadow',
-        'px-2 py-1 rounded flex items-center gap-2',
+        'px-2 py-1 rounded flex flex-wrap items-center gap-2',
         'hover:bg-background-overlay hover:text-text-hover'
       )}
     >

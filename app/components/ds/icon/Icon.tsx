@@ -5,25 +5,6 @@ import { tv, type VariantProps } from 'tailwind-variants';
 
 import { classnames } from '~/core/classnames';
 
-// export const IconProperties = defineProperties({
-//   properties: {
-//     size: {
-//       small: {
-//         width: 20,
-//         height: 20,
-//       },
-//       medium: {
-//         width: 40,
-//         height: 40,
-//       },
-//       large: {
-//         width: 60,
-//         height: 60,
-//       },
-//     },
-//   },
-// });
-
 const Styles = tv({
   slots: {
     block: 'flex items-center',
@@ -54,11 +35,7 @@ export const Icon = ({ className, label, name, ...props }: IconProps) => {
 
   return (
     <div className={classnames('icon', className, styles.block())}>
-      <IconComponent
-        className={styles.icon()}
-        width=""
-        height=""
-      />
+      <IconComponent className={styles.icon()} />
       {label && <span className={styles.visuallyHidden()}>{label}</span>}
     </div>
   );

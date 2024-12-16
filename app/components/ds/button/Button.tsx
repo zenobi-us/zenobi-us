@@ -76,6 +76,12 @@ const Styles = tv({
       large: {
         container: ['text-base'],
       },
+      xlarge: {
+        container: ['text-lg'],
+      },
+      xxlarge: {
+        container: ['text-xl'],
+      },
     },
   },
 });

@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckIcon, RocketIcon } from '@radix-ui/react-icons';
 import type { HTMLAttributes } from 'react';
 
 import { TextInput } from '~/components/ds/form/TextInput';
@@ -105,6 +104,7 @@ export function ContactForm({
             <Button
               secondary
               type="button"
+              size="xxlarge"
               onClick={onCancelClick}
             >
               Cancel
@@ -113,35 +113,12 @@ export function ContactForm({
           <Button
             type="submit"
             secondary
+            size="xxlarge"
             disabled={status === 'sending' || status === 'sent'}
             className="ml-auto"
-            afterElement={
-              <>
-                {status === 'idle' && (
-                  <RocketIcon
-                    className="text-text-secondary"
-                    width={18}
-                    height={18}
-                  />
-                )}
-                {status === 'sending' && (
-                  <Loader
-                    label="Sending"
-                    size="sm"
-                  />
-                )}
-                {status === 'sent' && (
-                  <CheckIcon
-                    className="text-text-highlighted"
-                    width={18}
-                    height={18}
-                  />
-                )}
-              </>
-            }
           >
             {(status === 'idle' && 'Send') || ''}
-            {(status === 'sending' && 'Sending') || ''}
+            {(status === 'sending' && <Loader label="Sending" />) || ''}
             {(status === 'sent' && 'Sent') || ''}
           </Button>
         </Box>
