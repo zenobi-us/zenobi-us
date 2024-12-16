@@ -28,10 +28,10 @@
     "@react-spring/three": "^9.7.5",
     "@react-three/fiber": "^8.17.10",
     "@remix-run/cloudflare-pages": "^2.15.1",
-    "@remix-run/dev": "^2.14.0",
-    "@remix-run/node": "^2.14.0",
-    "@remix-run/react": "^2.14.0",
-    "@remix-run/serve": "^2.14.0",
+    "@remix-run/dev": "^2.15.1",
+    "@remix-run/node": "^2.15.1",
+    "@remix-run/react": "^2.15.1",
+    "@remix-run/serve": "^2.15.1",
     "@remix-run/testing": "^2.15.1",
     "@shadergradient/react": "^2.0.15",
     "@shikijs/transformers": "^1.22.0",
@@ -52,7 +52,7 @@
     "@types/jest": "^29.5.14",
     "@types/micromatch": "^4.0.9",
     "@types/react": "^18.3.11",
-    "@typescript-eslint/parser": "^8.16.0",
+    "@typescript-eslint/parser": "^8.18.1",
     "@vitejs/plugin-react": "^4.3.3",
     "@zenobius/remark-nomnoml": "^0.0.4",
     "autoprefixer": "^10.4.20",
@@ -61,7 +61,7 @@
     "cobe": "^0.6.3",
     "comlink": "^4.4.1",
     "copy-to-clipboard": "^3.3.3",
-    "eslint": "^8.57.1",
+    "eslint": "^9.17.0",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react": "^7.37.2",
@@ -124,5 +124,8 @@
   "packageManager": "yarn@4.5.3",
   "devDependencies": {
     "@types/three": "^0"
+  },
+  "resolutions": {
+    "cookie": "^0.7.0"
   }
 }
