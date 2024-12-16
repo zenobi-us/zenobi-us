@@ -1,10 +1,5 @@
 import { FormspreeProvider, useForm } from '@formspree/react';
-import {
-  useRef,
-  useState,
-  type ComponentProps,
-  type PropsWithChildren,
-} from 'react';
+import { type ComponentProps, type PropsWithChildren } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import { Divider } from '~/components/ds/divider/Divider';
