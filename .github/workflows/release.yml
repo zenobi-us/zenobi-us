@@ -67,71 +67,17 @@ jobs:
           NpmRcFile: .npmrc
 
       - if: ${{ needs.Process.outputs.releases_created == 'true' }}
-        name: Production Deployment Comment
-        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.sha }}'
-          id: production-deployment-url
-          message: 'Production deployment started'
-
-      - if: ${{ needs.Process.outputs.releases_created == 'true' }}
         id: production-deployment
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
-          mise task run deploy --configuration=production |
-            .github/scripts/extract-cloudflare-deployment-urls.sh \
-              github_output "$GITHUB_OUTPUT"
-
-      - if: ${{ needs.Process.outputs.releases_created == 'true' }}
-        name: Production Deployment Comment
-        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.sha }}'
-          id: production-deployment-url
-          message: |
-            Production deployment successful
-
-            URL: ${{ steps.production-deployment.outputs.url }}
-            ALIAS_URL: ${{ steps.production-deployment.outputs.alias_url }}
-
-      - if: ${{ needs.Process.outputs.prs_created == 'true' }}
-        name: Development Deployment Comment
-        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr.number }}'
-          id: production-deployment-url
-          message: Development Deployment Started
+          mise task run deploy --configuration=production
 
       - if: ${{ needs.Process.outputs.prs_created == 'true' }}
         id: development-deployment
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          NPM_AUTH_TOKEN: ${{ secrets.ZENOBIUS_MONOREPO_PUBLISH_TOKEN }}
         run: |
-          mise task run deploy --configuration=development |
-            .github/scripts/extract-cloudflare-deployment-urls.sh \
-              github_output "$GITHUB_OUTPUT"
-
-      - if: ${{ needs.Process.outputs.prs_created == 'true' }}
-        name: Development Deployment Comment
-        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: '${{ needs.Process.outputs.pr.number }}'
-          id: development-deployment-url
-          message: |
-            Development deployment successful
-
-            URL: ${{ steps.development-deployment.outputs.url }}
-            ALIAS_URL: ${{ steps.development-deployment.outputs.alias_url }}
+          mise task run deploy --configuration=development

@@ -1,0 +1,16 @@
+[deploy] Deploying with configuration: preview
+[deploy] Current branch:
+[deploy] ▲ [WARNING] Warning: Your working directory is a git repo and has uncommitted changes
+[deploy]
+[deploy]   To silence this warning, pass in --commit-dirty=true
+[deploy]
+[deploy]
+[deploy] Uploading... (29/294)
+[deploy] Uploading... (117/294)
+[deploy] Uploading... (205/294)
+[deploy] Uploading... (294/294)
+[deploy] ✨ Success! Uploaded 265 files (29 already uploaded) (2.15 sec)
+[deploy]
+[deploy] 🌎 Deploying...
+[deploy] ✨ Deployment complete! Take a peek over at https://the.url
+[deploy] ✨ Deployment alias URL: https://the.alias.url

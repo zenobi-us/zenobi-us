@@ -69,5 +69,8 @@
   },
   "tailwindCSS.experimental.classRegex": [
     ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+  ],
+  "[bats]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }
