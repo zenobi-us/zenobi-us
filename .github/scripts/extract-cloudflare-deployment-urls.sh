@@ -11,7 +11,7 @@ source "$HEREPATH"/../../.mise/helpers.sh
 extract_deployment_urls() {
     local log_output
 
-    log_output=$1
+    log_output="$1"
 
     url=$(match "https://(.+)" 0 "$log_output")
     alias_url=$(match "alias URL: (https://(.+))" 1 "$log_output")
@@ -28,6 +28,21 @@ extract_deployment_urls() {
     echo "$output" | jq . -c
 }
 
+output_to_github_kv() {
+    local output
+    local data
+
+    output="$1"
+    data="$2"
+
+    entries=$(extract_deployment_urls "$data" |
+        jq -r 'to_entries | .[] | "\(.key)=\(.value)"')
+
+    for entry in $entries; do
+        echo "$entry" >>"$output"
+    done
+}
+
 requires_command jq "jq is required to parse the output"
 
 # some subcommands that allow use to either:
@@ -35,22 +50,20 @@ requires_command jq "jq is required to parse the output"
 # - extract the urls into github output format
 # - extract the urls and print them to stdout
 
-case $1 in
+case "$1" in
+
 json)
     extract_deployment_urls "$(cat)"
     ;;
+
 github_output)
     requires_arg "$2" "GITHUB_OUTPUT environment variable is required"
-    output=$2
-    entries=$(extract_deployment_urls "$(cat)" |
-        jq -r 'to_entries | .[] | "\(.key)=\(.value)"')
-
-    for entry in $entries; do
-        echo "$entry" >>"$output"
-    done
+    output_to_github_kv "$2" "$(cat)"
     ;;
+
 *)
     extract_deployment_urls "$(cat)" |
         jq -r '.url, .alias_url'
     ;;
+
 esac
