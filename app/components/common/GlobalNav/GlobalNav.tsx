@@ -31,10 +31,7 @@ const Styles = tv({
     },
     isAncestor: {
       true: {
-        link: [
-          'visited:bg-background-link-active visited:text-text-link-active [text-decoration: none]',
-          'visited:hover:bg-background-card visited:hover:text-text-positive visited:hover:[text-decoration: none]',
-        ],
+        link: [],
       },
     },
     useLogo: {
@@ -80,13 +77,12 @@ export function GlobalNav({
         >
           <Link
             href="/b"
-            className={classnames(
-              styles.link({ isAncestor: path.isAncestor('/b') })
-            )}
+            className={classnames(styles.link())}
+            current={path.isAncestor('/b')}
           >
             Posts
           </Link>
-        </LinkList>{' '}
+        </LinkList>
         <Box
           className={styles.sociallinks()}
           direction={direction}
