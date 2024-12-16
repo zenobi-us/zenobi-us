@@ -8,7 +8,7 @@ import { Box } from '../box/Box';
 
 const cn = classnames;
 
-type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root>;
+export type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root>;
 const Drawer = ({ shouldScaleBackground = true, ...props }: DrawerProps) => (
   <DrawerPrimitive.Root
     shouldScaleBackground={shouldScaleBackground}

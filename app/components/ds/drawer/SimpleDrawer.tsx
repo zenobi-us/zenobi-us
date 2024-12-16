@@ -1,16 +1,36 @@
-import { useMemo, type ComponentProps } from 'react';
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type ComponentProps,
+} from 'react';
 
 import { Drawer, type DrawerContent } from './Drawer';
 
 type DrawerProps = ComponentProps<typeof Drawer>;
 type DrawerContentProps = ComponentProps<typeof DrawerContent>;
-type SimpleDrawerProps = DrawerProps &
-  DrawerContentProps & {
-    trigger: React.ReactNode;
-    title?: React.ReactNode;
-    description?: React.ReactNode;
-    footer?: React.ReactNode;
-  };
+type SimpleDrawerProps = {
+  trigger: React.ReactNode;
+};
+
+const SimpleDrawerContext = createContext<{
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}>({
+  open: false,
+  setOpen: () => {},
+});
+
+export function useSimpleDrawer() {
+  const context = useContext(SimpleDrawerContext);
+  if (context === null) {
+    throw new Error(
+      'useSimpleDrawer must be used within a SimpleDrawerProvider'
+    );
+  }
+  return context;
+}
 
 export function SimpleDrawer({
   anchor = 'bottomright',
@@ -19,7 +39,8 @@ export function SimpleDrawer({
   trigger,
   children,
   ...drawerProps
-}: SimpleDrawerProps) {
+}: DrawerProps & DrawerContentProps & SimpleDrawerProps) {
+  const [open, setOpen] = useState(false);
   const direction = useMemo((): DrawerProps['direction'] => {
     if (anchor.startsWith('top')) {
       return 'top';
@@ -34,21 +55,34 @@ export function SimpleDrawer({
   }, [anchor]);
 
   return (
-    <Drawer
-      repositionInputs={false}
-      direction={direction}
-      {...drawerProps}
-    >
-      <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>
-      <Drawer.Overlay>
-        <Drawer.Content
-          anchor={anchor}
-          tone={tone}
-          rounded={rounded}
+    <SimpleDrawerContext.Provider value={{ open, setOpen }}>
+      <Drawer
+        open={open}
+        repositionInputs={false}
+        direction={direction}
+        onClose={() => {
+          setOpen(false);
+        }}
+        {...drawerProps}
+      >
+        <Drawer.Trigger
+          onClick={() => {
+            setOpen(!open);
+          }}
+          asChild
         >
-          {children}
-        </Drawer.Content>
-      </Drawer.Overlay>
-    </Drawer>
+          {trigger}
+        </Drawer.Trigger>
+        <Drawer.Overlay>
+          <Drawer.Content
+            anchor={anchor}
+            tone={tone}
+            rounded={rounded}
+          >
+            {children}
+          </Drawer.Content>
+        </Drawer.Overlay>
+      </Drawer>
+    </SimpleDrawerContext.Provider>
   );
 }
