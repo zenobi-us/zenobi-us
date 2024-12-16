@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/zenobi-us/zenobi-us/compare/v1.0.0...v1.0.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* remove pointless comments on release ([#14](https://github.com/zenobi-us/zenobi-us/issues/14)) ([9ea6d73](https://github.com/zenobi-us/zenobi-us/commit/9ea6d7316cd5641d12550f4c5e971eeb154e44b8))
+
 ## 1.0.0 (2024-12-16)
 
 
