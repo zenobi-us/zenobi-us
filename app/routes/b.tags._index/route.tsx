@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { json, Link, useLoaderData } from '@remix-run/react';
 import { $path } from 'remix-routes';
 
 import { getTags } from '~/services/Content/tags';
@@ -10,7 +10,7 @@ import { getSiteData } from '~/services/Content/siteData';
 
 export async function loader() {
   const [tags, siteData] = await Promise.all([getTags(), getSiteData()]);
-  return Response.json({
+  return json({
     tags,
     siteData,
   });

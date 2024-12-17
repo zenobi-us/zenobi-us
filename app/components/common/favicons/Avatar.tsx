@@ -17,28 +17,6 @@ const Styles = tv({
   },
 });
 
-// export const logo = style({
-//   alignItems: 'center',
-//   justifyContent: 'center',
-//   margin: 0,
-//   minWidth: 32,
-//   color: Tokens.palette.text.link,
-// });
-
-// export const svg = style({
-//   transition: 'all 0.5s ease-in-out',
-// });
-
-// globalStyle(`${svg} *`, {
-//   transition: 'all 0.5s ease-in-out',
-// });
-
-// export const HomeAvatarSize = createVar();
-// export const homeAvatar = style({
-//   width: HomeAvatarSize,
-//   height: HomeAvatarSize,
-// });
-
 type AvatarProps = HTMLAttributes<HTMLDivElement> &
   LogoProps & { size?: number };
 
@@ -48,6 +26,7 @@ export function Avatar({ size, className, ...props }: AvatarProps) {
 
   return (
     <div
+      data-testid="avatar"
       className={classnames(className, styles.logo())}
       {...props}
     >
@@ -77,6 +56,8 @@ export function HomeAvatar({ className, ...props }: AvatarProps) {
   return (
     <div
       className={classnames('home-avatar', className, styles.block())}
+      data-testid="home-avatar"
+      role="img"
       style={{
         // @ts-expect-error - CSS Var
         '--avatar-size': `${props.size || 32}px`,

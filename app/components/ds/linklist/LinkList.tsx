@@ -34,6 +34,7 @@ export function LinkList({
   const styles = Styles({ direction });
   return (
     <div
+      role="list"
       className={classnames('link-list', className, styles.block())}
       {...props}
     >

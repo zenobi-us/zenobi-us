@@ -41,6 +41,17 @@ jobs:
         run: |
           mise task run build
 
+      - name: E2E Tests
+        run: |
+          mise task run e2e
+
+      - name: Upload E2E Report
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #4.4.3
+        with:
+          name: build
+          path: playwright-report
+
       - name: Comment
         uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0
         with:

@@ -56,13 +56,14 @@ export const Page = ({
 
   return (
     <motion.article
+      data-testid="page"
+      className={classnames('page', className, styles.block())}
       key={useLocation().key}
       variants={PageAnimationVariants.Fade}
       transition={PageTransitions}
       initial="start"
       animate="end"
       exit="exit"
-      className={classnames('page', className, styles.block())}
       {...props}
     >
       {children}
@@ -94,6 +95,7 @@ function PageBlock(
   const styles = PageBlockStyles();
   return (
     <div
+      data-testid="page-block"
       className={classnames('page-block', props.className, styles)}
       {...props}
     />
