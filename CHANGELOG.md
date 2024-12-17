@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/zenobi-us/zenobi-us/compare/v1.0.1...v1.0.2) (2024-12-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @shadergradient/react to v2.0.16 ([#22](https://github.com/zenobi-us/zenobi-us/issues/22)) ([92b07e7](https://github.com/zenobi-us/zenobi-us/commit/92b07e76fa1da9bbc6cca21fbdfcf88aea8bf610))
+* security update packages ([#16](https://github.com/zenobi-us/zenobi-us/issues/16)) ([69045ef](https://github.com/zenobi-us/zenobi-us/commit/69045efffcc573791ea9504b492b95d1a69f02a7))
+
 ## [1.0.1](https://github.com/zenobi-us/zenobi-us/compare/v1.0.0...v1.0.1) (2024-12-16)
 
 
