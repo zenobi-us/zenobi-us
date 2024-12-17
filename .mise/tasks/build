@@ -7,8 +7,4 @@
 
 yarn remix vite:build
 
-yarn tsx ./ssg-cli.ts \
-    --build ./build/server/index.js \
-    --output ./dist
-
-cp -r ./build/client/* ./dist
+mise run generate

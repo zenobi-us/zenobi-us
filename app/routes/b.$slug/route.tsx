@@ -1,7 +1,8 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { $path } from 'remix-routes';
 
-import { getPost } from '~/services/Content/posts';
+import { getPost, getPosts } from '~/services/Content/posts';
 import { Page } from '~/components/ds/page/Page';
 import { PostEnd } from '~/components/common/PostEnd/PostEnd';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
@@ -19,6 +20,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     post,
   });
 }
+
+export const getStaticPaths = async () => {
+  const posts = await getPosts();
+  return posts.map((post) => $path('/b/:slug', { slug: post._meta.id }));
+};
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [...createSiteMeta(data)];

@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import contentCollections from '@content-collections/remix-vite';
 import glsl from 'vite-plugin-glsl';
+import { remixRoutes } from 'remix-routes/vite';
 
 export default defineConfig({
   server: {
@@ -17,6 +18,7 @@ export default defineConfig({
           v3_singleFetch: true,
         },
       }),
+    remixRoutes(),
     tsconfigPaths(),
     !process.env.STORYBOOK && contentCollections(),
     !!process.env.STORYBOOK && react(),

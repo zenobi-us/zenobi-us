@@ -27,7 +27,11 @@ export async function getHelpPage(id?: string) {
 
 export async function getHelpPages() {
   try {
-    const help = await query(from(allHelps), onlyInDevelopment(), toArray());
+    const help = await query(
+      from(allHelps),
+      onlyInDevelopment(),
+      toArray<Help>()
+    );
 
     if (!help) {
       throw new Response('', { status: 404 });
