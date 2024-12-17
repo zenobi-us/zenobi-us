@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.4](https://github.com/zenobi-us/zenobi-us/compare/v1.0.3...v1.0.4) (2024-12-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @cloudflare/workers-types to v4.20241216.0 ([#42](https://github.com/zenobi-us/zenobi-us/issues/42)) ([842bc90](https://github.com/zenobi-us/zenobi-us/commit/842bc90e8727e190dc5d52856b31c5388af55c51))
+* **deps:** update dependency @content-collections/mdx to ^0.2.0 ([#43](https://github.com/zenobi-us/zenobi-us/issues/43)) ([62d10ce](https://github.com/zenobi-us/zenobi-us/commit/62d10ce09e2ef8a6a3805fd6a0fef10f480cba3c))
+* **deps:** update dependency @types/react to v18.3.17 ([#23](https://github.com/zenobi-us/zenobi-us/issues/23)) ([cbbb00f](https://github.com/zenobi-us/zenobi-us/commit/cbbb00f16177b789c5ec2927cb758b4f0d44accc))
+* **deps:** update dependency react-focus-lock to v2.13.5 ([#24](https://github.com/zenobi-us/zenobi-us/issues/24)) ([91f32c5](https://github.com/zenobi-us/zenobi-us/commit/91f32c52c895dfe88cefc6706db60a9d1c61450e))
+* **deps:** update dependency tailwindcss to v3.4.17 ([#37](https://github.com/zenobi-us/zenobi-us/issues/37)) ([f885672](https://github.com/zenobi-us/zenobi-us/commit/f885672cdcda10d158ba7c84cf3ddbf8a802c7c7))
+* **deps:** update dependency typescript-eslint to v8.18.1 ([#25](https://github.com/zenobi-us/zenobi-us/issues/25)) ([2a58ba6](https://github.com/zenobi-us/zenobi-us/commit/2a58ba64065431397a369d0568e9882f7b9fe990))
+* **deps:** update dependency vaul to v1.1.2 ([#26](https://github.com/zenobi-us/zenobi-us/issues/26)) ([f5fea78](https://github.com/zenobi-us/zenobi-us/commit/f5fea78e907510fbab986af9d4e5c219cdcc3b73))
+* **deps:** update radix-ui-primitives monorepo ([#28](https://github.com/zenobi-us/zenobi-us/issues/28)) ([30c6374](https://github.com/zenobi-us/zenobi-us/commit/30c6374c15c4479e18fb6cf37a67f9d5e9f0cd0b))
+
 ## [1.0.3](https://github.com/zenobi-us/zenobi-us/compare/v1.0.2...v1.0.3) (2024-12-17)
 
 
