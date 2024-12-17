@@ -51,7 +51,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: jdx/mise-action@63a673876c7072c1d6ecb2049c0d572976c83b22 # v2
+      - uses: jdx/mise-action@5bb8f8c1911837cf42064e6490e7634fc842ee7e # v2
         env:
           GITHUB_API_TOKEN: ${{ secrets.ASDF_GITHUB_API_TOKEN }}
         with:
