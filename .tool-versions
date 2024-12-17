@@ -1,5 +1,5 @@
 action-validator 0.5.4
-direnv           2.33.0
+direnv           2.35.0
 yarn             1.22.19
 shellcheck       0.10.0
 nodejs           23.3.0
