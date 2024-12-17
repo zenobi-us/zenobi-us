@@ -1,12 +1,13 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { $path } from 'remix-routes';
 
 import { Page } from '~/components/ds/page/Page';
 import { PostEnd } from '~/components/common/PostEnd/PostEnd';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
 import { getSiteData } from '~/services/Content/siteData';
 import { BrowserCmsContent } from '~/components/common/cmscontent/CmsContent';
-import { getHelpPage } from '~/services/Content/helps';
+import { getHelpPage, getHelpPages } from '~/services/Content/helps';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const [page, siteData] = await Promise.all([
@@ -22,6 +23,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [...createSiteMeta(data)];
+};
+
+export const getStaticPaths = async () => {
+  const pages = await getHelpPages();
+  return pages.map((page) => $path('/h/:slug', { slug: page._meta.slug }));
 };
 
 export default function IndexRoute() {

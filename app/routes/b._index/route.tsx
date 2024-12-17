@@ -12,7 +12,15 @@ export async function loader() {
   const [posts, siteData] = await Promise.all([getPosts(), getSiteData()]);
 
   return Response.json({
-    posts,
+    posts: posts.map((post) => ({
+      date: post.date,
+      title: post.title,
+      tags: post.tags,
+      _meta: {
+        slug: post._meta.slug,
+        id: post._meta.id,
+      },
+    })),
     siteData,
   });
 }

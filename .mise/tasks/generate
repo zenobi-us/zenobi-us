@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#MISE description="generates the site from the build"
+
+rm -rf ./dist
+
+yarn tsx ./ssg-cli.ts \
+    --build ./build/server/index.js \
+    --output ./dist
+
+cp -r ./build/client/* ./dist

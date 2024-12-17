@@ -67,9 +67,9 @@
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
   },
-  "tailwindCSS.experimental.classRegex": [
-    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ],
+  // "tailwindCSS.experimental.classRegex": [
+  //   ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  // ],
   "[bats]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   }

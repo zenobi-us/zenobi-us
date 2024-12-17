@@ -12,7 +12,11 @@ export async function loader() {
   const [pages, siteData] = await Promise.all([getHelpPages(), getSiteData()]);
 
   return Response.json({
-    pages,
+    pages: pages.map((page) => ({
+      title: page.title,
+      date: page.date,
+      tags: page.tags,
+    })),
     siteData,
   });
 }
