@@ -19,6 +19,7 @@ export function FullScreenLoader({
     >
       {loading && (
         <motion.div
+          data-testid="fullscreen-loader"
           className="flex flex-col flex-grow"
           key="loader"
         >
@@ -30,6 +31,7 @@ export function FullScreenLoader({
       )}
       {!loading && (
         <motion.div
+          data-testid="fullscreen-loader-resolved"
           key="content"
           variants={{
             start: { opacity: 0 },
