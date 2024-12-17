@@ -758,18 +758,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@content-collections/mdx@npm:^0.1.6":
-  version: 0.1.6
-  resolution: "@content-collections/mdx@npm:0.1.6"
+"@content-collections/mdx@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@content-collections/mdx@npm:0.2.0"
   dependencies:
     esbuild: "npm:^0.21.4"
     mdx-bundler: "npm:^10.0.3"
     unified: "npm:^11.0.5"
   peerDependencies:
     "@content-collections/core": 0.x
-    react: ^18.0.0
-    react-dom: ^18.2.0
-  checksum: 10c0/af5dc9952e68981dc647720995b2ba1ce2a8e4eb08204d76c0be5e9810f58736b6b670c61314bba4de6f6112c263c14062bb67c0594bb40db85811c3f3d6b12b
+    react: ">= 18"
+    react-dom: ">= 18"
+  checksum: 10c0/c3fdf20987c2bec4b02521742710c85c1fce39166dcd761024912c42d27a0298eb7194963120620bc7029c0987d74fcee03b78468c214d86603469079d213033
   languageName: node
   linkType: hard
 
@@ -18289,7 +18289,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:^4.20240529.0"
     "@content-collections/cli": "npm:^0.1.5"
     "@content-collections/core": "npm:^0.7.2"
-    "@content-collections/mdx": "npm:^0.1.6"
+    "@content-collections/mdx": "npm:^0.2.0"
     "@content-collections/remix-vite": "npm:^0.1.2"
     "@eslint/js": "npm:^9.16.0"
     "@faker-js/faker": "npm:^9.2.0"
