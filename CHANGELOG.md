@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/zenobi-us/zenobi-us/compare/v1.0.2...v1.0.3) (2024-12-17)
+
+
+### Bug Fixes
+
+* ensure all paths are generated ([#27](https://github.com/zenobi-us/zenobi-us/issues/27)) ([9e1c4ba](https://github.com/zenobi-us/zenobi-us/commit/9e1c4bacfd79395b3c892ffcdcbec5adc64cb79a))
+
 ## [1.0.2](https://github.com/zenobi-us/zenobi-us/compare/v1.0.1...v1.0.2) (2024-12-17)
 
 
