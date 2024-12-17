@@ -1,6 +1,6 @@
 action-validator 0.5.4
 direnv           2.33.0
-just             1.25.2
+just             1.38.0
 task             3.23.0
 yarn             1.22.19
 shellcheck       0.10.0
