@@ -694,16 +694,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-shared@npm:0.11.0":
-  version: 0.11.0
-  resolution: "@cloudflare/workers-shared@npm:0.11.0"
-  dependencies:
-    mime: "npm:^3.0.0"
-    zod: "npm:^3.22.3"
-  checksum: 10c0/800d6340486ddf03c315321473c929d12075377a7110d5f7b35ce878f9d52da934f9935a641bc64bc513a756cb36092a03c758ce6ba0e006ae67e0efba51fc9c
-  languageName: node
-  linkType: hard
-
 "@cloudflare/workers-types@npm:^4.20240529.0":
   version: 4.20241216.0
   resolution: "@cloudflare/workers-types@npm:4.20241216.0"
@@ -17163,15 +17153,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unenv@npm:unenv-nightly@2.0.0-20241204-140205-a5d5190":
-  version: 2.0.0-20241204-140205-a5d5190
-  resolution: "unenv-nightly@npm:2.0.0-20241204-140205-a5d5190"
+"unenv@npm:unenv-nightly@2.0.0-20241212-153011-af71c96":
+  version: 2.0.0-20241212-153011-af71c96
+  resolution: "unenv-nightly@npm:2.0.0-20241212-153011-af71c96"
   dependencies:
     defu: "npm:^6.1.4"
+    mlly: "npm:^1.7.3"
     ohash: "npm:^1.1.4"
     pathe: "npm:^1.1.2"
     ufo: "npm:^1.5.4"
-  checksum: 10c0/36050d067424d801d55df6796733a9efdd6f01012f7ac16ebe2cc6d708e1909aec447d5c750e547c9db1877c500543c9ecdd4eb8ff4b972408e7481b0eb19723
+  checksum: 10c0/e5a65f78237f1c211e246a35a516bc13e0651ef4f123426edfc8c4533a1e04e9954d3cea65a8d8902f1cb8b87b581add2f6fe78436aabab1ce87d424fa2ee73a
   languageName: node
   linkType: hard
 
@@ -18033,11 +18024,10 @@ __metadata:
   linkType: hard
 
 "wrangler@npm:^3.57.2":
-  version: 3.95.0
-  resolution: "wrangler@npm:3.95.0"
+  version: 3.97.0
+  resolution: "wrangler@npm:3.97.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
-    "@cloudflare/workers-shared": "npm:0.11.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
@@ -18052,7 +18042,7 @@ __metadata:
     resolve: "npm:^1.22.8"
     selfsigned: "npm:^2.0.1"
     source-map: "npm:^0.6.1"
-    unenv: "npm:unenv-nightly@2.0.0-20241204-140205-a5d5190"
+    unenv: "npm:unenv-nightly@2.0.0-20241212-153011-af71c96"
     workerd: "npm:1.20241205.0"
     xxhash-wasm: "npm:^1.0.1"
   peerDependencies:
@@ -18066,7 +18056,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10c0/967c8b7a82c4e782a88096446e2f2dcbe02ffd2cfa100790f16a44909913f750c8a80854b844311acf3345334a5f8510da74fa997b59751b9c9877cf71a328ca
+  checksum: 10c0/2cd9e34b67853f60385880d6b0c2c9d6a505affda91294b393dc4a95154ba80c1396187d58bc8afa2aded530c726af6e3726d76708de5c4c1a206bf527b718e3
   languageName: node
   linkType: hard
 
