@@ -43,7 +43,12 @@ jobs:
 
       - name: E2E Tests
         run: |
-          mise task run e2e
+          mise task run e2e --reporter=json --output=results.json
+
+      - uses: daun/playwright-report-summary@867aa7913b7a66681e55ed304dbe5d6097f8922e #v3
+        if: always()
+        with:
+          report-file: results.json
 
       - name: Upload E2E Report
         if: always()
