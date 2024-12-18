@@ -16548,21 +16548,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^2.2.0":
+"tailwind-merge@npm:^2.5.4":
   version: 2.5.5
   resolution: "tailwind-merge@npm:2.5.5"
   checksum: 10c0/32614dd2b4ddd4fab070d5ec569e6da00e2b34269b9ac2f2ff16733cef29a076c8e2210fbfc1904d7983a8fdb6b3e63d18ca117645f21b12ca7bcf8fe3507241
   languageName: node
   linkType: hard
 
-"tailwind-variants@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "tailwind-variants@npm:0.2.1"
+"tailwind-variants@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "tailwind-variants@npm:0.3.0"
   dependencies:
-    tailwind-merge: "npm:^2.2.0"
+    tailwind-merge: "npm:^2.5.4"
   peerDependencies:
     tailwindcss: "*"
-  checksum: 10c0/3fb392f25ed68c19b5bb701b00c62269b09d0e55658364211a479331316aac0825134f8708e7f7e33831ae29a4315d2bab16f9447cf2881b69739d4063993d5a
+  checksum: 10c0/115b0efb5ca5b76d4dfe6148e3f2f314f5af8490d0d2be8bdb6f062c0963ead87227ffd7340c6fb38cd95c0c751e2f65b04f3c0d833bf058d8cfe25210777bc7
   languageName: node
   linkType: hard
 
@@ -18379,7 +18379,7 @@ __metadata:
     safe-routes: "npm:^1.0.2"
     storybook: "npm:8.3.5"
     sugar: "npm:^2.0.6"
-    tailwind-variants: "npm:^0.2.1"
+    tailwind-variants: "npm:^0.3.0"
     tailwindcss: "npm:^3.4.14"
     tailwindcss-animate: "npm:^1.0.7"
     tailwindcss-grid-areas: "npm:^0.1.1"
