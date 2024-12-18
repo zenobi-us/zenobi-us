@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { $path } from 'remix-routes';
 
 import { waitForPage } from '../core/waitForPage';
 
@@ -6,10 +7,9 @@ test.describe('PostList', () => {
   test('The page contains a list of posts sorted by year then day', async ({
     page,
   }) => {
-    await waitForPage({ page, url: '/b' });
+    await waitForPage({ page, pathname: $path('/b') });
 
     expect(await page.getByRole('heading', { name: 'Thoughts' }));
-    await expect(page.getByTestId('site')).toBeVisible();
 
     await page.getByTestId('timeline-list');
     await page.getByTestId('timeline-list-year-2024');

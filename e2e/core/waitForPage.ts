@@ -1,15 +1,13 @@
 import { expect, type Page } from '@playwright/test';
-import { RouteId, RoutesWithParams } from 'remix-routes';
 
-export async function waitForPage<TRouteId extends RouteId>({
+export async function waitForPage({
   page,
-  url,
+  pathname,
 }: {
   page: Page;
-  url: RouteId;
-  params?: Record<string, string>;
+  pathname: string;
 }) {
-  await page.goto(url);
+  await page.goto(pathname);
   await page.emulateMedia({ colorScheme: 'dark' });
   await expect(page.getByTestId('site')).toBeVisible();
 }

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
+#MISE depends=["build"]
+
 yarn playwright test --retries 0
