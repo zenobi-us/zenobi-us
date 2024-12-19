@@ -17,9 +17,6 @@ jobs:
   Check:
     runs-on: ubuntu-latest
 
-    # container:
-    #   image: mcr.microsoft.com/playwright:v1.34.3-jammy
-
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 #v3
