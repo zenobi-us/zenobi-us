@@ -697,13 +697,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20240529.0":
-  version: 4.20241218.0
-  resolution: "@cloudflare/workers-types@npm:4.20241218.0"
-  checksum: 10c0/c5ffc4330e49d0e6e9a6da88b51a9229c495f6d63324ab318cef30c41a18a770f4ddb07f38816ebdb6d52f5e5528418529364ba929f625f4255aec2d7c8502e3
-  languageName: node
-  linkType: hard
-
 "@content-collections/cli@npm:^0.1.5":
   version: 0.1.6
   resolution: "@content-collections/cli@npm:0.1.6"
@@ -18177,7 +18170,6 @@ __metadata:
   dependencies:
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "npm:^1.0.2"
     "@chromatic-com/storybook": "npm:^1.9.0"
-    "@cloudflare/workers-types": "npm:^4.20240529.0"
     "@content-collections/cli": "npm:^0.1.5"
     "@content-collections/core": "npm:^0.8.0"
     "@content-collections/mdx": "npm:^0.2.0"
