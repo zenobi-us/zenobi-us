@@ -53,6 +53,7 @@ export function TimelineList<T>({
 
   return (
     <LinkList
+      data-testid="timeline-list"
       className={classname('timeline-list', className, styles.listOfYears())}
     >
       <GroupObjectBy
@@ -62,11 +63,21 @@ export function TimelineList<T>({
       >
         {(year, items) => (
           <div
-            key={year}
+            data-testid={`timeline-list-year-${year}`}
             className={styles.yearList()}
+            key={year}
           >
-            <h2 className={styles.yearHeader()}>{year}</h2>
-            <ul className={styles.postsInYearList()}>
+            <h2
+              data-testid={`timeline-list-year-${year}-header`}
+              className={styles.yearHeader()}
+            >
+              {year}
+            </h2>
+
+            <ul
+              data-testid={`timeline-list-year-${year}-posts`}
+              className={styles.postsInYearList()}
+            >
               {items.map((item) => (
                 <TimelineItemContext.Provider
                   value={item}

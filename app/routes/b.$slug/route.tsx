@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, useLoaderData } from '@remix-run/react';
 import { $path } from 'remix-routes';
 
 import { getPost, getPosts } from '~/services/Content/posts';
@@ -15,7 +15,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     getSiteData(),
   ]);
 
-  return Response.json({
+  return json({
     siteData,
     post,
   });
@@ -32,7 +32,6 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 export default function IndexRoute() {
   const data = useLoaderData<typeof loader>();
-
   return (
     <Page>
       {data.post.banner && (

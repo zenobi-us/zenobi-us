@@ -1,13 +1,19 @@
 import type { Meta } from '@content-collections/core';
 import { where, query, intersect, count, from } from 'linq-functional';
 
+function getEnv(key: string) {
+  if (import.meta && import.meta.env) {
+    return import.meta.env[key];
+  }
+}
+
 export const whereDraftOnlyInDevelopment = <
   T extends {
     stage?: string;
   }
 >() => {
   return where((item: T) => {
-    if (import.meta.env.MODE === 'development') {
+    if (getEnv('MODE') === 'development') {
       return true;
     }
     return item.stage !== 'draft';
@@ -16,7 +22,7 @@ export const whereDraftOnlyInDevelopment = <
 
 export const onlyInDevelopment = () => {
   return where(() => {
-    return import.meta.env.MODE === 'development';
+    return getEnv('MODE') === 'development';
   });
 };
 

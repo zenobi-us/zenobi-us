@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+#MISE description="a mise task that accepts some arguments to let you test an action"
+#MISE depends=["content", "typecheck", "build"]
+#MISE sources=["./dist/**/*"]
+
+yarn sirv ./dist --port "${1:-3000}"

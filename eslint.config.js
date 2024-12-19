@@ -107,6 +107,7 @@ export default [
       'postcss.config.js',
       'eslint.config.js',
       'tailwind.config.ts',
+      'playwright.config.ts',
       'babel.config.js',
       '*.d.ts',
       '+*.h.ts',

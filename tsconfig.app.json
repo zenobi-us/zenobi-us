@@ -4,7 +4,9 @@
     "types": ["@remix-run/node", "vite/client"]
   },
   "include": [
+    "**/*.glsl",
     "remix.env.d.ts",
+    "playwright.config.ts",
     "content-collections.ts",
     "tailwind.config.ts",
     "app/**/*.d.ts",
@@ -13,7 +15,6 @@
   ],
   "exclude": [
     "jest.config.ts",
-    "**/*.glsl",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",

@@ -30,6 +30,8 @@ const DrawerOverlay = forwardRef<
   return (
     <DrawerPrimitive.Overlay
       ref={ref}
+      data-testid="drawer-overlay"
+      role="presentation"
       className={cn('fixed inset-0 z-50 bg-black/40', className)}
       {...props}
     />

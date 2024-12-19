@@ -42,6 +42,7 @@ export function Logo({
       strokeLinejoin="round"
       strokeMiterlimit={1.4142}
       viewBox="0 0 142 142"
+      data-testid="logo"
       {...props}
     >
       <motion.path

@@ -5,6 +5,8 @@
     "target": "es2016"
   },
   "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.test.ts",
