@@ -1,0 +1,42 @@
+- name: 'bug:design'
+  color: 'C5DEF5'
+  aliases: [bug:design]
+  description: Issues that are cosmetic in nature
+- name: 'bug:ux'
+  color: 'C5DEF5'
+  aliases: [bug:ux]
+  description: Issues that are related to a breakdown in UX strategy
+- name: 'bug:logic'
+  color: '1D76DB'
+  aliases: [bug:logic]
+  description: Issues that are related to a breakdown in business logic
+- name: 'bug:performance'
+  color: '1D76DB'
+  aliases: [bug:performance]
+  description: Issues that are related to unexpected performance issues
+- name: 'bug:security'
+  color: '1D76DB'
+  aliases: [bug:security]
+  description: Issues that are related to unexpected security issues
+- name: 'bug:exceptions'
+  color: '1D76DB'
+  aliases: [bug:exceptions]
+  description: Issues that are related to unexpected exceptions
+
+- name: feature
+  color: '0E8A16'
+  aliases: [feature]
+  description: New functionality.
+- name: suggestion
+  color: 'C2E0C6'
+  aliases: [suggestion]
+  description: New functionality.
+
+- name: question
+  color: '5319E7'
+  aliases: [question]
+  description: New functionality.
+
+- name: Help Wanted
+  color: 'FBCA04'
+  aliases: [help:please]
