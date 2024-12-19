@@ -19,7 +19,7 @@ test.describe('ContactForm', () => {
     test(`A "Contact Me" button closes a contact form on: ${pathname}` , async ({ page }) => {
       await waitForPage({ page, pathname });
       await page.getByRole('button', { name: 'Contact Me' }).click();
-      await page.getByTestId('drawer-overlay').click();
+      await page.getByRole('button', { name: 'Cancel' }).click();
       expect(await page.locator('[role="dialog"]').count()).toBe(0);
     })
   });
