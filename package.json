@@ -6,7 +6,7 @@
   "dependencies": {
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "^1.0.2",
     "@chromatic-com/storybook": "^1.9.0",
-    "@content-collections/cli": "^0.1.5",
+    "@content-collections/cli": "^0.1.6",
     "@content-collections/core": "^0.8.0",
     "@content-collections/mdx": "^0.2.0",
     "@content-collections/remix-vite": "^0.1.2",
