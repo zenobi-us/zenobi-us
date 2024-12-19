@@ -25,6 +25,8 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        // SUPER IMPORTANT for CI
+        // https://github.com/microsoft/playwright/issues/23388#issuecomment-2555887206
         channel: 'chrome',
       },
     },
