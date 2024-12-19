@@ -2,9 +2,13 @@ import sugar from 'sugar';
 import { $path } from 'remix-routes';
 import intersection from 'lodash/intersection';
 
-import { TimelineList } from '../common/TimelineList/TimelineList';
+import {
+  TimelineList,
+  TimelineListGroupTitle,
+} from '../common/TimelineList/TimelineList';
 import { createDateSorter } from '../../core/dates/core-dates';
 import type { Post } from 'content-collections';
+import { TimelineItemDate } from '../common/TimelineList/TimelineItem';
 
 const byPostEntryDateSorter = createDateSorter<Post>((post) => {
   return sugar.Date.create(post.date || undefined);
@@ -41,10 +45,22 @@ export function BlogPostTimelineList({ posts }: { posts: Post[] }) {
       getItemKey={getPostSlug}
       sorter={byPostEntryDateSorter}
       getGroupKey={getPostYear}
+      renderGroupTitle={({ year }) => (
+        <TimelineListGroupTitle
+          year={year}
+          className="text-text-link/40"
+        />
+      )}
     >
       <TimelineList.LinkItem
         createHref={getPostHref}
         tagger={getPostTags}
+        dateRenderer={({ date }) => (
+          <TimelineItemDate
+            date={date}
+            className="text-text-link/60"
+          />
+        )}
       />
       <TimelineList.SummaryItem />
     </TimelineList>

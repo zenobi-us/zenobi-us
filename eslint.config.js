@@ -46,6 +46,7 @@ export default [
   },
   {
     rules: {
+      'react/prop-types': 'off',
       'no-nested-ternary': 'error',
       'import/no-default-export': 'error',
       curly: 'error',

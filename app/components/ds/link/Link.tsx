@@ -5,7 +5,7 @@ import { classnames } from '~/core/classnames';
 import { useLinkComponent } from './useLinkComponent';
 
 const Styles = tv({
-  base: ['underline'],
+  base: ['underline whitespace-normal'],
   variants: {
     current: {
       true: [

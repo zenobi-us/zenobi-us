@@ -19,7 +19,7 @@ const SiteContext = createContext({ pathId: '' });
 
 const SiteStyles = tv({
   base: [
-    'flex flex-col min-h-screen',
+    'flex flex-col min-h-[75dvh]',
     'font-serif',
     'text-text-base bg-background-base',
   ],

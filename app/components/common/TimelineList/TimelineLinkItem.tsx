@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { Link } from '~/components/ds/link/Link';
 
 import { useTimelineItem } from './TimelineList';
@@ -16,26 +18,47 @@ export function TimelineLinkItem<
     mdx: string;
   }
 >({
+  linkRenderer,
+  dateRenderer,
   createHref,
   tagger,
 }: {
+  linkRenderer?: (
+    item: TItem & { href: string; className?: string }
+  ) => JSX.Element;
+  dateRenderer?: ({ date }: { date: Date }) => JSX.Element;
   createHref: (item: TItem) => string;
   tagger?: (item: TItem) => string[];
 }) {
   const item = useTimelineItem<TItem>();
   const tagsToDisplay = tagger ? tagger(item).filter(Boolean) : [];
+  const renderLink = useCallback(
+    (item: TItem) => {
+      const className = 'inline whitespace-normal';
+      if (!linkRenderer) {
+        return (
+          <Link
+            className={className}
+            href={createHref(item)}
+          >
+            {item.title}
+          </Link>
+        );
+      }
+
+      return linkRenderer({ ...item, href: createHref(item), className });
+    },
+    [createHref, linkRenderer]
+  );
+
   return (
     <TimelineItem
       key={item._meta.slug}
       date={item.date}
+      dateRenderer={dateRenderer}
       tags={tagsToDisplay}
     >
-      <Link
-        className="inline whitespace-normal"
-        href={createHref(item)}
-      >
-        {item.title}
-      </Link>
+      {renderLink(item)}
     </TimelineItem>
   );
 }

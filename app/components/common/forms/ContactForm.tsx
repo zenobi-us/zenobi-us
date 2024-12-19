@@ -89,7 +89,7 @@ export function ContactForm({
                 <TextAreaInput
                   {...field}
                   {...fieldState}
-                  className="min-w-full max-w-full flex-grow min-h-60"
+                  className="min-w-full max-w-full flex-grow min-h-48"
                   disabled={status === 'sending' || status === 'sent'}
                 />
               </FormControl>

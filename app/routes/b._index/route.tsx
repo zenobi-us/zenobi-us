@@ -34,8 +34,6 @@ export default function IndexRoute() {
 
   return (
     <Page>
-      <Page.Header title="Thoughts" />
-
       <Page.Block direction="column">
         <BlogPostTimelineList posts={data.posts} />
         <PostEnd />

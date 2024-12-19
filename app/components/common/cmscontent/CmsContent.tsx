@@ -4,11 +4,11 @@ import { tv } from 'tailwind-variants';
 import { classnames } from '~/core/classnames';
 import { Button } from '~/components/ds/button/Button';
 import { Icon } from '~/components/ds/icon/Icon';
+import { Link } from '~/components/ds/link/Link';
 
 import { PdfButton } from '../pdf/PdfButton';
 
 import { Heading } from './Heading';
-import { Link } from './Link';
 import { Image } from './Image';
 import { CodeBlock } from './CodeBlock';
 import { Blockquote } from './Blockquote';
@@ -26,10 +26,9 @@ import {
 } from './ViewMode';
 import { Notice } from './Notice';
 import { RoleFlipper } from './RoleFlipper/RoleFlipper';
-// import { LogoThemer } from './LogoThemer/LogoThemer';
 
 const Styles = tv({
-  base: 'text-text-base text-left flex flex-col mx-4 my-0',
+  base: 'text-text-base text-left flex flex-col mx-0 my-0',
 });
 
 export const BrowserCmsContent = ({

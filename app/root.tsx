@@ -68,7 +68,7 @@ export default function App() {
   return (
     <html
       lang="en"
-      className="flex flex-col min-h-svh light font-serif"
+      className="flex flex-col min-h-svh light font-serif text-sm md:text-base lg:text-lg"
     >
       <head>
         <Meta />
@@ -101,7 +101,7 @@ export default function App() {
         />
         <Links />
       </head>
-      <body className="flex flex-col min-h-svh">
+      <body className="flex flex-col min-h-lvh">
         <FullScreenLoader loading={darkmode.loading}>
           {() => (
             <LinkProvider component={LinkInterop}>
