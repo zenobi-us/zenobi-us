@@ -13,13 +13,14 @@ import { ContactFormDrawer } from '../GlobalFooter/ContactFormDrawer';
 
 const Styles = tv({
   slots: {
-    block: '',
+    block: 'h-dvh',
     container: [
       'flex flex-col flex-grow justify-center items-center',
       'text-serif text-4xl font-normal max-w-screen-md',
     ],
 
     splash: [
+      'prose',
       'flex flex-col items-center justify-center',
       'font-splash font-page-heading font-weight-bold',
       'max-w-[640px]',
@@ -33,31 +34,31 @@ const Styles = tv({
       'xl:grid-cols-[128px_auto]',
       'xl:max-w-[768px]',
     ],
-    logo: ['area-[logo]', 'flex justify-start', 'xl:m-0'],
+    logo: ['area-[logo]', 'flex justify-start', 'mx-0 px-0 1xl:m-0'],
     navigation: [
       'area-[navigation]',
       'w-full px-4 flex flex-col',
-      'text-3xl',
+      'text-2xl lg:text-3xl',
       '[&_.globalnav__inner]:flex-col',
       '[&_link-list]:gap-4',
       '[&_link-list]:flex-row',
     ],
     content: [
       'area-[content]',
-      'text-3xl',
+      'text-2xl',
+      'px-4 py-2',
+      'portait:md:text-4xl',
+      '[&_p]:mb-8',
+      '[&_p]:leading-10',
+      '[&>*]:font-serif',
       'lg:text-4xl',
       'xl:text-4xl',
       'landscape:sm:text-xl',
       'landscape:sm:[&_p]:leading-8',
       'landscape:sm:[&_p]:mb-2',
       'landscape:md:text-2xl',
-      'landscape:md:[&_p]:leading-12',
-      'landscape:lg:text-4xl',
-      'portait:md:text-4xl',
-      '[&_p]:mb-8',
-      '[&_p]:leading-10',
-      '[&>*]:font-serif',
-      // 'md:[&>*]:leading-10',
+      'landscape:md:[&_p]:leading-10',
+      'landscape:lg:text-3xl',
     ],
   },
 });

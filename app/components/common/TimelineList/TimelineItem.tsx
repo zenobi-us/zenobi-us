@@ -1,6 +1,10 @@
 import classNames from 'classnames';
 import sugar from 'sugar';
-import type { PropsWithChildren } from 'react';
+import {
+  useCallback,
+  type HTMLAttributes,
+  type PropsWithChildren,
+} from 'react';
 import { tv } from 'tailwind-variants';
 
 // export const post = style({
@@ -43,22 +47,31 @@ const Styles = tv({
 export function TimelineItem({
   children,
   date,
+  dateRenderer,
   tags,
 }: PropsWithChildren<{
   date: Date;
+  dateRenderer?: ({ date }: { date: Date }) => JSX.Element;
   tags: string[];
 }>) {
   const styles = Styles({
     draft: tags.includes('draft'),
   });
 
+  const renderDate = useCallback(
+    ({ date }: { date: Date }) => {
+      if (dateRenderer) {
+        return dateRenderer({ date });
+      }
+
+      return <TimelineItemDate date={date} />;
+    },
+    [dateRenderer]
+  );
+
   return (
     <li className={classNames(styles.post())}>
-      {date && (
-        <span className={styles.date()}>
-          {sugar.Date.format(sugar.Date.create(date), '%h %d')}
-        </span>
-      )}
+      {date && renderDate({ date })}
       <div className={styles.content()}>
         <div className={styles.display()}>{children}</div>
         {tags &&
@@ -72,5 +85,21 @@ export function TimelineItem({
           ))}
       </div>
     </li>
+  );
+}
+
+export function TimelineItemDate({
+  date,
+  className,
+  ...props
+}: HTMLAttributes<HTMLSpanElement> & { date: Date }) {
+  const styles = Styles();
+  return (
+    <span
+      className={styles.date({ className })}
+      {...props}
+    >
+      {sugar.Date.format(sugar.Date.create(date), '%h %d')}
+    </span>
   );
 }

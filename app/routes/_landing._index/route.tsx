@@ -17,9 +17,5 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 export default function IndexRoute() {
   const data = useLoaderData<typeof loader>();
-  return (
-    <div className="flex flex-col">
-      <BrowserCmsContent content={data.intro.mdx} />
-    </div>
-  );
+  return <BrowserCmsContent content={data.intro.mdx} />;
 }

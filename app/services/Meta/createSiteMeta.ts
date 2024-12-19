@@ -1,12 +1,6 @@
-import type { getSiteData } from '../Content/siteData';
-
-type WithSiteData = {
-  siteData: Awaited<ReturnType<typeof getSiteData>>;
-};
-
-export function createSiteMeta<T extends WithSiteData>(data?: T) {
+export function createSiteMeta({ description }: { description?: string }) {
   return [
     { title: 'Zenobius' },
-    { name: 'description', content: data?.siteData?.description || '' },
+    { name: 'description', content: description || '' },
   ];
 }

@@ -16,6 +16,7 @@ permissions:
 jobs:
   Check:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 #v3
@@ -40,6 +41,22 @@ jobs:
       - name: Build
         run: |
           mise task run build
+
+      - name: E2E Tests
+        run: |
+          mise task run e2e --reporter=json --output=results.json
+
+      - uses: daun/playwright-report-summary@867aa7913b7a66681e55ed304dbe5d6097f8922e #v3
+        if: always()
+        with:
+          report-file: results.json
+
+      - name: Upload E2E Report
+        if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #4.4.3
+        with:
+          name: build
+          path: playwright-report
 
       - name: Comment
         uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c #v2.3.0

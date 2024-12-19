@@ -337,6 +337,8 @@ async function SsgSiteRenderer(
       Info('SSG', `Processing ${routes.length} route(s) to ${options.output}`)
     );
 
+    await dataWriter('routes.json', JSON.stringify(routes, null, 2));
+
     const queuedLinks: string[] = Array.from(routes);
 
     const crawler = CreateLinkCrawler({

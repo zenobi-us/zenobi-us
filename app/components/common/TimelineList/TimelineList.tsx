@@ -1,5 +1,5 @@
-import type { ComponentProps } from 'react';
-import { createContext, useContext } from 'react';
+import type { ComponentProps, HTMLAttributes } from 'react';
+import { createContext, useCallback, useContext } from 'react';
 import classname from 'classnames';
 import { tv } from 'tailwind-variants';
 
@@ -34,25 +34,40 @@ const Styles = tv({
 
 const TimelineItemContext = createContext<unknown>(null);
 
-export function TimelineList<T>({
-  className,
-  collection,
-  getGroupKey,
-  getItemKey,
-  sorter,
-  children,
-}: LinkListProps &
+type TimelineListProps<T> = LinkListProps &
   Pick<
     ComponentProps<typeof GroupObjectBy<T>>,
     'collection' | 'getGroupKey' | 'sorter'
   > & {
-    className?: string;
+    renderGroupTitle?: (props: { year: string }) => JSX.Element;
     getItemKey: (item: T) => string;
-  }) {
+  };
+
+export function TimelineList<T>({
+  className,
+  collection,
+  renderGroupTitle,
+  getGroupKey,
+  getItemKey,
+  sorter,
+  children,
+}: TimelineListProps<T>) {
   const styles = Styles();
+
+  const GroupTitleRenderer = useCallback(
+    ({ year }: { year: string }) => {
+      if (renderGroupTitle) {
+        return renderGroupTitle({ year });
+      }
+
+      return <TimelineListGroupTitle year={year} />;
+    },
+    [renderGroupTitle]
+  );
 
   return (
     <LinkList
+      data-testid="timeline-list"
       className={classname('timeline-list', className, styles.listOfYears())}
     >
       <GroupObjectBy
@@ -62,11 +77,16 @@ export function TimelineList<T>({
       >
         {(year, items) => (
           <div
-            key={year}
+            data-testid={`timeline-list-year-${year}`}
             className={styles.yearList()}
+            key={year}
           >
-            <h2 className={styles.yearHeader()}>{year}</h2>
-            <ul className={styles.postsInYearList()}>
+            <GroupTitleRenderer year={year} />
+
+            <ul
+              data-testid={`timeline-list-year-${year}-posts`}
+              className={styles.postsInYearList()}
+            >
               {items.map((item) => (
                 <TimelineItemContext.Provider
                   value={item}
@@ -92,4 +112,23 @@ export function useTimelineItem<T>(): T {
     throw new Error('useTimelineItem must be used within a TimelineList');
   }
   return context as T;
+}
+
+export function TimelineListGroupTitle({
+  year,
+  className,
+  ...props
+}: HTMLAttributes<HTMLHeadingElement> & { year: string }) {
+  const styles = Styles();
+  const testid = `timeline-list-year-${year}-header`;
+
+  return (
+    <h2
+      data-testid={testid}
+      className={styles.yearHeader({ className })}
+      {...props}
+    >
+      {year}
+    </h2>
+  );
 }

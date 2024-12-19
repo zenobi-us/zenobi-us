@@ -46,6 +46,7 @@ export default [
   },
   {
     rules: {
+      'react/prop-types': 'off',
       'no-nested-ternary': 'error',
       'import/no-default-export': 'error',
       curly: 'error',
@@ -107,6 +108,7 @@ export default [
       'postcss.config.js',
       'eslint.config.js',
       'tailwind.config.ts',
+      'playwright.config.ts',
       'babel.config.js',
       '*.d.ts',
       '+*.h.ts',

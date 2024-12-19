@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { Link } from '~/components/ds/link/Link';
 
 import { useTimelineItem } from './TimelineList';
@@ -5,37 +7,53 @@ import { TimelineItem } from './TimelineItem';
 
 export function TimelineLinkItem<
   TItem extends {
-    _meta: {
-      slug: string;
-      id: string;
-    };
-    tags?: string[];
-    content: string;
-    date: Date;
     title: string;
-    mdx: string;
+    date: Date;
   }
 >({
+  linkRenderer,
+  dateRenderer,
   createHref,
   tagger,
+  getKey,
 }: {
+  linkRenderer?: (
+    item: TItem & { href: string; className?: string }
+  ) => JSX.Element;
+  dateRenderer?: ({ date }: { date: Date }) => JSX.Element;
   createHref: (item: TItem) => string;
   tagger?: (item: TItem) => string[];
+  getKey?: (item: TItem) => string;
 }) {
   const item = useTimelineItem<TItem>();
   const tagsToDisplay = tagger ? tagger(item).filter(Boolean) : [];
+  const renderLink = useCallback(
+    (item: TItem) => {
+      const className = 'inline whitespace-normal';
+      if (!linkRenderer) {
+        return (
+          <Link
+            className={className}
+            href={createHref(item)}
+          >
+            {item.title}
+          </Link>
+        );
+      }
+
+      return linkRenderer({ ...item, href: createHref(item), className });
+    },
+    [createHref, linkRenderer]
+  );
+
   return (
     <TimelineItem
-      key={item._meta.slug}
+      key={getKey(item)}
       date={item.date}
+      dateRenderer={dateRenderer}
       tags={tagsToDisplay}
     >
-      <Link
-        className="inline whitespace-normal"
-        href={createHref(item)}
-      >
-        {item.title}
-      </Link>
+      {renderLink(item)}
     </TimelineItem>
   );
 }

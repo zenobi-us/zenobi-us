@@ -19,7 +19,7 @@ const SiteContext = createContext({ pathId: '' });
 
 const SiteStyles = tv({
   base: [
-    'flex flex-col min-h-screen',
+    'flex flex-col min-h-[75dvh]',
     'font-serif',
     'text-text-base bg-background-base',
   ],
@@ -36,6 +36,7 @@ const Site = ({
   return (
     <SiteContext.Provider value={{ pathId }}>
       <div
+        data-testid="site"
         className={classnames('site', styles, className)}
         {...props}
       >
@@ -57,6 +58,7 @@ const Main = function ({
   const styles = SiteMainStyles();
   return (
     <main
+      data-testid="site-main"
       className={classnames('site__main', styles, className)}
       {...props}
     >
@@ -64,27 +66,6 @@ const Main = function ({
     </main>
   );
 };
-
-// export const header = style({
-//   paddingLeft: Tokens.spacing.Normal,
-//   paddingRight: Tokens.spacing.Normal,
-//   zIndex: 1000,
-//   top: 0,
-//   position: 'sticky',
-//   backgroundColor: Tokens.palette.background.base,
-//   // backdropFilter: 'saturate(180%) blur(5px)',
-//   boxShadow: `0 0 20px 20px ${Tokens.palette.background.base}`,
-
-//   margin: '0 auto',
-//   width: '100%',
-//   maxWidth: Breakpoints.tablet,
-
-//   '@media': {
-//     print: {
-//       display: 'none',
-//     },
-//   },
-// });
 
 const SiteHeaderStyles = tv({
   base: [
@@ -106,6 +87,7 @@ const Header = function ({
   const styles = SiteHeaderStyles();
   return (
     <header
+      data-testid="site-header"
       className={classnames('site__header', styles, className)}
       {...props}
     >
@@ -127,6 +109,7 @@ const Footer = function ({
 
   return (
     <footer
+      data-testid="site-footer"
       className={classnames('site__footer', styles, className)}
       {...props}
     >

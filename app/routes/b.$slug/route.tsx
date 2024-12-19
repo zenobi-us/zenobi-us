@@ -1,38 +1,40 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, useLoaderData } from '@remix-run/react';
 import { $path } from 'remix-routes';
 
 import { getPost, getPosts } from '~/services/Content/posts';
 import { Page } from '~/components/ds/page/Page';
 import { PostEnd } from '~/components/common/PostEnd/PostEnd';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
-import { getSiteData } from '~/services/Content/siteData';
 import { BrowserCmsContent } from '~/components/common/cmscontent/CmsContent';
+import type { Loader as RootLoader } from '~/root';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const [post, siteData] = await Promise.all([
-    getPost(params.slug),
-    getSiteData(),
-  ]);
-
-  return Response.json({
-    siteData,
+  const post = getPost(params.slug);
+  return json({
     post,
   });
 }
+export type Loader = typeof loader;
 
 export const getStaticPaths = async () => {
   const posts = await getPosts();
   return posts.map((post) => $path('/b/:slug', { slug: post._meta.id }));
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [...createSiteMeta(data)];
+export const meta: MetaFunction<
+  Loader,
+  {
+    root: RootLoader;
+  }
+> = ({ matches }) => {
+  const siteData = matches.find((match) => match.id === 'root').data.siteData;
+
+  return [...createSiteMeta({ description: siteData.description })];
 };
 
 export default function IndexRoute() {
   const data = useLoaderData<typeof loader>();
-
   return (
     <Page>
       {data.post.banner && (

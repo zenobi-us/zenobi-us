@@ -4,9 +4,9 @@ import { allPosts, type Post } from 'content-collections';
 
 import { whereDraftOnlyInDevelopment, whereIdEquals } from './selectors';
 
-export async function getPosts() {
+export function getPosts() {
   try {
-    const posts = await query(
+    const posts = query(
       from(allPosts),
       whereDraftOnlyInDevelopment<Post>(),
       toArray()
@@ -18,9 +18,9 @@ export async function getPosts() {
   }
 }
 
-export async function getPost(id?: string) {
+export function getPost(id?: string) {
   try {
-    const post = await query(
+    const post = query(
       from(allPosts),
       whereDraftOnlyInDevelopment<Post>(),
       whereIdEquals<Post>(id),

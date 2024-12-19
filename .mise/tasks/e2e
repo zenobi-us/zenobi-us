@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#USAGE flag "-r --reporter <reporter>" default="list" help="How to report results" {
+#USAGE   choices "json" "line" "list" "html" "blob" "junit" "github"
+#USAGE }
+#USAGE flag "-o --output <report_output>" default="playwright-report.json" help="Output file name"
+
+#MISE depends=["build"]
+
+# if json, then set the PLAYWRIGHT_JSON_OUTPUT_NAME
+if [[ "${usage_reporter}" == "json" ]]; then
+    export PLAYWRIGHT_JSON_OUTPUT_NAME="${usage_output}"
+fi
+
+yarn playwright test \
+    --retries 0 \
+    --reporter="${usage_reporter}"
