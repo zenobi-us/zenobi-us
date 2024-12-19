@@ -561,16 +561,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "@chromatic-com/storybook@npm:1.9.0"
+"@chromatic-com/storybook@npm:^3.0.0":
+  version: 3.2.3
+  resolution: "@chromatic-com/storybook@npm:3.2.3"
   dependencies:
-    chromatic: "npm:^11.4.0"
+    chromatic: "npm:^11.15.0"
     filesize: "npm:^10.0.12"
     jsonfile: "npm:^6.1.0"
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
-  checksum: 10c0/c4b0fbfcb3394c2814e445471b1528179c2144d70d4a13c9a70545c2f2052c6366f73893b16e1490e658d43d905fc726bbb78d7c126c839a3c7ee3d8f3ad21c2
+  peerDependencies:
+    storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+  checksum: 10c0/23c59b7d225347d4af8cb6a7596da3417dc3abc2d5036c4ef5cee2852b994a16b5996a1bd1a584bb56e97266d85ce9ae7daeeac296b3060d6b80b14cad10d9d1
   languageName: node
   linkType: hard
 
@@ -6524,7 +6526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:^11.4.0":
+"chromatic@npm:^11.15.0":
   version: 11.20.2
   resolution: "chromatic@npm:11.20.2"
   peerDependencies:
@@ -18651,7 +18653,7 @@ __metadata:
   resolution: "zenobi.us@workspace:."
   dependencies:
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "npm:^1.0.2"
-    "@chromatic-com/storybook": "npm:^1.9.0"
+    "@chromatic-com/storybook": "npm:^3.0.0"
     "@content-collections/cli": "npm:^0.1.6"
     "@content-collections/core": "npm:^0.8.0"
     "@content-collections/mdx": "npm:^0.2.0"
