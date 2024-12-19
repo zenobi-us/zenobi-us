@@ -7,14 +7,15 @@ import {
   TimelineListGroupTitle,
 } from '../common/TimelineList/TimelineList';
 import { createDateSorter } from '../../core/dates/core-dates';
-import type { Post } from 'content-collections';
 import { TimelineItemDate } from '../common/TimelineList/TimelineItem';
 
-const byPostEntryDateSorter = createDateSorter<Post>((post) => {
+import type { PostSummary } from './PostListPage';
+
+const byPostEntryDateSorter = createDateSorter<PostSummary>((post) => {
   return sugar.Date.create(post.date || undefined);
 }, 'desc');
 
-function getPostYear(post: Post) {
+function getPostYear(post: PostSummary) {
   if (!post.date) {
     return '';
   }
@@ -23,21 +24,21 @@ function getPostYear(post: Post) {
   return year.toString();
 }
 
-function getPostSlug(post: Post) {
+function getPostSlug(post: PostSummary) {
   return post._meta.slug;
 }
 
-function getPostTags(post: Post) {
+function getPostTags(post: PostSummary) {
   const tags = intersection(post.tags, ['package', 'project']);
 
   return [...tags, post.stage === 'draft' ? 'draft' : ''];
 }
 
-function getPostHref(post: Post) {
+function getPostHref(post: PostSummary) {
   return $path('/b/:slug', { slug: post._meta.id });
 }
 
-export function BlogPostTimelineList({ posts }: { posts: Post[] }) {
+export function BlogPostTimelineList({ posts }: { posts: PostSummary[] }) {
   return (
     <TimelineList
       className="mt-2"
@@ -55,6 +56,7 @@ export function BlogPostTimelineList({ posts }: { posts: Post[] }) {
       <TimelineList.LinkItem
         createHref={getPostHref}
         tagger={getPostTags}
+        getKey={(post) => post._meta.slug}
         dateRenderer={({ date }) => (
           <TimelineItemDate
             date={date}

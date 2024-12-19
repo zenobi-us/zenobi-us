@@ -6,7 +6,7 @@ import { allSiteData } from 'content-collections';
 
 import { whereIdEquals } from './selectors';
 
-export async function getSiteData() {
+export function getSiteData() {
   try {
     const data = query(from(allSiteData), whereIdEquals('main'), firstOrNull());
     return data;
@@ -16,7 +16,7 @@ export async function getSiteData() {
   }
 }
 
-export async function getFooterData() {
+export function getFooterData() {
   try {
     const items = allSiteData;
     const footer = query(from(items), whereIdEquals('footer'), firstOrNull());

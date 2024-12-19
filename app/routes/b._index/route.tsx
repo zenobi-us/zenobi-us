@@ -2,42 +2,34 @@ import type { MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { getPosts } from '~/services/Content/posts';
-import { Page } from '~/components/ds/page/Page';
-import { PostEnd } from '~/components/common/PostEnd/PostEnd';
-import { getSiteData } from '~/services/Content/siteData';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
-import { BlogPostTimelineList } from '~/components/post/BlogPostTimelineList';
+import type { Loader as RootLoader } from '~/root';
+import {
+  mapPostListFromResponse,
+  mapPostListToResponse,
+  PostListPage,
+} from '~/components/post/PostListPage';
 
 export async function loader() {
-  const [posts, siteData] = await Promise.all([getPosts(), getSiteData()]);
-
-  return Response.json({
-    posts: posts.map((post) => ({
-      date: post.date,
-      title: post.title,
-      tags: post.tags,
-      _meta: {
-        slug: post._meta.slug,
-        id: post._meta.id,
-      },
-    })),
-    siteData,
-  });
+  const posts = getPosts();
+  return mapPostListToResponse(posts);
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [...createSiteMeta(data)];
+export type Loader = typeof loader;
+
+export const meta: MetaFunction<
+  Loader,
+  {
+    root: RootLoader;
+  }
+> = ({ matches }) => {
+  const siteData = matches.find((match) => match.id === 'root').data.siteData;
+  return [...createSiteMeta({ description: siteData.description })];
 };
 
 export default function IndexRoute() {
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<Loader>();
+  const posts = mapPostListFromResponse(data);
 
-  return (
-    <Page>
-      <Page.Block direction="column">
-        <BlogPostTimelineList posts={data.posts} />
-        <PostEnd />
-      </Page.Block>
-    </Page>
-  );
+  return <PostListPage posts={posts} />;
 }

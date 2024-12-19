@@ -12,7 +12,11 @@ import {
 } from '@remix-run/react';
 import { AnimatePresence } from 'framer-motion';
 
-import { getAppVersion, getFooterData } from '~/services/Content/siteData';
+import {
+  getAppVersion,
+  getFooterData,
+  getSiteData,
+} from '~/services/Content/siteData';
 import { useRouteHandles } from '~/services/routeHandles';
 import { useDarkMode } from '~/services/Theme/Init';
 import { Box } from '~/components/ds/box/Box';
@@ -31,13 +35,16 @@ import './theme/fonts/robotoslab';
 import './main.css';
 
 export async function loader() {
+  const siteData = await getSiteData();
   const footer = await getFooterData();
   const version = await getAppVersion();
   return json({
+    siteData,
     footer,
     version,
   });
 }
+export type Loader = typeof loader;
 
 function LinkInterop({
   href,
