@@ -17,7 +17,11 @@ export async function loader() {
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [...createSiteMeta(data)];
+  return [
+    ...createSiteMeta({
+      description: data.siteData.description,
+    }),
+  ];
 };
 
 export default function IndexRoute() {
