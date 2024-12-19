@@ -16,6 +16,10 @@ permissions:
 jobs:
   Check:
     runs-on: ubuntu-latest
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.34.3-jammy
+
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 #v3
@@ -43,7 +47,6 @@ jobs:
 
       - name: E2E Tests
         run: |
-          run: npx playwright install --with-deps
           mise task run e2e --reporter=json --output=results.json
 
       - uses: daun/playwright-report-summary@867aa7913b7a66681e55ed304dbe5d6097f8922e #v3
