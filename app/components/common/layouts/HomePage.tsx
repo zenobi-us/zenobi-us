@@ -13,7 +13,7 @@ import { ContactFormDrawer } from '../GlobalFooter/ContactFormDrawer';
 
 const Styles = tv({
   slots: {
-    block: 'h-dvh',
+    block: '',
     container: [
       'flex flex-col flex-grow justify-center items-center',
       'text-serif text-4xl font-normal max-w-screen-md',

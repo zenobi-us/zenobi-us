@@ -29,9 +29,11 @@ export function FullScreenLoader({
           />
         </motion.div>
       )}
+
       {!loading && (
         <motion.div
           data-testid="fullscreen-loader-resolved"
+          className="flex flex-grow"
           key="content"
           variants={{
             start: { opacity: 0 },
