@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-#MISE sources=["./app/**/*"]
+#MISE sources=["./app/**/*", "./package.json", "./yarn.lock"]
+
+yarn syncpack lint
 
 yarn eslint ./app

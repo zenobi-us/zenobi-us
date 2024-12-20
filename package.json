@@ -1,7 +1,5 @@
 {
   "name": "zenobi.us",
-  "type": "module",
-  "private": true,
   "version": "1.0.5",
   "dependencies": {
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "^1.0.2",
@@ -71,7 +69,7 @@
     "flat": "^6.0.1",
     "framer-motion": "^11.11.9",
     "globals": "^15.12.0",
-    "husky": "^9.1.6",
+    "husky": "^9.1.7",
     "isbot": "^4.4.0",
     "jest": "^29.7.0",
     "linq-functional": "^1.0.2",
@@ -109,6 +107,7 @@
     "storybook": "8.4.7",
     "sugar": "^2.0.6",
     "superjson": "^2.2.2",
+    "syncpack": "^13.0.0",
     "tailwind-variants": "^0.3.0",
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
@@ -129,7 +128,12 @@
     "zod-config": "^0.1.1"
   },
   "packageManager": "yarn@4.5.3",
+  "private": true,
   "resolutions": {
     "cookie": "^1.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "prepare": "husky"
   }
 }
