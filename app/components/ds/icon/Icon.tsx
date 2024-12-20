@@ -1,6 +1,6 @@
 import { useMemo, type HTMLAttributes } from 'react';
 import { get } from 'lodash-es';
-import * as Icons from '@radix-ui/react-icons';
+import * as Icons from 'lucide-react';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 import { classnames } from '~/core/classnames';
@@ -20,7 +20,7 @@ const Styles = tv({
   },
 });
 
-type IconProps = VariantProps<typeof Styles> &
+export type IconProps = VariantProps<typeof Styles> &
   HTMLAttributes<HTMLDivElement> & {
     label?: string;
     name: keyof typeof Icons;
