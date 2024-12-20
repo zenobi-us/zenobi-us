@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+mise install
+
+yarn install
+
+mise run build

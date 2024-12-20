@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/syncpack/dist/schema.json",
+  "dependencyTypes": [
+    "prod"
+  ],
+  "versionGroups": [
+    {
+      "label": "Please use lodash instead of underscore",
+      "packages": [
+        "**"
+      ],
+      "dependencies": [
+        "underscore"
+      ],
+      "isBanned": true
+    }
+  ]
+}
