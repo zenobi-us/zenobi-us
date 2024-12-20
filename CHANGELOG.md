@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.6](https://github.com/zenobi-us/zenobi-us/compare/v1.0.5...v1.0.6) (2024-12-20)
+
+
+### Bug Fixes
+
+* adjust site layout spacing ([#81](https://github.com/zenobi-us/zenobi-us/issues/81)) ([43078c2](https://github.com/zenobi-us/zenobi-us/commit/43078c22bdd395641e3a5f7eb7066b438840d6e9))
+* center and arrange spacing properly ([#79](https://github.com/zenobi-us/zenobi-us/issues/79)) ([c844b08](https://github.com/zenobi-us/zenobi-us/commit/c844b081d295f367cde754c41e8f274e13b05143))
+* **deps:** update dependency @chromatic-com/storybook to v3 ([#53](https://github.com/zenobi-us/zenobi-us/issues/53)) ([cfda045](https://github.com/zenobi-us/zenobi-us/commit/cfda045079b1433d2bb85d38b779c26fdc921a3c))
+* **deps:** update dependency consola to v3.3.0 ([#82](https://github.com/zenobi-us/zenobi-us/issues/82)) ([c0bc2e6](https://github.com/zenobi-us/zenobi-us/commit/c0bc2e658ee0518a75bb3e6714745b9ad7cbedc7))
+* **deps:** update dependency lucide-react to ^0.469.0 ([#84](https://github.com/zenobi-us/zenobi-us/issues/84)) ([cf9b278](https://github.com/zenobi-us/zenobi-us/commit/cf9b2783b41865fe6cc82df78072def499fab5b1))
+
 ## [1.0.5](https://github.com/zenobi-us/zenobi-us/compare/v1.0.4...v1.0.5) (2024-12-20)
 
 
