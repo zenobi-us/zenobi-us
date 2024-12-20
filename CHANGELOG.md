@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.0.5](https://github.com/zenobi-us/zenobi-us/compare/v1.0.4...v1.0.5) (2024-12-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @cloudflare/workers-types to v4.20241218.0 ([#55](https://github.com/zenobi-us/zenobi-us/issues/55)) ([4f2be74](https://github.com/zenobi-us/zenobi-us/commit/4f2be748a2235a258d927814c43cb8c65b1d3526))
+* **deps:** update dependency @content-collections/core to ^0.8.0 ([#59](https://github.com/zenobi-us/zenobi-us/issues/59)) ([6ce396e](https://github.com/zenobi-us/zenobi-us/commit/6ce396e34dcb2d78f549cd8709626d9ee9e7fca1))
+* **deps:** update dependency @eslint/js to v9.17.0 ([#44](https://github.com/zenobi-us/zenobi-us/issues/44)) ([f1e2038](https://github.com/zenobi-us/zenobi-us/commit/f1e20381cc79bed41644253dc0a0b40e648c06b2))
+* **deps:** update dependency @shikijs/transformers to v1.24.3 ([#63](https://github.com/zenobi-us/zenobi-us/issues/63)) ([1fcfe5a](https://github.com/zenobi-us/zenobi-us/commit/1fcfe5aeaac7081a3f96822bda91ee2d12c843c0))
+* **deps:** update dependency @types/react to v18.3.18 ([#72](https://github.com/zenobi-us/zenobi-us/issues/72)) ([4261782](https://github.com/zenobi-us/zenobi-us/commit/42617822ea55b23e185053f8f88e370eff27478a))
+* **deps:** update dependency framer-motion to v11.15.0 ([#45](https://github.com/zenobi-us/zenobi-us/issues/45)) ([3a4ea2e](https://github.com/zenobi-us/zenobi-us/commit/3a4ea2e0d87b07d34812b8f346d436ea2e7fb74d))
+* **deps:** update dependency globals to v15.14.0 ([#57](https://github.com/zenobi-us/zenobi-us/issues/57)) ([b42c69b](https://github.com/zenobi-us/zenobi-us/commit/b42c69bd74a1b8166fb384e891dc3f24ed8003f4))
+* **deps:** update dependency tailwind-variants to ^0.3.0 ([#47](https://github.com/zenobi-us/zenobi-us/issues/47)) ([1c3b33f](https://github.com/zenobi-us/zenobi-us/commit/1c3b33faee988ad348d5b60da245ffcb6ad6fcbe))
+* **deps:** update dependency wrangler to v3.97.0 ([#48](https://github.com/zenobi-us/zenobi-us/issues/48)) ([3b7c8e4](https://github.com/zenobi-us/zenobi-us/commit/3b7c8e4170a8e538e8fe0767bfcb72160a8d85ee))
+* **deps:** update dependency wrangler to v3.98.0 ([#64](https://github.com/zenobi-us/zenobi-us/issues/64)) ([1838388](https://github.com/zenobi-us/zenobi-us/commit/1838388b5123736436b24324604995d9b5817868))
+* **deps:** update dependency wrangler to v3.99.0 ([#66](https://github.com/zenobi-us/zenobi-us/issues/66)) ([074f5e5](https://github.com/zenobi-us/zenobi-us/commit/074f5e59b67ef7207943fb79365c24324730ac3d))
+* **deps:** update radix-ui-primitives monorepo ([#75](https://github.com/zenobi-us/zenobi-us/issues/75)) ([1162a57](https://github.com/zenobi-us/zenobi-us/commit/1162a57d7d8bf06de031ab7eae511a4e600389d1))
+* **deps:** update storybook monorepo to v8.4.7 ([#49](https://github.com/zenobi-us/zenobi-us/issues/49)) ([a6487ce](https://github.com/zenobi-us/zenobi-us/commit/a6487cea2fe4c55f09d8d8f1fa8080f3fbff77d5))
+* provide e2e tests ([#33](https://github.com/zenobi-us/zenobi-us/issues/33)) ([9287ee1](https://github.com/zenobi-us/zenobi-us/commit/9287ee11fc2d9326cddc49df217a5ebb0ead7cec))
+
 ## [1.0.4](https://github.com/zenobi-us/zenobi-us/compare/v1.0.3...v1.0.4) (2024-12-17)
 
 
