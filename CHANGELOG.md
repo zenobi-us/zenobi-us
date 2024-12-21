@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.7](https://github.com/zenobi-us/zenobi-us/compare/v1.0.6...v1.0.7) (2024-12-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @shikijs/transformers to v1.24.4 ([#88](https://github.com/zenobi-us/zenobi-us/issues/88)) ([a43fa69](https://github.com/zenobi-us/zenobi-us/commit/a43fa692012cb61be88bdf798a68cf2c4450fa2e))
+* **deps:** update dependency react-hook-form to v7.54.2 ([#87](https://github.com/zenobi-us/zenobi-us/issues/87)) ([b1053c0](https://github.com/zenobi-us/zenobi-us/commit/b1053c076ca2fa9c47fff3d1e7a0c124a186d629))
+* **deps:** update remix monorepo to v2.15.2 ([#85](https://github.com/zenobi-us/zenobi-us/issues/85)) ([391063d](https://github.com/zenobi-us/zenobi-us/commit/391063d75827b225549b9d4ba1bbb54a589a9ecd))
+
 ## [1.0.6](https://github.com/zenobi-us/zenobi-us/compare/v1.0.5...v1.0.6) (2024-12-20)
 
 
