@@ -11,10 +11,13 @@ export function getPosts() {
       whereDraftOnlyInDevelopment<Post>(),
       toArray()
     );
+    if (!posts) {
+      throw new PostsDataLoadError();
+    }
+
     return posts;
-  } catch (error) {
-    console.error('Failed to load posts data', error);
-    throw new Error('Failed to load posts data');
+  } catch {
+    throw new PostsDataLoadError();
   }
 }
 
@@ -28,13 +31,29 @@ export function getPost(id?: string) {
     );
 
     if (!post) {
-      throw new Response('', { status: 404 });
+      throw new PostNotFoundError(id);
     }
 
     return post;
-  } catch (error) {
-    const message = `Failed to load post[id="${id}"] data`;
-    console.error(message, error);
-    throw new Error(message);
+  } catch {
+    throw new PostsDataLoadError();
+  }
+}
+
+export class PostNotFoundError extends Response {
+  constructor(id: string) {
+    super('', {
+      status: 404,
+      statusText: `Post with id "${id}" not found`,
+    });
+  }
+}
+
+export class PostsDataLoadError extends Response {
+  constructor() {
+    super('', {
+      status: 500,
+      statusText: 'Failed to load posts data',
+    });
   }
 }

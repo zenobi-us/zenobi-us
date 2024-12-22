@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
+set -e
+
+#USAGE flag "-t --title <title>" help="The title of the post"
+
 . ".mise/helpers.sh"
-
-#USAGE flag "-t --title" description="The title of the new post"
-
-slugify() {
-    echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
-}
 
 create_new_post() {
 
@@ -17,7 +15,7 @@ create_new_post() {
     date=$(date +"%Y-%m-%d")
 
     template_context="{\"Date\":\"$(date +"%Y-%m-%d")\",\"Title\":\"${title}\"}"
-    file_template='"content/posts/\(.Date)-\(.Title | gsub(" ";"-") | ascii_downcase).md"'
+    file_template='"content/posts/\(.Date)-\(.Title | sub("\\W+"; "-"; "g") | gsub("-$";"") | ascii_downcase).md"'
     filepath=$(template "$file_template" "${template_context}")
 
     dedent """
@@ -30,6 +28,8 @@ create_new_post() {
     """ >"${filepath}"
 
 }
+
+echo "Creating post with title: ${usage_title}"
 
 title="$(arg_or_prompt "Enter the title of the post" "${usage_title}")"
 create_new_post "$title"

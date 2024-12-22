@@ -11,7 +11,7 @@ import { allPosts, type Post } from 'content-collections';
 
 import { whereDraftOnlyInDevelopment } from './selectors';
 
-export async function getTags() {
+export function getTags() {
   try {
     const tags = query(
       from(allPosts),
@@ -22,13 +22,16 @@ export async function getTags() {
     );
 
     return tags;
-  } catch (error) {
-    console.error('Failed to load tags data', error);
-    throw new Error('Failed to load tags data');
+  } catch {
+    throw new TagDataError();
   }
 }
 
-export async function getPostsWithTag(tag: string) {
+export function getPostsWithTag(tag?: string) {
+  if (!tag) {
+    throw new TagNotProvidedError();
+  }
+
   try {
     const posts = query(
       from(allPosts),
@@ -38,9 +41,39 @@ export async function getPostsWithTag(tag: string) {
       toArray()
     );
 
+    if (!posts.length) {
+      throw new TagNotFoundError(tag);
+    }
+
     return posts;
-  } catch (error) {
-    console.error('Failed to load tag data', error);
-    throw new Error('Failed to load tag data');
+  } catch {
+    throw new TagDataError();
+  }
+}
+
+export class TagNotFoundError extends Response {
+  constructor(tag: string) {
+    super(null, {
+      status: 404,
+      statusText: `Tag "${tag}" not found`,
+    });
+  }
+}
+
+export class TagNotProvidedError extends Response {
+  constructor() {
+    super(null, {
+      status: 400,
+      statusText: 'Tag not provided',
+    });
+  }
+}
+
+export class TagDataError extends Response {
+  constructor() {
+    super(null, {
+      status: 500,
+      statusText: 'Failed to load tag data',
+    });
   }
 }

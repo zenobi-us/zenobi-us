@@ -67,7 +67,7 @@ export function formatPageHeaderDate(date: string | Date) {
   return Sugar.Date.medium(new Date(date));
 }
 
-export function PageHeaderDate({ date }: { date: string }) {
+export function PageHeaderDate({ date }: { date: Date }) {
   const formattedDate = formatPageHeaderDate(date);
 
   return (

@@ -1,6 +1,6 @@
 import { Outlet } from '@remix-run/react';
 
-import { HomePage } from '~/components/common/layouts/HomePage';
+import { HomePage } from '~/components/home/HomePage';
 import { useGetCurrentPathname } from '~/services/Navigation/useGetCurrentPathname';
 import { createHandleMetaData } from '~/services/routeHandles';
 

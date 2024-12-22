@@ -4,13 +4,14 @@ import intersection from 'lodash/intersection';
 
 import { TimelineList } from '../common/TimelineList/TimelineList';
 import { createDateSorter } from '../../core/dates/core-dates';
-import type { Help } from 'content-collections';
 
-const byHelpPageEntryDateSorter = createDateSorter<Help>((page) => {
+import type { HelpPageSummary, HelpPageSummaryList } from './HelpListPage';
+
+const byHelpPageEntryDateSorter = createDateSorter<HelpPageSummary>((page) => {
   return sugar.Date.create(page.date || undefined);
 }, 'desc');
 
-function getHelpPageYear(page: Help) {
+function getHelpPageYear(page: HelpPageSummary) {
   if (!page.date) {
     return '';
   }
@@ -19,7 +20,7 @@ function getHelpPageYear(page: Help) {
   return year.toString();
 }
 
-export function HelpTimelineList({ pages }: { pages: Help[] }) {
+export function HelpTimelineList({ pages }: { pages: HelpPageSummaryList }) {
   return (
     <TimelineList
       className="mt-2"
@@ -30,7 +31,7 @@ export function HelpTimelineList({ pages }: { pages: Help[] }) {
       sorter={byHelpPageEntryDateSorter}
       getGroupKey={getHelpPageYear}
     >
-      <TimelineList.LinkItem<Help>
+      <TimelineList.LinkItem<HelpPageSummary>
         createHref={(page) => {
           return $path('/h/:slug', { slug: page._meta.id });
         }}

@@ -46,6 +46,9 @@
     "*.mdx": "markdown",
     "*.tailwind.css": "tailwindcss"
   },
+  "github.copilot.enable": {
+    "markdown": true
+  },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

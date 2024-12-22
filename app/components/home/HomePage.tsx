@@ -1,3 +1,4 @@
+import * as superjson from 'superjson';
 import type { PropsWithChildren } from 'react';
 import { tv } from 'tailwind-variants';
 
@@ -8,12 +9,13 @@ import { LinkList } from '~/components/ds/linklist/LinkList';
 import { Link } from '~/components/ds/link/Link';
 import { Button } from '~/components/ds/button/Button';
 
-import { HomeAvatar } from '../favicons/Avatar';
-import { ContactFormDrawer } from '../GlobalFooter/ContactFormDrawer';
+import { HomeAvatar } from '../common/favicons/Avatar';
+import { ContactFormDrawer } from '../common/GlobalFooter/ContactFormDrawer';
+import type { SiteDatum } from 'content-collections';
 
 const Styles = tv({
   slots: {
-    block: 'h-dvh',
+    block: '',
     container: [
       'flex flex-col flex-grow justify-center items-center',
       'text-serif text-4xl font-normal max-w-screen-md',
@@ -62,6 +64,31 @@ const Styles = tv({
     ],
   },
 });
+
+export function mapDbIntroPage(page: SiteDatum) {
+  return {
+    date: page.date,
+    title: page.title,
+    tags: page.tags,
+    mdx: page.mdx,
+    _meta: {
+      slug: page._meta.slug,
+      id: page._meta.id,
+    },
+  };
+}
+
+export function mapIntroPageToResponse(page: SiteDatum) {
+  return superjson.stringify(mapDbIntroPage(page));
+}
+
+export type IntroPage = ReturnType<typeof mapDbIntroPage>;
+
+export function mapIntroPageFromResponse(
+  pages: ReturnType<typeof mapIntroPageToResponse>
+) {
+  return superjson.parse<IntroPage>(pages);
+}
 
 export function HomePage({
   children,

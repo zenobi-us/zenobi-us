@@ -3,19 +3,32 @@ import { useLoaderData } from '@remix-run/react';
 
 import { BrowserCmsContent } from '~/components/common/cmscontent/CmsContent';
 import { getIntro } from '~/services/Content/intros';
-import { getSiteData } from '~/services/Content/siteData';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
+import type { Loader as RootLoader } from '~/root';
+import {
+  mapIntroPageFromResponse,
+  mapIntroPageToResponse,
+} from '~/components/home/HomePage';
 
-export async function loader() {
-  const [intro, siteData] = await Promise.all([getIntro(), getSiteData()]);
-  return Response.json({ intro, siteData });
+export function loader() {
+  const intro = getIntro();
+  return mapIntroPageToResponse(intro);
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [...createSiteMeta(data)];
+export type Loader = ReturnType<typeof loader>;
+
+export const meta: MetaFunction<
+  Loader,
+  {
+    root: RootLoader;
+  }
+> = ({ matches }) => {
+  const siteData = matches.find((match) => match.id === 'root').data.siteData;
+  return [...createSiteMeta({ description: siteData.description })];
 };
 
 export default function IndexRoute() {
-  const data = useLoaderData<typeof loader>();
-  return <BrowserCmsContent content={data.intro.mdx} />;
+  const data = useLoaderData<Loader>();
+  const page = mapIntroPageFromResponse(data);
+  return <BrowserCmsContent content={page.mdx} />;
 }

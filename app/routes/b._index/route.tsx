@@ -10,7 +10,7 @@ import {
   PostListPage,
 } from '~/components/post/PostListPage';
 
-export async function loader() {
+export function loader() {
   const posts = getPosts();
   return mapPostListToResponse(posts);
 }

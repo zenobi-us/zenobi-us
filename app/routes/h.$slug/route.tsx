@@ -2,27 +2,30 @@ import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { $path } from 'remix-routes';
 
-import { Page } from '~/components/ds/page/Page';
-import { PostEnd } from '~/components/common/PostEnd/PostEnd';
+import type { Loader as RootLoader } from '~/root';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
-import { getSiteData } from '~/services/Content/siteData';
-import { BrowserCmsContent } from '~/components/common/cmscontent/CmsContent';
 import { getHelpPage, getHelpPages } from '~/services/Content/helps';
 
+import {
+  HelpDetailPage,
+  mapHelpPageDetailFromResponse,
+  mapHelpPageDetailToResponse,
+} from '../../components/help/HelpDetailPage';
+
 export async function loader({ params }: LoaderFunctionArgs) {
-  const [page, siteData] = await Promise.all([
-    getHelpPage(params.slug),
-    getSiteData(),
-  ]);
-
-  return Response.json({
-    siteData,
-    page,
-  });
+  const page = getHelpPage(params.slug);
+  return mapHelpPageDetailToResponse(page);
 }
+export type Loader = typeof loader;
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [...createSiteMeta(data)];
+export const meta: MetaFunction<
+  Loader,
+  {
+    root: RootLoader;
+  }
+> = ({ matches }) => {
+  const siteData = matches.find((match) => match.id === 'root').data.siteData;
+  return [...createSiteMeta({ description: siteData.description })];
 };
 
 export const getStaticPaths = async () => {
@@ -32,22 +35,6 @@ export const getStaticPaths = async () => {
 
 export default function IndexRoute() {
   const data = useLoaderData<typeof loader>();
-
-  return (
-    <Page>
-      <Page.Header title={data.page.title}>
-        <div className="flex items-center gap-2">
-          <Page.Header.Date date={data.page.date} />
-          <Page.Header.Tags tags={data.page.tags} />
-        </div>
-      </Page.Header>
-      <Page.Block direction="column">
-        <BrowserCmsContent
-          content={data.page.mdx}
-          className="prose-base"
-        />
-        <PostEnd />
-      </Page.Block>
-    </Page>
-  );
+  const page = mapHelpPageDetailFromResponse(data);
+  return <HelpDetailPage page={page} />;
 }

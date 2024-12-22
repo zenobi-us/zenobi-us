@@ -4,9 +4,9 @@ import { allHelps, type Help } from 'content-collections';
 
 import { onlyInDevelopment, whereIdEquals } from './selectors';
 
-export async function getHelpPage(id?: string) {
+export function getHelpPage(id?: string) {
   try {
-    const help = await query(
+    const help = query(
       from(allHelps),
       onlyInDevelopment(),
       whereIdEquals<Help>(id),
@@ -14,32 +14,43 @@ export async function getHelpPage(id?: string) {
     );
 
     if (!help) {
-      throw new Response('', { status: 404 });
+      throw new HelpNotFoundError(id);
     }
 
     return help;
-  } catch (error) {
-    const message = `Failed to load help[id="${id}"] data`;
-    console.error(message, error);
-    throw new Error(message);
+  } catch {
+    throw new HelpsDataLoadError();
   }
 }
 
-export async function getHelpPages() {
+export function getHelpPages() {
   try {
-    const help = await query(
-      from(allHelps),
-      onlyInDevelopment(),
-      toArray<Help>()
-    );
+    const help = query(from(allHelps), onlyInDevelopment(), toArray<Help>());
 
     if (!help) {
       throw new Response('', { status: 404 });
     }
 
     return help;
-  } catch (error) {
-    console.error('Failed to load help data', error);
-    throw new Error('Failed to load help data');
+  } catch {
+    throw new HelpsDataLoadError();
+  }
+}
+
+export class HelpNotFoundError extends Response {
+  constructor(postid: string) {
+    super('', {
+      status: 404,
+      statusText: `Help with id "${postid}" not found`,
+    });
+  }
+}
+
+export class HelpsDataLoadError extends Response {
+  constructor() {
+    super('', {
+      status: 500,
+      statusText: 'Failed to load help data',
+    });
   }
 }

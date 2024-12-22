@@ -1,52 +1,30 @@
 import type { MetaFunction } from '@remix-run/node';
-import { json, Link, useLoaderData } from '@remix-run/react';
-import { $path } from 'remix-routes';
+import { useLoaderData } from '@remix-run/react';
 
 import { getTags } from '~/services/Content/tags';
-import { Page } from '~/components/ds/page/Page';
-import { PostEnd } from '~/components/common/PostEnd/PostEnd';
 import { createSiteMeta } from '~/services/Meta/createSiteMeta';
-import { getSiteData } from '~/services/Content/siteData';
+import { TagsListPage } from '~/components/post/TagsListPage';
+import type { Loader as RootLoader } from '~/root';
 
 export async function loader() {
-  const [tags, siteData] = await Promise.all([getTags(), getSiteData()]);
-  return json({
-    tags,
-    siteData,
-  });
+  const tags = getTags();
+  return tags;
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    ...createSiteMeta({
-      description: data.siteData.description,
-    }),
-  ];
+export type Loader = typeof loader;
+
+export const meta: MetaFunction<
+  Loader,
+  {
+    root: RootLoader;
+  }
+> = ({ matches }) => {
+  const siteData = matches.find((match) => match.id === 'root').data.siteData;
+
+  return [...createSiteMeta({ description: siteData.description })];
 };
 
 export default function IndexRoute() {
-  const data = useLoaderData<typeof loader>();
-
-  return (
-    <Page>
-      <Page.Header title="All tags" />
-
-      <Page.Block direction="column">
-        <div className="flex flex-row flex-wrap gap-2 w-full">
-          {data.tags.map((tag) => {
-            return (
-              <Link
-                key={tag}
-                className="text-text-link p-4"
-                to={$path('/b/tags/:tag', { tag })}
-              >
-                {tag}
-              </Link>
-            );
-          })}
-        </div>
-        <PostEnd />
-      </Page.Block>
-    </Page>
-  );
+  const tags = useLoaderData<typeof loader>();
+  return <TagsListPage tags={tags} />;
 }
