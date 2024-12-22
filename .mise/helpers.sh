@@ -37,10 +37,10 @@ arg_or_prompt() {
     output=""
 
     if [ -z "${value}" ]; then
-        read -r -p "$message : " output
+        read -r -p "$message: " output
         echo "${output}"
     else
-        echo "${value}"
+        echo "$value"
     fi
 }
 
