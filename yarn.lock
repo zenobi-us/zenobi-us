@@ -2391,8 +2391,8 @@ __metadata:
   linkType: hard
 
 "@laynezh/vite-plugin-lib-assets@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@laynezh/vite-plugin-lib-assets@npm:0.6.0"
+  version: 0.6.1
+  resolution: "@laynezh/vite-plugin-lib-assets@npm:0.6.1"
   dependencies:
     escape-string-regexp: "npm:^4.0.0"
     loader-utils: "npm:^3.2.1"
@@ -2400,7 +2400,7 @@ __metadata:
     semver: "npm:^7.6.0"
   peerDependencies:
     vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
-  checksum: 10c0/3bd2bea42777933d8ce3aadda93211ca681cbcfd9e0fc994eef41eb0e66953c61c4eacde4cbcc830dd9006f606aac8576591095b57f572eeedcde278ff45287f
+  checksum: 10c0/c7a6bf4355628c9e5480cd465fb41cbef5dd264629c32b6523500173871a33835ba4568518d639d586e15653c3178002f06fa5a14027e9ebf7d7a573a5495430
   languageName: node
   linkType: hard
 
