@@ -27,6 +27,23 @@ requires_arg() {
 
 }
 
+arg_or_prompt() {
+    local message
+    local value
+    local output
+
+    message="${1}"
+    value="${2}"
+    output=""
+
+    if [ -z "${value}" ]; then
+        read -r -p "$message : " output
+        echo "${output}"
+    else
+        echo "${value}"
+    fi
+}
+
 match() {
     local pattern
     local group
@@ -42,4 +59,26 @@ match() {
             break
         fi
     done
+}
+
+# remove first blank line and any leading whitespace
+dedent() {
+    local text="${1}"
+    local output
+
+    output=$(echo "${text}" | sed 's/^[ \t]*//')
+    output=$(echo "${output}" | sed '1d')
+
+    echo "${output}"
+}
+
+# renders a jq template string with supplied object
+template() {
+    local template
+    local object
+
+    template=$1
+    object=$2
+
+    echo "$object" | jq -r -c "$template"
 }

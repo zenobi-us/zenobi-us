@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
 
+. ".mise/helpers.sh"
+
+#USAGE flag "-t --title" description="The title of the new post"
+
 slugify() {
     echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
-}
-
-# remove first blank line and any leading whitespace
-dedent() {
-    local text="${1}"
-    local output
-
-    output=$(echo "${text}" | sed 's/^[ \t]*//')
-    output=$(echo "${output}" | sed '1d')
-
-    echo "${output}"
 }
 
 create_new_post() {
@@ -22,27 +15,21 @@ create_new_post() {
 
     title="${1}"
     date=$(date +"%Y-%m-%d")
-    filepath="./content/data/posts/${date}-$(slugify "$title").md"
 
-    touch "${filepath}"
+    template_context="{\"Date\":\"$(date +"%Y-%m-%d")\",\"Title\":\"${title}\"}"
+    file_template='"content/posts/\(.Date)-\(.Title | gsub(" ";"-") | ascii_downcase).md"'
+    filepath=$(template "$file_template" "${template_context}")
 
     dedent """
         ---
         date: ${date}
         title: ${title}
         draft: true
+        filepath: ${filepath}
         ---
     """ >"${filepath}"
 
 }
 
-arg_or_prompt() {
-    if [ -z "${*}" ]; then
-        read -r -p "Enter the title of the post: " title
-        echo "${title}"
-    else
-        echo "${*}"
-    fi
-}
-
-create_new_post "$(arg_or_prompt "${*}")"
+title="$(arg_or_prompt "Enter the title of the post" "${usage_title}")"
+create_new_post "$title"
