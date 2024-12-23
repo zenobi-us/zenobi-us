@@ -21,7 +21,7 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.0",
-    "@react-hookz/web": "^24.0.4",
+    "@react-hookz/web": "^25.0.0",
     "@react-pdf/renderer": "^4.0.0",
     "@react-spring/three": "^9.7.5",
     "@react-three/fiber": "^8.17.10",

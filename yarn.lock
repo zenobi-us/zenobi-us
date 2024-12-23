@@ -3312,18 +3312,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hookz/deep-equal@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@react-hookz/deep-equal@npm:1.0.4"
-  checksum: 10c0/f48774ccc63506e8de29eb6f3beff1204a5f51e481329f6b38b578bb43b35391eeacd9908f35a7fcca008e4c7e5144be7092103236042a8bcbbe4e7594ed4eb9
+"@react-hookz/deep-equal@npm:^3.0.1":
+  version: 3.0.3
+  resolution: "@react-hookz/deep-equal@npm:3.0.3"
+  checksum: 10c0/4ef12e7caaa3a17564bcc9f107ce167ae72e95d057614ff4a675e2ac2f64489c69a7d06f0f146de74c657dbc4d06234177fbc4d8b5af183b274ba888d5b44319
   languageName: node
   linkType: hard
 
-"@react-hookz/web@npm:^24.0.4":
-  version: 24.0.4
-  resolution: "@react-hookz/web@npm:24.0.4"
+"@react-hookz/web@npm:^25.0.0":
+  version: 25.0.0
+  resolution: "@react-hookz/web@npm:25.0.0"
   dependencies:
-    "@react-hookz/deep-equal": "npm:^1.0.4"
+    "@react-hookz/deep-equal": "npm:^3.0.1"
   peerDependencies:
     js-cookie: ^3.0.5
     react: ^16.8 || ^17 || ^18
@@ -3331,7 +3331,7 @@ __metadata:
   peerDependenciesMeta:
     js-cookie:
       optional: true
-  checksum: 10c0/894419b88601938b6b2027c8bc77a7e470de4cf196a2d461d53842b037cae57a2abe8e7279edd01ab56d7c671dd155de7795f6e717331c7fdb89734eafac8769
+  checksum: 10c0/1b52354eafd5b4f0d739e5c7653a1f52b3fa56a82edf786d1196abfe4b19294fe581d52f5ea37fdb30859b5632bea654bb45416a1c93127107a332937477dfb9
   languageName: node
   linkType: hard
 
@@ -18610,7 +18610,7 @@ __metadata:
     "@radix-ui/react-label": "npm:^2.1.0"
     "@radix-ui/react-popover": "npm:^1.1.2"
     "@radix-ui/react-slot": "npm:^1.1.0"
-    "@react-hookz/web": "npm:^24.0.4"
+    "@react-hookz/web": "npm:^25.0.0"
     "@react-pdf/renderer": "npm:^4.0.0"
     "@react-spring/three": "npm:^9.7.5"
     "@react-three/fiber": "npm:^8.17.10"
