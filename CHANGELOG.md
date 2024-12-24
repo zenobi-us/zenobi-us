@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.7](https://github.com/zenobi-us/zenobi-us/compare/v1.0.6...v1.0.7) (2024-12-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @laynezh/vite-plugin-lib-assets to ^0.6.0 ([#89](https://github.com/zenobi-us/zenobi-us/issues/89)) ([26a58b7](https://github.com/zenobi-us/zenobi-us/commit/26a58b7ba45bfeafe6254bb75d1b40639383b878))
+* **deps:** update dependency @laynezh/vite-plugin-lib-assets to v0.6.1 ([#90](https://github.com/zenobi-us/zenobi-us/issues/90)) ([fe7e046](https://github.com/zenobi-us/zenobi-us/commit/fe7e04631c395c179f3854567db3284b46ef5238))
+* **deps:** update dependency @shadergradient/react to v2.0.19 ([#91](https://github.com/zenobi-us/zenobi-us/issues/91)) ([efc03de](https://github.com/zenobi-us/zenobi-us/commit/efc03ded4bbd6b0bad3b877265ac3e704fb34ced))
+* **deps:** update dependency @shikijs/transformers to v1.24.4 ([#88](https://github.com/zenobi-us/zenobi-us/issues/88)) ([a43fa69](https://github.com/zenobi-us/zenobi-us/commit/a43fa692012cb61be88bdf798a68cf2c4450fa2e))
+* **deps:** update dependency consola to v3.3.1 ([#92](https://github.com/zenobi-us/zenobi-us/issues/92)) ([f2440a9](https://github.com/zenobi-us/zenobi-us/commit/f2440a949253ab95a21e302705dfb954b4395570))
+* **deps:** update dependency eslint-plugin-react to v7.37.3 ([#95](https://github.com/zenobi-us/zenobi-us/issues/95)) ([a886d82](https://github.com/zenobi-us/zenobi-us/commit/a886d828a56f8dea545c5abd0ea3d30e5163fdff))
+* **deps:** update dependency react-hook-form to v7.54.2 ([#87](https://github.com/zenobi-us/zenobi-us/issues/87)) ([b1053c0](https://github.com/zenobi-us/zenobi-us/commit/b1053c076ca2fa9c47fff3d1e7a0c124a186d629))
+* **deps:** update remix monorepo to v2.15.2 ([#85](https://github.com/zenobi-us/zenobi-us/issues/85)) ([391063d](https://github.com/zenobi-us/zenobi-us/commit/391063d75827b225549b9d4ba1bbb54a589a9ecd))
+* **deps:** update typescript-eslint monorepo to v8.18.2 ([#73](https://github.com/zenobi-us/zenobi-us/issues/73)) ([7cdadf5](https://github.com/zenobi-us/zenobi-us/commit/7cdadf5c8266c2be12f75b8508429c31e61c9c22))
+
 ## [1.0.6](https://github.com/zenobi-us/zenobi-us/compare/v1.0.5...v1.0.6) (2024-12-20)
 
 
