@@ -78,7 +78,7 @@
     "micromatch": "^4.0.8",
     "mitt": "^3.0.1",
     "nconf": "^0.12.1",
-    "node-html-parser": "^6.1.13",
+    "node-html-parser": "^7.0.0",
     "playwright": "^1.49.1",
     "postcss": "^8.4.47",
     "postcss-import": "^16.1.0",
