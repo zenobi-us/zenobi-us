@@ -13733,6 +13733,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-html-parser@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "node-html-parser@npm:7.0.1"
+  dependencies:
+    css-select: "npm:^5.1.0"
+    he: "npm:1.2.0"
+  checksum: 10c0/70a4d6db83340e1c93be3c9d28b924e8a2d8c53e085805d9a4916132c56e76e105fedc2201682ff20e0af0468893d0f77ecaa69865b78206b02982d0b4a649a4
+  languageName: node
+  linkType: hard
+
 "node-int64@npm:^0.4.0":
   version: 0.4.0
   resolution: "node-int64@npm:0.4.0"
@@ -19088,7 +19098,7 @@ __metadata:
     micromatch: "npm:^4.0.8"
     mitt: "npm:^3.0.1"
     nconf: "npm:^0.12.1"
-    node-html-parser: "npm:^6.1.13"
+    node-html-parser: "npm:^7.0.0"
     playwright: "npm:^1.49.1"
     postcss: "npm:^8.4.47"
     postcss-import: "npm:^16.1.0"
