@@ -16151,8 +16151,8 @@ __metadata:
   linkType: hard
 
 "safe-routes@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "safe-routes@npm:1.0.2"
+  version: 1.0.3
+  resolution: "safe-routes@npm:1.0.3"
   dependencies:
     "@rollup/plugin-replace": "npm:^6.0.1"
     meow: "npm:13.2.0"
@@ -16161,7 +16161,7 @@ __metadata:
     vite-node: "npm:^2.1.5"
   bin:
     safe-routes: dist/cli.js
-  checksum: 10c0/97ae0738958e0b1d1b5ec2353d2cffe43ff665bf2167239ae958018dfb2279cc341c38b1341096bd0398e216f17ea8c9c3ea66384bc6706efce6909ddab713c6
+  checksum: 10c0/4fbabb8895923415214fc8e1e7ff94980af67f9f9515ae5d80cfc4efd4a0529520944d992f10d95ea7f18f4b176270fbc0af49bcc22d5f13a6c0a1f1c8c2d7ce
   languageName: node
   linkType: hard
 
