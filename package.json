@@ -112,7 +112,7 @@
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-grid-areas": "^0.1.1",
-    "three": "^0.171.0",
+    "three": "^0.172.0",
     "tsx": "^4.19.1",
     "tw-colors": "^3.3.2",
     "typescript": "^5.6.3",
