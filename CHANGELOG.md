@@ -1,5 +1,50 @@
 # Changelog
 
+## [1.0.7](https://github.com/zenobi-us/zenobi-us/compare/v1.0.6...v1.0.7) (2025-01-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @hookform/resolvers to v3.10.0 ([#111](https://github.com/zenobi-us/zenobi-us/issues/111)) ([ca05535](https://github.com/zenobi-us/zenobi-us/commit/ca05535e0bf90b1eba85c93b5a006e1775a6e9b9))
+* **deps:** update dependency @laynezh/vite-plugin-lib-assets to ^0.6.0 ([#89](https://github.com/zenobi-us/zenobi-us/issues/89)) ([26a58b7](https://github.com/zenobi-us/zenobi-us/commit/26a58b7ba45bfeafe6254bb75d1b40639383b878))
+* **deps:** update dependency @laynezh/vite-plugin-lib-assets to v0.6.1 ([#90](https://github.com/zenobi-us/zenobi-us/issues/90)) ([fe7e046](https://github.com/zenobi-us/zenobi-us/commit/fe7e04631c395c179f3854567db3284b46ef5238))
+* **deps:** update dependency @react-pdf/renderer to v4.1.6 ([#99](https://github.com/zenobi-us/zenobi-us/issues/99)) ([fca2c79](https://github.com/zenobi-us/zenobi-us/commit/fca2c7923cfeba7bf3cb55bb85aaaffc5ecfa6af))
+* **deps:** update dependency @react-three/fiber to v8.17.11 ([#106](https://github.com/zenobi-us/zenobi-us/issues/106)) ([93a7cd6](https://github.com/zenobi-us/zenobi-us/commit/93a7cd678255a3da1cf811b09ee30e001416a222))
+* **deps:** update dependency @react-three/fiber to v8.17.12 ([#109](https://github.com/zenobi-us/zenobi-us/issues/109)) ([6fe59cd](https://github.com/zenobi-us/zenobi-us/commit/6fe59cd376d9c919456a0d0a04733456e840757d))
+* **deps:** update dependency @shadergradient/react to v2.0.19 ([#91](https://github.com/zenobi-us/zenobi-us/issues/91)) ([efc03de](https://github.com/zenobi-us/zenobi-us/commit/efc03ded4bbd6b0bad3b877265ac3e704fb34ced))
+* **deps:** update dependency @shikijs/transformers to v1.24.4 ([#88](https://github.com/zenobi-us/zenobi-us/issues/88)) ([a43fa69](https://github.com/zenobi-us/zenobi-us/commit/a43fa692012cb61be88bdf798a68cf2c4450fa2e))
+* **deps:** update dependency @shikijs/transformers to v1.26.1 ([#112](https://github.com/zenobi-us/zenobi-us/issues/112)) ([69ee4ef](https://github.com/zenobi-us/zenobi-us/commit/69ee4ef7ea71f680017b332ca0134a7220dc4a96))
+* **deps:** update dependency @shikijs/transformers to v1.26.2 ([#122](https://github.com/zenobi-us/zenobi-us/issues/122)) ([066dfd3](https://github.com/zenobi-us/zenobi-us/commit/066dfd38f8352fdac67cb677fb0eaa981da369c3))
+* **deps:** update dependency @shikijs/transformers to v1.27.2 ([#130](https://github.com/zenobi-us/zenobi-us/issues/130)) ([e5d2035](https://github.com/zenobi-us/zenobi-us/commit/e5d20357b5ee29d2f124a77a65dfc75c34973105))
+* **deps:** update dependency @tailwindcss/typography to v0.5.16 ([#100](https://github.com/zenobi-us/zenobi-us/issues/100)) ([3709bc5](https://github.com/zenobi-us/zenobi-us/commit/3709bc50d0ad47f0de217fdb3f48b5cd0023e1ed))
+* **deps:** update dependency consola to v3.3.1 ([#92](https://github.com/zenobi-us/zenobi-us/issues/92)) ([f2440a9](https://github.com/zenobi-us/zenobi-us/commit/f2440a949253ab95a21e302705dfb954b4395570))
+* **deps:** update dependency consola to v3.3.3 ([#101](https://github.com/zenobi-us/zenobi-us/issues/101)) ([91fcc79](https://github.com/zenobi-us/zenobi-us/commit/91fcc790a7c8f47e838e5297b6ca55663903444c))
+* **deps:** update dependency consola to v3.4.0 ([#125](https://github.com/zenobi-us/zenobi-us/issues/125)) ([178f6e2](https://github.com/zenobi-us/zenobi-us/commit/178f6e2ff466593a885564cd9c98c9b937052d46))
+* **deps:** update dependency eslint-plugin-react to v7.37.3 ([#95](https://github.com/zenobi-us/zenobi-us/issues/95)) ([a886d82](https://github.com/zenobi-us/zenobi-us/commit/a886d828a56f8dea545c5abd0ea3d30e5163fdff))
+* **deps:** update dependency eslint-plugin-react to v7.37.4 ([#121](https://github.com/zenobi-us/zenobi-us/issues/121)) ([8a6d635](https://github.com/zenobi-us/zenobi-us/commit/8a6d635dd1ce8ba0681878c03522d03b1266de3a))
+* **deps:** update dependency framer-motion to v11.16.1 ([#83](https://github.com/zenobi-us/zenobi-us/issues/83)) ([1edcec2](https://github.com/zenobi-us/zenobi-us/commit/1edcec2e4794a803a1e67404c45453bdb65c1e38))
+* **deps:** update dependency framer-motion to v11.16.2 ([#107](https://github.com/zenobi-us/zenobi-us/issues/107)) ([81d958a](https://github.com/zenobi-us/zenobi-us/commit/81d958ad3a321fca76ab54acda0785b7380ea289))
+* **deps:** update dependency framer-motion to v11.16.4 ([#110](https://github.com/zenobi-us/zenobi-us/issues/110)) ([10bdff1](https://github.com/zenobi-us/zenobi-us/commit/10bdff10f356c9e8df4673ebd556b8ca8844568b))
+* **deps:** update dependency framer-motion to v11.17.0 ([#119](https://github.com/zenobi-us/zenobi-us/issues/119)) ([f27659d](https://github.com/zenobi-us/zenobi-us/commit/f27659d3df521205b67623b52a03f82690a72e5a))
+* **deps:** update dependency framer-motion to v11.18.0 ([#128](https://github.com/zenobi-us/zenobi-us/issues/128)) ([75ba11a](https://github.com/zenobi-us/zenobi-us/commit/75ba11a40d2e714065d91e3ea1b7ad812a605c7e))
+* **deps:** update dependency lucide-react to ^0.471.0 ([#120](https://github.com/zenobi-us/zenobi-us/issues/120)) ([577c294](https://github.com/zenobi-us/zenobi-us/commit/577c294faef5b4a603f8219753353a46129078a1))
+* **deps:** update dependency lucide-react to v0.471.1 ([#123](https://github.com/zenobi-us/zenobi-us/issues/123)) ([3fa026f](https://github.com/zenobi-us/zenobi-us/commit/3fa026fe62320d3f21e8fa12252e59d4c335b851))
+* **deps:** update dependency postcss to v8.5.0 ([#126](https://github.com/zenobi-us/zenobi-us/issues/126)) ([e0a6284](https://github.com/zenobi-us/zenobi-us/commit/e0a6284e6eda5ebb5f76a5713cb9ff8d3036962c))
+* **deps:** update dependency postcss to v8.5.1 ([#127](https://github.com/zenobi-us/zenobi-us/issues/127)) ([e6e1905](https://github.com/zenobi-us/zenobi-us/commit/e6e190581c39d12d40df3b65cba73804d4d2d7f3))
+* **deps:** update dependency react-hook-form to v7.54.2 ([#87](https://github.com/zenobi-us/zenobi-us/issues/87)) ([b1053c0](https://github.com/zenobi-us/zenobi-us/commit/b1053c076ca2fa9c47fff3d1e7a0c124a186d629))
+* **deps:** update dependency safe-routes to v1.0.3 ([#102](https://github.com/zenobi-us/zenobi-us/issues/102)) ([ecd5c87](https://github.com/zenobi-us/zenobi-us/commit/ecd5c87567e9a91cb9945b9bc8fc562358ce945c))
+* **deps:** update dependency three to ^0.172.0 ([#113](https://github.com/zenobi-us/zenobi-us/issues/113)) ([d35185b](https://github.com/zenobi-us/zenobi-us/commit/d35185b885ce35e8bc1ad3a815b64156d48e5311))
+* **deps:** update dependency typescript to v5.7.3 ([#103](https://github.com/zenobi-us/zenobi-us/issues/103)) ([322b294](https://github.com/zenobi-us/zenobi-us/commit/322b294f7e0dab17f29fab459a69c302d2858179))
+* **deps:** update dependency wrangler to v3.100.0 ([#114](https://github.com/zenobi-us/zenobi-us/issues/114)) ([fe7990c](https://github.com/zenobi-us/zenobi-us/commit/fe7990cbfe742929915d9bf86246004b4c95eed9))
+* **deps:** update dependency wrangler to v3.101.0 ([#115](https://github.com/zenobi-us/zenobi-us/issues/115)) ([5be0bf5](https://github.com/zenobi-us/zenobi-us/commit/5be0bf5991ec0f386b2bd35f5f109829708f3066))
+* **deps:** update dependency wrangler to v3.102.0 ([#129](https://github.com/zenobi-us/zenobi-us/issues/129)) ([9c0a023](https://github.com/zenobi-us/zenobi-us/commit/9c0a0238d5afafd0a596d936c39fffcb8ce48947))
+* **deps:** update eslint monorepo to v9.18.0 ([#78](https://github.com/zenobi-us/zenobi-us/issues/78)) ([72f2d80](https://github.com/zenobi-us/zenobi-us/commit/72f2d8064b76bce1caadf4d9875751eaba203eeb))
+* **deps:** update fontsource monorepo to v5.1.1 ([#104](https://github.com/zenobi-us/zenobi-us/issues/104)) ([fd2c30d](https://github.com/zenobi-us/zenobi-us/commit/fd2c30d165a79d854cee16383c7584a52a545783))
+* **deps:** update remix monorepo to v2.15.2 ([#85](https://github.com/zenobi-us/zenobi-us/issues/85)) ([391063d](https://github.com/zenobi-us/zenobi-us/commit/391063d75827b225549b9d4ba1bbb54a589a9ecd))
+* **deps:** update typescript-eslint monorepo to v8.18.2 ([#73](https://github.com/zenobi-us/zenobi-us/issues/73)) ([7cdadf5](https://github.com/zenobi-us/zenobi-us/commit/7cdadf5c8266c2be12f75b8508429c31e61c9c22))
+* **deps:** update typescript-eslint monorepo to v8.19.1 ([#116](https://github.com/zenobi-us/zenobi-us/issues/116)) ([0eafd6b](https://github.com/zenobi-us/zenobi-us/commit/0eafd6b22da1905e71661bd1405bc9d7531155fa))
+* **deps:** update typescript-eslint monorepo to v8.20.0 ([#124](https://github.com/zenobi-us/zenobi-us/issues/124)) ([c214afc](https://github.com/zenobi-us/zenobi-us/commit/c214afc9853d8238f22739d245d5dc64f8690dd0))
+
 ## [1.0.6](https://github.com/zenobi-us/zenobi-us/compare/v1.0.5...v1.0.6) (2024-12-20)
 
 
