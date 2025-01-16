@@ -15096,15 +15096,15 @@ __metadata:
   linkType: hard
 
 "react-pdf-html@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "react-pdf-html@npm:2.1.2"
+  version: 2.1.3
+  resolution: "react-pdf-html@npm:2.1.3"
   dependencies:
     css-tree: "npm:^1.1.3"
     node-html-parser: "npm:^6.1.13"
   peerDependencies:
     "@react-pdf/renderer": ">=3.4.4"
     react: ">=16"
-  checksum: 10c0/57bfd50f3e84a53e0700d2a7157d3ddeaa6632cdacf32db440551021978df4d57c69c5cb9dd51d010353305af2f6bd5bb55f5c39354a0f3c063f4018ce293d13
+  checksum: 10c0/f623a2f9f525348be0587149d25b4677bf1baa06fe329cde5770edbe5904bb578aac78311f0d5b44242383941060e489ad27c021ca5f7c7c750f91e63cfeaf45
   languageName: node
   linkType: hard
 
