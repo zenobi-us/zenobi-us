@@ -15068,28 +15068,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^18.0.0":
+"react-is@npm:^18.0.0, react-is@npm:^18.2.0":
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
   checksum: 10c0/f2f1e60010c683479e74c63f96b09fb41603527cd131a9959e2aee1e5a8b0caf270b365e5ca77d4a6b18aae659b60a86150bb3979073528877029b35aecd2072
   languageName: node
   linkType: hard
 
-"react-is@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "react-is@npm:19.0.0"
-  checksum: 10c0/d1be8e8500cf04f76df71942a21ef3a71266397a383d7ec8885f35190df818d35c65efd35aed7be47a89ad99aaff2c52e0c4e39e8930844a6b997622e50625a8
-  languageName: node
-  linkType: hard
-
 "react-keyed-flatten-children@npm:^3.0.2":
-  version: 3.1.0
-  resolution: "react-keyed-flatten-children@npm:3.1.0"
+  version: 3.2.0
+  resolution: "react-keyed-flatten-children@npm:3.2.0"
   dependencies:
-    react-is: "npm:^19.0.0"
+    react-is: "npm:^18.2.0"
   peerDependencies:
     react: ">=15.0.0"
-  checksum: 10c0/8919c376cbf1be544a4713667c0dff1b1e23f783b9836e848f39326f0d97c4b6f6d2f64ee255c71638301c066511901a506ddbe7d3dc3a629372413374ce4ddc
+  checksum: 10c0/d12529303202ce467d2500ddea349be29d58afbfc761d108b29152b42e14cca4e05b61f3ee204998b8363ac49b395ffee62a296b8812ad542c1794fd48489709
   languageName: node
   linkType: hard
 
