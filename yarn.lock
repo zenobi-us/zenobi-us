@@ -752,12 +752,12 @@ __metadata:
   linkType: hard
 
 "@content-collections/remix-vite@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@content-collections/remix-vite@npm:0.1.2"
+  version: 0.1.3
+  resolution: "@content-collections/remix-vite@npm:0.1.3"
   peerDependencies:
     "@content-collections/core": ^0.x
     vite: ^5
-  checksum: 10c0/387ba812d78388bed261c3e376ad231b0a6b1bd49103de22b6ef852cf966c7e5e50164a9a18a06d06e192eac109ccb355fe62f8556d5f232b14da71420900e91
+  checksum: 10c0/a789f424e90cf17405cbeae9a488b4ae61e563ee54ecfe35226a510a566db4c09e1f384cc867127cdc9f79e64ef07d5d5492fc1f33a59f61b221bfa516e459ca
   languageName: node
   linkType: hard
 
