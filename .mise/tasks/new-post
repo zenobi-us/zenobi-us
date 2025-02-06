@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PATH_TEMPLATE='"./content/posts/\(.date)-\(.title_slug).md"'
+
 slugify() {
     echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
 }
@@ -15,14 +17,35 @@ dedent() {
     echo "${output}"
 }
 
+create_context() {
+    local title
+    local date
+
+    title="${1}"
+    date="${2}"
+
+    # start with a blank context
+    context=$(jq -n '{}')
+    # add the title to the context
+    context=$(echo "${context}" | jq ".title = \"${title}\"")
+    # add the date to the context
+    context=$(echo "${context}" | jq ".date = \"${date}\"")
+    # add the slugified title to the context
+    context=$(echo "${context}" | jq ".title_slug = \"$(slugify "${title}")\"")
+
+    echo "${context}" | jq -c
+}
+
 create_new_post() {
 
     local title
     local date
 
-    title="${1}"
     date=$(date +"%Y-%m-%d")
-    filepath="./content/data/posts/${date}-$(slugify "$title").md"
+    title="${1}"
+
+    # transform the context into a path
+    filepath=$(jq -r "$PATH_TEMPLATE" <<<"$(create_context "${title}" "${date}")")
 
     touch "${filepath}"
 
