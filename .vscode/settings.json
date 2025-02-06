@@ -75,5 +75,6 @@
   },
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "testing.automaticallyOpenTestResults": "neverOpen"
 }
