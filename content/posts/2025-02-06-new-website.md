@@ -1,6 +1,12 @@
 ---
+template: article
 date: 2025-02-06
 title: New website
+stage: published
+tags:
+  - web dev
+  - reflections
+  - vanilla extract
 ---
 
 So mid last year I started a project to explore some complex topics around monorepos, design systems and newer ways
