@@ -19232,8 +19232,8 @@ __metadata:
   linkType: soft
 
 "zod-config@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "zod-config@npm:0.1.1"
+  version: 0.1.2
+  resolution: "zod-config@npm:0.1.2"
   peerDependencies:
     dotenv: ">=15"
     yaml: ^2.x
@@ -19241,9 +19241,11 @@ __metadata:
   peerDependenciesMeta:
     dotenv:
       optional: true
+    smol-toml:
+      optional: true
     yaml:
       optional: true
-  checksum: 10c0/efa2ba246fbe28126edb57f162a62435fadd3ef3879cd8826d8ddf92154af0ad7138d229aaf20f9b8c6ee1cbafe29e5841ce821401b82356a9ea8c99bffe01b3
+  checksum: 10c0/43a99f6f893165949adc84a0b8d542f0426e9caa1cb0f1ef82b2f900c8e3812bcbaf85f6111e8f49345a53908ddfe13f177b3fce34ad55441dd3a94e16144a61
   languageName: node
   linkType: hard
 
