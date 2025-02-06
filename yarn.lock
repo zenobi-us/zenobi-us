@@ -15158,21 +15158,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "react-is@npm:19.0.0"
-  checksum: 10c0/d1be8e8500cf04f76df71942a21ef3a71266397a383d7ec8885f35190df818d35c65efd35aed7be47a89ad99aaff2c52e0c4e39e8930844a6b997622e50625a8
-  languageName: node
-  linkType: hard
-
-"react-keyed-flatten-children@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "react-keyed-flatten-children@npm:4.0.0"
-  dependencies:
-    react-is: "npm:^19.0.0"
+"react-keyed-flatten-children@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "react-keyed-flatten-children@npm:5.0.0"
   peerDependencies:
-    react: ">=19.0.0"
-  checksum: 10c0/926e44a50ea44f7015477bdc1970628c37cdc93e8c10f3a2af54a61b6781be8a6625ad9ee21c4865f03869baef50d5eeb1e507a263fa391ac99ad74fb53654ad
+    react: ">=18.0.0"
+    react-is: ">=18.0.0"
+  checksum: 10c0/13eb03742c9ac2a4304f8a5149fb74cd1038046238d336131ccea31062bfd69617587bfdb2b86d429c6e2f7fdffa0c485f70dad7818b4cf4a56ecafcaf861041
   languageName: node
   linkType: hard
 
@@ -19207,7 +19199,7 @@ __metadata:
     react-dom: "npm:^18.3.1"
     react-focus-lock: "npm:^2.13.2"
     react-hook-form: "npm:^7.53.1"
-    react-keyed-flatten-children: "npm:^4.0.0"
+    react-keyed-flatten-children: "npm:^5.0.0"
     react-lorem-ipsum: "npm:^1.4.10"
     react-pdf-html: "npm:^2.1.2"
     react-shaders: "npm:^0.0.4"
