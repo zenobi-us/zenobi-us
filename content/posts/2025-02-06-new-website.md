@@ -1,7 +1,6 @@
 ---
 date: 2025-02-06
 title: New website
-draft: true
 ---
 
 So mid last year I started a project to explore some complex topics around monorepos, design systems and newer ways
