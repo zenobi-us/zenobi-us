@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.8](https://github.com/zenobi-us/zenobi-us/compare/v1.0.7...v1.0.8) (2025-02-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @react-pdf/renderer to v4.2.1 ([#183](https://github.com/zenobi-us/zenobi-us/issues/183)) ([2eb9fba](https://github.com/zenobi-us/zenobi-us/commit/2eb9fbad91257ec7feab6d58c18d4258816f2df2))
+* **deps:** update dependency shiki to v2.3.2 ([#178](https://github.com/zenobi-us/zenobi-us/issues/178)) ([7c8c9f3](https://github.com/zenobi-us/zenobi-us/commit/7c8c9f3bece640992a65a7d2f716c9af1b52a17e))
+* **deps:** update dependency zod-config to v0.1.2 ([#180](https://github.com/zenobi-us/zenobi-us/issues/180)) ([8b99b96](https://github.com/zenobi-us/zenobi-us/commit/8b99b96ca275e230bced0392864c23445964772d))
+* **deps:** update radix-ui-primitives monorepo ([#181](https://github.com/zenobi-us/zenobi-us/issues/181)) ([b65d9a1](https://github.com/zenobi-us/zenobi-us/commit/b65d9a170e1142ec577fc950dae6fb8e2bcc99fb))
+* **deps:** update storybook monorepo to v8.5.3 ([#182](https://github.com/zenobi-us/zenobi-us/issues/182)) ([cfb2ea2](https://github.com/zenobi-us/zenobi-us/commit/cfb2ea243f36b3efe1dd31fe8867668e7e549f9f))
+* **deps:** update typescript-eslint monorepo to v8.23.0 ([#184](https://github.com/zenobi-us/zenobi-us/issues/184)) ([ef9ccf2](https://github.com/zenobi-us/zenobi-us/commit/ef9ccf2b684bdf3fbcb0fd4df7fb204f90671393))
+
 ## [1.0.7](https://github.com/zenobi-us/zenobi-us/compare/v1.0.6...v1.0.7) (2025-02-06)
 
 
