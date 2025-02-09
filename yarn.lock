@@ -10731,6 +10731,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-comment-regex@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "html-comment-regex@npm:1.1.2"
+  checksum: 10c0/c6fe47e7efbb2e853217854cdf352e53a6d414f87a6029456010250179f9ac2c77ef657dd4e26f4d3930f8def0e2fad015c233a3181a195a59fb4eeda6d333f9
+  languageName: node
+  linkType: hard
+
 "html-escaper@npm:^2.0.0":
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
@@ -16691,6 +16698,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-remove-comments@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "remark-remove-comments@npm:1.1.1"
+  dependencies:
+    html-comment-regex: "npm:^1.1.2"
+    unist-util-visit: "npm:^5.0.0"
+    vfile: "npm:^6.0.3"
+  checksum: 10c0/e7a838f68a8af2a088c22b193c982308e239901c2e0ab40019873663724a4753b0dcfe6598c4c279a45c4f9a83c1df66a707fc18d2dd9413820fcddbbb656829
+  languageName: node
+  linkType: hard
+
 "remark-sectionize@npm:^2.0.0":
   version: 2.1.0
   resolution: "remark-sectionize@npm:2.1.0"
@@ -16718,6 +16736,18 @@ __metadata:
   dependencies:
     unist-util-visit: "npm:^4.0.0"
   checksum: 10c0/db86fe4024c3d6bb92980a03724e17cf4a85dc8c97623a7dc0537609034785cbd1981c800beb17744914500a2f23392b203a6a723952b9775ffcdbfe568188c6
+  languageName: node
+  linkType: hard
+
+"remark@npm:^15.0.1":
+  version: 15.0.1
+  resolution: "remark@npm:15.0.1"
+  dependencies:
+    "@types/mdast": "npm:^4.0.0"
+    remark-parse: "npm:^11.0.0"
+    remark-stringify: "npm:^11.0.0"
+    unified: "npm:^11.0.0"
+  checksum: 10c0/ba675e4a5b114355991d2c6f5b09a632121fc8825257b0d148b3938420713f9e9b6f012120604435d5c217d42742f60195ac6f898dc1339d313a6608a84dbc49
   languageName: node
   linkType: hard
 
@@ -19386,7 +19416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vfile@npm:^6.0.0, vfile@npm:^6.0.1":
+"vfile@npm:^6.0.0, vfile@npm:^6.0.1, vfile@npm:^6.0.3":
   version: 6.0.3
   resolution: "vfile@npm:6.0.3"
   dependencies:
@@ -20086,10 +20116,12 @@ __metadata:
     react-use: "npm:^17.5.1"
     rehype-parse: "npm:^9.0.1"
     rehype-pretty-code: "npm:^0.14.0"
+    remark: "npm:^15.0.1"
     remark-embed-images: "npm:^5.0.0"
     remark-emoji: "npm:^5.0.1"
     remark-gfm: "npm:^4.0.0"
     remark-heading-id: "npm:^1.0.1"
+    remark-remove-comments: "npm:^1.1.1"
     remark-sectionize: "npm:^2.0.0"
     remark-supersub: "npm:^1.0.0"
     remix-routes: "npm:^1.7.7"

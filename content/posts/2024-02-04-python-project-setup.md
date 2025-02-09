@@ -8,8 +8,6 @@ tags:
   - project-setup
 ---
 
-<!--- cspell:ignore asgiref, sqlparse, contenttypes, logentry --->
-
 I've been working on a few Python projects recently, and I've been thinking about how I can make the setup process easier. I've been using a few tools and libraries that have made my life easier, and I thought I'd share them with you.
 
 ## TL;DR
@@ -102,7 +100,7 @@ Writing lock file
 
 Now that we have django install, it's time to create our app.
 
-<!-- cspell:ignore logentry, startproject, myproject -->
+{/\*_ cspell:ignore logentry, startproject, myproject _/}
 
 ```sh
 > python -m django --version

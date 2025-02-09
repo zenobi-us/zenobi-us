@@ -88,7 +88,7 @@ you'll end up with
 ]
 ```
 
-If that wasn't enough to convince you, [here's the diagram on the official Nomnoml editor](<https://nomnoml.com/#view/%23direction%3A%20down%0A%23edges%3A%20rounded%0A%23bendSize%3A%200.6%0A%5B%3Cframe%3EDecorator%20pattern%7C%0A%20%20%5B%3Cabstract%3EComponent%7C%7C%2B%20operation()%5D%0A%20%20%5BClient%5D%20depends%20--%3E%20%5BComponent%5D%0A%20%20%5BDecorator%7C-%20next%3A%20Component%5D%0A%20%20%5BDecorator%5D%20decorates%20--%20%5BConcreteComponent%5D%0A%20%20%5BComponent%5D%20%3C%3A-%20%5BDecorator%5D%0A%20%20%5BComponent%5D%20%3C%3A-%20%5BConcreteComponent%5D%0A%5D>).
+If that wasn't enough to convince you, [here's the diagram on the official Nomnoml editor](<[https://nomnoml.com/#view/%23direction%3A%20down%0A%23edges%3A%20rounded%0A%23bendSize%3A%200.6%0A%5B%3Cframe%3EDecorator%20pattern%7C%0A%20%20%5B%3Cabstract%3EComponent%7C%7C%2B%20operation()%5D%0A%20%20%5BClient%5D%20depends%20--%3E%20%5BComponent%5D%0A%20%20%5BDecorator%7C-%20next%3A%20Component%5D%0A%20%20%5BDecorator%5D%20decorates%20--%20%5BConcreteComponent%5D%0A%20%20%5BComponent%5D%20%3C%3A-%20%5BDecorator%5D%0A%20%20%5BComponent%5D%20%3C%3A-%20%5BConcreteComponent%5D%0A%5D]>).
 
 <Notice tone="positive">
 You can read more over at 👉 [https://github.com/zenobi-us/remark-nomnoml](https://github.com/zenobi-us/remark-nomnoml)

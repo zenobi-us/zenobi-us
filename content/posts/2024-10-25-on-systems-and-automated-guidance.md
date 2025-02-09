@@ -6,7 +6,7 @@ stage: published
 
 > You don't rise to the level of your goals, you fall to the level of your systems
 
-<https://www.youtube.com/watch?v=Ch2Wt1yrN4s>
+[https://www.youtube.com/watch?v=Ch2Wt1yrN4s]
 
 There are some aspects to software engineering that are almost always a solved problem with clear preferred approaches.
 

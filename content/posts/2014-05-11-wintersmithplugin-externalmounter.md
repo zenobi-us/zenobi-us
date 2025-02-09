@@ -78,6 +78,6 @@ In your configuration file, describe the path you wish to mount external content
 Now, any content inside `./bower_components` will be available in your templates,
 javascript or stylesheets under `/assets/vendor/`
 
-#### Contributing
+### Contributing
 
-Feel free to submit bug reports, pull requests over at <http://github.com/airtonix/wintersmith-mounter>
+Feel free to submit bug reports, pull requests over at [http://github.com/airtonix/wintersmith-mounter](http://github.com/airtonix/wintersmith-mounter)

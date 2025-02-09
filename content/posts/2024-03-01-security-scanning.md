@@ -41,7 +41,7 @@ These could be categorised as:
 
 ### Secrets committed to sourcecode
 
-<!-- cSpell:words gitguardian tartufo -->
+{/\*_cSpell:words gitguardian tartufo_/}
 
 Here we're looking at stopping secrets from being committed to source code.
 
@@ -84,7 +84,7 @@ a lot like [git-leaks]
 
 a lot like [detect-secrets], but does git better.
 
-<!-- cSpell:words sarif -->
+{/\*_cSpell:words sarif_/}
 
 - is rule based
 - 👍 command line tool
@@ -122,15 +122,15 @@ are blocked by automated smoke tests that ensure your app still builds and runs 
 - [snyk](https://snyk.io/) 💸 📑
 - [dependabot](https://dependabot.com/) 💸 📑
 - [npm audit](https://docs.npmjs.com/cli/v7/commands/npm-audit) 📖 🧱
-  - <https://github.com/marketplace/actions/npm-audit-action> creates a issue
-  - <https://github.com/JasonEtco/npm-audit-fix-action> creates a pr
-  - <https://github.com/ybiquitous/npm-audit-fix-action> creates a pr
+  - [https://github.com/marketplace/actions/npm-audit-action] creates a issue
+  - [https://github.com/JasonEtco/npm-audit-fix-action] creates a pr
+  - [https://github.com/ybiquitous/npm-audit-fix-action] creates a pr
 - [yarn audit](https://classic.yarnpkg.com/en/docs/cli/audit/) 📖 🧱
-  - <https://github.com/actions-marketplace-validations/basaldev_yarn-npm-audit-action> creates a pr
-  - <https://github.com/actions-marketplace-validations/pragatheeswarans_yarn-audit-action> creates a issue
-  - <https://github.com/GradiusX/yarn-audit-github-action> prints to stdout
+  - [https://github.com/actions-marketplace-validations/basaldev_yarn-npm-audit-action] creates a pr
+  - [https://github.com/actions-marketplace-validations/pragatheeswarans_yarn-audit-action] creates a issue
+  - [https://github.com/GradiusX/yarn-audit-github-action] prints to stdout
 - [pnpm audit](https://pnpm.io/cli/audit) 📖 🧱
-  - <https://github.com/marketplace/actions/pnpm-audit> comments on pr
+  - [https://github.com/marketplace/actions/pnpm-audit] comments on pr
 
 Same again, it's either something like Dependabot or Snyk or DIY with your package manager tools.
 
