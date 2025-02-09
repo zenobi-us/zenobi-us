@@ -6,7 +6,7 @@ stage: published
 
 > You don't rise to the level of your goals, you fall to the level of your systems
 
-https://www.youtube.com/watch?v=Ch2Wt1yrN4s
+<https://www.youtube.com/watch?v=Ch2Wt1yrN4s>
 
 There are some aspects to software engineering that are almost always a solved problem with clear preferred approaches.
 
@@ -18,8 +18,8 @@ It happens more than we'd like.
 
 My approach to successful team work in software development is to automate as much of the boring stuff.
 
-- PR reviews? DangerJS, Eslint, Prettier and a Team managed styleguide that lives in the repo.
-- Deployments? Github actions and templated infrastructure declaration (pulumi, flux2, nomad, etc)
+- PR reviews? `DangerJS`, `Eslint`, `Prettier` and a Team managed styleguide that lives in the repo.
+- Deployments? Github actions and templated infrastructure declaration (`pulumi`, `flux2`, `nomad`, etc)
 - Testing? Again, Follow our Styleguide... but start with good separation so we can use [test doubles](http://xunitpatterns.com/Test%20Double.html)/mocks.
 - Security and Supply Chain Attack Mitigation? Dependabot, Renovate, etc.
 

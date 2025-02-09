@@ -35,7 +35,7 @@ If you want to only list repos that are a fork and is a template repo:
     | jq '.[] | select(.fork==true) | select(.is_template==true) | .full_name' \
 ```
 
-More info on githubs documentation on the [repo object](https://docs.github.com/en/rest/repos/repos#list-repositories-for-the-authenticated-user)
+More info on github documentation on the [repo object](https://docs.github.com/en/rest/repos/repos#list-repositories-for-the-authenticated-user)
 
 ### With GithubCli
 

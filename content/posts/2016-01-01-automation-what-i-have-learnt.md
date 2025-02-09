@@ -53,7 +53,7 @@ I've been using webpack for quite a few personal projects; what we discovered in
 
 - speed differences with `gulp + browserify` vs `webpack dev server` are day and night. Gulp is 20secs per build run. Due to Hot Module Reloading, webpack is a game changer. It has an initial time cost, but each change thereafter cost an amount of time relative to the amount of code changed.
 - instead of `scriptjs` loading cdn libs, use `system.import(/* webpackChunkName: 'vendor/jquery' */ @vendor/jquery')`
-  - cdn might change over next 3years. Most commerical projects are legacy the moment they are deployed. No one likes working on them, so don't make them fragile. Slicing out own vendored libs like this means we're in more control. The edge effects of CDNs can be realised with something like Cloudfront.
+  - cdn might change over next 3years. Most commercial projects are legacy the moment they are deployed. No one likes working on them, so don't make them fragile. Including our third party libraries into the bundle like this means we don't need to rely on authors. All of this can be cached at the edge with something like Cloudfront, Cloudflare etc.
   - Assets can now easily be fingerprinted. yay `[chunkhash]`.
   - The magic comment means it's also lazy loaded.
 

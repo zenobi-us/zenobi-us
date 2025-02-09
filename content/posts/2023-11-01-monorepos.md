@@ -8,11 +8,11 @@ template: article
 title: Monorepos
 ---
 
-When I first started web development, I worked on a project that was either built using Frontpage or Dreamweaver, no backend usually.
+When I first started web development, I worked on a project that was either built using `Frontpage` or `Dreamweaver`, no backend usually.
 
 There were lots of these kinds of projects around at the time, it was the norm.
 
-We were roughly regarded in the same way as the people who made the posters for the local church fete. 
+We were roughly regarded in the same way as the people who made the posters for the local church fete.
 
 > Not. Real. Programmers.
 

@@ -87,7 +87,7 @@ Does the api error message make sense in the context of a mobile app? What about
 
 Or maybe you don't want to even show a message, but need perform some kind of logic branching based on the error.
 
-Arguably, these error messages should be the domain of the UX and UI teams making the frontends.
+Arguably, these error messages should be the domain of the UX and UI teams making the front-ends.
 
 ## How can it be improved
 
@@ -101,7 +101,7 @@ Some ideas I've pondered on:
 
 - Use a framework that generates your api documentation and produces artifacts for other projects to consume. It could be types, a schema, or even a client library. The error codes can be baked into the documentation and artifacts.
 
-- Return machine readble error codes in CONSTANT_CASE. perhaps you have a type system that allows for ensuring each code is unique across the codebase?
+- Return machine readable error codes in CONSTANT_CASE. perhaps you have a type system that allows for ensuring each code is unique across the codebase?
 
 - Next to each response code, have a link to a page that describes the error in detail. This page can be consumed by the documentation generator and used to produce the artifacts.
 
@@ -160,7 +160,7 @@ You'll either end up drowning in linting error fatigue or you'll waste time fuss
 
 > Problems with tone: Too formal. Too casual. Too technical. Too friendly. Too impersonal.
 
-Usually happens when there's no design language producd or socialised by the UX teams.
+Usually happens when there's no design language produced or socialised by the UX teams.
 
 This artifact should put everyone on the same page as to how the user interface, the phone calls, etc should communicate to the customers.
 

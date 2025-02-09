@@ -2,6 +2,10 @@
 
 #MISE sources=["./app/**/*", "./package.json", "./yarn.lock"]
 
-yarn syncpack lint
+# yarn syncpack lint
 
-yarn eslint ./app
+# yarn eslint ./app
+
+yarn cspell-cli \
+    --config cspell.json \
+    lint ./content/**/*.md

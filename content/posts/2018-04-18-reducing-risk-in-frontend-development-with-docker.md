@@ -13,7 +13,7 @@ You and your team have been working on a website for the last couple of weeks, e
 
 Perhaps you'd goto to the NodeJS website and download whatever version, run the installer and attempt to install the tools for your project.
 
-Or maybe you've discovered that you need a better way to manage the versions of nodejs you need. So you go an install Nodist or Nvm depending on your operating system.
+Or maybe you've discovered that you need a better way to manage the versions of nodejs you need. So you go an install `nodist` or Nvm depending on your operating system.
 
 Then you'd try and install the projects tools, because you're a smart cookie you've described all this in your `package.json`. Hopeful faces abound as you run `npm install`.
 
@@ -30,7 +30,7 @@ There is; here's what I've learnt.
 
 ## The Risks
 
-Writing and delivering software comes with a lot of tradeoffs, managing these should be done with informed decisions. 
+Writing and delivering software comes with a lot of trade offs, managing these should be done with informed decisions.
 
 I'm going to outline the risks I encountered.
 
@@ -42,16 +42,16 @@ So you'd have to ensure that once you got everything working, that you also spec
 
 They work nicely on macosx and linux, because bash is awesome. but bash doesn't exist on windows... so yeah, you'll be managing two sets of manifests to describe the environment.
 
-### Tasks Runners and Makefiles
+### Tasks Runners and `Makefiles`
 
-Make doesn't exist on windows, and even if it did, your engineers might suffer hubris and just write everything to only work in `bash`. 
+Make doesn't exist on windows, and even if it did, your engineers might suffer hubris and just write everything to only work in `bash`.
 
 These tasks are a valuable time saver for the team; But they should work on any machine in any environment... bit of a pipe dream, but the Ansible and Terraform guys didn't think so... maybe we can get some middle ground?
 
 ### Virtual Machines
 
-Five years ago, teams working on Django, Symphony, Ruby on Rails or Laravel would use a Virtual Machine (VM) tool like Virtualbox (kvm, VMWare, etc) to bake an operating system along with the project and its dependencies into an image of a disc.
-You'd end up with an image that could be anywhere from 1-4gb depending on your choice of operating system, and that's just to start.... this image grows because copy on write file-systems are `teh lulz`. 
+Five years ago, teams working on Django, Symphony, Ruby on Rails or `Laravel` would use a Virtual Machine (VM) tool like Virtualbox (kvm, VMWare, etc) to bake an operating system along with the project and its dependencies into an image of a disc.
+You'd end up with an image that could be anywhere from 1-4gb depending on your choice of operating system, and that's just to start.... this image grows because copy on write file-systems are `teh lulz`.
 
 Windows and .Net developers however seem to handle this differently. I've never met or heard of anyone in that area creating a VM containing Windows, IIS and MSSQL, probably because they're used to downloading and storing dependencies in their project since the dawn of time, or more likely because such an image would end up being 20-60gb.
 
@@ -67,7 +67,7 @@ Once you start the VM, the resources it needs are isolated from your host system
 
 Show stoppers I've encountered:
 
-- package author removes their package from npm (padleft)
+- package author removes their package from npm (`padleft`)
 - packages have post install compile steps, which the package author isn't mitigating or hasn't tested. Post build step performs network operations _will_ fail.
 - Our internet connection died because Telstra technician unilaterally decides to unplug our router/modem
 - Some problem with intermediate caching on our machines is causing an incorrect package to be installed.
@@ -105,7 +105,7 @@ Your internet connection is not reliable, it's not fast and it's not secure. You
 
 If you're lucky, you'll have a good connection and you'll be able to install all your dependencies in a timely manner. If you're unlucky, you'll have to wait for the next day to try again.
 
-In a commerical environment, this is a huge problem.
+In a commercial environment, this is a huge problem.
 
 ### Ignorant Post Installation
 
@@ -116,7 +116,7 @@ When you install a package, you're at the mercy of the package author. They can 
 This is a problem because it's not uncommon for a package author to do something like:
 
 ```bash
-$ make compile --assume-linux-or-osx
+make compile --assume-linux-or-osx
 ```
 
 or
@@ -126,7 +126,7 @@ wget https://some-website.com/some-file.tar.gz
 tar -xvf some-file.tar.gz
 ```
 
-Notice how the url isn't versioned? or how the file isn't checksummed? or how the file isn't cached?
+Notice how the url isn't versioned? or how the file isn't check summed? or how the file isn't cached?
 
 ### Obscure System Requirements
 
@@ -167,13 +167,13 @@ This recently changed from being called Fig and having a `fig.yml` file to Docke
 
 What most tutorials and articles won't touch on when it comes to building the image is how best to handle `node_modules` and the volume mounting in your compose file.
 
-The usual process goes like: 
+The usual process goes like:
 
-1. add the `package.json` 
+1. add the `package.json`
 2. run `npm install` (or some variation of it)
 3. then add the rest of the project
 
-This is nice if your CI system has a long lived cache. Ours did since our build server is hosted in the same city at a secure hosting facility. 
+This is nice if your CI system has a long lived cache. Ours did since our build server is hosted in the same city at a secure hosting facility.
 
 For everyone else though, your docker environment is most likely ephemeral. So you're going to want a different strategy to avoiding lengthy install times.
 
@@ -182,22 +182,21 @@ Your main image uses the base image as it's base layer.
 
 End result here is that for most builds, you'll just be rebuilding the main image thus significantly speeding up your builds and deploys.
 
-### How does Docker mitigate all the above risks? 
+### How does Docker mitigate all the above risks?
 
 - Version Managers
-	- no need any more, the docker image has the tooling baked in. Above I mentioned two images, but you can definitely split it into three or more.
+  - no need any more, the docker image has the tooling baked in. Above I mentioned two images, but you can definitely split it into three or more.
 - Task Runners
-	- now that your development environment is in the container, you can run commands there
+  - now that your development environment is in the container, you can run commands there
 - Virtual Machines
-	- your docker images are going to be a lot smaller than the VM images, since you're not carrying around the rest of the operating system
-	- A docker container only isolates resources from the host OS if explicitly asked to do so. In all other cases (the default), resources are only used as they are needed, just like any other process on your machine.
+  - your docker images are going to be a lot smaller than the VM images, since you're not carrying around the rest of the operating system
+  - A docker container only isolates resources from the host OS if explicitly asked to do so. In all other cases (the default), resources are only used as they are needed, just like any other process on your machine.
 - Absent tooling
-	- your base image can provide all the tooling.
--  Hostile Deprecation of Dependencies 
-	- Now that you have a docker image, you have a snapshot of your installed dependencies.
-	- Other team members only need to download the image and get going.
+  - your base image can provide all the tooling.
+- Hostile Deprecation of Dependencies
+  - Now that you have a docker image, you have a snapshot of your installed dependencies.
+  - Other team members only need to download the image and get going.
 - Ignorant Post Installation Steps
-	- now that your development environment is Linux, all post install steps should work since there isn't is going to be an opensource project where they only perform CI on osx.
+  - now that your development environment is Linux, all post install steps should work since there isn't is going to be an open-source project where they only perform CI on osx.
 
 There's most likely many things I've missed or not covered, so I only intended this to be a record of where I was at in 2018.
-

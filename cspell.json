@@ -1,0 +1,20 @@
+{
+  "import": ["@cspell/dict-en-au/cspell-ext.json"],
+  "dictionaries": ["custom-dictionary"],
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-dictionary",
+      "path": "./.cspell/custom-dictionary.txt",
+      "addWords": true
+    }
+  ],
+  "language": "en-AU",
+  "languageSettings": [
+    {
+      // use with Markdown files
+      "languageId": "markdown",
+      // Exclude code.
+      "ignoreRegExpList": ["/^\\s*```[\\s\\S]*?^\\s*```/gm", "`.*`"]
+    }
+  ]
+}
