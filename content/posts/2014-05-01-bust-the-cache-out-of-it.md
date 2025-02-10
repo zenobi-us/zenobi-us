@@ -5,8 +5,6 @@ title: Bust the cache out of it
 stage: published
 tags:
   - nodejs
-  - grunt
-  - usemin
   - cache busting
 ---
 
@@ -19,11 +17,11 @@ This will be a short one, the topic of cache busting isn't new, it's covered by 
 It's a strategy made popular due to how the majority of the www internet works, a story told with two major actors:
 
 - Caching Proxies, many of which exist between your browser and the websites you visit.
-- Your Browser: nuff said.
+- Your Browser: how it interprets the response headers.
 
 Many of them are configured in different ways, but mostly they exist to alleviate the amount of data being moved around at the extremities.
 
-The affects on websites isn't apparent until you try to update some external asset files (images, javascript, stylehseets, fonts, etc). When people visit your site in the initial version their browser and all the caching proxies saved copies of the assets. When you updated those assets, your browser and the caching proxies only determine if they need to get a new copy based on a few bits of meta data (most of which the average webserver doesn't deliver). The end result is that your website starts having problems due to incorrect stylesheets, scripts and fonts.
+The affects on websites isn't apparent until you try to update some external asset files (images, javascript, stylesheets, fonts, etc). When people visit your site in the initial version their browser and all the caching proxies saved copies of the assets. When you updated those assets, your browser and the caching proxies only determine if they need to get a new copy based on a few bits of meta data (most of which the average webserver doesn't deliver). The end result is that your website starts having problems due to incorrect stylesheets, scripts and fonts.
 
 ## An initial strategy
 
@@ -47,7 +45,7 @@ This is the goal of `grunt-usemin` and `grunt-rev`, two tools used with the Grun
 
 ### Peculiar problem of relative paths
 
-The situation is that some of my pages in this website have images generated from something that looks at a directory and says "alrght, lets make a collection of images", other pages I point at the image myself in the markdown. Sometimes it's relative pathing, sometimes absolute.
+The situation is that some of my pages in this website have images generated from something that looks at a directory and says "alright, lets make a collection of images", other pages I point at the image myself in the markdown. Sometimes it's relative path, sometimes absolute.
 
 By default `grunt-usemin` only operates on absolute paths, assuming you'll be keeping all your assets in a common location.
 
@@ -89,19 +87,19 @@ To get all your files revved I ended up with the following :
 
 I believe the important parts are :
 
-- _useminPrepare.dist.src_
-  : Nothing occurs without this... pretty standard stuff, it just points useminPrepare at the collection of files to operate on.
+- _`useminPrepare.dist.src`_
+  : Nothing occurs without this... pretty standard stuff, it just points `useminPrepare` at the collection of files to operate on.
 
-- _rev.dist.files.src -> last item_
+- _`rev.dist.files.src -> last item`_
   : Need to be able to act on any image, regardless of where it is.
 
-- _usemin.options.patterns.html_
+- _`usemin.options.patterns.html`_
   : This overrides the default matching and applies simple pattern matching of my own that allows for matching relative paths, as long as they start with `img/`.
 
 ## Conclusion
 
 _Is it perfect?_
-: problaby not.
+: probably not.
 
 _Does it work?_
 : yes.

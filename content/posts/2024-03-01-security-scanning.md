@@ -6,9 +6,10 @@ stage: published
 tags:
   - security
   - git
+# cSpell:words gitguardian tartufo sarif
 ---
 
-Over the last few years my focus on frontend engineering has been centered around how teams work together.
+Over the last few years my focus on frontend engineering has been centred around how teams work together.
 Are there dynamics and ergonomics that can shape the groups mentality into good scalable behaviours? I think so.
 
 Here, I want to address the topic of "how do I handle the obvious security slip ups in my codebase?".
@@ -33,15 +34,15 @@ Lets look at each concern and see what tools are available to help us.
 
 These could be categorised as:
 
-- 📖 opensource
+- 📖 open-source
 - 💸 paid
 - 🧱 prevention
 - 📑 management
 - ⛏️ deep dive
 
-### Secrets commited to sourcecode
+### Secrets committed to sourcecode
 
-Here we're looking at stopping secrets from being commited to source code.
+Here we're looking at stopping secrets from being committed to source code.
 
 - [gitguardian](https://www.gitguardian.com/) 💸 ⛏️
 - [tartufo](https://github.com/godaddy/tartufo) 📖 🧱 ⛏️
@@ -68,7 +69,6 @@ Just keep in mind
 - people want to do the right thing, but might forget now and then, or since that might be different from org to org, having a reminder is nice.
 - we want to be able to scan our repos and fix them if we find secrets. so a bill of materials will be useful.
 
-
 #### [detect-secrets](https://github.com/Yelp/detect-secrets)
 
 a lot like [git-leaks]
@@ -86,7 +86,7 @@ a lot like [detect-secrets], but does git better.
 - is rule based
 - 👍 command line tool
 - 👍 scans against a baseline
-- 👍 reports are uploadable. json, csv, junit, sarif
+- 👍 reports are able to be uploaded. json, csv, junit, sarif
 - 👍 can be used in pre-commit hooks against a baseline
 - 👍 can scan all commits, a range of commits or fs files
 - 👍 fairly extensive configuration
@@ -98,11 +98,10 @@ a lot like [detect-secrets], but does git better.
 - 👍 docker images
 - 👍 github actions
 - 👍 scans against a baseline
-- 👍 can sacn remote repo or many repos, github orgs, s3 buckets, google cloud buckets
+- 👍 can scan remote repo or many repos, github orgs, s3 buckets, google cloud buckets
 - 👍 can scan all commits, a range of commits
 - 👍 configuration file
 - 👍 exclusion patterns
-
 
 ### Outdated dependencies
 
@@ -120,21 +119,20 @@ are blocked by automated smoke tests that ensure your app still builds and runs 
 - [snyk](https://snyk.io/) 💸 📑
 - [dependabot](https://dependabot.com/) 💸 📑
 - [npm audit](https://docs.npmjs.com/cli/v7/commands/npm-audit) 📖 🧱
-  - https://github.com/marketplace/actions/npm-audit-action  creates a issue
-  - https://github.com/JasonEtco/npm-audit-fix-action creates a pr
-  - https://github.com/ybiquitous/npm-audit-fix-action creates a pr
+  - [https://github.com/marketplace/actions/npm-audit-action] creates a issue
+  - [https://github.com/JasonEtco/npm-audit-fix-action] creates a pr
+  - [https://github.com/ybiquitous/npm-audit-fix-action] creates a pr
 - [yarn audit](https://classic.yarnpkg.com/en/docs/cli/audit/) 📖 🧱
-  - https://github.com/actions-marketplace-validations/basaldev_yarn-npm-audit-action creates a pr
-  - https://github.com/actions-marketplace-validations/pragatheeswarans_yarn-audit-action creates a issue
-  - https://github.com/GradiusX/yarn-audit-github-action prints to stdout
+  - [https://github.com/actions-marketplace-validations/basaldev_yarn-npm-audit-action] creates a pr
+  - [https://github.com/actions-marketplace-validations/pragatheeswarans_yarn-audit-action] creates a issue
+  - [https://github.com/GradiusX/yarn-audit-github-action] prints to stdout
 - [pnpm audit](https://pnpm.io/cli/audit) 📖 🧱
-  - https://github.com/marketplace/actions/pnpm-audit comments on pr
+  - [https://github.com/marketplace/actions/pnpm-audit] comments on pr
 
-Same again, it's either something like dendabot or Snyk or DIY with your package manager tools.
+Same again, it's either something like Dependabot or Snyk or DIY with your package manager tools.
 
 Snyk is very expensive but also very comprehensive in it's covering a lot of
 languages and platforms, or writing everything yourself using your package manager tools.
-
 
 ### Supply chain attacks
 
@@ -158,7 +156,6 @@ Package poisoning is when a package maintainer publishes a new version with a ba
 
 Detecting them can usually be done via the same tools as the previous section. But preventing them is a different story.
 
-
 ### Prevention
 
 Once you know the dependencies you're using are clean, you'll want to ensure that don't get swapped out for something malicious or goes missing.
@@ -169,7 +166,7 @@ To prevent a package going missing or being swapped out you could use a package 
 
 Yarn checks for package hashes, so if the package is swapped out for something else, yarn will error out.
 
-You could go even further and use [Yarn Zero Installs](), which is a bit like a vendored dependency.
+You could go even further and use [Yarn Zero Installs](https://yarnpkg.com/features/caching#zero-installs), which is a the strategy of keeping a private copy of your dependencies.
 They're stored in a `.yarn` directory and are immutable. This means that if a package is swapped out at the source we don't care because we have a copy of the package stored in the repo.
 
 Your other option is to run a private registry. Verdaccio, Nexus, Artifactory, etc. This way you control the packages that are available to your team.

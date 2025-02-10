@@ -6,11 +6,12 @@ stage: published
 tags:
   - python
   - project-setup
+# cSpell:ignore logentry startproject myproject
 ---
 
 I've been working on a few Python projects recently, and I've been thinking about how I can make the setup process easier. I've been using a few tools and libraries that have made my life easier, and I thought I'd share them with you.
 
-## TLDR
+## TL;DR
 
 - use [`asdf`](#asdf) to install [poetry](#poetry) and python
 - run a specific version of [poetry](#poetry) to create the project directory
@@ -74,8 +75,7 @@ Lets setup a new project.
 Created package my_project in my-project
 
 > cd ./my-project
-
-> asdf looal python 3.10.10
+> asdf local python 3.10.10
 > asdf local poetry 1.8.1
 ```
 

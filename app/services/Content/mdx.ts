@@ -14,7 +14,7 @@ import remarkSectionize from 'remark-sectionize';
 import remarkEmoji from 'remark-emoji';
 import remarkEmbedImages from 'remark-embed-images';
 import { remarkNomnoml } from '@zenobius/remark-nomnoml';
-
+import remarkRemoveComments from 'remark-remove-comments';
 export const rehypeOptions: Options['rehypePlugins'] = [
   [
     rehypePrettyCode,
@@ -39,7 +39,7 @@ export const rehypeOptions: Options['rehypePlugins'] = [
 ];
 
 export const remarkOptions: Options['remarkPlugins'] = [
-  // remarkParse,
+  remarkRemoveComments,
   [
     // @ts-expect-error - types are wrong
     remarkNomnoml,

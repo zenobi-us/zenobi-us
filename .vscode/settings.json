@@ -76,5 +76,6 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "testing.automaticallyOpenTestResults": "neverOpen"
+  "testing.automaticallyOpenTestResults": "neverOpen",
+  "git-worktree-menu.worktreeDir": "/mnt/Store/Projects/Mine/Github/zenobi.us-worktrees"
 }

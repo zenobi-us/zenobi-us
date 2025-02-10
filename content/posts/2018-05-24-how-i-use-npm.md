@@ -73,10 +73,10 @@ That's a lot there and it covers the majority of my work flow, so lets go over t
 ## General Entrypoint
 
 ```
-$ npm run dev
-$ npm run build
-$ npm run start
-$ npm run generate
+npm run dev
+npm run build
+npm run start
+npm run generate
 ```
 
 Usually we're just compiling the source code in development mode or in production mode, so here these lines are relevant:
@@ -90,7 +90,7 @@ Usually we're just compiling the source code in development mode or in productio
 
 `dev` will first call `docker:run` supplying arguments `tool npm run container:nuxt:dev`.
 
-These are really just fed into `docker-compose`. So we're running the `tool` service defined in `docker-compose.yml` and then telling docker-compose to run `npm run container:nuxt:dev` from within the container. Any commands meant to be run within a docker container are labeled as such.
+These are really just fed into `docker-compose`. So we're running the `tool` service defined in `docker-compose.yml` and then telling docker-compose to run `npm run container:nuxt:dev` from within the container. Any commands meant to be run within a docker container are labelled as such.
 
 So the chain is :
 
@@ -122,7 +122,7 @@ The idea with this chain, is that you need to automate all the "git paperwork" w
 - changelog needs to be generated.
 - a build needs to be made.
 - you might also want to run tests here.
-- new files need to be commited.
+- new files need to be committed.
 - and finally new commits pushed.
 
 So running `$ npm run release` triggers the following chain:
@@ -160,7 +160,7 @@ I've learn through much pain and anguish some key lessons:
 - Backups: always make your dependencies available offline.
 - Sandbox Environment: ensure it's the same every time it's used.
 
-I encountered that last point early back when I started python development, where Ubuntu utilised python libraries for it's operating system which also meant they were available when I ran my own python programs. This lead to unreliable code because I couldn't control the versions of those libraries, and when I tried installing the ones I needed it overwrote the system versions. Then some people came up with Virtualenv, which just like npm and node_modules made python packages installed and resolved locally.
+I encountered that last point early back when I started python development, where Ubuntu utilised python libraries for it's operating system which also meant they were available when I ran my own python programs. This lead to unreliable code because I couldn't control the versions of those libraries, and when I tried installing the ones I needed it overwrote the system versions. Then some people came up with `Virtualenv`, which just like npm and node_modules made python packages installed and resolved locally.
 
 But when I started nodejs development, my colleagues used a mixture of windows, macosx and me on linux. As you can imagine just getting nodejs installed was a error prone experience.
 
@@ -168,11 +168,6 @@ After some time I explored using Docker to containerise our frontend development
 
 > [!NOTE]
 > Retrospective 2024
-> 
+>
 > I've moved on from using `package.json#scripts` . You should definitely do the same.
 > Something like a [Justfile](https://github.com/casey/just) is perfect.
-
-
-
-
-

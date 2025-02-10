@@ -17,7 +17,7 @@ I wanted to explore creating a component library using a Css-In-Js-At-Buildtime 
 - 👍 following a routing architecture where your `pages/*` determines the url patterns. makes understanding the routes easy.
 - 👍 Seems to have a fast development experience.
 - 👍 Supports TypeScript and React (or any other component framework you could want)
-- 👎 no routing structure typesafety, so dead links are a problem. (lates [Next.js has typesafe routes](https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links))
+- 👎 no routing structure type safety, so dead links are a problem. (lates [Next.js has type safe routes](https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links))
 - 🤔 To get most of the benefits of Astro, you'll end up writing fat page routes in `.astro` files so you can make use of [Astro Islands](https://docs.astro.build/en/concepts/islands/).
 
 ## Component Rendering
@@ -30,7 +30,7 @@ I'm really just after a nice Component Driven Development experience.
 This is amazing for a few reasons:
 
 - It's fast. No runtime CSS generation means no CSS-in-JS runtime.
-- Provides a [primitive for building a typesafe token contract](https://vanilla-extract.style/documentation/global-api/create-global-theme-contract/), which translates into a set of css variables.
+- Provides a [primitive for building a type safe token contract](https://vanilla-extract.style/documentation/global-api/create-global-theme-contract/), which translates into a set of css variables.
 - With its [Recipes Primitive](https://vanilla-extract.style/documentation/packages/recipes/), it's easy to build a simple design system that's easy to maintain and extend.
 
 **Typescript**
@@ -39,7 +39,7 @@ Needs no introduction, except to say that you'd be mad to think you can replace 
 
 > 📖 👓
 >
-> If you want to learn more about typescript. I suggest you chip away at [the courses over at Exercism](https://exercism.org/tracks/typescript). They have a great set of exercises that will help you learn the language.
+> If you want to learn more about typescript. I suggest you chip away at [the courses over at `Exercism`](https://exercism.org/tracks/typescript). They have a great set of exercises that will help you learn the language.
 
 ## Repository Organisation
 
@@ -47,13 +47,13 @@ I'm using [Nx](https://nx.dev/) and [yarn 4](https://yarnpkg.com/features/cachin
 
 - 👍 Follows a nicely scaled composition of `tsconfig` files where each package segregates its config between tests and published code.
 - 👍 Knows the dependency graph of your monorepo, and as such provides commands (and an sdk) which are aware of changes between commits within the graph.
-- 👎 The NX team seem to constantly break the api from one release to another. Most likely because the nature of large scale nodejs projects and monorepos that can intellegently handle them is new ground.
+- 👎 The NX team seem to constantly break the api from one release to another. Most likely because the nature of large scale nodejs projects and monorepos that can intelligently handle them is new ground.
 
 ### Yarn Zero Installs
 
 might be controversial, but i'm sick of dealing with the problems caused by avoiding this approach:
 
-- supply chain attack. installed packages are commited to git as `tar.gz`
+- supply chain attack. installed packages are committed to git as `tar.gz`
 - in pnp mode install time is measured in milliseconds not minutes. there is no `node_modules` directory, and yarn provides interops for node/vscode
 - switching branches means you never have to remember to run `yarn i` each time.
 - workflow runs in github actions are faster
@@ -64,17 +64,17 @@ A vanilla yarn/pnpm monorepo causes slow down when running initial `yarn install
 
 An integrated Nx monorepo initially uses a single `package.json` for dependency management and then defers to `tsconfig.json#compilerOptions.paths` to manage the module resolution. (There are alternative operation modes for this, but this is the default).
 
-### Dependancy Graph Awareness
+### Dependency Graph Awareness
 
-A vanilla Yarn,Pnpm or npm monorepo have limited provision for understanding the dependancy graph of the monorepo.
+A vanilla Yarn,Pnpm or npm monorepo have limited provision for understanding the dependency graph of the monorepo.
 
-Yes you'll be able to use Pnpms `filters` to limit the dependancy graph, but it's not as powerful or reliable as Nx's `affected` commands.
+Yes you'll be able to use PNPMs `filters` to limit the dependency graph, but it's not as powerful or reliable as Nx's `affected` commands.
 
 ### Tooling Framework
 
 In a vanilla monorepo, you'll have to build your own tooling to manage the monorepo. You won't have any defined patterns or best practices to follow.
 
-Nx provides a great set of bultin tools to manage the monorepo, but when you need to create more tooling there's an API provided that provides insights into the monorepo. This results in a consistent experience for the developers.
+Nx provides a great set of built-in tools to manage the monorepo, but when you need to create more tooling there's an API provided that provides insights into the monorepo. This results in a consistent experience for the developers.
 
 Predictability and consistency are important to me. I want to be able to move between projects and have a similar experience. I want to be able to onboard new developers and have them be productive quickly.
 
@@ -82,7 +82,7 @@ Tribal knowledge is another issue i've seen cause issues in software projects. I
 
 ## Toolset Management
 
-Ensuring your toolkit for a project is repoducible is important.
+Ensuring your toolkit for a project is reproducible is important.
 
 Most people use nvm to manage their node versions. I don't. Since there's more to a project than just the node version, I use [ASDF](https://asdf-vm.com/).
 

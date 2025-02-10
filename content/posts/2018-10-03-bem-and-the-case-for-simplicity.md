@@ -61,7 +61,7 @@ So you end up with something like:
 
 It works. you ship it. deadline is near or just passed by.
 
-You rationlise the following choices:
+You rationalise the following choices:
 
 1. atomised classes so client requests to change
 
@@ -303,5 +303,5 @@ Now our css can minimise the specificity score of our css.
 
 ## Further Reading
 
-- https://martinwolf.org/before-2018/blog/2014/05/making-use-of-the-bem-naming-system/
-- https://davidwalsh.name/designing-simplicity
+- [https://martinwolf.org/before-2018/blog/2014/05/making-use-of-the-bem-naming-system/](https://martinwolf.org/before-2018/blog/2014/05/making-use-of-the-bem-naming-system/)
+- [https://davidwalsh.name/designing-simplicity](https://davidwalsh.name/designing-simplicity)

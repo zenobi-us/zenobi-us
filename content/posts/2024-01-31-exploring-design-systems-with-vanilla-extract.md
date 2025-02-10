@@ -19,7 +19,7 @@ Usually you'd end up with a collection of things called Tokens, which would desc
 
 Recently the phrase Design System gets thrown around and results in some watering down to the point where it's hard to tell the different between bootstrap and a design system.
 
-But the disctinction is easy. A design system is bespoke for your needs. a component library usually isn't. So with this in mind we can say that all design systems contain a component library, but not all component libraries are design systems.
+But the distinction is easy. A design system is bespoke for your needs. a component library usually isn't. So with this in mind we can say that all design systems contain a component library, but not all component libraries are design systems.
 
 The components in your design system make up a collection of reusable components, guided by very clear standards, that can be assembled together to build any number of applications.
 
