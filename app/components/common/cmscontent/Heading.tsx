@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useMemo, useRef } from 'react';
 import { tv } from 'tailwind-variants';
+import { kebabCase } from 'lodash-es';
 
 import { Icon } from '~/components/ds/icon/Icon';
 
 const Styles = tv({
   slots: {
     block: ['group relative font-semibold'],
-    link: ['no-underline'],
-    icon: ['hidden', 'group-hover:flex', 'flex-row items-baseline'],
+    link: ['no-underline flex items-center gap-2'],
+    icon: [
+      'opacity-0 transition-opacity',
+      'group-hover:flex',
+      'flex-row items-baseline',
+    ],
   },
   variants: {
     level: {
@@ -49,29 +54,44 @@ export function Heading({
   ...props
 }: HeadingProps) {
   const styles = Styles();
-  const [isHovering, setIsHovering] = React.useState(false);
+  const iconRef = useRef<HTMLSpanElement>();
+  const childrenIsString = typeof children === 'string';
+
+  const titleText = useMemo(() => {
+    if (typeof title === 'string') {
+      return title;
+    }
+    if (childrenIsString) {
+      return children;
+    }
+    return;
+  }, [children, title, childrenIsString]);
+
   return (
     <HeadingElement
       level={level}
+      data-testid={`heading-element-${kebabCase(titleText)}`}
       className={styles.block({ level })}
-      onMouseOver={() => setIsHovering(true)}
-      onMouseOut={() => setIsHovering(false)}
+      onMouseOver={() => iconRef.current.classList.remove('opacity-0')}
+      onMouseOut={() => iconRef.current.classList.add('opacity-0')}
       {...props}
     >
-      {children}
-      {title && isHovering && (
+      {!childrenIsString && children}
+      {childrenIsString && (
         <a
-          title={title && `link to ${title}`}
+          title={children && `link to ${children}`}
           href={`#${id}`}
           className={styles.link()}
         >
+          {children}
           <span
             aria-label="a chain link icon"
             role="img"
             className={styles.icon()}
+            ref={iconRef}
           >
             <Icon
-              name="Link1Icon"
+              name="HashIcon"
               size="small"
               className="w-4 h-4"
             />
