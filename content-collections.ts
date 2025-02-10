@@ -4,6 +4,8 @@ import lodash from 'lodash';
 import fs from 'fs';
 import { join } from 'path';
 import match from 'micromatch';
+import { remark } from 'remark';
+import remarkFlexibleToc, { TocItem } from 'remark-flexible-toc';
 
 import { mdxOptions } from './app/services/Content/mdx';
 
@@ -86,6 +88,12 @@ function normalisedCollection<T extends { glob: string; prefix: string }, R>(
   };
 
   return fn(globs, { prefix, withOutPrefix });
+}
+
+async function getDocumentToc(content: string) {
+  const file = await remark().use(remarkFlexibleToc, {}).process(content);
+
+  return file.data.toc as Omit<TocItem, 'data'>[];
 }
 
 const me = normalisedCollection(
@@ -244,12 +252,14 @@ const posts = normalisedCollection(
         );
         const mdx = await compileMDX(context, document, mdxOptions());
         const date = getDocumentDate(document);
+        const toc = await getDocumentToc(document.content);
         return {
           ...document,
           mdx,
           date,
           _meta: {
             ...document._meta,
+            toc,
             slug: documentSlug(
               normalise.withOutPrefix(document._meta.filePath)
             ),
