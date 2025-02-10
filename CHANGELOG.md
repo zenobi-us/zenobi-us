@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.9](https://github.com/zenobi-us/zenobi-us/compare/v1.0.8...v1.0.9) (2025-02-10)
+
+
+### Bug Fixes
+
+* clean up grammar and spelling. ([#190](https://github.com/zenobi-us/zenobi-us/issues/190)) ([e27a41b](https://github.com/zenobi-us/zenobi-us/commit/e27a41b99ad43d48a2a372fb5c8debce13e70054))
+* **deps:** update dependency lucide-react to ^0.475.0 ([#188](https://github.com/zenobi-us/zenobi-us/issues/188)) ([890eaef](https://github.com/zenobi-us/zenobi-us/commit/890eaefac95631404c05db705f0e712de52e0402))
+* **deps:** update dependency react-focus-lock to v2.13.6 ([#70](https://github.com/zenobi-us/zenobi-us/issues/70)) ([6c1534b](https://github.com/zenobi-us/zenobi-us/commit/6c1534bc839cbdc1d5f757ade88f391ce5cf825e))
+
 ## [1.0.8](https://github.com/zenobi-us/zenobi-us/compare/v1.0.7...v1.0.8) (2025-02-06)
 
 
