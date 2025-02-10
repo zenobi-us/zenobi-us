@@ -6,6 +6,7 @@ stage: published
 tags:
   - python
   - project-setup
+# cSpell:ignore logentry startproject myproject
 ---
 
 I've been working on a few Python projects recently, and I've been thinking about how I can make the setup process easier. I've been using a few tools and libraries that have made my life easier, and I thought I'd share them with you.
@@ -99,8 +100,6 @@ Writing lock file
 ```
 
 Now that we have django install, it's time to create our app.
-
-{/\*_ cspell:ignore logentry, startproject, myproject _/}
 
 ```sh
 > python -m django --version

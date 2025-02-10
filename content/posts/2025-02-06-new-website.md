@@ -7,6 +7,7 @@ tags:
   - web dev
   - reflections
   - vanilla extract
+# cSpell:ignore syncpack
 ---
 
 Mid last year, I started a project to explore some complex topics around monorepos, design systems, and newer ways I could approach CSS. I chose to use Vanilla Extract, which at the time seemed like a reasonable choice. It compiles possible CSS at build time down to CSS, and at runtime, the values change based on CSS variables. The DX (Developer eXperience) of it felt like css-in-js, but the runtime had none of the problems of css-in-js.
@@ -63,8 +64,6 @@ For Testing:
 - Playwright
 
 For CI-CD:
-
-{/\*_ cSpell:ignore syncpack _/}
 
 - [syncpack](https://www.npmjs.com/package/syncpack), ESLint and Husky
 - Github Actions

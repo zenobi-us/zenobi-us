@@ -6,6 +6,7 @@ stage: published
 tags:
   - security
   - git
+# cSpell:words gitguardian tartufo sarif
 ---
 
 Over the last few years my focus on frontend engineering has been centred around how teams work together.
@@ -40,8 +41,6 @@ These could be categorised as:
 - ⛏️ deep dive
 
 ### Secrets committed to sourcecode
-
-{/\*_cSpell:words gitguardian tartufo_/}
 
 Here we're looking at stopping secrets from being committed to source code.
 
@@ -83,8 +82,6 @@ a lot like [git-leaks]
 #### [git-leaks](https://github.com/gitleaks/gitleaks)
 
 a lot like [detect-secrets], but does git better.
-
-{/\*_cSpell:words sarif_/}
 
 - is rule based
 - 👍 command line tool
