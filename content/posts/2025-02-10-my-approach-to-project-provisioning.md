@@ -1,7 +1,7 @@
 ---
 date: 2025-02-10
 title: My approach to project provisioning
-draft: true
+stage: published
 tags:
   - tools
   - asdf
