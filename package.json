@@ -88,7 +88,7 @@
     "react-dom": "^18.3.1",
     "react-focus-lock": "^2.13.2",
     "react-hook-form": "^7.53.1",
-    "react-keyed-flatten-children": "^4.0.0",
+    "react-keyed-flatten-children": "^5.0.0",
     "react-lorem-ipsum": "^1.4.10",
     "react-pdf-html": "^2.1.2",
     "react-shaders": "^0.0.4",
