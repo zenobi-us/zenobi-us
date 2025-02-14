@@ -4837,20 +4837,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/core@npm:1.29.2":
-  version: 1.29.2
-  resolution: "@shikijs/core@npm:1.29.2"
-  dependencies:
-    "@shikijs/engine-javascript": "npm:1.29.2"
-    "@shikijs/engine-oniguruma": "npm:1.29.2"
-    "@shikijs/types": "npm:1.29.2"
-    "@shikijs/vscode-textmate": "npm:^10.0.1"
-    "@types/hast": "npm:^3.0.4"
-    hast-util-to-html: "npm:^9.0.4"
-  checksum: 10c0/b1bb0567babcee64608224d652ceb4076d387b409fb8ee767f7684c68f03cfaab0e17f42d0a3372fc7be1fe165af9a3a349efc188f6e7c720d4df1108c1ab78c
-  languageName: node
-  linkType: hard
-
 "@shikijs/core@npm:2.3.2":
   version: 2.3.2
   resolution: "@shikijs/core@npm:2.3.2"
@@ -4865,17 +4851,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/engine-javascript@npm:1.29.2":
-  version: 1.29.2
-  resolution: "@shikijs/engine-javascript@npm:1.29.2"
-  dependencies:
-    "@shikijs/types": "npm:1.29.2"
-    "@shikijs/vscode-textmate": "npm:^10.0.1"
-    oniguruma-to-es: "npm:^2.2.0"
-  checksum: 10c0/b61f9e9079493c19419ff64af6454c4360a32785d47f49b41e87752e66ddbf7466dd9cce67f4d5d4a8447e31d96b4f0a39330e9f26e8bd2bc2f076644e78dff7
-  languageName: node
-  linkType: hard
-
 "@shikijs/engine-javascript@npm:2.3.2":
   version: 2.3.2
   resolution: "@shikijs/engine-javascript@npm:2.3.2"
@@ -4884,16 +4859,6 @@ __metadata:
     "@shikijs/vscode-textmate": "npm:^10.0.1"
     oniguruma-to-es: "npm:^3.1.0"
   checksum: 10c0/30fb26813dddc1ec6ba0eeea7edcb8cd6d6f9900855771a50d390c254b46aea536d5882a21a47597cb06387a7fb77d6c6bd2e91a6801b30b1d83cdcea8fb1804
-  languageName: node
-  linkType: hard
-
-"@shikijs/engine-oniguruma@npm:1.29.2":
-  version: 1.29.2
-  resolution: "@shikijs/engine-oniguruma@npm:1.29.2"
-  dependencies:
-    "@shikijs/types": "npm:1.29.2"
-    "@shikijs/vscode-textmate": "npm:^10.0.1"
-  checksum: 10c0/87d77e05af7fe862df40899a7034cbbd48d3635e27706873025e5035be578584d012f850208e97ca484d5e876bf802d4e23d0394d25026adb678eeb1d1f340ff
   languageName: node
   linkType: hard
 
@@ -4925,23 +4890,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/transformers@npm:^1.22.0":
-  version: 1.29.2
-  resolution: "@shikijs/transformers@npm:1.29.2"
+"@shikijs/transformers@npm:^2.0.0":
+  version: 2.3.2
+  resolution: "@shikijs/transformers@npm:2.3.2"
   dependencies:
-    "@shikijs/core": "npm:1.29.2"
-    "@shikijs/types": "npm:1.29.2"
-  checksum: 10c0/bdb2355e3dcaf59c3e020677876d83d6ff99743d8a2cc4c619dc27bb077005d0d7bc973e281e69c065471810c44e94279bf78098ffefc0aa4106a607430d37fb
-  languageName: node
-  linkType: hard
-
-"@shikijs/types@npm:1.29.2":
-  version: 1.29.2
-  resolution: "@shikijs/types@npm:1.29.2"
-  dependencies:
-    "@shikijs/vscode-textmate": "npm:^10.0.1"
-    "@types/hast": "npm:^3.0.4"
-  checksum: 10c0/37b4ac315effc03e7185aca1da0c2631ac55bdf613897476bd1d879105c41f86ccce6ebd0b78779513d88cc2ee371039f7efd95d604f77f21f180791978822b3
+    "@shikijs/core": "npm:2.3.2"
+    "@shikijs/types": "npm:2.3.2"
+  checksum: 10c0/7cf7c8c9b19c09bd308e5a7ff2fc7ac9b65d9a661ddf06f875d3ae9d6515a87c9f63596e437f9a151a2f8d620c8cc8f78ca7d3555019d5e9c029b5c14754ad81
   languageName: node
   linkType: hard
 
@@ -15137,17 +15092,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oniguruma-to-es@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "oniguruma-to-es@npm:2.2.0"
-  dependencies:
-    emoji-regex-xs: "npm:^1.0.0"
-    regex: "npm:^5.1.1"
-    regex-recursion: "npm:^5.1.1"
-  checksum: 10c0/e13084cf541195b466564c031b43d9b6ddd83cb6455da2182c3baa18b4aff9a7ecae1d59d6ed2ee6daf32dfc96b86d811c54ca8f3474bfffa8ad82483e7815f3
-  languageName: node
-  linkType: hard
-
 "oniguruma-to-es@npm:^3.1.0":
   version: 3.1.0
   resolution: "oniguruma-to-es@npm:3.1.0"
@@ -16632,16 +16576,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regex-recursion@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "regex-recursion@npm:5.1.1"
-  dependencies:
-    regex: "npm:^5.1.1"
-    regex-utilities: "npm:^2.3.0"
-  checksum: 10c0/c61c284bc41f2b271dfa0549d657a5a26397108b860d7cdb15b43080196681c0092bf8cf920a8836213e239d1195c4ccf6db9be9298bce4e68c9daab1febeab9
-  languageName: node
-  linkType: hard
-
 "regex-recursion@npm:^6.0.2":
   version: 6.0.2
   resolution: "regex-recursion@npm:6.0.2"
@@ -16655,15 +16589,6 @@ __metadata:
   version: 2.3.0
   resolution: "regex-utilities@npm:2.3.0"
   checksum: 10c0/78c550a80a0af75223244fff006743922591bd8f61d91fef7c86b9b56cf9bbf8ee5d7adb6d8991b5e304c57c90103fc4818cf1e357b11c6c669b782839bd7893
-  languageName: node
-  linkType: hard
-
-"regex@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "regex@npm:5.1.1"
-  dependencies:
-    regex-utilities: "npm:^2.3.0"
-  checksum: 10c0/314e032f0fe09497ce7a160b99675c4a16c7524f0a24833f567cbbf3a2bebc26bf59737dc5c23f32af7c74aa7a6bd3f809fc72c90c49a05faf8be45677db508a
   languageName: node
   linkType: hard
 
@@ -20318,7 +20243,7 @@ __metadata:
     "@remix-run/serve": "npm:^2.15.1"
     "@remix-run/testing": "npm:^2.15.1"
     "@shadergradient/react": "npm:^2.0.15"
-    "@shikijs/transformers": "npm:^1.22.0"
+    "@shikijs/transformers": "npm:^2.0.0"
     "@storybook/addon-essentials": "npm:8.5.6"
     "@storybook/addon-interactions": "npm:8.5.6"
     "@storybook/addon-links": "npm:8.5.6"

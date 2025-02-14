@@ -33,7 +33,7 @@
     "@remix-run/serve": "^2.15.1",
     "@remix-run/testing": "^2.15.1",
     "@shadergradient/react": "^2.0.15",
-    "@shikijs/transformers": "^1.22.0",
+    "@shikijs/transformers": "^2.0.0",
     "@storybook/addon-essentials": "8.5.6",
     "@storybook/addon-interactions": "8.5.6",
     "@storybook/addon-links": "8.5.6",
