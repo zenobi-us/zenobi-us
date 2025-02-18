@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.0.10](https://github.com/zenobi-us/zenobi-us/compare/v1.0.9...v1.0.10) (2025-02-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @faker-js/faker to v9.5.0 ([#208](https://github.com/zenobi-us/zenobi-us/issues/208)) ([4d0b026](https://github.com/zenobi-us/zenobi-us/commit/4d0b026842804cf0e8dab5783194524de4732b84))
+* **deps:** update dependency @react-pdf/renderer to v4.2.2 ([#223](https://github.com/zenobi-us/zenobi-us/issues/223)) ([e81514e](https://github.com/zenobi-us/zenobi-us/commit/e81514e648bd2ade4a24db5a092a3cad763bf1ab))
+* **deps:** update dependency @shadergradient/react to v2.0.21 ([#195](https://github.com/zenobi-us/zenobi-us/issues/195)) ([c94e0d3](https://github.com/zenobi-us/zenobi-us/commit/c94e0d375012290a314f52200e9b76a36ca66d22))
+* **deps:** update dependency @shadergradient/react to v2.0.22 ([#217](https://github.com/zenobi-us/zenobi-us/issues/217)) ([9f528e0](https://github.com/zenobi-us/zenobi-us/commit/9f528e0aa819b78294519ac0bf770873a10e5304))
+* **deps:** update dependency @types/react to v19.0.10 ([#220](https://github.com/zenobi-us/zenobi-us/issues/220)) ([2fbb594](https://github.com/zenobi-us/zenobi-us/commit/2fbb5941d856212ceea5fab3dbbef5b98be2a0e9))
+* **deps:** update dependency @types/react to v19.0.9 ([#218](https://github.com/zenobi-us/zenobi-us/issues/218)) ([0024bce](https://github.com/zenobi-us/zenobi-us/commit/0024bcedf8b9dfea075ab0e9a66d28761e8020df))
+* **deps:** update dependency eslint to v9.20.1 ([#206](https://github.com/zenobi-us/zenobi-us/issues/206)) ([3278b6d](https://github.com/zenobi-us/zenobi-us/commit/3278b6dc19e4a30fcd65cb2e514c7fbdf5b7c304))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.0 ([#214](https://github.com/zenobi-us/zenobi-us/issues/214)) ([eb536bb](https://github.com/zenobi-us/zenobi-us/commit/eb536bbe444ff85655bfdeaa5b1026d2f98b66cb))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.1 ([#221](https://github.com/zenobi-us/zenobi-us/issues/221)) ([1bcc8cf](https://github.com/zenobi-us/zenobi-us/commit/1bcc8cf9f87f97ff4d193a882461745681d66d25))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.2 ([#227](https://github.com/zenobi-us/zenobi-us/issues/227)) ([8120c55](https://github.com/zenobi-us/zenobi-us/commit/8120c551e64e1c78e1a3a7d24fac6f3b587d165e))
+* **deps:** update dependency globals to v15.15.0 ([#210](https://github.com/zenobi-us/zenobi-us/issues/210)) ([fc5eb05](https://github.com/zenobi-us/zenobi-us/commit/fc5eb052df3831c0464068b9de3592504b9bebbc))
+* **deps:** update dependency isbot to v5 ([#54](https://github.com/zenobi-us/zenobi-us/issues/54)) ([3321292](https://github.com/zenobi-us/zenobi-us/commit/3321292e61ae873d76c6509bf57cc46b66692f75))
+* **deps:** update dependency isbot to v5.1.22 ([#196](https://github.com/zenobi-us/zenobi-us/issues/196)) ([f33d6d4](https://github.com/zenobi-us/zenobi-us/commit/f33d6d4f57a33037279d548f3fffd83197d97b81))
+* **deps:** update dependency postcss to v8.5.2 ([#197](https://github.com/zenobi-us/zenobi-us/issues/197)) ([bfaf8e4](https://github.com/zenobi-us/zenobi-us/commit/bfaf8e4252846d7df88306839cb8ad922c01cf48))
+* **deps:** update dependency remark-gfm to v4.0.1 ([#199](https://github.com/zenobi-us/zenobi-us/issues/199)) ([101e515](https://github.com/zenobi-us/zenobi-us/commit/101e515be064bf85420f660abdb98ae5b42c7df3))
+* **deps:** update dependency shiki to v2.4.1 ([#216](https://github.com/zenobi-us/zenobi-us/issues/216)) ([314b977](https://github.com/zenobi-us/zenobi-us/commit/314b977da4817bb01d6fbe068f644dc5cf2d66ca))
+* **deps:** update dependency shiki to v2.4.2 ([#219](https://github.com/zenobi-us/zenobi-us/issues/219)) ([34862c8](https://github.com/zenobi-us/zenobi-us/commit/34862c8ed234aa6607a3a8a7adf5e2c68a7c0c5c))
+* **deps:** update dependency shiki to v2.5.0 ([#226](https://github.com/zenobi-us/zenobi-us/issues/226)) ([93f3b78](https://github.com/zenobi-us/zenobi-us/commit/93f3b7855f5c6b86f1e3342493dbf21bf472b6a4))
+* **deps:** update dependency sirv-cli to v3.0.1 ([#222](https://github.com/zenobi-us/zenobi-us/issues/222)) ([cb3cfab](https://github.com/zenobi-us/zenobi-us/commit/cb3cfab516ab95d83fd1526663540544a51b2997))
+* **deps:** update dependency wrangler to v3.108.0 ([#205](https://github.com/zenobi-us/zenobi-us/issues/205)) ([c214e26](https://github.com/zenobi-us/zenobi-us/commit/c214e26a74d0dc31edb7d4d2b5f629282063ba26))
+* **deps:** update dependency wrangler to v3.108.1 ([#207](https://github.com/zenobi-us/zenobi-us/issues/207)) ([6ce6d95](https://github.com/zenobi-us/zenobi-us/commit/6ce6d95ca25ca9c2b585c2e8792491efd7296bd8))
+* **deps:** update dependency wrangler to v3.109.0 ([#212](https://github.com/zenobi-us/zenobi-us/issues/212)) ([a41d4e4](https://github.com/zenobi-us/zenobi-us/commit/a41d4e4d9c37c039ca626941dec83fb729988c55))
+* **deps:** update dependency wrangler to v3.109.1 ([#213](https://github.com/zenobi-us/zenobi-us/issues/213)) ([18080d9](https://github.com/zenobi-us/zenobi-us/commit/18080d9170406f2d200249b6c2ad587b63e7b6d5))
+* **deps:** update dependency wrangler to v3.109.2 ([#228](https://github.com/zenobi-us/zenobi-us/issues/228)) ([3a661ed](https://github.com/zenobi-us/zenobi-us/commit/3a661ed4551d6f7de08faf4d397282efb89371b0))
+* **deps:** update eslint monorepo to v9.20.0 ([#200](https://github.com/zenobi-us/zenobi-us/issues/200)) ([e11aeca](https://github.com/zenobi-us/zenobi-us/commit/e11aecab60432d97e76306859569c5aef645088b))
+* **deps:** update react monorepo to v19 (major) ([#58](https://github.com/zenobi-us/zenobi-us/issues/58)) ([94f2c56](https://github.com/zenobi-us/zenobi-us/commit/94f2c56a8f8adc128c84420b3f4aeb0d5f373eec))
+* **deps:** update storybook monorepo to v8.5.4 ([#204](https://github.com/zenobi-us/zenobi-us/issues/204)) ([e0d7fba](https://github.com/zenobi-us/zenobi-us/commit/e0d7fba6c307ec66cae53edb8840deb220739650))
+* **deps:** update storybook monorepo to v8.5.5 ([#209](https://github.com/zenobi-us/zenobi-us/issues/209)) ([2b24055](https://github.com/zenobi-us/zenobi-us/commit/2b2405570d628ebf7c6927c317ce469341eea6f2))
+* **deps:** update storybook monorepo to v8.5.6 ([#215](https://github.com/zenobi-us/zenobi-us/issues/215)) ([4604bb8](https://github.com/zenobi-us/zenobi-us/commit/4604bb8ad3b1caade9c7c7616d4e35af8e8235e2))
+* **deps:** update typescript-eslint monorepo to v8.24.0 ([#201](https://github.com/zenobi-us/zenobi-us/issues/201)) ([ceff65b](https://github.com/zenobi-us/zenobi-us/commit/ceff65ba88019e8dc226d234081c49f4040d66e1))
+* **deps:** update typescript-eslint monorepo to v8.24.1 ([#224](https://github.com/zenobi-us/zenobi-us/issues/224)) ([4db8a54](https://github.com/zenobi-us/zenobi-us/commit/4db8a542061f56e5070307838ed64a22e6eda21c))
+
 ## [1.0.9](https://github.com/zenobi-us/zenobi-us/compare/v1.0.8...v1.0.9) (2025-02-10)
 
 
