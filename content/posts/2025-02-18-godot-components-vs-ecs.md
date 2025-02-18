@@ -1,7 +1,9 @@
 ---
 date: 2025-02-18
 title: Godot Components vs ECS
-stage: draft
+stage: published
+tags: [godot, ecs, game-dev]
+# cSpell:ignore Nystrom
 ---
 
 I've dabbled a fair bit with game development over the last five years.
@@ -10,7 +12,7 @@ Something you'll hear about frequently on the topic is "Components"; Usually it'
 
 Some proponents will no doubt clickbait you into reading something about ECS (Entity Component System), which seems like a much more modern approach.
 
-![](https://i.imgur.com/mzk47mC.jpeg)
+![Very distinguished you are](https://i.imgur.com/mzk47mC.jpeg)
 
 > You think you ECS?
 
@@ -112,7 +114,8 @@ Any ECS architecture that is in a interpreted language (Python, Javascript, Ruby
 
 One of the most memorable resources I remember on the topic is a [talk given by Bob Nystrom](https://www.youtube.com/watch?v=JxI3Eu5DPwE) 👉
 
-[![](https://img.youtube.com/vi/JxI3Eu5DPwE/0.jpg)](https://www.youtube.com/watch?v=JxI3Eu5DPwE)
+[![AU
+Bob Nystrom - Is There More to Game Architecture than ECS? ](https://img.youtube.com/vi/JxI3Eu5DPwE/0.jpg)](https://www.youtube.com/watch?v=JxI3Eu5DPwE)
 
 Basically structuring all the information about your entities as data only allows it to be optimised in such a way that they can be stored in homogeneous memory locations, which means that you can access them very quickly. This is using an interpreted language won't give you the primary benefit of ECS.
 
