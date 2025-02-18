@@ -106,6 +106,7 @@
     "remark-sectionize": "^2.0.0",
     "remark-supersub": "^1.0.0",
     "remix-routes": "^1.7.7",
+    "renovate": "^39.165.1",
     "safe-routes": "^1.0.2",
     "shiki": "^2.3.1",
     "sirv-cli": "^3.0.0",
