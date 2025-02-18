@@ -122,4 +122,4 @@ There isn't one really. This is more of a post to summarise some of my learning 
 ECS.
 
 I can think of a way to actually have Systems and Components in Godot.
-I doubt it would be a real ECS implementation due to the above regarding
+I doubt it would be a real ECS implementation due to the above regarding memory optimisation, but it'd be fun to see if we can still achieve some kind of nicely organised codebase. 🚀
