@@ -110,19 +110,19 @@ Systems, but rather the part almost no one talks about: how all that is organise
 
 Any ECS architecture that is in a interpreted language (Python, Javascript, Ruby, Lua etc) is just a fun little toy. They'll never be seriously used in production because you can not control the memory layout of your code.
 
-## How does it work?
+## Conclusion
 
 One of the most memorable resources I remember on the topic is a [talk given by Bob Nystrom](https://www.youtube.com/watch?v=JxI3Eu5DPwE) 👉
 
 [![AU
 Bob Nystrom - Is There More to Game Architecture than ECS? ](https://img.youtube.com/vi/JxI3Eu5DPwE/0.jpg)](https://www.youtube.com/watch?v=JxI3Eu5DPwE)
 
-Basically structuring all the information about your entities as data only allows it to be optimised in such a way that they can be stored in homogeneous memory locations, which means that you can access them very quickly. This is using an interpreted language won't give you the primary benefit of ECS.
+Basically structuring all the information about your entities as data only allows it to be optimised in such a way that they can be stored in homogeneous memory locations, which means that you can access them very quickly.
 
-## Conclusion
+This is why using an interpreted language won't give you the primary benefit of ECS.
 
-There isn't one really. This is more of a post to summarise some of my learning and perspectives on
-ECS.
+Since this post is more about summarising some of what I've learnt about game dev I'll finish up with:
 
-I can think of a way to actually have Systems and Components in Godot.
-I doubt it would be a real ECS implementation due to the above regarding memory optimisation, but it'd be fun to see if we can still achieve some kind of nicely organised codebase. 🚀
+While I know that ECS is more than just solving problems caused by inheritance and that in most scenarios I'd probably be best served by not thinking about ECS; I can't help it.
+
+Currently I'm using Godot and so thinking about the topic, I can think of a way to actually have Systems and Components in Godot. I doubt it would be a real ECS implementation due to the above regarding memory optimisation, but it'd be fun to see if we can still achieve some kind of nicely organised codebase. 🚀
