@@ -4157,8 +4157,8 @@ __metadata:
   linkType: hard
 
 "@react-three/fiber@npm:^8.17.10":
-  version: 8.17.14
-  resolution: "@react-three/fiber@npm:8.17.14"
+  version: 8.18.0
+  resolution: "@react-three/fiber@npm:8.18.0"
   dependencies:
     "@babel/runtime": "npm:^7.17.8"
     "@types/react-reconciler": "npm:^0.26.7"
@@ -4193,7 +4193,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 10c0/c2ef54974f6e333636140bde5ab8d804a1c1d85ce3e99c69c81608b341a564b73cad44e1bd4a875cd749b74a9b03908f15cf0ae632b915905ae726c484c6877d
+  checksum: 10c0/3203a8a36a47824755759813e1e5db7f2ab5de15891645d29eb352d599950141e8e8d24a1baf26670191d03a4e751d8941ab4d57f6fd697d94e030d0f17e1a40
   languageName: node
   linkType: hard
 
