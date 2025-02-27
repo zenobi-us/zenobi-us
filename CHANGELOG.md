@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.11](https://github.com/zenobi-us/zenobi-us/compare/v1.0.10...v1.0.11) (2025-02-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @react-three/fiber to v8.18.0 ([#237](https://github.com/zenobi-us/zenobi-us/issues/237)) ([1f2cbc6](https://github.com/zenobi-us/zenobi-us/commit/1f2cbc6a06aa9741c5546b5de7e8e1569d0e7350))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.3 ([#234](https://github.com/zenobi-us/zenobi-us/issues/234)) ([8bfea57](https://github.com/zenobi-us/zenobi-us/commit/8bfea57e41601761b464257141eb584f756e7cc5))
+* **deps:** update dependency isbot to v5.1.23 ([#235](https://github.com/zenobi-us/zenobi-us/issues/235)) ([1a6dbfb](https://github.com/zenobi-us/zenobi-us/commit/1a6dbfbdc1a7115de211d93232eaebe577869150))
+* **deps:** update dependency postcss to v8.5.3 ([#236](https://github.com/zenobi-us/zenobi-us/issues/236)) ([bd45a19](https://github.com/zenobi-us/zenobi-us/commit/bd45a1996a749f9ce73743866b9685581ae1e0ce))
+* **deps:** update dependency tsx to v4.19.3 ([#231](https://github.com/zenobi-us/zenobi-us/issues/231)) ([beeed76](https://github.com/zenobi-us/zenobi-us/commit/beeed765ececf369422a7cd938734b18272f4205))
+* **deps:** update eslint monorepo to v9.21.0 ([#238](https://github.com/zenobi-us/zenobi-us/issues/238)) ([b0d574f](https://github.com/zenobi-us/zenobi-us/commit/b0d574f39af383e7540576fb63d9a637c8d8bbb2))
+* **deps:** update storybook monorepo to v8.5.7 ([#229](https://github.com/zenobi-us/zenobi-us/issues/229)) ([a42613c](https://github.com/zenobi-us/zenobi-us/commit/a42613c86dc40f73358552396341d1861fbdbc38))
+* **deps:** update storybook monorepo to v8.5.8 ([#232](https://github.com/zenobi-us/zenobi-us/issues/232)) ([6d31c37](https://github.com/zenobi-us/zenobi-us/commit/6d31c37349f2893b7be9d07b2223f5b605fba92d))
+
 ## [1.0.10](https://github.com/zenobi-us/zenobi-us/compare/v1.0.9...v1.0.10) (2025-02-18)
 
 
