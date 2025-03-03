@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12](https://github.com/zenobi-us/zenobi-us/compare/v1.0.11...v1.0.12) (2025-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @chromatic-com/storybook to v3.2.5 ([#243](https://github.com/zenobi-us/zenobi-us/issues/243)) ([39db3b1](https://github.com/zenobi-us/zenobi-us/commit/39db3b1cca912eb62c2551c74a7242c89fedb356))
+* **deps:** update dependency vite to v6 ([#203](https://github.com/zenobi-us/zenobi-us/issues/203)) ([0cdfa5c](https://github.com/zenobi-us/zenobi-us/commit/0cdfa5cb9cb188c23e468f543fbd063ad46e9b0e))
+
 ## [1.0.11](https://github.com/zenobi-us/zenobi-us/compare/v1.0.10...v1.0.11) (2025-02-22)
 
 
