@@ -2372,26 +2372,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formspree/core@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@formspree/core@npm:3.0.1"
+"@formspree/core@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@formspree/core@npm:3.0.4"
   dependencies:
     "@stripe/stripe-js": "npm:^1.35.0"
-  checksum: 10c0/cd117162756d152c2619e74bb030cc3b7ded515af7e16b23fe3759447f2444ec3e8b5eb1b0da789aa4d1b2a8b47a45401aa1b0a5407b90cce2afd3cb39d3534e
+  checksum: 10c0/9aabe015276b39908a9a635d32b66921ce80919508e62d64678f237d38a33d9f68dbb8ee24b7af73e917f0acb0f8cd4980f9c8591232c5f5669f6bab5768ef6b
   languageName: node
   linkType: hard
 
 "@formspree/react@npm:^2.5.1":
-  version: 2.5.1
-  resolution: "@formspree/react@npm:2.5.1"
+  version: 2.5.4
+  resolution: "@formspree/react@npm:2.5.4"
   dependencies:
-    "@formspree/core": "npm:^3.0.1"
+    "@formspree/core": "npm:^3.0.4"
     "@stripe/react-stripe-js": "npm:^1.7.1"
     "@stripe/stripe-js": "npm:^1.35.0"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 10c0/20abec7f706189102b8c5d2cce0f32fd0843b01318b9885fac49a6b9127863ace4ee4408dcf301cddab28af0e6ffc23c623cf9e2866ffe095fdcca53749f7ffc
+  checksum: 10c0/f4a0a398bc38eac607d721782fc3c39172d54b77b4d6b428af1a91c082ba3c254b33b3e7de52176c00a0295fb8fa8f9606a2cc1b83f460c11e0fc8b5a37a1862
   languageName: node
   linkType: hard
 
