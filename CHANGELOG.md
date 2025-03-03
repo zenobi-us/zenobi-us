@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.13](https://github.com/zenobi-us/zenobi-us/compare/v1.0.12...v1.0.13) (2025-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @cspell/dict-en-au to v1.0.23 ([#244](https://github.com/zenobi-us/zenobi-us/issues/244)) ([8bbee0f](https://github.com/zenobi-us/zenobi-us/commit/8bbee0fec8575a017e86535492884f455a7cb24e))
+* **deps:** update dependency @faker-js/faker to v9.5.1 ([#246](https://github.com/zenobi-us/zenobi-us/issues/246)) ([f253424](https://github.com/zenobi-us/zenobi-us/commit/f253424eaa0c7059faf1a30d3df15ff98abd1916))
+
 ## [1.0.12](https://github.com/zenobi-us/zenobi-us/compare/v1.0.11...v1.0.12) (2025-03-03)
 
 
