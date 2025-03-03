@@ -1,7 +1,7 @@
 ---
 date: 2025-03-03
 title: ECS in Godot with CSharp
-draft: true
+stage: published
 filepath: content/posts/2025-03-03-ecs-in-godot-with-csharp.md
 ---
 

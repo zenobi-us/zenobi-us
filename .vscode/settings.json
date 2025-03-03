@@ -76,5 +76,8 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "testing.automaticallyOpenTestResults": "neverOpen"
+  "testing.automaticallyOpenTestResults": "neverOpen",
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/home/zenobius/.local/share/mise/shims/node"
+  }
 }

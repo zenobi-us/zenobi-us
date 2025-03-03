@@ -1,10 +1,9 @@
 import * as superjson from 'superjson';
+import type { Post } from 'content-collections';
 
 import { Page } from '~/components/ds/page/Page';
 import { PostEnd } from '~/components/common/PostEnd/PostEnd';
 import { BlogPostTimelineList } from '~/components/post/BlogPostTimelineList';
-
-import type { Post } from 'content-collections';
 
 export function mapDbPosts(posts: Post[]) {
   return posts.map((post) => ({
