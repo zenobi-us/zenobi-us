@@ -4484,7 +4484,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^5.0.1":
+"@rollup/pluginutils@npm:^5.0.1, @rollup/pluginutils@npm:^5.1.4":
   version: 5.1.4
   resolution: "@rollup/pluginutils@npm:5.1.4"
   dependencies:
@@ -4500,7 +4500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^5.0.2, @rollup/pluginutils@npm:^5.1.0":
+"@rollup/pluginutils@npm:^5.0.2":
   version: 5.1.3
   resolution: "@rollup/pluginutils@npm:5.1.3"
   dependencies:
@@ -19729,13 +19729,13 @@ __metadata:
   linkType: hard
 
 "vite-plugin-glsl@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "vite-plugin-glsl@npm:1.3.1"
+  version: 1.3.3
+  resolution: "vite-plugin-glsl@npm:1.3.3"
   dependencies:
-    "@rollup/pluginutils": "npm:^5.1.0"
+    "@rollup/pluginutils": "npm:^5.1.4"
   peerDependencies:
     vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
-  checksum: 10c0/6521812173b0284833424415ca906956998733b0137bdf80c963042a46162ace7d5c24fccf5b456f8cbcc84f04792be9a2209448b4cf296f2758bf23a4df1e30
+  checksum: 10c0/4886e6800c2dd00a021bc50cde83e6a5d8d3934840b75dbf12cb30eaa36fe40c8b9af4c27583892b16dccbed945a9ebeb6e56b900f0dedce522145941f35b7e2
   languageName: node
   linkType: hard
 
