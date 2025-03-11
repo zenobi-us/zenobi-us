@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.13](https://github.com/zenobi-us/zenobi-us/compare/v1.0.12...v1.0.13) (2025-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @cspell/dict-en-au to v1.0.23 ([#244](https://github.com/zenobi-us/zenobi-us/issues/244)) ([8bbee0f](https://github.com/zenobi-us/zenobi-us/commit/8bbee0fec8575a017e86535492884f455a7cb24e))
+* **deps:** update dependency @cspell/dict-en-au to v1.0.24 ([#247](https://github.com/zenobi-us/zenobi-us/issues/247)) ([de86af5](https://github.com/zenobi-us/zenobi-us/commit/de86af541f40a951f474d2276dc0fc939e4966e2))
+* **deps:** update dependency @faker-js/faker to v9.5.1 ([#246](https://github.com/zenobi-us/zenobi-us/issues/246)) ([f253424](https://github.com/zenobi-us/zenobi-us/commit/f253424eaa0c7059faf1a30d3df15ff98abd1916))
+* **deps:** update dependency @formspree/react to v2.5.4 ([#248](https://github.com/zenobi-us/zenobi-us/issues/248)) ([972ee30](https://github.com/zenobi-us/zenobi-us/commit/972ee3093c31bc87a0515d708e3f06e1244866f6))
+* **deps:** update dependency @react-pdf/renderer to v4.2.4 ([#249](https://github.com/zenobi-us/zenobi-us/issues/249)) ([9bfc85f](https://github.com/zenobi-us/zenobi-us/commit/9bfc85f15a2c326bdc2793a42c9c3dfc9059467a))
+* **deps:** update dependency @react-pdf/renderer to v4.3.0 ([#260](https://github.com/zenobi-us/zenobi-us/issues/260)) ([fb0d285](https://github.com/zenobi-us/zenobi-us/commit/fb0d28586d3a2e4e6db3488892ae37c4e1c2974f))
+* **deps:** update dependency cspell-cli to v8.17.3 ([#250](https://github.com/zenobi-us/zenobi-us/issues/250)) ([f42dbf2](https://github.com/zenobi-us/zenobi-us/commit/f42dbf2c50f8732cc55769e5c23e35e8d36a6110))
+* **deps:** update dependency eslint-plugin-react-hooks to v5.2.0 ([#256](https://github.com/zenobi-us/zenobi-us/issues/256)) ([a3ab024](https://github.com/zenobi-us/zenobi-us/commit/a3ab0242395115236635410627e23df3f9e9032b))
+* **deps:** update dependency lucide-react to ^0.477.0 ([#257](https://github.com/zenobi-us/zenobi-us/issues/257)) ([cadd981](https://github.com/zenobi-us/zenobi-us/commit/cadd981dd9a0d6c517e3599282416743047b2955))
+* **deps:** update dependency safe-routes to v1.0.9 ([#251](https://github.com/zenobi-us/zenobi-us/issues/251)) ([aeae28e](https://github.com/zenobi-us/zenobi-us/commit/aeae28e188b892498dcadfa724b1d0f5fb93f5a1))
+* **deps:** update dependency three to ^0.174.0 ([#258](https://github.com/zenobi-us/zenobi-us/issues/258)) ([30fd727](https://github.com/zenobi-us/zenobi-us/commit/30fd727bf544aac40c83c9b6a44a5442b02c8c07))
+* **deps:** update dependency typescript to v5.8.2 ([#259](https://github.com/zenobi-us/zenobi-us/issues/259)) ([09293af](https://github.com/zenobi-us/zenobi-us/commit/09293af92d7893aceb471f4cd70a97383031ba9d))
+* **deps:** update dependency vite-plugin-glsl to v1.3.3 ([#252](https://github.com/zenobi-us/zenobi-us/issues/252)) ([908c11c](https://github.com/zenobi-us/zenobi-us/commit/908c11ced94f8fdb4679b30449199127dfff0bed))
+* **deps:** update dependency wrangler to v3.112.0 ([#261](https://github.com/zenobi-us/zenobi-us/issues/261)) ([20e4ebd](https://github.com/zenobi-us/zenobi-us/commit/20e4ebdb2da9e556f6c240f2c83e4a33b32de45c))
+* **deps:** update dependency zod-config to v0.1.3 ([#253](https://github.com/zenobi-us/zenobi-us/issues/253)) ([ea6c54d](https://github.com/zenobi-us/zenobi-us/commit/ea6c54d82b7f647f180eaa6784fbf1f7b912a620))
+* **deps:** update fontsource monorepo to v5.2.5 ([#262](https://github.com/zenobi-us/zenobi-us/issues/262)) ([701abbf](https://github.com/zenobi-us/zenobi-us/commit/701abbf889088623722ff57df2046db5f03b1d1b))
+* **deps:** update remix monorepo to v2.16.0 ([#263](https://github.com/zenobi-us/zenobi-us/issues/263)) ([3e97991](https://github.com/zenobi-us/zenobi-us/commit/3e97991820ba2fc7cdd20c4dc0e74caf3fb4e602))
+* **deps:** update storybook monorepo to v8.6.3 ([#264](https://github.com/zenobi-us/zenobi-us/issues/264)) ([6763a38](https://github.com/zenobi-us/zenobi-us/commit/6763a38842a6b10088701f60ccee573fbc90bd19))
+* **deps:** update typescript-eslint monorepo to v8.26.0 ([#265](https://github.com/zenobi-us/zenobi-us/issues/265)) ([7fb5d24](https://github.com/zenobi-us/zenobi-us/commit/7fb5d2420d9a23198d1a97c3781bc9b97c185e9c))
+
 ## [1.0.12](https://github.com/zenobi-us/zenobi-us/compare/v1.0.11...v1.0.12) (2025-03-03)
 
 
