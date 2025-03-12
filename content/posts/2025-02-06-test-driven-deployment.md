@@ -4,7 +4,24 @@ title: Test driven deployment
 draft: true
 ---
 
-Despite my site just being a static website with a blog, there's a few things here that I think are worth mentioning.
+I feel the need to brain dump some thoughts about release cadaence and how automated testing affects that story.
+
+> TL;DR Make sure your automated test suite is tickity boo. Fast. Accurate. And easy to run a relevant selection of tests.
+
+Despite my site just being a static website with a blog, there's a few things that I've implemented here that I think are worth mentioning.
+
+I've implemented a test-driven deployment (TDD) pipeline that involves cloudflare pages, github actions, Renovate and playwright.
+
+- Renovate automatically updates dependencies via raised PRs.
+- E2E Testing, Linting, Typechecking must pass before any PR is allowed to be merged.
+- PRs made by Renovate get auto merged when they pass.
+- Changes to PRs cause a preview deployment, which get an auto generated subdomain printed to the PR comments.
+- When PRs are merged, a deployment happens to a non Production environment ([https://develop.zenobius.pages.dev/])
+- When the mainline branch updates, Release Please either creates or updates a release branch and an associated PR for the new release branch. This also ends up getting a preview environment.mise
+
+You might look at this and think it's cute and simple. You'd be right. Your pipeline probably involves a lot more services, maybe docker, some manual approval stages etc. But you can extrapolate the concepts here in this post to your process.
+
+## The testing experience needs to be fast and accurate
 
 > If you want to be deploying many times a day, then your automated testing needs to be acurate, fast and reliable.
 
