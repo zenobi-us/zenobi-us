@@ -1,96 +1,119 @@
 ---
 date: 2025-02-06
-title: Test driven deployment
+title: Test-Driven Deployment
 draft: true
 ---
 
-I feel the need to brain dump some thoughts about release cadaence and how automated testing affects that story.
+I've been mulling over release cadence lately and how automated testing totally changes the game. So, here's a brain dump of my thoughts.
 
-> TL;DR Make sure your automated test suite is tickity boo. Fast. Accurate. And easy to run a relevant selection of tests.
+> TL;DR: Your automated test suite needs to be spot on—fast, accurate, and easy to run just the right tests.
 
-Despite my site just being a static website with a blog, there's a few things that I've implemented here that I think are worth mentioning.
+My site's just a static blog, nothing fancy, but I've rigged up a test-driven deployment (TDD) pipeline that I think is worth shouting about. It's built on Cloudflare Pages, GitHub Actions, Renovate, and Playwright, and it's been a game-changer for me. Here's the rundown:
 
-I've implemented a test-driven deployment (TDD) pipeline that involves cloudflare pages, github actions, Renovate and playwright.
+- Renovate auto-updates dependencies by raising PRs for me.
+- Every PR has to pass E2E tests, linting, and typechecking before it's mergeable.
+- Renovate PRs get auto-merged if they pass—nice and hands-off.
+- PR changes trigger a preview deployment with an auto-generated subdomain dropped in the PR comments.
+- Merging a PR deploys to a non-production env ([https://develop.zenobius.pages.dev/](https://develop.zenobius.pages.dev/)).
+- When the main branch updates, Release Please either spins up a release branch or updates an existing one, complete with a PR and preview env.
 
-- Renovate automatically updates dependencies via raised PRs.
-- E2E Testing, Linting, Typechecking must pass before any PR is allowed to be merged.
-- PRs made by Renovate get auto merged when they pass.
-- Changes to PRs cause a preview deployment, which get an auto generated subdomain printed to the PR comments.
-- When PRs are merged, a deployment happens to a non Production environment ([https://develop.zenobius.pages.dev/])
-- When the mainline branch updates, Release Please either creates or updates a release branch and an associated PR for the new release branch. This also ends up getting a preview environment.mise
+You might look at this and think, "Aw, cute little pipeline." Fair. Your setup probably has Docker, manual approvals, and a dozen more services. But the ideas here? They scale. Take 'em and run.
 
-You might look at this and think it's cute and simple. You'd be right. Your pipeline probably involves a lot more services, maybe docker, some manual approval stages etc. But you can extrapolate the concepts here in this post to your process.
+## The Testing Experience Needs to Be Fast and Accurate
 
-## The testing experience needs to be fast and accurate
+> If you're aiming to deploy multiple times a day, your automated tests have to be accurate, fast, and damn reliable.
 
-> If you want to be deploying many times a day, then your automated testing needs to be acurate, fast and reliable.
+I can't stress this enough; there's some delusion out there about how easy this is. It's not. But it's doable. Manual testing won't scale your product or your team. Period. And I'm not just saying automate _some_ of it—I'm saying _all_ of it.
 
-I want to highlight this point, because there's a fair amount of delusion as to how this is possible. It's not easy, but it is possible.
+Right now, I've got about 70 E2E tests. They all run on every PR, which works for now but won't scale forever—more on that in a bit. Renovate's humming along, raising PRs for outdated dependencies, and every PR (human or bot) triggers the full test suite. Passing tests are a hard requirement for merging. What I get out of it is automated security updates and a main branch that's way more likely to deploy cleanly.
 
-You won't be able to scale your product or company there with manual testing. Full stop. It's just not going to happen.
-And like... I'm not even saying that you need to automate some of your testing, I'm saying you need to automate all. of. it.
+I can hear the sceptics already: "No one gets 100% test coverage!" True, but you can get close. Prioritise automation, and the only manual testing left is exploratory stuff to figure out what else to automate.
 
-Currently I have about 70 odd e2e tests. They all run all the time, which isn't ideal in teh scope of scaling them. More on this later.
+## How I Think Automated Testing Can Scale
 
-I also have Renovate running automatically so that it will raise PRs for me when dependencies are out of date. Every PR
-that is raised, regardless of who raises them, causes the E2E tests to run. The tests passing is one condition for the PR to be mergable.
+Most setups have a mainline branch and release branches as snapshots for deployment. You push a snapshot to staging, QA manually tests the listed stories and bugs, and a few days later, you get the green light for prod. Here's where it falls apart:
 
-So what you end up with is some nice automated security updates, and more assurance around that your deployments from your mainline branch are more likely to be successful.
+- QA becomes the bottleneck. No new release until they're done.
+- They only test what's listed—no time for regressions, which sneak through.
+- Manual testing eats all their time, so automation never happens. Vicious cycle.
 
-Yes yes. I hear you. "But no one can get 100% test coverage". I agree. But you can get close, and if you pritorise automated testing, then the only manual testing you'll need to do is exploratory testing in order to automate more tests.
-
-## How I think automated testing can scale
-
-So common approach is that you have a mainline, and then you have release branches as snapshots to deploy from.
-
-Snapshots are released into some kind of staging environment and then your QA team start working through their list of stories and bugs for the release.
-
-A few days later we eventually get confirmation that the release is good to go and we deploy it to production.
-
-The first issues here are:
-
-- The QA team become the bottleneck for the next release. We can't release the next one until they've finished testing the current one.
-- The QA team are only testing the stories and bugs listed for the release. Since they're manually testing, there's no time to test anything else. So regressions are highly likely.
-- Since the QA team are always manually testing, there's rarely time to automate tests. So it becomes a vicious cycle.
-
-So next I'll outline what my ideal scenario looks like and then some ways to get there from the hellscape of manual testing.
+I've got an ideal scenario in mind, and here's how I'd get there from that manual testing hell-scape.
 
 ### Ideal Scenario
 
-So some premises:
+A couple premises first:
 
-- Your app repo can have the tests in the same repo or not. For the purposes of running them it doesn't matter. It mostly depends on your team and how you want to structure your repos.
-- You want a mainline branch that is always deployable.
+- Tests can live in the app repo or a separate one—doesn't matter for running them, just team preference.
+- The mainline branch should always be deployable.
 
-With that in mind, this is what we'd want
+Here's what I'd want:
 
-#### Block PRs that don't pass tests or don't have tests
+#### Block PRs That Don't Pass Tests or Lack Them
 
-Pretty simple, but it's important to enforce it. This prevents you from deploying code with bugs or incomplete features.
+Simple but non-negotiable. No buggy or half-baked code slips through.
 
-#### Dynamically run tests based on the linked story tickets and user preferences
+#### Dynamically Run Tests Based on Tickets and Preferences
 
-> Branches that raise PRs **_MUST_** have a naming convention that helps identify a relationship to your story tickets.
+> Branches raising PRs **must** follow a naming convention tying them to story tickets.
 
-This means that If your big feature to go out is described as an Epic ABC-123, and it has 10 stories and 50 task tickets, then:
+Say I've got an epic, `ABC-123`, with 10 stories and 50 tasks. Developers name branches with task tickets (e.g., `feature/ABC-456-fix-login`), which link to stories, which link to the epic. Every ticketing system can handle this—GitHub Projects is a dead-simple option if yours can't.
 
-- work done by developers must use those task tickets in the branch name
-- the task tickets must be linked to the story ticket
-- the story ticket must be linked to the epic ticket
+When I raise a PR, the CI/CD grabs the ticket ID from the branch name, hits the API, and figures out the related story tickets. Then it runs only the tests tied to those stories. If GitHub's your jam, you could even add chat-ops in PR comments (e.g., `/run-all-tests`) or labels to tweak what runs.
 
-Every ticketing system is capable of this. If yours isn't, then move to one that is, a super simple choice is Github Projects.
+#### Run Tests Every Day
 
-Now, when a developer raises a PR, CICD logic will pick the ticket id from the branch name, make an API call and infer the linked story tickets.
+Periodic daily runs catch regressions early. If they fail, the CI/CD pings whoever merged PRs since the last good run. Keeps everyone accountable.
 
-These story tickets are then used to determine which tests to run. If the story ticket has a test associated with it, then that test is run.
+#### Make Testing Transparent
 
-If your CICD system is capable of being controlled by the PR comment system (like github can be), then you can include chat-ops or labels that let a developer
-to opt out, or opt in to certain tests, or even all tests.
+My test suite's no black box. I'd want:
 
-#### Run tests periodically every day
+- **Reports**: Every run spits out a readable summary—what ran, what it covered, how long it took. Stick it in PR comments or Slack.
+- **Dashboard**: A quick view of suite health, coverage, and failures over time. Static page or something like Grafana works.
+- **Traceability**: Every test links to its ticket. Failures tell me exactly what feature's at risk.
 
-Running tests periodically every day should be done in such a way that when it fails, the CICD system raises alerts to the developers who merged PRs since the last successful run.
+## Scaling the Suite Without Slowing Down
 
-#### Create testing transparency
+Running all 70 tests every time is fine now, but it won't be when I hit 700. Here's my plan:
 
-A common
+### Selective Runs
+
+Use ticket IDs to run only relevant tests. Tag tests with metadata (e.g., `#login`, `#epic-ABC-123`), parse the branch name, and filter. Worst case, fall back to a smoke test suite—critical paths like homepage and login. Keeps things snappy.
+
+### Parallelise It
+
+Playwright's built for parallel runs, so I'd split tests across CI workers. If a full run takes 5 minutes, 5 workers could drop it to 1. GitHub Actions gives me 20 freebies—plenty to play with.
+
+### Keep It Clean
+
+As tests pile up, It'll get flakiness and rot. I'd schedule a recurring cleanup—check failure logs, refactor duplicates, axe outdated tests. Keeps the suite lean.
+
+My approach to this would be to accumulate test report statistics, and visit it as a monthly task:
+
+1. As various soft limits are reached while running e2e tests in PRs are reached, bot managed issue tickets are raised. each bot managed issue ticket is linked to a "dashboard ticket".
+2. A scheduled task or a concurrent task on your `master` branch would run the full test suite. Timing data is collected when tests are run here and reported into a bot managed Issue Ticket.
+3. To spread the knowledge, someone from the team is designated to review timings, fails etc;
+   1. A PR is opened using a branch name that references the bot managed ticket where the team member removes redundant tests, optimises timings, updates documentation, etc.
+   2. THe bot managed PR would track these optimisations and make further notes to its issue ticket.
+
+## Escaping Manual Testing Hell
+
+Manual QA bottlenecks suck—regressions slip through, and automation stays a pipe dream. Here's how I'd shift to my ideal:
+
+1. **Start Small**: Automate one big feature (like login) and show it works.
+2. **Pair Up**: QA writes test cases; I turn them into Playwright scripts with them. Skill-sharing FTW.
+3. **Shift Left**: Make it easy to run the testable stack locally. Force commit-hooks to run smoke-level tests.
+4. **Chip Away**: Automate a chunk of the manual backlog each sprint—focus on high-risk stuff first.
+5. **Celebrate**: When a test catches a bug, I'm yelling it in chat. Momentum matters.
+
+A few months in, I could flip from 90% manual to 90% automated.
+
+## Wrapping Up
+
+Test-driven deployment's not just tools; it's a mindset. My little setup with Cloudflare, GitHub Actions, Renovate, and Playwright is basic, but the principles hold up. Fast, accurate, selective testing means I can deploy all day, whether it's this blog or some sprawling app.
+
+My automation tests having been ticking away for a few months now; Check it out over at
+
+The takeaway? Treat your test suite like the backbone of your releases—because it is. Manual testing's a dead end, and half-arsed automation's a headache. Nail it, and you'll never look back.
+
+What do you reckon—any holes in my thinking? Hit me up!
