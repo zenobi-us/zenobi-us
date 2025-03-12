@@ -12060,7 +12060,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.21.3, esbuild@npm:^0.21.4":
+"esbuild@npm:^0.21.3":
   version: 0.21.5
   resolution: "esbuild@npm:0.21.5"
   dependencies:
@@ -21936,8 +21936,8 @@ __metadata:
   linkType: hard
 
 "safe-routes@npm:^1.0.2":
-  version: 1.0.9
-  resolution: "safe-routes@npm:1.0.9"
+  version: 1.0.10
+  resolution: "safe-routes@npm:1.0.10"
   dependencies:
     "@rollup/plugin-replace": "npm:^6.0.1"
     mkdirp: "npm:^3.0.1"
@@ -21945,7 +21945,7 @@ __metadata:
     vite-node: "npm:^3.0.6"
   bin:
     safe-routes: dist/cli.js
-  checksum: 10c0/42e1c5c8f484483ef6f0558903ac8113b4dbfe201143a21319f36c6c9d6c2c130517ed8a1c5465e722f9552cf29fec3edebf7a05e7010ffd7124aede1e4321ed
+  checksum: 10c0/44adada941840ff5f9b9148805be6f1490bc3e7865285636d352d9bb82e2244168ab266de55ece487e0b8003156184accaa2497cd2afad15a0ce525a3b605864
   languageName: node
   linkType: hard
 
