@@ -1704,12 +1704,12 @@ __metadata:
   linkType: hard
 
 "@content-collections/core@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@content-collections/core@npm:0.8.0"
+  version: 0.8.2
+  resolution: "@content-collections/core@npm:0.8.2"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     camelcase: "npm:^8.0.0"
-    esbuild: "npm:^0.21.4"
+    esbuild: "npm:^0.25.0"
     gray-matter: "npm:^4.0.3"
     p-limit: "npm:^6.1.0"
     picomatch: "npm:^4.0.2"
@@ -1720,7 +1720,7 @@ __metadata:
     zod: "npm:^3.23.8"
   peerDependencies:
     typescript: ^5.0.2
-  checksum: 10c0/be102b3a3dc65f6704c506d575c8b3a4853c6687be937c4065d561cd789c5bc2b28211538be6655ca30e878085d4dae1e6a00a472ebae656104b0e84694e3b75
+  checksum: 10c0/976f7b402a8b150e1cdfa91bd511ff568ddd6ee34c4e7908170c9ae9ccf2cbfe40fb6df96c6df4abbfd19be18f3f1de1831c871ae4fc640cf74548037bd3d066
   languageName: node
   linkType: hard
 
