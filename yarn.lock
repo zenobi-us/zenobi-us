@@ -3399,8 +3399,8 @@ __metadata:
   linkType: hard
 
 "@formspree/react@npm:^2.5.1":
-  version: 2.5.4
-  resolution: "@formspree/react@npm:2.5.4"
+  version: 2.5.5
+  resolution: "@formspree/react@npm:2.5.5"
   dependencies:
     "@formspree/core": "npm:^3.0.4"
     "@stripe/react-stripe-js": "npm:^1.7.1"
@@ -3408,7 +3408,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 10c0/f4a0a398bc38eac607d721782fc3c39172d54b77b4d6b428af1a91c082ba3c254b33b3e7de52176c00a0295fb8fa8f9606a2cc1b83f460c11e0fc8b5a37a1862
+  checksum: 10c0/4a895e959d8b5c310ffc54859e857adf84af39abfc700badf8127ef7227f23bdf747224bf4466569f9038c213ca0a34a780d8bf4c7e53d375d41059e8d9fef7b
   languageName: node
   linkType: hard
 
