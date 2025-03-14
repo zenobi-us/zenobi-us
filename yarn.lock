@@ -18531,7 +18531,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:3.3.8, nanoid@npm:^3.3.8":
+"nanoid@npm:3.3.9":
+  version: 3.3.9
+  resolution: "nanoid@npm:3.3.9"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 10c0/4515abe53db7b150cf77074558efc20d8e916d6910d557b5ce72e8bbf6f8e7554d3d7a0d180bfa65e5d8e99aa51b207aa8a3bf5f3b56233897b146d592e30b24
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^3.3.8":
   version: 3.3.8
   resolution: "nanoid@npm:3.3.8"
   bin:
@@ -21216,8 +21225,8 @@ __metadata:
   linkType: hard
 
 "renovate@npm:^39.165.1":
-  version: 39.200.3
-  resolution: "renovate@npm:39.200.3"
+  version: 39.200.4
+  resolution: "renovate@npm:39.200.4"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.738.0"
     "@aws-sdk/client-ec2": "npm:3.738.0"
@@ -21299,7 +21308,7 @@ __metadata:
     minimatch: "npm:10.0.1"
     moo: "npm:0.5.2"
     ms: "npm:2.1.3"
-    nanoid: "npm:3.3.8"
+    nanoid: "npm:3.3.9"
     neotraverse: "npm:0.6.18"
     node-html-parser: "npm:7.0.1"
     openpgp: "npm:6.1.0"
@@ -21342,7 +21351,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10c0/b554e388c88a9cd32d7622e310d9b651208e92311d3edfaee8ac0a231934dd32baff42245c6e01f1524ad7e811dcaf3d4d07d9c2a554c2b1034ac21a7a739c51
+  checksum: 10c0/4937902ef75c1728dab72cce759f44947a7ad2475ebf7009dbe00558cf125f9da81328eb309220e26261557ec97dccbb26d01f93b1e62f400387469ba7a87ff4
   languageName: node
   linkType: hard
 
