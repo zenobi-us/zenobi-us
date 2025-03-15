@@ -1,5 +1,44 @@
 # Changelog
 
+## [1.0.14](https://github.com/zenobi-us/zenobi-us/compare/v1.0.13...v1.0.14) (2025-03-15)
+
+
+### Bug Fixes
+
+* attempt to limit renovate to minor and patch updates ([#198](https://github.com/zenobi-us/zenobi-us/issues/198)) ([a673dd9](https://github.com/zenobi-us/zenobi-us/commit/a673dd93b0f539b0a606ab0845325ab3525f514a))
+* **deps:** update dependency @chromatic-com/storybook to v3.2.6 ([#300](https://github.com/zenobi-us/zenobi-us/issues/300)) ([56c2dd5](https://github.com/zenobi-us/zenobi-us/commit/56c2dd50d7188cbcf75212c93af964da9af31a47))
+* **deps:** update dependency @content-collections/core to v0.8.2 ([#270](https://github.com/zenobi-us/zenobi-us/issues/270)) ([3f47314](https://github.com/zenobi-us/zenobi-us/commit/3f473140e5ab93556f607d4ab697e4ffcef601d2))
+* **deps:** update dependency @content-collections/mdx to v0.2.2 ([#271](https://github.com/zenobi-us/zenobi-us/issues/271)) ([c892ba6](https://github.com/zenobi-us/zenobi-us/commit/c892ba6912334122d5d34879964243002d47356a))
+* **deps:** update dependency @faker-js/faker to v9.6.0 ([#280](https://github.com/zenobi-us/zenobi-us/issues/280)) ([325bdd1](https://github.com/zenobi-us/zenobi-us/commit/325bdd16f7c4a2961398f5c670e04b4d160f714d))
+* **deps:** update dependency @formspree/react to v2.5.5 ([#290](https://github.com/zenobi-us/zenobi-us/issues/290)) ([654dc42](https://github.com/zenobi-us/zenobi-us/commit/654dc42503b4a52b5009b4a6096ea229e6a922bd))
+* **deps:** update dependency @shadergradient/react to v2.0.24 ([#304](https://github.com/zenobi-us/zenobi-us/issues/304)) ([29fc6df](https://github.com/zenobi-us/zenobi-us/commit/29fc6df0a59200532198277a62cdb9b50d586024))
+* **deps:** update dependency autoprefixer to v10.4.21 ([#273](https://github.com/zenobi-us/zenobi-us/issues/273)) ([e084942](https://github.com/zenobi-us/zenobi-us/commit/e084942ad7451ebad3ac50ece8284f20f198fdba))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.5 ([#274](https://github.com/zenobi-us/zenobi-us/issues/274)) ([808b20d](https://github.com/zenobi-us/zenobi-us/commit/808b20dc17ed987a4d3dfc5db2682adab32454e0))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.6 ([#287](https://github.com/zenobi-us/zenobi-us/issues/287)) ([3750758](https://github.com/zenobi-us/zenobi-us/commit/37507585e0962bb8fa8d5861ab372bebff2015ba))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.8.7 ([#292](https://github.com/zenobi-us/zenobi-us/issues/292)) ([bc3e49f](https://github.com/zenobi-us/zenobi-us/commit/bc3e49ff2472047e9c5c79c6f8487cea38e43602))
+* **deps:** update dependency eslint-import-resolver-typescript to v3.9.0 ([#303](https://github.com/zenobi-us/zenobi-us/issues/303)) ([0d833f9](https://github.com/zenobi-us/zenobi-us/commit/0d833f99484b704ddafb6a003b0a7569a75c490b))
+* **deps:** update dependency lucide-react to ^0.482.0 ([#298](https://github.com/zenobi-us/zenobi-us/issues/298)) ([fcb8300](https://github.com/zenobi-us/zenobi-us/commit/fcb83001480a3143e8c7506ea6e5a38f3b4b15b4))
+* **deps:** update dependency rehype-pretty-code to v0.14.1 ([#296](https://github.com/zenobi-us/zenobi-us/issues/296)) ([04de82d](https://github.com/zenobi-us/zenobi-us/commit/04de82d2af7f07745fff22c1a0eece9d85cc70fa))
+* **deps:** update dependency renovate to v39.196.0 ([#282](https://github.com/zenobi-us/zenobi-us/issues/282)) ([af7e101](https://github.com/zenobi-us/zenobi-us/commit/af7e1017f8aecea35f630e15a7bfd406f45dd325))
+* **deps:** update dependency renovate to v39.199.0 ([#286](https://github.com/zenobi-us/zenobi-us/issues/286)) ([3fb6e2d](https://github.com/zenobi-us/zenobi-us/commit/3fb6e2d1a04e3d0e7193d2a1fda4f8352a5ca782))
+* **deps:** update dependency renovate to v39.199.1 ([#288](https://github.com/zenobi-us/zenobi-us/issues/288)) ([81e63e2](https://github.com/zenobi-us/zenobi-us/commit/81e63e24c1ae408979be7e4f9a0a38fae67e8301))
+* **deps:** update dependency renovate to v39.200.0 ([#289](https://github.com/zenobi-us/zenobi-us/issues/289)) ([1bb02b9](https://github.com/zenobi-us/zenobi-us/commit/1bb02b90cc78529b64660c921c58ada9d09ff84f))
+* **deps:** update dependency renovate to v39.200.1 ([#291](https://github.com/zenobi-us/zenobi-us/issues/291)) ([823137d](https://github.com/zenobi-us/zenobi-us/commit/823137d1525b382846881c502fcda6c7b471f2de))
+* **deps:** update dependency renovate to v39.200.3 ([#295](https://github.com/zenobi-us/zenobi-us/issues/295)) ([4908c8f](https://github.com/zenobi-us/zenobi-us/commit/4908c8f4c213576eca1cb329575859c6d0947c2e))
+* **deps:** update dependency renovate to v39.200.4 ([#297](https://github.com/zenobi-us/zenobi-us/issues/297)) ([9a00a79](https://github.com/zenobi-us/zenobi-us/commit/9a00a795b167615b9bf311a7f33815d98722daae))
+* **deps:** update dependency renovate to v39.202.0 ([#299](https://github.com/zenobi-us/zenobi-us/issues/299)) ([1428e7d](https://github.com/zenobi-us/zenobi-us/commit/1428e7dbdd3c0872ffac14d04a927196ea5818d8))
+* **deps:** update dependency safe-routes to v1.0.10 ([#275](https://github.com/zenobi-us/zenobi-us/issues/275)) ([6785805](https://github.com/zenobi-us/zenobi-us/commit/67858057521d7e514e6cd01392f9f93d4e36bdf3))
+* **deps:** update dependency syncpack to v13.0.3 ([#276](https://github.com/zenobi-us/zenobi-us/issues/276)) ([24ee0dd](https://github.com/zenobi-us/zenobi-us/commit/24ee0dd17e8116593dfe3d235277e50b76855d36))
+* **deps:** update dependency vite to v6.2.1 ([#277](https://github.com/zenobi-us/zenobi-us/issues/277)) ([222b886](https://github.com/zenobi-us/zenobi-us/commit/222b8864bf41a37e0bcc23a092f5745696b3d1bd))
+* **deps:** update dependency vite to v6.2.2 ([#294](https://github.com/zenobi-us/zenobi-us/issues/294)) ([41f5809](https://github.com/zenobi-us/zenobi-us/commit/41f5809378689b71b21a7c40e617ce0857706a99))
+* **deps:** update dependency wrangler to v3.114.1 ([#283](https://github.com/zenobi-us/zenobi-us/issues/283)) ([901a6a4](https://github.com/zenobi-us/zenobi-us/commit/901a6a49d5789c3078f6eeddbae0063e24b18da9))
+* **deps:** update eslint monorepo to v9.22.0 ([#284](https://github.com/zenobi-us/zenobi-us/issues/284)) ([3575c2b](https://github.com/zenobi-us/zenobi-us/commit/3575c2bf421b3e799758d851cf822fd7dfd4a6c5))
+* **deps:** update playwright monorepo to v1.51.0 ([#285](https://github.com/zenobi-us/zenobi-us/issues/285)) ([019f07c](https://github.com/zenobi-us/zenobi-us/commit/019f07c7ac2116bbbb3d70c09baeeb69167dfb3a))
+* **deps:** update storybook monorepo to v8.6.4 ([#278](https://github.com/zenobi-us/zenobi-us/issues/278)) ([4ef5eea](https://github.com/zenobi-us/zenobi-us/commit/4ef5eea386e1678ed868b672545f978b67012217))
+* **deps:** update storybook monorepo to v8.6.5 ([#301](https://github.com/zenobi-us/zenobi-us/issues/301)) ([f24aaf4](https://github.com/zenobi-us/zenobi-us/commit/f24aaf4f9688118c19f27c44b7a3ac24f01b0288))
+* **deps:** update storybook monorepo to v8.6.6 ([#302](https://github.com/zenobi-us/zenobi-us/issues/302)) ([1cb85f4](https://github.com/zenobi-us/zenobi-us/commit/1cb85f420e98e8df409dee7974b23effb4f72497))
+* **deps:** update typescript-eslint monorepo to v8.26.1 ([#279](https://github.com/zenobi-us/zenobi-us/issues/279)) ([44c6812](https://github.com/zenobi-us/zenobi-us/commit/44c68120b1f75815b9cd627ca0bebaedce923446))
+
 ## [1.0.13](https://github.com/zenobi-us/zenobi-us/compare/v1.0.12...v1.0.13) (2025-03-05)
 
 
