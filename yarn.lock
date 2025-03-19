@@ -1984,9 +1984,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-en-au@npm:^1.0.21":
-  version: 1.0.24
-  resolution: "@cspell/dict-en-au@npm:1.0.24"
-  checksum: 10c0/2efc4acacbbd0ae93f7fec3102db0f4d280b677f299bd96a01aaf78b0392fb3fbccfd78df7382d4c74e7f9d831e75065d551f2c9795452e6a929da879877d02c
+  version: 1.0.25
+  resolution: "@cspell/dict-en-au@npm:1.0.25"
+  checksum: 10c0/c6ff8b46d7fc36bf211c45b95ec6c930cd93843034a02de37097b3baa1d4a244bb3df1d785de7d41e6651ce78c96a3fe575687590f7301b709b586bf780c7aac
   languageName: node
   linkType: hard
 
