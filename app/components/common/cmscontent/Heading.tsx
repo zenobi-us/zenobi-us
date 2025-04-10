@@ -54,7 +54,7 @@ export function Heading({
   ...props
 }: HeadingProps) {
   const styles = Styles();
-  const iconRef = useRef<HTMLSpanElement>();
+  const iconRef = useRef<HTMLSpanElement>(null);
   const childrenIsString = typeof children === 'string';
 
   const titleText = useMemo(() => {

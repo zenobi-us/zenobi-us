@@ -2,7 +2,7 @@ import { defineCollection, defineConfig } from '@content-collections/core';
 import { compileMDX } from '@content-collections/mdx';
 import lodash from 'lodash';
 import fs from 'fs';
-import { join } from 'path';
+import { join, dirname, resolve } from 'path';
 import match from 'micromatch';
 
 import { mdxOptions } from './app/services/Content/mdx';
@@ -110,7 +110,9 @@ const me = normalisedCollection(
           isDocumentWithContent(document),
           `[${document._meta.filePath}] Document has no content`
         );
-        const mdx = await compileMDX(context, document, mdxOptions());
+        const mdx = await compileMDX(context, document, mdxOptions({
+          cwd: resolve(dirname(document._meta.filePath))
+        }));
         const date = getDocumentDate(document);
         return {
           ...document,
@@ -150,7 +152,10 @@ const siteData = normalisedCollection(
           isDocumentWithContent(document),
           `[${document._meta.filePath}] Document has no content`
         );
-        const mdx = await compileMDX(context, document, mdxOptions());
+
+        const mdx = await compileMDX(context, document, mdxOptions({
+          cwd: resolve(dirname(document._meta.filePath))
+        }));
 
         const date = getDocumentDate(document);
         return {
@@ -192,7 +197,9 @@ const help = normalisedCollection(
           isDocumentWithContent(document),
           `[${document._meta.filePath}] Document has no content`
         );
-        const mdx = await compileMDX(context, document, mdxOptions());
+        const mdx = await compileMDX(context, document, mdxOptions({
+          cwd: resolve(dirname(document._meta.filePath))
+        }));
         const date = getDocumentDate(document);
         const tags = document.tags || [];
         return {
@@ -242,7 +249,9 @@ const posts = normalisedCollection(
           isDocumentWithContent(document),
           `[${document._meta.filePath}] Document has no content`
         );
-        const mdx = await compileMDX(context, document, mdxOptions());
+        const mdx = await compileMDX(context, document, mdxOptions({
+          cwd: resolve(dirname(document._meta.filePath))
+        }));
         const date = getDocumentDate(document);
         return {
           ...document,

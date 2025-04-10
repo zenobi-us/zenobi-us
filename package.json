@@ -95,6 +95,7 @@
     "react-pdf-html": "^2.1.2",
     "react-shaders": "^0.0.4",
     "react-use": "^17.5.1",
+    "rehype-mdx-import-media": "^1.2.0",
     "rehype-parse": "^9.0.1",
     "rehype-pretty-code": "^0.14.0",
     "remark": "^15.0.1",

@@ -8,6 +8,7 @@ import {
   transformerNotationWordHighlight,
 } from '@shikijs/transformers';
 import { rehypePrettyCode } from 'rehype-pretty-code';
+import rehypeMdxImportMedia from 'rehype-mdx-import-media'
 import remarkSupersub from 'remark-supersub';
 import remarkHeadingId from 'remark-heading-id';
 import remarkSectionize from 'remark-sectionize';
@@ -35,6 +36,7 @@ export const rehypeOptions: Options['rehypePlugins'] = [
         transformerNotationErrorLevel(),
       ],
     },
+    rehypeMdxImportMedia,
   ],
 ];
 
