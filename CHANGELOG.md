@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.15](https://github.com/zenobi-us/zenobi-us/compare/v1.0.14...v1.0.15) (2025-04-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/react to v19.1.1 ([#429](https://github.com/zenobi-us/zenobi-us/issues/429)) ([4f1e57e](https://github.com/zenobi-us/zenobi-us/commit/4f1e57edab4b04d196d3822a7c8b85a8534f98e6))
+* **deps:** update dependency dotenv to v16.5.0 ([#427](https://github.com/zenobi-us/zenobi-us/issues/427)) ([f10639d](https://github.com/zenobi-us/zenobi-us/commit/f10639d9d2451509b148f178042d93c3c65140ed))
+* **deps:** update dependency renovate to v39.238.2 ([#430](https://github.com/zenobi-us/zenobi-us/issues/430)) ([cdfadcb](https://github.com/zenobi-us/zenobi-us/commit/cdfadcbf67f6ef084ef1e44c5685f42d576b29a4))
+* **deps:** update dependency safe-routes to v1.0.12 ([#431](https://github.com/zenobi-us/zenobi-us/issues/431)) ([618789e](https://github.com/zenobi-us/zenobi-us/commit/618789e7482faa65cc110e4ce6f8e71125d27a4c))
+* **deps:** update dependency vite to v6.2.6 ([#424](https://github.com/zenobi-us/zenobi-us/issues/424)) ([43be5fc](https://github.com/zenobi-us/zenobi-us/commit/43be5fc9976e7060dfdcc6847537694ec9564ed1))
+
 ## [1.0.14](https://github.com/zenobi-us/zenobi-us/compare/v1.0.13...v1.0.14) (2025-04-09)
 
 
