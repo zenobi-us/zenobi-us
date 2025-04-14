@@ -133,7 +133,7 @@
     "wrangler": "^3.99.0",
     "zod-config": "^0.1.1"
   },
-  "packageManager": "yarn@4.9.0",
+  "packageManager": "yarn@4.9.1",
   "private": true,
   "resolutions": {
     "cookie": "^1.0.0"
