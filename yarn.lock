@@ -18067,15 +18067,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nconf@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "nconf@npm:0.12.1"
+"nconf@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "nconf@npm:0.13.0"
   dependencies:
     async: "npm:^3.0.0"
     ini: "npm:^2.0.0"
     secure-keys: "npm:^1.0.0"
     yargs: "npm:^16.1.1"
-  checksum: 10c0/54b4ce7ce55c38f39ec5e8b21da6099183b4376f3bb7a94f9b74aa69aa5092e855480c05e6cca77751e2060433d8f1e17d654f8b9953f514196530171d34e18c
+  checksum: 10c0/546c55fa7f6b02fc4f100457dda9bb2920dc8a74bf1b1be794c919efcab709f2fb2de61ede65ef9d69692062480676f8e66e1d0f92498b518429d5310a23ebf1
   languageName: node
   linkType: hard
 
@@ -24766,7 +24766,7 @@ __metadata:
     lucide-react: "npm:^0.488.0"
     micromatch: "npm:^4.0.8"
     mitt: "npm:^3.0.1"
-    nconf: "npm:^0.12.1"
+    nconf: "npm:^0.13.0"
     node-html-parser: "npm:^6.1.13"
     playwright: "npm:^1.49.1"
     postcss: "npm:^8.4.47"

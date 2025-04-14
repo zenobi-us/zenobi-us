@@ -79,7 +79,7 @@
     "lucide-react": "^0.488.0",
     "micromatch": "^4.0.8",
     "mitt": "^3.0.1",
-    "nconf": "^0.12.1",
+    "nconf": "^0.13.0",
     "node-html-parser": "^6.1.13",
     "playwright": "^1.49.1",
     "postcss": "^8.4.47",
