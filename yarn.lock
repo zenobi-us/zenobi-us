@@ -20676,8 +20676,8 @@ __metadata:
   linkType: hard
 
 "renovate@npm:^39.165.1":
-  version: 39.240.1
-  resolution: "renovate@npm:39.240.1"
+  version: 39.241.2
+  resolution: "renovate@npm:39.241.2"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.777.0"
     "@aws-sdk/client-ec2": "npm:3.779.0"
@@ -20804,7 +20804,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10c0/ee05dfbd7de5eff272e81ee00560365cd20e549d78c487f3ea2a7e8efae6b12c63f1135ab1e8ac34ae7c6726986523b5f758261e40efe6287804eb3eb86e84a6
+  checksum: 10c0/c547a0f32b8df3d5f18b4ab5fb69d82da30fa36a5c7e092810a8f5f379f6014fbe5f03c2b8b34e57f029e6597abc4941aee2aa1dca522a377cfe1ef43f708275
   languageName: node
   linkType: hard
 
