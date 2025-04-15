@@ -4352,7 +4352,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/core@npm:2.0.0":
+"@opentelemetry/core@npm:2.0.0, @opentelemetry/core@npm:^2.0.0":
   version: 2.0.0
   resolution: "@opentelemetry/core@npm:2.0.0"
   dependencies:
@@ -4449,7 +4449,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/resources@npm:2.0.0":
+"@opentelemetry/resource-detector-aws@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@opentelemetry/resource-detector-aws@npm:2.0.0"
+  dependencies:
+    "@opentelemetry/core": "npm:^2.0.0"
+    "@opentelemetry/resources": "npm:^2.0.0"
+    "@opentelemetry/semantic-conventions": "npm:^1.27.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: 10c0/07b5d383bfb539497e5c9ce336e07b2f2b0d900ea2a0b907c026192e95a644b37a2000f3905feaaa862918f952f5d93bccfdd4353e3a00ecf3c6598b40bf7345
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/resource-detector-azure@npm:0.7.0":
+  version: 0.7.0
+  resolution: "@opentelemetry/resource-detector-azure@npm:0.7.0"
+  dependencies:
+    "@opentelemetry/core": "npm:^2.0.0"
+    "@opentelemetry/resources": "npm:^2.0.0"
+    "@opentelemetry/semantic-conventions": "npm:^1.27.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: 10c0/00244a9eee3a57e37f4bb3ad2012127d2e020a101a224d11e2b761fe80a626d4c124c7a63d97f6b91354f838315b511fd7284486d553dd94810d444dfaf2e086
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/resource-detector-gcp@npm:0.34.0":
+  version: 0.34.0
+  resolution: "@opentelemetry/resource-detector-gcp@npm:0.34.0"
+  dependencies:
+    "@opentelemetry/core": "npm:^2.0.0"
+    "@opentelemetry/resources": "npm:^2.0.0"
+    "@opentelemetry/semantic-conventions": "npm:^1.27.0"
+    gcp-metadata: "npm:^6.0.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: 10c0/0b55e191033ba229c5ccba0a7407e8c023b2955630b4d1a2125373cd3e39da63ada2e31da5d5bdd29540f7055aae41068349e035cd19f0da206917276201086c
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/resource-detector-github@npm:0.31.0":
+  version: 0.31.0
+  resolution: "@opentelemetry/resource-detector-github@npm:0.31.0"
+  dependencies:
+    "@opentelemetry/resources": "npm:^2.0.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: 10c0/adecc840f8544bcd3aa6a826284cc81bcab0e33907e8cffb36cd931842385e3f8161b7715dc46e4788175af6fa3b9dee2b6648040f023a7d48852a2e456d5640
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/resources@npm:2.0.0, @opentelemetry/resources@npm:^2.0.0":
   version: 2.0.0
   resolution: "@opentelemetry/resources@npm:2.0.0"
   dependencies:
@@ -4516,6 +4567,13 @@ __metadata:
   version: 1.30.0
   resolution: "@opentelemetry/semantic-conventions@npm:1.30.0"
   checksum: 10c0/0bf99552e3b4b7e8b7eb504b678d52f59c6f259df88e740a2011a0d858e523d36fee86047ae1b7f45849c77f00f970c3059ba58e0a06a7d47d6f01dbe8c455bd
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/semantic-conventions@npm:^1.27.0":
+  version: 1.32.0
+  resolution: "@opentelemetry/semantic-conventions@npm:1.32.0"
+  checksum: 10c0/977c93225490f2456e8bb13b90a8627861207eb5eb4771d7565c2321be883ec711c1701485451f9e10b8d2a724525496c0e4441b43190a7a550bcf7c73f681cd
   languageName: node
   linkType: hard
 
@@ -12973,7 +13031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gcp-metadata@npm:^6.1.0":
+"gcp-metadata@npm:^6.0.0, gcp-metadata@npm:^6.1.0":
   version: 6.1.1
   resolution: "gcp-metadata@npm:6.1.1"
   dependencies:
@@ -13145,22 +13203,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-up@npm:^8.0.0":
-  version: 8.1.0
-  resolution: "git-up@npm:8.1.0"
+"git-up@npm:^8.1.0":
+  version: 8.1.1
+  resolution: "git-up@npm:8.1.1"
   dependencies:
     is-ssh: "npm:^1.4.0"
     parse-url: "npm:^9.2.0"
-  checksum: 10c0/9b8565b40ef6183daea0a94607abfdd793744f53125d6379d9abfeac3ed619efc4ebdf2eb1581880901e59e548ba634c157eb9b3ffc2339bf92d242f41157d70
+  checksum: 10c0/2cc4461d8565a3f7a1ecd3d262a58ddb8df0a67f7f7d4915df2913c460b2e88ae570a6ea810700a6d22fb3b9e4bea8dd10a8eb469900ddc12e35c62208608c03
   languageName: node
   linkType: hard
 
-"git-url-parse@npm:16.0.1":
-  version: 16.0.1
-  resolution: "git-url-parse@npm:16.0.1"
+"git-url-parse@npm:16.1.0":
+  version: 16.1.0
+  resolution: "git-url-parse@npm:16.1.0"
   dependencies:
-    git-up: "npm:^8.0.0"
-  checksum: 10c0/bef681b3726c730a3efb599d38ab6affbb13e5e85269fc9c35831ddfe0d195e6a29098c79c8faa63ccd8503ace54c2c4b01a73122af3b66c2ce11f4692b3ef19
+    git-up: "npm:^8.1.0"
+  checksum: 10c0/b8f5ebcbd5b2baf9f1bb77a217376f0247c47fe1d42811ccaac3015768eebb0759a59051f758e50e70adf5c67ae059d1975bf6b750164f36bfd39138d11b940b
   languageName: node
   linkType: hard
 
@@ -20676,8 +20734,8 @@ __metadata:
   linkType: hard
 
 "renovate@npm:^39.165.1":
-  version: 39.243.0
-  resolution: "renovate@npm:39.243.0"
+  version: 39.244.0
+  resolution: "renovate@npm:39.244.0"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.777.0"
     "@aws-sdk/client-ec2": "npm:3.779.0"
@@ -20695,6 +20753,10 @@ __metadata:
     "@opentelemetry/instrumentation": "npm:0.200.0"
     "@opentelemetry/instrumentation-bunyan": "npm:0.46.0"
     "@opentelemetry/instrumentation-http": "npm:0.200.0"
+    "@opentelemetry/resource-detector-aws": "npm:2.0.0"
+    "@opentelemetry/resource-detector-azure": "npm:0.7.0"
+    "@opentelemetry/resource-detector-gcp": "npm:0.34.0"
+    "@opentelemetry/resource-detector-github": "npm:0.31.0"
     "@opentelemetry/resources": "npm:2.0.0"
     "@opentelemetry/sdk-trace-base": "npm:2.0.0"
     "@opentelemetry/sdk-trace-node": "npm:2.0.0"
@@ -20738,7 +20800,7 @@ __metadata:
     find-packages: "npm:10.0.4"
     find-up: "npm:5.0.0"
     fs-extra: "npm:11.3.0"
-    git-url-parse: "npm:16.0.1"
+    git-url-parse: "npm:16.1.0"
     github-url-from-git: "npm:1.5.0"
     glob: "npm:11.0.1"
     global-agent: "npm:3.0.0"
@@ -20804,7 +20866,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10c0/835004e03ea6ab267240223b08bb65f43de4fdcab7dbc27bfcc9d13a55b0efe2a58e6a4ece987d5d00a3dffd2bbdf08ea11eadc6e91b51b20d3bb142e847b1ed
+  checksum: 10c0/630a4e4322cd05bc599ef60f283445d130d004b6a5fb0495dd47381d8204dcfae7509b1134b9c620899ad1c5a75c8b00708a63a4b0d6b70e62bc5204d937c8b4
   languageName: node
   linkType: hard
 
