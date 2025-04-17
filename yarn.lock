@@ -4563,17 +4563,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/semantic-conventions@npm:1.31.0, @opentelemetry/semantic-conventions@npm:^1.29.0":
-  version: 1.31.0
-  resolution: "@opentelemetry/semantic-conventions@npm:1.31.0"
-  checksum: 10c0/a21e250d14565c86b7f53378149765425371486516485721e1c64fc24aead71659d60a25ea6796d32d23bbcb6931e760f0ac3aac14a0cae15d19e106523147f7
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/semantic-conventions@npm:^1.27.0":
+"@opentelemetry/semantic-conventions@npm:1.32.0, @opentelemetry/semantic-conventions@npm:^1.27.0":
   version: 1.32.0
   resolution: "@opentelemetry/semantic-conventions@npm:1.32.0"
   checksum: 10c0/977c93225490f2456e8bb13b90a8627861207eb5eb4771d7565c2321be883ec711c1701485451f9e10b8d2a724525496c0e4441b43190a7a550bcf7c73f681cd
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/semantic-conventions@npm:^1.29.0":
+  version: 1.31.0
+  resolution: "@opentelemetry/semantic-conventions@npm:1.31.0"
+  checksum: 10c0/a21e250d14565c86b7f53378149765425371486516485721e1c64fc24aead71659d60a25ea6796d32d23bbcb6931e760f0ac3aac14a0cae15d19e106523147f7
   languageName: node
   linkType: hard
 
@@ -20874,8 +20874,8 @@ __metadata:
   linkType: hard
 
 "renovate@npm:^39.165.1":
-  version: 39.250.0
-  resolution: "renovate@npm:39.250.0"
+  version: 39.250.3
+  resolution: "renovate@npm:39.250.3"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.777.0"
     "@aws-sdk/client-ec2": "npm:3.779.0"
@@ -20900,7 +20900,7 @@ __metadata:
     "@opentelemetry/resources": "npm:2.0.0"
     "@opentelemetry/sdk-trace-base": "npm:2.0.0"
     "@opentelemetry/sdk-trace-node": "npm:2.0.0"
-    "@opentelemetry/semantic-conventions": "npm:1.31.0"
+    "@opentelemetry/semantic-conventions": "npm:1.32.0"
     "@pnpm/parse-overrides": "npm:1000.0.2"
     "@qnighy/marshal": "npm:0.1.3"
     "@renovatebot/detect-tools": "npm:1.1.0"
@@ -21006,7 +21006,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10c0/716e421ab98d935fb3b40aa2cd3d391e7567e6f8e2f2071de02a4fa7e4992399978422eb5599aa21c38e6ebb4c74803561a16d2c4dc2c58e9c0452e677b7ab9b
+  checksum: 10c0/5509515f1c3a2268ffd2688f15ed02b48de4c36554298518a944afb031fec5948a44d029acae87b6b981a61b68be27589cc0cf0e41255bf9301b9276a79993cb
   languageName: node
   linkType: hard
 
