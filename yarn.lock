@@ -16207,12 +16207,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.501.0":
-  version: 0.501.0
-  resolution: "lucide-react@npm:0.501.0"
+"lucide-react@npm:^0.502.0":
+  version: 0.502.0
+  resolution: "lucide-react@npm:0.502.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/c684c81bba746c4371ff1758c9d7dcff75809bf35c8a7ec6e07fb2cf429f3bf212adab06630904b67b0f7fe2254b2cee58354ef71f62ea5139b63fdecb45f9a8
+  checksum: 10c0/e253d1217379fd90ad36bc1a524f635ae1f2e9f011cf6b4822ebfbf78d26f26d1598735079c2bd5e6a69763869042550f7af45f4339cf1896730493bdaac440f
   languageName: node
   linkType: hard
 
@@ -25148,7 +25148,7 @@ __metadata:
     jest: "npm:^29.7.0"
     linq-functional: "npm:^1.0.2"
     lodash-es: "npm:^4.17.21"
-    lucide-react: "npm:^0.501.0"
+    lucide-react: "npm:^0.502.0"
     micromatch: "npm:^4.0.8"
     mitt: "npm:^3.0.1"
     nconf: "npm:^0.13.0"
