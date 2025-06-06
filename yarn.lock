@@ -10364,11 +10364,11 @@ __metadata:
   linkType: hard
 
 "cobe@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "cobe@npm:0.6.3"
+  version: 0.6.4
+  resolution: "cobe@npm:0.6.4"
   dependencies:
     phenomenon: "npm:^1.6.0"
-  checksum: 10c0/ffb647d5fe3706534b896cb48594dcaae9dfbd97d35a408f084f4b8ad11d1cbb3583977371670d05d518e67e38ef88fb24c843d191fd49c03e576a4a9d81cf63
+  checksum: 10c0/232a284b294824253f1aa29bbf05ea58a5a11c4db3b20a9cc50717c614ab84ad0e6ef089a70218ee260388a305dab7dbc42f5ace69e8039ae40a24ad32dfff30
   languageName: node
   linkType: hard
 
