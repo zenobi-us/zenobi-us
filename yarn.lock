@@ -1775,11 +1775,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@content-collections/core@npm:^0.8.0":
-  version: 0.8.2
-  resolution: "@content-collections/core@npm:0.8.2"
+"@content-collections/core@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@content-collections/core@npm:0.9.0"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
+    "@standard-schema/spec": "npm:^1.0.0"
     camelcase: "npm:^8.0.0"
     esbuild: "npm:^0.25.0"
     gray-matter: "npm:^4.0.3"
@@ -1789,10 +1790,10 @@ __metadata:
     serialize-javascript: "npm:^6.0.2"
     tinyglobby: "npm:^0.2.5"
     yaml: "npm:^2.4.5"
-    zod: "npm:^3.23.8"
+    zod: "npm:^3.24.4"
   peerDependencies:
     typescript: ^5.0.2
-  checksum: 10c0/976f7b402a8b150e1cdfa91bd511ff568ddd6ee34c4e7908170c9ae9ccf2cbfe40fb6df96c6df4abbfd19be18f3f1de1831c871ae4fc640cf74548037bd3d066
+  checksum: 10c0/9fdfb617d128fa2d60f7d0b3e3421b2cde790f28c0732f884816405b23a40a47f3187e4ab5df70d432da59cc33338629af7eda3957fd5dac8e9699461e07dee3
   languageName: node
   linkType: hard
 
@@ -25454,7 +25455,7 @@ __metadata:
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "npm:^1.0.2"
     "@chromatic-com/storybook": "npm:^3.0.0"
     "@content-collections/cli": "npm:^0.1.6"
-    "@content-collections/core": "npm:^0.8.0"
+    "@content-collections/core": "npm:^0.9.0"
     "@content-collections/mdx": "npm:^0.2.0"
     "@content-collections/remix-vite": "npm:^0.2.0"
     "@cspell/dict-en-au": "npm:^1.0.21"
@@ -25617,10 +25618,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.23.0, zod@npm:^3.23.8":
+"zod@npm:^3.23.0":
   version: 3.24.2
   resolution: "zod@npm:3.24.2"
   checksum: 10c0/c638c7220150847f13ad90635b3e7d0321b36cce36f3fc6050ed960689594c949c326dfe2c6fa87c14b126ee5d370ccdebd6efb304f41ef5557a4aaca2824565
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.24.4":
+  version: 3.25.52
+  resolution: "zod@npm:3.25.52"
+  checksum: 10c0/65d3038e6f501c88e6254d158e9b02088c074d432e66bf36d5c731c28adf100f4bdefd2f702ffd4c022bf13988d266cf1b110c0e711a81e148cddacddf3bec6e
   languageName: node
   linkType: hard
 
