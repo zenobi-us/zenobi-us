@@ -24450,13 +24450,13 @@ __metadata:
   linkType: hard
 
 "vite-plugin-glsl@npm:^1.3.1":
-  version: 1.4.1
-  resolution: "vite-plugin-glsl@npm:1.4.1"
+  version: 1.4.2
+  resolution: "vite-plugin-glsl@npm:1.4.2"
   dependencies:
     "@rollup/pluginutils": "npm:^5.1.4"
   peerDependencies:
     vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
-  checksum: 10c0/89a6641a1a7578fc711091ec045637964e1dc1a9cc8594a63d3f8719b4d926ebae7b07fa9c7e786d077ec199fbe79dcdb30d4c0af233e07aeadfb52ebdae10ac
+  checksum: 10c0/564fadc4fa5146c2215b7306f8a4c52dc0491d9aa2252eeec75b566e1f8ddee9e7953bbbb783827167b0d6dbd66e7dc8e1e3f0006c317c9d5b1faa11f462595e
   languageName: node
   linkType: hard
 
