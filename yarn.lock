@@ -1822,12 +1822,12 @@ __metadata:
   linkType: hard
 
 "@content-collections/remix-vite@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@content-collections/remix-vite@npm:0.2.0"
+  version: 0.2.2
+  resolution: "@content-collections/remix-vite@npm:0.2.2"
   peerDependencies:
     "@content-collections/core": ^0.x
-    vite: ^5
-  checksum: 10c0/882d5094ec90207329038fd8817d96e8712e4486000978ca9cdb1479285e3d91e84559945a8237ba7dc2b1ffaadd018f5f2b6008f030c1908482ed8b639cf3ba
+    vite: ^5 || ^6 || ^7
+  checksum: 10c0/ef217bc19b71eef6240ce3f844f2691189deb872fcf4b1e0bec7bd7c6ea84a2edef405f7cf27382938e92cd1d7eea7d388c756d9bc55fdc8c93c6d5503cc703f
   languageName: node
   linkType: hard
 
