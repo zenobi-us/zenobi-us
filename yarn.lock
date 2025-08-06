@@ -3448,9 +3448,9 @@ __metadata:
   linkType: hard
 
 "@fontsource-variable/open-sans@npm:^5.1.0":
-  version: 5.2.5
-  resolution: "@fontsource-variable/open-sans@npm:5.2.5"
-  checksum: 10c0/733901c16cf7e9f862ed1fd1bdb684416d44ae2c38691b4037bf7827f76724fda60a2a6bd2472b4233d8f6984b9e6523ff169ae292e3773e466d191c18151e0e
+  version: 5.2.6
+  resolution: "@fontsource-variable/open-sans@npm:5.2.6"
+  checksum: 10c0/8091653f671264a70e67a2923af90d3c3a5e77cfbd3e95a7e77e89b33658fe360b8d28ca1234f004443c89182870460c5ad79a391645cbfcd199a6e4d0811d69
   languageName: node
   linkType: hard
 
@@ -3462,9 +3462,9 @@ __metadata:
   linkType: hard
 
 "@fontsource-variable/roboto-slab@npm:^5.1.0":
-  version: 5.2.5
-  resolution: "@fontsource-variable/roboto-slab@npm:5.2.5"
-  checksum: 10c0/a0b44566e961a6b3d5b3f336ee4ee7d301dabf3866cfbe4c9a7d041d3a93e2922e9bb27f083a2161510d392155cf6a2169f318fabba2b7d7c58b6ff4432ec068
+  version: 5.2.6
+  resolution: "@fontsource-variable/roboto-slab@npm:5.2.6"
+  checksum: 10c0/e49fa3192598c24231327237356fe53718688ba06138713447018483d41d055ee5200eb5831e5ad32551ee655fbd9b5f31d18da7946ac36f9b504799b3ba42d6
   languageName: node
   linkType: hard
 
