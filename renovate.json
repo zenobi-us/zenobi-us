@@ -26,6 +26,8 @@
   "prHourlyLimit": 0,
   "vulnerabilityAlerts": {
     "enabled": true,
-    "major": false
+    "major": {
+      "enabled": false
+    }
   }
 }
