@@ -6792,11 +6792,12 @@ __metadata:
   linkType: hard
 
 "@shadergradient/react@npm:^2.0.15":
-  version: 2.1.3
-  resolution: "@shadergradient/react@npm:2.1.3"
+  version: 2.3.2
+  resolution: "@shadergradient/react@npm:2.3.2"
   peerDependencies:
-    react: "*"
-  checksum: 10c0/2099821f4274b39965b185a7ec7ee59b3b43c71823f806ec6e51f3d5b5bc71da1497f58d12106dbdfce89ca0097bcdce02734d92014b40c88cbed20de1f60789
+    react: ^18.2.0 || ^19.0.0
+    react-dom: ^18.2.0 || ^19.0.0
+  checksum: 10c0/031c9692520671ec11fb77961c86def1ae6551a0ae1f90275f080552c24c9215bb672938f934cc2bb38a003435dca62b702585e3625a27cb0285d2b1647f4327
   languageName: node
   linkType: hard
 
