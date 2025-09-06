@@ -1957,9 +1957,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@content-collections/core@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@content-collections/core@npm:0.10.0"
+"@content-collections/core@npm:^0.11.0":
+  version: 0.11.1
+  resolution: "@content-collections/core@npm:0.11.1"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     camelcase: "npm:^8.0.0"
@@ -1975,7 +1975,7 @@ __metadata:
     zod: "npm:^3.24.4"
   peerDependencies:
     typescript: ^5.0.2
-  checksum: 10c0/380928ff8b5e98e09d8f0eef37536bf5f616611a3812716b9d53fe1e1f36f0577fabd386cd22364d6a4190d80332684f1c4c08c872a53564bdb7b6f7b95d6439
+  checksum: 10c0/e253dcd14075ed48ec0eff846656d1d876b738d28ca3caec5a36ad887b248a58d00fcf27c91a7533531b52892a2ecd0969ca3f9a61c0858eb48853f1648691b4
   languageName: node
   linkType: hard
 
@@ -25705,7 +25705,7 @@ __metadata:
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "npm:^1.0.2"
     "@chromatic-com/storybook": "npm:^3.0.0"
     "@content-collections/cli": "npm:^0.1.6"
-    "@content-collections/core": "npm:^0.10.0"
+    "@content-collections/core": "npm:^0.11.0"
     "@content-collections/mdx": "npm:^0.2.0"
     "@content-collections/remix-vite": "npm:^0.2.0"
     "@cspell/dict-en-au": "npm:^1.0.21"
