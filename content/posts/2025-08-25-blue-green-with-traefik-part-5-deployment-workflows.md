@@ -1,16 +1,16 @@
 ---
 date: 2025-08-25
-title: "Blue Green with Traefik Part 5: Deployment Workflows and mise Integration"
-stage: draft
+title: "Blue Green with Traefik 5: Deployment Workflows"
+stage: published
 ---
 
 This post covers the practical deployment workflows that make the blue-green architecture from [Part 4](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture) usable day-to-day. If you haven't read the architecture post, I recommend starting there.
 
 Previous posts in this series:
-- [Part 1: Setting up libvirt Bridge Networking on Fedora](/posts/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
-- [Part 2: From libvirt to Proxmox Infrastructure as Code](/posts/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
-- [Part 3: Container Orchestration with mise Beyond Terraform](/posts/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
-- [Part 4: Dynamic Configuration Architecture](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture)
+- [Part 1: Setting up libvirt Bridge Networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
+- [Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
+- [Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
+- [Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)
 
 ## The Challenge
 
@@ -21,7 +21,7 @@ Having the blue-green architecture was great, but I needed practical workflows t
 - **Quick promotions**: Moving from preview to production
 - **Instant rollbacks**: No redeployment needed for rollbacks
 
-## The mise Task System for App Deployment
+## The Mise Task System for App Deployment
 
 The core deployment command handles the entire process:
 
@@ -61,7 +61,7 @@ mise env:deploy my-vm whoami dev
 
 This creates the Traefik configuration files and sets up the blue/green routing structure.
 
-### 2. Application Deployment (Creates Preview)
+### 2. Application Deployment (QA Testing)
 
 ```bash
 mise app:deploy my-vm whoami dev v1.2.0 compose.yml
@@ -73,26 +73,29 @@ Every deployment gets its own preview URL with the version in the hostname. This
 - **Stakeholder reviews**: Send specific version URLs for approval
 - **Debugging**: Keep problematic versions accessible for investigation
 
-### 3. Promotion to Inactive Slot (QA Testing)
+Here you can allow for "deployments to preview" from:
+
+- commits on PR branches
+- merges to main branches
+- manual triggers from CI/CD systems
+
+### 3. Promotion to Inactive Slot
 
 ```bash
-mise app:promote my-vm whoami dev v1.2.0
-# Test at: vnext-whoami.dev.example.com
+mise app:promote my-vm whoami dev v1.2.0 100%
 ```
 
-This copies the deployment to the inactive blue/green slot, allowing:
+This deployment takes the stack out of preview and promotes it to the inactive slot (blue or green).
 - **Production-like testing**: Same hostname pattern as production
 - **Integration testing**: Test with production-like routing
 - **Final validation**: Last check before going live
 
-### 4. Switch to Production (Blue-Green Flip)
+When a promotion occurs, the stack no longer has the preview hostname (`v1.2.0-whoami.dev.example.com`) but instead uses the same hostname as production `whoami.dev.example.com`.
 
-```bash
-mise env:switch my-vm whoami dev
-# Now live at: whoami.dev.example.com
-```
+When it's healthchecks pass, then any weight rules start applying and traffic begins arriving.
 
-This flips the Traefik weights to route traffic to the new version. The switch is atomic and typically completes in under a second.
+If it's healthchecks fail, then Traefik never routes traffic to it.
+
 
 ## Automatic Docker Network Connectivity
 
@@ -150,7 +153,7 @@ Rollback is as simple as switching again:
 
 ```bash
 # Current: Green slot active, Blue slot has previous version
-mise env:switch my-vm whoami dev
+mise env:rollback my-vm whoami dev
 # Result: Blue slot now active (rollback complete)
 
 # Check current status
@@ -184,6 +187,6 @@ This workflow system provides several key advantages:
 
 This workflow foundation enables powerful CI/CD integration and production monitoring. The next post covers:
 
-- **[Part 6: CI/CD Integration and Production Considerations](/posts/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - GitHub Actions integration, monitoring, and scaling considerations
+- **[Part 6: CI/CD Integration and Production Considerations](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - GitHub Actions integration, monitoring, and scaling considerations
 
 The mise integration transforms the blue-green architecture from a proof-of-concept into a production-ready deployment system that teams can use confidently every day.

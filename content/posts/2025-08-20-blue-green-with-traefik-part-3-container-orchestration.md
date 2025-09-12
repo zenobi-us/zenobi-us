@@ -1,10 +1,10 @@
 ---
 date: 2025-08-20
-title: "Blue Green with Traefik: Container Orchestration with mise Beyond Terraform"
+title: "Blue Green with Traefik 3: Container Orchestration"
 stage: published
 ---
 
-This is part 3 of my blue-green deployment journey. After setting up [Proxmox infrastructure with Terraform](/posts/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot), I needed to manage the actual application deployments and blue-green switching logic.
+This is part 3 of my blue-green deployment journey. After setting up [Proxmox infrastructure with Terraform](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot), I needed to manage the actual application deployments and blue-green switching logic.
 
 ## Container Orchestration Evolution
 
@@ -30,10 +30,8 @@ Here I aim to organise the deployment workflow into distinct phases:
   - Pushes the router configs to the running Traefik instance
 - **Application deployment**: `mise app:deploy context-name dev whoami v1.2.0`
   - Deploys containers with proper labels for preview URLs
-- **Application promotion**: `mise app:promote context-name whoami dev v1.2.0`
-  - Moves a deployment to the inactive blue/green slot
-- **Slot switching**: `mise env:switch context-name whoami dev`
-  - Flips traffic between blue and green slots
+- **Application promotion**: `mise app:promote context-name whoami dev v1.2.0 0.75`
+  - Moves a deployment to the inactive blue/green slot and applies routing weights to healthy stacks.
 - **Status checking**: `mise env:status context-name whoami dev`
   - Shows current active/inactive slots and deployments
 
@@ -56,7 +54,6 @@ The key insight was treating each deployment as a unique stack:
 
 1. **Preview deployments** get their own URL: `v1.2.0-whoami.dev.example.com`
 2. **Blue/green slots** share the main URL: `whoami.dev.example.com`
-3. **Inactive slot testing** via: `vnext-whoami.dev.example.com`
 
 **Stack Naming Convention:**
 
@@ -71,6 +68,6 @@ This ensures no naming conflicts and makes deployments easily identifiable.
 
 Now I had the orchestration system, but I needed the actual blue-green routing implementation. The remaining posts cover:
 
-- **[Part 4: Dynamic Configuration Architecture](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green routing setup
-- **[Part 5: Deployment Workflows and mise Integration](/posts/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Complete deployment workflows
-- **[Part 6: CI/CD Integration and Production Considerations](/posts/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - GitHub Actions and production lessons
+- **[Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green routing setup
+- **[Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Complete deployment workflows
+- **[Part 6: CI/CD Integration and Production Considerations](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - GitHub Actions and production lessons

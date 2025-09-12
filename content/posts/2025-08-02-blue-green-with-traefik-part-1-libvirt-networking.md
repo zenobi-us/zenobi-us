@@ -1,6 +1,6 @@
 ---
 date: 2025-08-02
-title: "Blue Green with Traefik: Setting up libvirt Bridge Networking on Fedora"
+title: "Blue Green with Traefik 1: LibVirtD"
 stage: published
 ---
 
@@ -10,66 +10,21 @@ This is part 1 of my blue-green deployment journey. I started by trying to set u
 
 I wanted to experiment with blue-green deployments, preview environments, and wildcard subdomains. This required setting up a VM that could be accessed from my host machine with proper DNS resolution.
 
-
-
 ```nomnoml
-#direction: right
-#background: transparent
-#fontSize: 11
-#stroke: #333
-#.compose: fill=#ffcdd2
-#.pr: fill=#ffcc99
-#.promoted: fill=#99ccff
-#.preview: fill=#fff9c4
-#.green: fill=#ccffcc
+#direction: down
+#edges: rounded
+#bendSize: 0.6
+#.promoted: stroke=hsl(var(--twc-text-positive))
 
-[<compose>compose.yml|VERSION: a3f7e8d|web: whoami:v1.11|api: fake-api-server:0.1.1] -> [Preview]
+[<frame>pr-125| compose.yml] -> [deploy] -> [<frame>preview(dev)|
+  [pr-125 | c5d8a1f]
+  [<promoted>pr-124 | d6e9b2c]
+  [pr-123 | b4c9f2e]
+]
 
-[<frame>Preview|
-    [<compose>PR-128
-        |VERSION: a3f7e8d
-        |web: whoami:v1.11
-        |url: a3f7e8d-whoami.dev.example.com
-    ]
-    [<pr>PR-127
-        |VERSION: b4c9f2e
-        |web: whoami:v1.10
-        |url: b4c9f2e-whoami.dev.example.com
-    ]
-    [<promoted>PR-125
-        |VERSION: c5d8a1f
-        |web: whoami:v1.09
-        |url: vnext-whoami.dev.example.com
-    ]
-    [<pr>PR-124
-        |VERSION: d6e9b2c
-        |web: whoami:v1.08
-        |url: d6e9b2c-whoami.dev.example.com
-    ]
-    [<green>PR-123
-        |VERSION: b4c9f2e
-        |web: whoami:v1.01
-        |url: whoami.dev.example.com
-    ]
-] -> [BlueGreen]
-
-[<frame>BlueGreen|
-  [<frame>Blue Slot|
-    [<promoted>compose.yml c5d8a1f
-        |web: whoami:v1.09
-        |web: vnext-whoami.dev.example.com
-        |api: fake-api-server:0.1.1
-        |api: api-vnext-whoami.dev.example.com
-    ]
-  ]
-  [<frame>Green Slot|
-    [<green>compose.yml b4c9f2e
-        |web: whoami:v1.01
-        |web: whoami.dev.example.com
-        |api: fake-api-server:0.1.1
-        |api: api.whoami.dev.example.com
-    ]
-  ]
+[preview(dev)] -> [<promoted>promote|10%] -> [<frame>bluegreen(dev)|
+  [<promoted>blue | d6e9b2c|app.dev.example.com|blue-app.dev.example.com|traffic: 10%]
+  [green | b4c9f2e|app.dev.example.com|green-app.dev.example.com|traffic: 90%]
 ]
 ```
 
@@ -234,8 +189,8 @@ The key insight: Modern Linux distributions expect you to work *with* their netw
 
 This libvirt setup was getting too complex for what I needed. The complete series covers:
 
-- **[Part 2: From libvirt to Proxmox Infrastructure as Code](/posts/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)** - Moving to Proxmox with Terraform
-- **[Part 3: Container Orchestration with mise Beyond Terraform](/posts/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Deployment automation
-- **[Part 4: Dynamic Configuration Architecture](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Traefik blue-green setup
-- **[Part 5: Deployment Workflows and mise Integration](/posts/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Production workflows
-- **[Part 6: CI/CD Integration and Production Considerations](/posts/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - Complete CI/CD pipeline
+- **[Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)** - Moving to Proxmox with Terraform
+- **[Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Deployment automation
+- **[Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Traefik blue-green setup
+- **[Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Production workflows
+- **[Part 6: CI/CD Integration and Production Considerations](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - Complete CI/CD pipeline

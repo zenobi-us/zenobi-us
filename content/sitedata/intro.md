@@ -3,7 +3,7 @@ title: intro
 ---
 
 I'm Zenobius,<br/>
-a <Widgets.RoleFlipper roles={[
+a <RoleFlipper roles={[
 "fullstack ui engineer",
 "platform developer",
 "devops engineer",

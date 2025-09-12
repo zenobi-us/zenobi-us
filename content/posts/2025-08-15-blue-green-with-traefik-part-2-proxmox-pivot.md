@@ -1,10 +1,10 @@
 ---
 date: 2025-08-15
-title: "Blue Green with Traefik: From libvirt to Proxmox Infrastructure as Code"
+title: "Blue Green with Traefik 2: Proxmox Pivot"
 stage: published
 ---
 
-This is part 2 of my blue-green deployment journey. After struggling with [libvirt bridge networking on Fedora](/posts/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking), I decided to try a different approach with Proxmox.
+This is part 2 of my blue-green deployment journey. After struggling with [libvirt bridge networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking), I decided to try a different approach with Proxmox.
 
 My main goal here was to be able to test out provisioning a VM to be my docker host. Once the kinks are worked out, I would switch to using Terraform to provision DigitalOcean or AWS EC2 instances.
 
@@ -135,7 +135,7 @@ But this is mainly because I'm actually running Proxmox on two Lenovo P930s I ha
 
 Now I had infrastructure, but I still needed to manage the actual application deployments and blue-green switching logic. The rest of the series covers:
 
-- **[Part 3: Container Orchestration with mise Beyond Terraform](/posts/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Moving beyond Terraform for deployments
-- **[Part 4: Dynamic Configuration Architecture](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green setup
-- **[Part 5: Deployment Workflows and mise Integration](/posts/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Production deployment workflows
-- **[Part 6: CI/CD Integration and Production Considerations](/posts/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - Complete automation pipeline
+- **[Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Moving beyond Terraform for deployments
+- **[Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green setup
+- **[Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Production deployment workflows
+- **[Part 6: CI/CD Integration and Production Considerations](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - Complete automation pipeline

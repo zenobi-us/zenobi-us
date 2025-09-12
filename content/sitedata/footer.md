@@ -2,7 +2,7 @@
 title: Footer
 ---
 
-I'm Zenobius, a <Widgets.RoleFlipper
+I'm Zenobius, a <RoleFlipper
 effect="fade"
 roles={[
 "fullstack ui engineer",

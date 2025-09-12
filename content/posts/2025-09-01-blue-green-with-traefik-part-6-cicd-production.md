@@ -1,17 +1,17 @@
 ---
 date: 2025-09-01
-title: "Blue Green with Traefik Part 6: CI/CD Integration and Production Considerations"
-stage: draft
+title: "Blue Green with Traefik 6: Github Actions"
+stage: published
 ---
 
 This final post in the blue-green deployment series covers CI/CD integration, production monitoring, and lessons learned from implementing this system. If you haven't read the previous posts, I recommend starting with the architecture overview.
 
 Complete series:
-- [Part 1: Setting up libvirt Bridge Networking on Fedora](/posts/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
-- [Part 2: From libvirt to Proxmox Infrastructure as Code](/posts/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
-- [Part 3: Container Orchestration with mise Beyond Terraform](/posts/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
-- [Part 4: Dynamic Configuration Architecture](/posts/2025-08-22-blue-green-with-traefik-part-4-architecture)
-- [Part 5: Deployment Workflows and mise Integration](/posts/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)
+- [Part 1: Setting up libvirt Bridge Networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
+- [Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
+- [Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
+- [Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)
+- [Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)
 
 ## GitHub Actions Integration
 
@@ -43,7 +43,7 @@ jobs:
           VERSION=$(git describe --tags --always)
 
           # Deploy to preview environment
-          mise app:deploy production-ssh whoami dev $VERSION docker-compose.yml
+          mise app:deploy my-vm whoami dev $VERSION docker-compose.yml
 
           echo "Preview deployed: https://$VERSION-whoami.dev.example.com"
 ```
@@ -169,7 +169,7 @@ jobs:
       - name: Deploy to Inactive Slot
         run: |
           VERSION="${{ github.event.inputs.version }}"
-          mise app:promote production-ssh whoami prod $VERSION
+          mise app:promote my-vm whoami prod $VERSION
 
           # Test inactive slot
           sleep 5
@@ -182,7 +182,7 @@ jobs:
           echo "Will become: https://whoami.prod.example.com"
 
           # This step requires manual approval in GitHub Actions
-          mise env:switch production-ssh whoami prod
+          mise env:switch my-vm whoami prod
 ```
 
 ## Monitoring and Health Check Integration
