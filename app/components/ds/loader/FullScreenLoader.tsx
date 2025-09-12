@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 
 import { Loader } from './Loader';
 
@@ -10,7 +11,7 @@ export function FullScreenLoader({
   loading: boolean;
   label?: string;
   className?: string;
-  children: () => JSX.Element;
+  children: () => ReactNode;
 }) {
   return (
     <AnimatePresence

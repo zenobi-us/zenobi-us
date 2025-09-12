@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, type ReactNode } from 'react';
 
 import { Link } from '~/components/ds/link/Link';
 
@@ -19,8 +19,8 @@ export function TimelineLinkItem<
 }: {
   linkRenderer?: (
     item: TItem & { href: string; className?: string }
-  ) => JSX.Element;
-  dateRenderer?: ({ date }: { date: Date }) => JSX.Element;
+  ) => ReactNode;
+  dateRenderer?: ({ date }: { date: Date }) => ReactNode;
   createHref: (item: TItem) => string;
   tagger?: (item: TItem) => string[];
   getKey?: (item: TItem) => string;

@@ -16,3 +16,4 @@ reusability
 hostnames
 dnsmasq
 agentic
+healthchecks
