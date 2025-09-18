@@ -3641,23 +3641,23 @@ __metadata:
   linkType: hard
 
 "@fontsource-variable/open-sans@npm:^5.1.0":
-  version: 5.2.6
-  resolution: "@fontsource-variable/open-sans@npm:5.2.6"
-  checksum: 10c0/8091653f671264a70e67a2923af90d3c3a5e77cfbd3e95a7e77e89b33658fe360b8d28ca1234f004443c89182870460c5ad79a391645cbfcd199a6e4d0811d69
+  version: 5.2.7
+  resolution: "@fontsource-variable/open-sans@npm:5.2.7"
+  checksum: 10c0/9d847e3806d4fa2881e74a9e5704547aec6743075242de7f331b8954f1988c8cb6cdcc23b4f58919ac848e114185ceabdc46207a52c893a7a75aff992d7f8ccd
   languageName: node
   linkType: hard
 
 "@fontsource-variable/roboto-mono@npm:^5.1.0":
-  version: 5.2.6
-  resolution: "@fontsource-variable/roboto-mono@npm:5.2.6"
-  checksum: 10c0/8216cf2b685396e24ae891e6cc8167a5b0daa0171ee80530e09b900e0241b05804ba9b451596818f464a3f08e550b4caa43a44e6d811d820c9f9a94370136002
+  version: 5.2.8
+  resolution: "@fontsource-variable/roboto-mono@npm:5.2.8"
+  checksum: 10c0/24d8471cae1e99b7b8ae5cbae5b3e7719b91ffb55f67a97badfc941cf007496fbbfd192ae58666ab727659c75b5bec331560c5491114a94301689ae10d675eef
   languageName: node
   linkType: hard
 
 "@fontsource-variable/roboto-slab@npm:^5.1.0":
-  version: 5.2.6
-  resolution: "@fontsource-variable/roboto-slab@npm:5.2.6"
-  checksum: 10c0/e49fa3192598c24231327237356fe53718688ba06138713447018483d41d055ee5200eb5831e5ad32551ee655fbd9b5f31d18da7946ac36f9b504799b3ba42d6
+  version: 5.2.8
+  resolution: "@fontsource-variable/roboto-slab@npm:5.2.8"
+  checksum: 10c0/d7554f7d364862de042c1aca8772f2782923f16a7b096c98b38dde0561e44f457a654b6ccfca72675667cddc0a99741dfd710c31ac84fa02fd09a8f79e778c61
   languageName: node
   linkType: hard
 
