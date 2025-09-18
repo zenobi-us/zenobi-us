@@ -10690,11 +10690,11 @@ __metadata:
   linkType: hard
 
 "cobe@npm:^0.6.3":
-  version: 0.6.4
-  resolution: "cobe@npm:0.6.4"
+  version: 0.6.5
+  resolution: "cobe@npm:0.6.5"
   dependencies:
     phenomenon: "npm:^1.6.0"
-  checksum: 10c0/232a284b294824253f1aa29bbf05ea58a5a11c4db3b20a9cc50717c614ab84ad0e6ef089a70218ee260388a305dab7dbc42f5ace69e8039ae40a24ad32dfff30
+  checksum: 10c0/a5f28f3c0eac6222769278eda6d1a367978276135c8ed9dbe10f6c4ff56d7fcd762a93f474ac1b0fbfd2b0aa40c783f3790ee832d14649609f63c2e7a0f707b1
   languageName: node
   linkType: hard
 
