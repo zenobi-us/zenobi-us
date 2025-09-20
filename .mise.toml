@@ -1,0 +1,37 @@
+[env]
+EDITOR = "code --wait"
+NODE_OPTIONS = ""
+NODE_ENV = "development"
+#
+mise.file = ".env" # load vars from a dotenv file
+_.path = [
+  # adds an absolute path
+  "~/.local/share/bin",
+  # adds paths relative to directory in which this file was found (see below for details), not PWD
+  "{{config_root}}/node_modules/.bin",
+  # adds paths relative to the exact file that this is found in (not PWD)
+  "tools/bin",
+]
+[task_config]
+includes = [
+  ".mise/tasks",                  # a task toml file
+  "apps/lurkbit-app/.mise/tasks",
+  "apps/lurkbit-core/.mise/tasks",
+  "pkgs/tools-localdev/.mise/tasks",
+  "pkgs/service-db-drizzle/.mise/tasks",
+]
+
+[tools]
+act = "0.2.78"
+bats = "1.12.0"
+node = "23.11.1"
+usage = "2.0.7"
+yarn = "4.8.1"
+yq = "4.45.1"
+shfmt = "latest"
+shellcheck = "0.10.0"
+action-validator = "0.5.4"
+direnv = "2.36.0"
+"ubi:trufflesecurity/trufflehog" = "v3.90.5"
+"ubi:moonrepo/moon" = "1.35.6"
+"go:oss.terrastruct.com/d2" = "latest"

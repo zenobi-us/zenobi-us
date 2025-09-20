@@ -5,4 +5,4 @@
 #MISE sources=["./app/**/*"]
 #MISE outputs=["tsconfig.tsbuildinfo", "tsconfig.app.tsbuildinfo"]
 
-yarn tsc -p ./tsconfig.app.json --noEmit --incremental
+tsc -p ./tsconfig.app.json --noEmit --incremental

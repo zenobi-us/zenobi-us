@@ -12,6 +12,6 @@ if [[ "${usage_reporter}" == "json" ]]; then
     export PLAYWRIGHT_JSON_OUTPUT_NAME="${usage_output}"
 fi
 
-yarn playwright test \
+playwright test \
     --retries 0 \
     --reporter="${usage_reporter}"

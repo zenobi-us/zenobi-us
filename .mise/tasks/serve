@@ -5,4 +5,4 @@ set -e
 #MISE depends=["content", "typecheck", "build"]
 #MISE sources=["./dist/**/*"]
 
-yarn sirv ./dist --port "${1:-3000}"
+sirv ./dist --port "${1:-3000}"

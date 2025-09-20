@@ -10,8 +10,8 @@
 # shellcheck disable=SC2154
 if [ "$usage_build" = "true" ]; then
     echo "Building storybook... $STORYBOOK"
-    yarn storybook build
+    storybook build
 else
     echo "Starting storybook... $STORYBOOK"
-    yarn storybook dev -p 6006
+    storybook dev -p 6006
 fi

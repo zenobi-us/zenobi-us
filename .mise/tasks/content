@@ -11,7 +11,7 @@
 # - global
 # shellcheck disable=SC2154
 if [ "$usage_watch" = "true" ]; then
-    yarn content-collections watch
+    content-collections watch
 else
-    yarn content-collections build
+    content-collections build
 fi

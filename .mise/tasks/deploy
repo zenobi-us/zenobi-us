@@ -16,25 +16,25 @@ if [ -z "${usage_configuration}" ]; then
 fi
 
 if [ "${usage_configuration}" == "production" ]; then
-    yarn wrangler pages deploy dist --branch main --project-name zenobius
+    wrangler pages deploy dist --branch main --project-name zenobius
 fi
 
 if [ "${usage_configuration}" == "development" ]; then
-    yarn wrangler pages deploy dist --branch develop --project-name zenobius
+    wrangler pages deploy dist --branch develop --project-name zenobius
 fi
 
 if [ "${usage_configuration}" == "preview" ]; then
-    yarn wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
+    wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
 fi
 
 if [ "${usage_configuration}" == "localproduction" ]; then
-    gopass env cloudflare/zenobius yarn wrangler pages deploy dist --branch main --project-name zenobius
+    gopass env cloudflare/zenobius wrangler pages deploy dist --branch main --project-name zenobius
 fi
 
 if [ "${usage_configuration}" == "localdevelopment" ]; then
-    gopass env cloudflare/zenobius yarn wrangler pages deploy dist --branch develop --project-name zenobius
+    gopass env cloudflare/zenobius wrangler pages deploy dist --branch develop --project-name zenobius
 fi
 
 if [ "${usage_configuration}" == "localpreview" ]; then
-    gopass env cloudflare/zenobius yarn wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
+    gopass env cloudflare/zenobius wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
 fi

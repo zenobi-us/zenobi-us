@@ -6,6 +6,6 @@
 
 # yarn eslint ./app
 
-yarn cspell-cli \
+cspell-cli \
     --config cspell.json \
     lint ./content/**/*.md
