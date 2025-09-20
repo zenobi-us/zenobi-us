@@ -12,14 +12,6 @@ _.path = [
   # adds paths relative to the exact file that this is found in (not PWD)
   "tools/bin",
 ]
-[task_config]
-includes = [
-  ".mise/tasks",                  # a task toml file
-  "apps/lurkbit-app/.mise/tasks",
-  "apps/lurkbit-core/.mise/tasks",
-  "pkgs/tools-localdev/.mise/tasks",
-  "pkgs/service-db-drizzle/.mise/tasks",
-]
 
 [tools]
 act = "0.2.78"
