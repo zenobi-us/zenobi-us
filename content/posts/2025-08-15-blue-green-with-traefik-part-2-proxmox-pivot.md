@@ -4,21 +4,23 @@ title: "Blue Green with Traefik 2: Proxmox Pivot"
 stage: published
 ---
 
-This is part 2 of my blue-green deployment journey. After struggling with [libvirt bridge networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking), I decided to try a different approach with Proxmox.
+This is part 2 of my blue-green deployment journey. After that [libvirt networking nightmare](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking), I needed something that would actually work.
 
-My main goal here was to be able to test out provisioning a VM to be my docker host. Once the kinks are worked out, I would switch to using Terraform to provision DigitalOcean or AWS EC2 instances.
+Here's the thing - I just wanted to test provisioning a VM as my Docker host. Once I got it working locally, I could use the same approach with Terraform on DigitalOcean or AWS. But first I needed something that wasn't actively fighting me.
 
-## The Proxmox Pivot
+## Enter Proxmox (My Savior)
 
-After struggling with libvirt bridge networking, I decided to try a different approach. I put together a repo with the following parts to manage a setup like this:
+So I remembered I had these two Lenovo P930s sitting in another room running Proxmox. Why was I torturing myself with libvirt when I had actual virtualization infrastructure just... sitting there?
 
-- A terraform manifest to create a VM on proxmox.
-- An ansible playbook to configure the VM.
-- Some mise tasks written in bash to manage the lifecycle of the server (more on this in the next section)
+Time to pivot. I threw together a repo with:
 
-**OpenTofu/Terraform Proxmox Configuration:**
+- A Terraform manifest to spin up VMs on Proxmox
+- An Ansible playbook to configure them (because who wants to SSH in and install Docker manually?)
+- Some mise tasks to tie it all together (more on that later)
 
-The beauty of moving to Proxmox is the infrastructure-as-code approach becomes much cleaner. Here's the core Terraform setup:
+**Finally, Infrastructure That Just Works**
+
+The difference was night and day. With Proxmox, here's I started with:
 
 ```hcl
 terraform {
@@ -44,9 +46,9 @@ provider "proxmox" {
 }
 ```
 
-**Automated SSH Key Management:**
+**Pulling your github public keys during install**
 
-One of the coolest features is automatically pulling SSH keys from GitHub:
+Okay, this is actually pretty slick - instead of copying SSH keys around like a caveman, I just pull them from GitHub:
 
 ```hcl
 data "curl" "github_public_ssh_keys" {
@@ -59,11 +61,15 @@ locals {
 }
 ```
 
-This means no more manually copying SSH keys around - the VM automatically gets configured with all your GitHub SSH keys.
+Boom. Any VM I spin up automatically has all my GitHub SSH keys. No more "oh crap, which key did I use for this server?"
 
-**Cloud-Init Integration:**
+>
+> ⚠️ Dogma dictates (yes), that you should probably be intentional about which keys
+> you use for which servers. But this is my home lab, so I'm lazy.
 
-The VM bootstrap process uses cloud-init, which is infinitely cleaner than manual setup:
+**Cloud-Init Does the Heavy Lifting**
+
+Remember all that NetworkManager/systemd-resolved nonsense from Part 1? Cloud-init just... handles it:
 
 ```hcl
 resource "proxmox_virtual_environment_vm" "docker_server" {
@@ -92,9 +98,9 @@ resource "proxmox_virtual_environment_vm" "docker_server" {
 }
 ```
 
-**Terraform → Ansible Integration:**
+**Making Terraform and Ansible Play Nice**
 
-A vm by itself isn't useful to me, so I use the Ansible provider that runs the playbook automatically after VM creation. For those of you familiar with a world before docker, you might be familiar with this pattern from your use of Vagrant.
+A blank VM is useless - I need Docker, Traefik, and all my tools installed. The Ansible provider runs automatically after the VM is created. If you're old enough to remember Vagrant, it's basically that but actually works:
 
 ```hcl
 resource "ansible_playbook" "playbook" {
@@ -111,29 +117,28 @@ resource "ansible_playbook" "playbook" {
 }
 ```
 
-**Complexity Comparison:**
+**Let's Compare the Pain Levels**
 
-libvirt approach:
-- Manual bridge interface creation
-- NetworkManager wrestling
-- DNS resolution debugging
-- VM networking configuration
-- Manual SSH key setup
+The libvirt approach (aka "why am I doing this to myself"):
+- Manually creating bridge interfaces while NetworkManager fights you
+- Debugging DNS resolution for 3 hours
+- Configuring VM networking by hand
+- Copying SSH keys around like it's 2005
+- Nothing works the first time (or the fifth)
 
-Proxmox approach:
-- Single Terraform file
-- Declarative VM configuration
-- Automatic SSH key deployment
-- Built-in cloud-init support
-- Seamless Ansible integration
+The Proxmox approach (aka "oh, this is nice"):
+- Write one Terraform file
+- Run `terraform apply`
+- Go get coffee
+- Come back to a working VM with Docker installed
 
-The Proxmox approach eliminates about 80% of the manual networking complexity while providing better reproducibility and automation.
+I went from spending 80% of my time fighting infrastructure to actually working on what I wanted to build.
 
-But this is mainly because I'm actually running Proxmox on two Lenovo P930s I have in another room.
+And yeah, having dedicated Proxmox servers helps. Those Lenovo P930s in my spare room are finally earning their keep.
 
 ## What's Next
 
-Now I had infrastructure, but I still needed to manage the actual application deployments and blue-green switching logic. The rest of the series covers:
+Cool, so now I had VMs that actually worked. But I still needed to figure out the actual deployment stuff - you know, the whole reason I started this journey. The rest of the series covers:
 
 - **[Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Moving beyond Terraform for deployments
 - **[Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green setup

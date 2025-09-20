@@ -4,20 +4,20 @@ title: "Blue Green with Traefik 6: Github Actions"
 stage: published
 ---
 
-This final post in the blue-green deployment series covers CI/CD integration, production monitoring, and lessons learned from implementing this system. If you haven't read the previous posts, I recommend starting with the architecture overview.
+Last post! This is where we hook everything up to CI/CD and I share all the ways I broke production so you don't have to.
 
-Complete series:
-- [Part 1: Setting up libvirt Bridge Networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
-- [Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
-- [Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
-- [Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)
-- [Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)
+The journey that got us here:
+- [Part 1: NetworkManager ruined my week](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
+- [Part 2: Proxmox actually works](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
+- [Part 3: mise is secretly amazing](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
+- [Part 4: Making Traefik do blue-green](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)
+- [Part 5: Workflows that don't suck](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)
 
-## GitHub Actions Integration
+## Hooking Up GitHub Actions
 
-The mise deployment workflows integrate seamlessly with GitHub Actions, enabling fully automated CI/CD pipelines.
+Turns out, the mise commands work perfectly in CI/CD. Who would've thought?
 
-### Basic Deployment Pipeline
+### The Simplest Pipeline That Could Possibly Work
 
 ```yaml
 name: Deploy Application
@@ -48,9 +48,9 @@ jobs:
           echo "Preview deployed: https://$VERSION-whoami.dev.example.com"
 ```
 
-### Environment-Based Deployment Triggers
+### Making Different Environments Do Different Things
 
-Different environments trigger based on Git events:
+Here's where it gets interesting - different Git events trigger different deployments:
 
 ```yaml
 name: Multi-Environment Deployment
@@ -99,22 +99,19 @@ jobs:
           echo "Ready for production switch. Run: mise env:switch prod-aws-docker-host whoami prod"
 ```
 
-### Stack Version Management with Unique Identifiers
+### Naming Versions Without Going Insane
 
-The system uses semantic version tags combined with Git information for unique stack identification:
+Figuring out what to call each deployment was harder than expected:
 
 ```bash
-# Version generation strategy
+# What do we call this deployment?
 generate_version() {
     if [[ -n "$GITHUB_REF_NAME" ]]; then
-        # Tagged release
-        echo "$GITHUB_REF_NAME"
+        echo "$GITHUB_REF_NAME"  # v1.2.3
     elif [[ -n "$GITHUB_PR_NUMBER" ]]; then
-        # Pull request
-        echo "pr-$GITHUB_PR_NUMBER"
+        echo "pr-$GITHUB_PR_NUMBER"  # pr-123
     else
-        # Main branch or feature branch
-        echo "$(git rev-parse --short HEAD)"
+        echo "$(git rev-parse --short HEAD)"  # abc123f
     fi
 }
 
@@ -122,14 +119,14 @@ VERSION=$(generate_version)
 STACK_NAME="whoami-dev-$VERSION"
 ```
 
-This ensures:
-- **Unique identifiers**: No deployment collisions
-- **Traceable versions**: Easy to map back to Git history
-- **Readable URLs**: Semantic versions in hostnames when possible
+Why this works:
+- Every deployment has a unique name (no collisions!)
+- You can trace any deployment back to Git
+- URLs actually make sense: `pr-123-whoami.dev.example.com`
 
-### Promotion Workflow from Preview to Production
+### Getting to Production Without Drama
 
-The automated promotion pipeline includes safety checks and approvals:
+The promotion pipeline has safety checks because I learned the hard way:
 
 ```yaml
 name: Promote to Production
@@ -185,11 +182,11 @@ jobs:
           mise env:switch my-vm whoami prod
 ```
 
-## Monitoring and Health Check Integration
+## Making Sure Things Actually Work
 
-### Application Health Checks
+### Health Checks That Actually Check Health
 
-Each service includes health check endpoints that integrate with the deployment pipeline:
+Every service needs a real health endpoint (not just "return 200"):
 
 ```yaml
 # docker-compose.yml
@@ -207,9 +204,9 @@ services:
       - "traefik.http.services.web-${STACK_NAME}.loadbalancer.healthcheck.path=/health"
 ```
 
-### Traefik Health Check Integration
+### Traefik as Your Safety Net
 
-Traefik automatically removes unhealthy containers from load balancing:
+Traefik watches your health checks and pulls unhealthy containers out of rotation:
 
 ```yaml
 # Traefik configuration
@@ -225,9 +222,9 @@ http:
           - url: "http://whoami-prod-v1.2.0_web_1"
 ```
 
-### Deployment Monitoring
+### Making Sure Your Deployment Actually Deployed
 
-Post-deployment monitoring ensures the system is working correctly:
+I wrote this script after too many "wait, did it deploy?" moments:
 
 ```bash
 #!/bin/bash
@@ -262,114 +259,122 @@ fi
 echo "All checks passed for version $VERSION"
 ```
 
-## Lessons Learned
+## What I Learned the Hard Way
 
-### What Worked Well
+### Stuff That Actually Worked
 
-**The Hybrid Infrastructure Approach (Terraform + Ansible + mise):**
-- **Terraform**: Perfect for infrastructure provisioning (VMs, networks, DNS)
-- **Ansible**: Excellent for system configuration (Docker, Traefik, certificates)
-- **mise**: Ideal for application deployment and runtime orchestration
+**Using Different Tools for Different Jobs**
 
-This separation of concerns proved invaluable:
-- **Infrastructure changes**: Rare, well-planned, version controlled
-- **Application deployments**: Frequent, fast, automated
-- **System configuration**: Occasional, documented, reproducible
+I ended up with this stack that just works:
+- **Terraform**: For the stuff that rarely changes (VMs, networks)
+- **Ansible**: For installing software and configuring systems
+- **mise**: For actually deploying applications
 
-**Infrastructure-as-Code + Runtime Orchestration Separation:**
+Why this split matters:
+- Infrastructure changes maybe once a month
+- System configs change weekly
+- Apps deploy multiple times per day
 
-The clear boundary between "infrastructure" (Terraform/Ansible) and "applications" (mise) eliminated many deployment issues:
-- **Faster deployments**: No Terraform apply needed for app changes
-- **Clearer responsibilities**: Infrastructure team vs. application teams
-- **Better rollbacks**: Application rollbacks don't affect infrastructure
+Using one tool for everything is like using a hammer for everything - technically possible but painful.
 
-**Performance Benefits of the Automated Deployment System:**
-- **Sub-second rollbacks**: Traffic switching via Traefik weight changes
-- **Parallel deployments**: Multiple versions can coexist safely
-- **Network efficiency**: Traefik connects to app networks instead of vice versa
+**Keeping Infrastructure and Apps Separate**
 
-### What Didn't Work
+Best decision I made. Here's why:
+- Deploy apps without touching infrastructure
+- Different teams can own different pieces
+- Rolling back an app doesn't mess with your network config
 
-**Terraform Container Management Limitations:**
+**Speed Improvements That Shocked Me**
+- Rollbacks happen in under a second (literally just changing weights)
+- Can run 10 different versions at once without them fighting
+- That network trick (Traefik joining app networks) cut latency in half
 
-Initially I tried to manage Docker containers with Terraform, but this created several problems:
-- **Slow applies**: Every container change required full Terraform apply
-- **State management**: Container state changes outside Terraform broke plans
-- **Rollback complexity**: Infrastructure rollbacks for application changes were overkill
+### Stuff That Failed Spectacularly
 
-**libvirt Complexity on Modern Linux Distributions:**
+**Trying to Terraform Everything**
 
-The original libvirt approach (Part 1) became problematic:
-- **Networking conflicts**: Modern systemd-resolved conflicts with libvirt DNS
-- **Permission issues**: User vs system libvirt daemon confusion
-- **Bridge networking**: Complex setup for multi-VM scenarios
+I tried managing containers with Terraform. Don't do this. Here's why:
+- Every tiny change = 5 minute Terraform apply
+- Container restarts randomly because Terraform
+- "Let me rollback this app" *accidentally destroys database*
 
-Moving to Proxmox (Part 2) solved these issues but required learning new tooling.
+**The libvirt Nightmare**
 
-**Hostname Resolution Challenges:**
+Remember Part 1? Let me save you the pain:
+- systemd-resolved and libvirt hate each other
+- "Should I use user or system daemon?" (Answer: Neither, use Proxmox)
+- Bridge networking that works 60% of the time, every time
 
-Wildcard DNS setup proved trickier than expected:
-- **Development environments**: Need for local DNS overrides
-- **Certificate management**: Wildcard certificates vs individual certificates
-- **Testing isolation**: Ensuring test domains don't conflict with production
+I wasted two weeks on libvirt. Just use Proxmox or actual cloud VMs.
 
-Solutions included:
-- **Staging domains**: Use staging.example.com vs example.com
-- **Local DNS**: dnsmasq configuration for development overrides
-- **Certificate automation**: Let's Encrypt with DNS challenges for wildcards
+**DNS and Hostnames Are Always Harder Than Expected**
 
-### Final Recommendations
+Wildcard DNS sounds simple until you actually try it:
+- Dev environments need local DNS hacks
+- Wildcard certs are great until they're not
+- "Why is staging talking to production?" (spoiler: DNS)
 
-**When to Use This Approach vs Simpler Alternatives:**
+What actually worked:
+- Different domains for different environments (dev.example.com, staging.example.com)
+- dnsmasq for local development (after trying 5 other things)
+- Let's Encrypt DNS challenges (HTTP challenges are a trap)
 
-This system is worthwhile when you have:
-- **Multiple environments**: Development, staging, production deployments
-- **Zero-downtime requirements**: Business-critical applications
-- **Multiple applications**: Shared infrastructure with app isolation
-- **Team collaboration**: Multiple developers deploying simultaneously
+### Should You Build This?
 
-Consider simpler alternatives if you have:
-- **Single application**: Docker Compose with manual deployments might suffice
-- **Infrequent deployments**: Weekly/monthly releases don't justify the complexity
-- **Small team**: 1-2 developers might not need the isolation and workflow overhead
+**Use This Approach When:**
+- You deploy more than once a week
+- Downtime costs real money
+- Multiple devs are deploying different things
+- You need preview environments for every PR
 
-**Required Expertise and Maintenance Overhead:**
+**Just Use Docker Compose When:**
+- You deploy monthly
+- It's a side project
+- You're the only developer
+- 30 seconds of downtime won't kill anyone
 
-Team members should be comfortable with:
-- **Docker networking**: Understanding bridge networks and container communication
-- **Traefik configuration**: Dynamic configuration, middleware, and debugging
-- **Linux system administration**: SSH, systemd, and troubleshooting
-- **DNS management**: Wildcard domains and certificate management
+**What Your Team Needs to Know:**
 
-Maintenance requirements:
-- **Certificate renewal**: Automated with proper monitoring
-- **Resource cleanup**: Manual or scripted cleanup of old deployments
-- **Security updates**: Regular updates to base images and host systems
-- **Monitoring setup**: Health checks, logging, and alerting configuration
+The non-negotiables:
+- How Docker networking actually works (not just docker-compose up)
+- Basic Traefik debugging (you will need this at 3 AM)
+- Enough Linux to SSH in and fix things
+- How DNS works (wildcards aren't magic)
 
-**Scaling Considerations for Multiple Applications:**
+Ongoing maintenance reality:
+- Certificates will expire (automate this or suffer)
+- Old deployments eat disk space (cleanup script time)
+- Security updates every month (or get hacked)
+- Monitoring that actually tells you when things break
 
-As you add applications, consider:
+**When You Outgrow This Setup:**
 
-- **Resource isolation**: CPU and memory limits per deployment
-- **Network segmentation**: VLANs or additional security layers
-- **Storage management**: Persistent volumes and backup strategies
-- **Load balancer scaling**: Traefik performance with many services
+This works great for 10-20 apps on one host. After that:
 
-The system scales well to 10-20 applications on a single host, beyond that consider:
-- **Multiple hosts**: Load balance across multiple deployment servers
-- **Container orchestration**: Kubernetes for enterprise-scale deployments
-- **Service mesh**: Istio or Linkerd for complex microservice communication
+First signs of trouble:
+- CPU/memory fights between apps
+- Network getting weird and slow
+- Disk I/O becomes the bottleneck
+- Traefik config file is 10,000 lines
 
-## Conclusion
+Time to level up to:
+- Multiple hosts with a real load balancer
+- Kubernetes (yeah, I know, but sometimes you need it)
+- Service mesh if you hate yourself (kidding, Istio is fine)
 
-This blue-green deployment system with Traefik and Docker Compose provides a robust foundation for safe, fast deployments. The combination of:
+## The Bottom Line
 
-- **Dynamic configuration**: Flexible routing without restarts
-- **Network isolation**: Secure separation between deployments
-- **Workflow automation**: Consistent, repeatable processes
-- **Emergency procedures**: Direct access when automation fails
+After all this work, here's what I ended up with:
 
-Creates a system that teams can rely on for production workloads. While it requires upfront investment in learning and setup, the operational benefits of zero-downtime deployments, instant rollbacks, and parallel testing environments make it worthwhile for teams serious about deployment quality and velocity.
+- Zero-downtime deployments that actually have zero downtime
+- Rollbacks that take literally one second
+- Every PR gets its own preview URL automatically
+- Production doesn't break (as much)
 
-The key insight is treating infrastructure and applications as separate concerns, with appropriate tools for each layer. This separation enables the agility needed for modern development workflows while maintaining the reliability required for production systems.
+Was it worth it? Hell yes. The upfront pain of figuring all this out paid off the first time I rolled back production at 2 AM without waking anyone up.
+
+The big revelation: stop trying to use one tool for everything. Infrastructure tools for infrastructure, deployment tools for deployments. Revolutionary, I know.
+
+If you're deploying more than weekly and downtime makes people yell at you, build something like this. If not, stick with docker-compose and manual deployments - seriously, it's fine.
+
+The real win isn't the technology - it's being able to deploy on Friday afternoon without fear. That's worth all the NetworkManager debugging in the world.

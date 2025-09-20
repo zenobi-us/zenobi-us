@@ -4,11 +4,15 @@ title: "Blue Green with Traefik 1: LibVirtD"
 stage: published
 ---
 
-This is part 1 of my blue-green deployment journey. I started by trying to set up a VM using libvirt on Fedora for testing blue-green deployments with Docker Compose and Traefik.
+This is part 1 of my blue-green deployment journey. So I had this idea - I wanted to play around with blue-green deployments, and figured I'd just spin up a quick VM on my Fedora box to test things out. 
 
-## Goal
+How hard could it be, right?
 
-I wanted to experiment with blue-green deployments, preview environments, and wildcard subdomains. This required setting up a VM that could be accessed from my host machine with proper DNS resolution.
+## What I Was Trying To Do
+
+I wanted to mess around with blue-green deployments - you know, having two versions of your app where you can instantly switch traffic between them. Plus I wanted preview environments where every PR gets its own URL. Cool stuff.
+
+The plan seemed simple: spin up a VM, get Docker and Traefik running on it, and boom - local testing environment. I just needed the VM to be accessible from my host machine with working DNS.
 
 ```nomnoml
 #direction: down
@@ -29,23 +33,27 @@ I wanted to experiment with blue-green deployments, preview environments, and wi
 ```
 
 
-## The libvirt Bridge Networking Challenge
+## Then Everything Went Wrong
 
-**Struggle Town:**
-- fedora uses NetworkManager.
-  - So `nmcli c modify br0 ipv4.dns 10.0.1.1` does not seem to do anything.
-- fedora uses resolvectl.
-  - So you need to use `resolvectl dns br0 10.0.1.1` to set the DNS server for the bridge interface.
-- libvirt in fedora only provides userland networking by default, which means that VMs cannot communicate with the host or other devices on the local network.
-  - So you need to create a bridge interface and connect your VM to it.
-  - The vm needs to created with sudo virt-install, and the network interface needs to be set to the bridge interface.
+Here's where I entered what I now call **Struggle Town:**
+- Fedora uses NetworkManager, which sounds great until you try to set DNS on a bridge interface. `nmcli c modify br0 ipv4.dns 10.0.1.1` looks like it works but... nope, does absolutely nothing.
+  
+- Oh wait, Fedora ALSO uses resolvectl for DNS. So you actually need `resolvectl dns br0 10.0.1.1`. Found that out after about 2 hours of head-banging.
+
+- Libvirt on Fedora defaults to "userland networking" - which is a fancy way of saying your VMs are completely isolated and can't talk to your host or anything else on your network. Useless for what I needed.
+  
+- To fix this mess, you have to manually create a bridge interface and connect your VM to it. But wait, there's more - the VM has to be created with `sudo virt-install` (not Gnome Boxes!) and you have to explicitly set the network interface to use the bridge.
+
+After a lot of trial and error (and some creative swearing), I ended up with this script:
 
 ```sh
 #!/bin/bash
 
-# Gnome Boxes uses libvirt under the hood.
-# By default it is configured to use a virtual network interface `virbr0` which is not bridged to the host network. This means that VMs cannot communicate with the host or other devices on the local network.
-# To fix this, you can create a bridge interface `br0` and connect your VM to it. This allows the VM to have a direct connection to the host network.
+# So here's the thing about Gnome Boxes - it uses libvirt under the hood,
+# but sets up this useless virbr0 network that doesn't actually bridge to 
+# your real network. Your VMs end up in their own little isolated world.
+# We need to create a proper bridge interface (br0) that actually connects
+# to your real network.
 
 function create_new_bridge() {
     local interface
@@ -106,11 +114,9 @@ remove_old_bridge "$selected"
 create_new_bridge "$selected"
 ```
 
-Then I needed to delete the VM made with gnome boxes.
+At this point I had to delete the VM I'd made with Gnome Boxes. Yeah, the one I'd just spent time setting up. Turns out Gnome Boxes hard-codes that useless userland networking and you can't change it.
 
-> This is because it uses userland networking which won't let me use the bridge interface.
-
-Then I needed to create a bridge network for libvirt.
+Next up: creating a bridge network that libvirt would actually use.
 
 ```sh
 sudo virsh net-define bridged-network.xml
@@ -128,7 +134,7 @@ Where `bridged-network.xml` looks like this:
 </network>
 ```
 
-Then I created a new VM with virt-manager, and selected the `br0` interface as the network interface.
+Finally, I could create a new VM. This time using virt-install (because apparently that's the only way to specify the network properly):
 
 ```sh
 sudo virt-install \
@@ -140,54 +146,58 @@ sudo virt-install \
   --network network=bridged-network
 ```
 
-Huzzah.
+Success! The VM was running! I could SSH into it using the IP address!
 
-but.
+But then... plot twist.
 
-Weird.
-Weird.
+I couldn't resolve the VM by hostname. Like, at all. 
 
-Can't resolve the VM by hostname.
+`ping docker-host.local` just sat there, mocking me.
 
-## What I learned:
+## What This Mess Taught Me
 
-**Hostname Resolution Issues:**
+**Why Hostname Resolution Broke:**
 
-The VM couldn't resolve by hostname because the bridge interface wasn't properly registered with the local DNS resolver. Even though the VM had a static IP (10.0.1.200), the hostname `docker-host.local` wasn't being resolved. This is a common issue when mixing bridge networking with modern Linux DNS resolution systems.
+So here's what was happening - the VM couldn't be reached by hostname because modern Linux has about 5 different systems fighting over who gets to handle DNS. My bridge interface wasn't talking to any of them properly.
 
-The solution involves ensuring:
-1. The bridge interface is properly configured in NetworkManager
-2. The DNS server (10.0.1.1 in my case) knows about the VM's hostname
-3. The local resolver configuration includes the `.local` domain
+The VM had its IP (10.0.1.200) but `docker-host.local` meant nothing to my system because:
+- The bridge wasn't registered with the DNS resolver
+- NetworkManager thought it knew better
+- systemd-resolved was doing its own thing
+- And libvirt was just sitting there, not helping
 
-**Fedora + libvirt Bridge Networking Complexity:**
-Traditional Linux networking used `/etc/network/interfaces` or simple bridge utilities. Fedora's modern approach layers multiple systems:
+**The Real Problem: Too Many Cooks**
 
-- **NetworkManager** manages connections but doesn't always apply DNS settings immediately
-- **systemd-resolved** handles DNS resolution but needs explicit configuration for custom domains
-- **libvirt** creates its own virtual networks that don't automatically bridge to physical networks
+Remember when Linux networking was simple? Yeah, me neither, but it used to be simpler. Now on Fedora you've got:
 
-The complexity comes from these systems not being designed to work together seamlessly for custom bridge setups. Each layer needs explicit configuration.
+- **NetworkManager** - supposedly managing your network but really just getting in the way of DNS settings
+- **systemd-resolved** - handling DNS but needs you to explicitly tell it about every custom domain
+- **libvirt** - creating its own networks that live in their own universe, completely disconnected from your actual network
 
-**NetworkManager vs Traditional Configs:**
-Old approach: Direct bridge creation with `brctl` and manual IP assignment
+These weren't built to work together. It's like they're from different planets and you're the translator trying to get them to play nice.
+
+**Old Way vs New Way (Spoiler: Both Suck)**
+
+The old way that doesn't work anymore:
 ```bash
-# Traditional method (doesn't work well on modern Fedora)
+# This will just make NetworkManager angry
 brctl addbr br0
 ifconfig br0 10.0.1.100/24
 ```
 
-Modern approach: Use NetworkManager's bridge management
+The new way that sometimes works if you're lucky:
 ```bash
-# Works with systemd and modern Fedora
+# NetworkManager's way - when it feels like cooperating
 nmcli c add type bridge ifname br0 con-name br0
 ```
 
-The key insight: Modern Linux distributions expect you to work *with* their networking stack, not around it. Fighting NetworkManager leads to inconsistent state and mysterious failures.
+Here's the thing I learned the hard way: you can't fight the modern networking stack. You have to sweet-talk NetworkManager into doing what you want, or it'll just silently ignore you and do whatever it wants anyway.
 
-## What's Next
+## Time to Give Up (On This Approach)
 
-This libvirt setup was getting too complex for what I needed. The complete series covers:
+After all this, I realized I was spending more time fighting Linux networking than actually working on blue-green deployments. This libvirt setup was becoming a full-time job.
+
+So I said "screw it" and looked for something better. The rest of this series covers how I actually got this working:
 
 - **[Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)** - Moving to Proxmox with Terraform
 - **[Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)** - Deployment automation

@@ -4,40 +4,36 @@ title: "Blue Green with Traefik 4: Traefik Dynamic"
 stage: published
 ---
 
-This post shows the core blue-green architecture using Traefik's dynamic configuration system. If you want to understand the infrastructure journey that led here, check out the previous posts:
+This post is where things get interesting - the actual blue-green magic with Traefik. If you want the full story of how I got here (spoiler: it involved pain), check out:
 
-- [Part 1: Setting up libvirt Bridge Networking on Fedora](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
-- [Part 2: From libvirt to Proxmox Infrastructure as Code](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
-- [Part 3: Container Orchestration with mise Beyond Terraform](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
+- [Part 1: My libvirt networking nightmare](/b/2025-08-02-blue-green-with-traefik-part-1-libvirt-networking)
+- [Part 2: Proxmox saves the day](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot)
+- [Part 3: Making mise do the heavy lifting](/b/2025-08-20-blue-green-with-traefik-part-3-container-orchestration)
 
-For the deployment workflows and mise integration, see [Part 5: Deployment Workflows](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows).
+## What I Actually Wanted to Build
 
-## Goal
+After all that infrastructure wrestling, here's what I was after:
 
-I want to implement blue-green deployments with Docker Compose and Traefik that support:
+- **Preview URLs for everything**: Deploy v1.2.0? Boom, it's at `v1.2.0-app.dev.example.com`
+- **Instant traffic switching**: Click a button (or run a command) to switch versions
+- **Rollback without sweating**: Something broke? Switch back in seconds, no redeployment
+- **Containers that mind their own business**: Each version in its own network, no cross-talk
+- **One Docker Compose file**: Not separate blue/green services - that way lies madness
 
-- **Preview environments**: Every deployment gets its own subdomain (v1.2.0-app.dev.example.com)
-- **Blue-green switching**: Seamless traffic switching between versions
-- **Quick rollbacks**: Instant rollback capability without redeployment
-- **Network isolation**: Each deployment runs in its own Docker network
-- **Single service definition**: No blue/green services defined in docker-compose.yml
+The non-negotiables:
+- Traefik needs to reload configs without restarting (dynamic configuration FTW)
+- One service definition that works everywhere
+- Wildcard DNS because I'm not updating DNS for every deployment
+- It has to be scriptable - no clicking around in UIs
 
-Requirements:
-- Use Traefik dynamic configuration (not static files)
-- Single service definition in Docker Compose
-- Support for wildcard subdomains
-- Automated deployment workflows
+## How the Magic Actually Works
 
-## The Blue-Green Architecture
-
-After exploring different infrastructure approaches in the previous posts, we continue with the routing and deployment architecture.
-
-The core blue-green implementation uses Traefik's dynamic configuration and weighted routing.
+Alright, so here's where Traefik earns its keep. The whole thing revolves around weighted routing - basically telling Traefik "send X% of traffic here, Y% there".
 
 
-**Dynamic Hostname Pattern System:**
+**Making Hostnames Work Without Going Crazy**
 
-Each environment has a configuration file with hostname templates that get populated at deployment time:
+Each environment gets a config file with templates. When you deploy, these templates get filled in:
 
 ```yaml
 # infra/traefik/whoami_dev.config.yaml
@@ -57,13 +53,13 @@ stack:
     hostname_pattern: "api.{{version}}-whoami.dev.example.com"
 ```
 
-During deployment, `{{version}}` gets replaced with the actual version:
-- `v1.2.0-whoami.dev.example.com` (preview URL)
-- `whoami.dev.example.com` (main production URL)
+That `{{version}}` gets swapped out for the real version number. So you get:
+- Preview: `v1.2.0-whoami.dev.example.com` (for testing)
+- Production: `whoami.dev.example.com` (what users hit)
 
-**Traefik Weighted Routing Configuration:**
+**The Secret Sauce - Weighted Routing**
 
-The blue-green switching happens through Traefik's weighted services in `whoami_dev.yaml`:
+This is where it gets cool. Traefik can split traffic between multiple backends:
 
 ```yaml
 http:
@@ -91,16 +87,16 @@ http:
         servers: []
 ```
 
-Initially, green has 100% traffic, blue has 0%. Switching flips these weights.
+Start with green getting 100%, blue getting 0%. Want to switch? Just flip those numbers. No containers restart, no downtime, traffic just starts flowing to the other color.
 
-**Three Routing Patterns:**
+**Two Ways Traffic Gets to Your App**
 
-1. **Production pattern**: `whoami.dev.example.com` - Uses weighted routing between blue/green slots
-2. **Preview pattern**: `v1.2.0-whoami.dev.example.com` - Direct routing to specific deployment, this is where QA testing occurs.
+1. **Production traffic**: Hits `whoami.dev.example.com`, goes through the weighted router
+2. **Preview/testing**: Goes straight to `v1.2.0-whoami.dev.example.com`, bypasses the weights
 
-**Docker Compose with Traefik Labels:**
+**Making Docker Compose Play Along**
 
-The application containers use environment variables for dynamic labeling:
+Here's the trick - use environment variables for everything so the same compose file works everywhere:
 
 ```yaml
 services:
@@ -124,30 +120,75 @@ services:
       - "traefik.http.services.api-${STACK_NAME}.loadbalancer.server.port=1090"
 ```
 
-While such a compose stack is running in preview, it only gets traffic routed via `v1.2.0-whoami.dev.example.com`.
+When this runs in preview mode, it only responds to `v1.2.0-whoami.dev.example.com`. But promote it to blue or green? Now it's also getting traffic from the main `whoami.dev.example.com` URL (assuming health checks pass - we're not barbarians).
 
-When promoted to blue/green, then it also gets traffic routed via `whoami.dev.example.com` when healthchecks pass.
+**The Network Connectivity Trick Nobody Tells You**
 
-**Automatic Network Connectivity:**
-
-Each deployment creates its own Docker network, but Traefik needs to connect to route traffic:
+Every deployment creates its own Docker network. But Traefik needs to reach all of them. Here's the magic:
 
 ```bash
-# After deployment, connect Traefik to the new stack network
-docker network connect "${stack_name}_default" "$(traefik_container_name)"
+# After deploying your app, connect Traefik to its network
+docker network connect "${stack_name}_default" traefik
 ```
 
-This happens automatically in the deployment script, ensuring Traefik can reach the new containers while maintaining network isolation between different deployments.
+This flips the usual pattern on its head. Most tutorials tell you to connect your apps to Traefik's network.
 
-> [!NOTE]
-> Most other tutorials suggest connecting your app container to the traefik network. This ends up allowing other app containers to see each other. Instead, I connect Traefik to each app's network. This keeps app containers isolated from each other while still allowing Traefik to route traffic.
+```nomnoml
+#direction:down
+#.frame: direction=right
+
+[World] <--> [Traefik] <--> [Traefik Network]
+[<frame>Traefik Network|
+ [Traefik] <--> [Stack1:App Container]
+ [Traefik] <--> [Stack2:App Container]
+]
+[<frame>Stack1 Network|
+  [Stack1:App Container]
+  [Stack1:Db Container]
+  [Stack1:Worker Container]
+
+]
+[<frame>Stack2 Network|
+  [Stack2:App Container]
+  [Stack2:Db Container]
+  [Stack2:Worker Container]
+]
+[Stack1 Network] --> [Traefik Network]
+[Stack2 Network] --> [Traefik Network]
+
+```
+
+But that's dumb - now all your apps can see each other!
+
+Instead, I make Traefik join each app's network. Your apps stay isolated, Traefik can still route to them. Security people love this one weird trick.
 
 
-## Next Steps
+```nomnoml
+#direction:right
+#.frame: direction=right
 
-This architecture provides the foundation for blue-green deployments. The next posts in this series cover:
+[World] <--> [Traefik]
+[<frame>Stack1 Network|
+  [Traefik] <--> [Stack1:App Container]
+  [Stack1:Db Container]
+  [Stack1:Worker Container]
+]
+[<frame>Stack2 Network|
+  [Traefik] <--> [Stack2:App Container]
+  [Stack2:Db Container]
+  [Stack2:Worker Container]
+]
+[Traefik] --> [Stack1 Network]
+[Traefik] --> [Stack2 Network]
+```
 
-- **[Part 5: Deployment Workflows](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - The mise task system, environment management, and rollback procedures
-- **[Part 6: CI/CD Integration](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - GitHub Actions integration and production considerations
+For those of you who are over confident in your ability to secure your system or too naive to know that it's not a matter of "if" but a matter of "when" your system will be compromised. So you really want to be doing everything you can to isolate things.
 
-The combination of Traefik's dynamic configuration and Docker's network isolation creates a powerful foundation for safe, fast deployments with instant rollback capabilities.
+## Next Up
+
+Now we've got the architecture, but how do you actually use this thing day-to-day? Check out:
+
+- **[Part 5: Deployment Workflows](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Making deployments not suck with mise
+- **[Part 6: CI/CD Integration](/b/2025-09-01-blue-green-with-traefik-part-6-cicd-production)** - Hooking this up to GitHub Actions and not breaking production
+
+This setup gives you instant rollbacks, zero-downtime deployments, and preview URLs for everything. And it actually works, which is more than I can say for my first 10 attempts.

@@ -4,69 +4,81 @@ title: "Blue Green with Traefik 3: Container Orchestration"
 stage: published
 ---
 
-This is part 3 of my blue-green deployment journey. After setting up [Proxmox infrastructure with Terraform](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot), I needed to manage the actual application deployments and blue-green switching logic.
+This is part 3 of my blue-green deployment journey. After getting [Proxmox working with Terraform](/b/2025-08-15-blue-green-with-traefik-part-2-proxmox-pivot), I had VMs that actually worked. Now came the fun part - actually deploying stuff.
 
-## Container Orchestration Evolution
+## Terraform Wasn't Cutting It
 
-Now I had infrastructure, but I still needed to manage the actual application deployments and blue-green switching logic.
+So I had this bright idea - why not manage Docker containers with Terraform too? I mean, it worked great for VMs, right?
 
-**Why Terraform Wasn't Right for Container Management:**
+<img src="/images/javier-bardem-silvia-villain.png" class="flex mx-auto rounded-lg" />
 
-Terraform lacks control structures like loops or conditionals, making it awkward for operational tasks that need dynamic logic. Container orchestration often requires "if this, then that" decision making that Terraform simply can't handle elegantly.
+Wrong. So wrong.
 
-It also wasn't obvious if using terraform here would destroy any running containers or networks in the pursuit of idempotency. I wanted a tool that could manage the lifecycle of containers without risking unintended deletions.
+---
 
-**The mise Task System:**
+### Here's Why Terraform Sucks for Containers
 
-I'd been using [mise](https://mise.jdx.dev/) for a while now. Most people use it as a replacement for ASDF, but a little known feature is it's sibling projects [usage](https://usage.jdx.dev/).
+First off, Terraform has no real logic.
 
-Combine this with File Tasks, and mise quickly becomes a nicely scalable task runner.
+No loops, no if-statements, nothing.
 
-Here I aim to organise the deployment workflow into distinct phases:
+You want to check if a container is healthy before routing traffic?
 
-- **Environment creation**: `mise env:create whoami dev dev.example.com`
-  - Creates Traefik configuration files for the environment
-- **Environment deployment**: `mise env:deploy context-name whoami dev`
-  - Pushes the router configs to the running Traefik instance
-- **Application deployment**: `mise app:deploy context-name dev whoami v1.2.0`
-  - Deploys containers with proper labels for preview URLs
-- **Application promotion**: `mise app:promote context-name whoami dev v1.2.0 0.75`
-  - Moves a deployment to the inactive blue/green slot and applies routing weights to healthy stacks.
-- **Status checking**: `mise env:status context-name whoami dev`
-  - Shows current active/inactive slots and deployments
+Too bad. Terraform doesn't do that.
 
-**Modular Helper Architecture:**
+But the real kicker? I had no idea what Terraform would do to my running containers. Would it restart them? Delete them? Who knows! The docs sure didn't tell me. I needed something that wouldn't accidentally nuke my production containers while trying to be "idempotent".
 
-The mise tasks use modular bash helpers for reusability:
+### Finding Gold with mise
+
+I'd been using [mise](https://mise.jdx.dev/) for managing tool versions (you know, instead of having 47 different tools to manage versions of various languages floating around). But something most people don't know about - it's also a task runner. Not just any task runner, but one that actually makes sense.
+
+There's this sibling project called [usage](https://usage.jdx.dev/) that lets you add comments to your task scripts to help with managing script inputs. Combine that with mise's file tasks, and suddenly you've got yourself a deployment system that doesn't suck.
+
+So I broke everything down into simple commands that actually tell you what they do:
+
+- **Create environment**: `mise env:create whoami dev dev.example.com` - Sets up Traefik configs
+- **Deploy the configs**: `mise env:deploy docker-host whoami dev` - Pushes them to Traefik
+- **Deploy your app**: `mise app:deploy docker-host dev whoami v1.2.0` - Spins up containers
+- **Promote to production**: `mise app:promote docker-host whoami dev v1.2.0 75%` - Gradually shift traffic
+- **Check what's running**: `mise env:status docker-host whoami dev` - See what's actually happening
+
+**Breaking It Down Into Bash (Because Why Not?)**
+
+Instead of one giant deployment script that nobody understands, I split everything into small bash helpers:
 
 ```bash
-# .mise/helpers/stack-operations - naming and config functions
-# .mise/helpers/traefik - Traefik configuration management
-# .mise/helpers/docker-network - network connectivity
-# .mise/helpers/docker-volume - volume management
+# .mise/helpers/stack-operations - handles naming things consistently
+# .mise/helpers/traefik - talks to Traefik without breaking everything
+# .mise/helpers/docker-network - connects containers without the pain
+# .mise/helpers/docker-volume - manages volumes so you don't lose data
 ```
 
-Each helper has a single responsibility and can be tested independently.
+Each helper does one thing. When something breaks (and it will), you know exactly where to look.
 
-**Environment-Based Deployment System:**
+**Brainlet Moment - Every Deployment Gets a URL**
 
-The key insight was treating each deployment as a unique stack:
+I'm not sure if this will be a good idea, but instead of trying to juggle "current" and "next" versions, every single deployment gets its own unique URL:
 
-1. **Preview deployments** get their own URL: `v1.2.0-whoami.dev.example.com`
-2. **Blue/green slots** share the main URL: `whoami.dev.example.com`
+1. **Preview URLs**: Every version gets `v1.2.0-whoami.dev.example.com` - test it without touching production
+2. **Production URL**: The main `whoami.dev.example.com` that users actually hit
 
-**Stack Naming Convention:**
+So instead of thinking about the `prod`, `dev`, `stg` urls as being tied to a particular bucket where items are only reachable when moved into that "bucket", we instead give every deployment its own unique URL, and promotion is simply a matter of give that deployment an alias to the production URL.
 
-Every deployment follows `app-env-version` naming:
-- `whoami-dev-v1.2.0` (Docker Compose project name)
-- Creates network: `whoami-dev-v1.2.0_default`
-- Maps to hostname: `v1.2.0-whoami.dev.example.com`
+More on how we do this in the next post.
 
-This ensures no naming conflicts and makes deployments easily identifiable.
+**Naming Things So You Don't Go Insane**
+
+Every deployment follows the same pattern: `app-env-version`
+- Docker calls it: `whoami-dev-v1.2.0`
+- Network becomes: `whoami-dev-v1.2.0_default`
+- URL becomes: `v1.2.0-whoami.dev.example.com`
+
+
+No more "wait, which container is production again?" at 3 AM during an outage.
 
 ## What's Next
 
-Now I had the orchestration system, but I needed the actual blue-green routing implementation. The remaining posts cover:
+Alright, so now I could deploy stuff without it exploding. But I still needed to figure out the actual blue-green routing magic. The next posts cover:
 
 - **[Part 4: Dynamic Configuration Architecture](/b/2025-08-22-blue-green-with-traefik-part-4-architecture)** - Core Traefik blue-green routing setup
 - **[Part 5: Deployment Workflows and mise Integration](/b/2025-08-25-blue-green-with-traefik-part-5-deployment-workflows)** - Complete deployment workflows

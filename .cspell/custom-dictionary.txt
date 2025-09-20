@@ -17,3 +17,10 @@ hostnames
 dnsmasq
 agentic
 healthchecks
+realized
+bardem
+negotiables
+scriptable
+mortem
+runbook
+brainlet
