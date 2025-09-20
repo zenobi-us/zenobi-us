@@ -29,7 +29,7 @@ jobs:
       pr: ${{ steps.release-please.outputs.pr }}
       sha: ${{ steps.release-please.outputs.sha }}
     steps:
-      - uses: googleapis/release-please-action@a02a34c4d625f9be7cb89156071d8567266a2445 # v4
+      - uses: googleapis/release-please-action@c2a5a2bd6a758a0937f1ddb1e8950609867ed15c # v4
         id: release-please
         with:
           token: ${{secrets.ZENOBIUS_MONOREPO_RELEASE_PLEASE_TOKEN}}
@@ -47,11 +47,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
         with:
           fetch-depth: 0
 
-      - uses: jdx/mise-action@13abe502c30c1559a5c37dff303831bab82c9402 # v2
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
         env:
           GITHUB_API_TOKEN: ${{ secrets.ASDF_GITHUB_API_TOKEN }}
         with:
