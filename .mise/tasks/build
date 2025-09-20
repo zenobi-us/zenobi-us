@@ -5,6 +5,6 @@
 #MISE sources=["./app/**/*", "./content/**/*"]
 #MISE outputs=["./dist/**/*"]
 
-yarn remix vite:build
+remix vite:build
 
 mise run generate

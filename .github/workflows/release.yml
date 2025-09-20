@@ -52,9 +52,8 @@ jobs:
           fetch-depth: 0
 
       - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
-        env:
-          GITHUB_API_TOKEN: ${{ secrets.ASDF_GITHUB_API_TOKEN }}
         with:
+          experimental: true
           version: 2024.11.4
 
       - name: Yarn

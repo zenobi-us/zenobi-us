@@ -1,4 +1,4 @@
-import type { ComponentProps, HTMLAttributes } from 'react';
+import type { ComponentProps, HTMLAttributes, ReactNode } from 'react';
 import { createContext, useCallback, useContext } from 'react';
 import classname from 'classnames';
 import { tv } from 'tailwind-variants';
@@ -39,7 +39,7 @@ type TimelineListProps<T> = LinkListProps &
     ComponentProps<typeof GroupObjectBy<T>>,
     'collection' | 'getGroupKey' | 'sorter'
   > & {
-    renderGroupTitle?: (props: { year: string }) => JSX.Element;
+    renderGroupTitle?: (props: { year: string }) => ReactNode;
     getItemKey: (item: T) => string;
   };
 

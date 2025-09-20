@@ -2,4 +2,4 @@
 
 #MISE description="Run site in development mode"
 
-yarn remix vite:dev
+remix vite:dev

@@ -4,6 +4,7 @@ import {
   useCallback,
   type HTMLAttributes,
   type PropsWithChildren,
+  type ReactNode,
 } from 'react';
 import { tv } from 'tailwind-variants';
 
@@ -51,7 +52,7 @@ export function TimelineItem({
   tags,
 }: PropsWithChildren<{
   date: Date;
-  dateRenderer?: ({ date }: { date: Date }) => JSX.Element;
+  dateRenderer?: ({ date }: { date: Date }) => ReactNode;
   tags: string[];
 }>) {
   const styles = Styles({

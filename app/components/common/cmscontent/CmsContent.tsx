@@ -82,10 +82,7 @@ export function RenderMdxContent({
           blockquote: Blockquote,
           Button,
           PdfButton,
-          Widgets: {
-            RoleFlipper,
-            //   LogoThemer,
-          },
+          RoleFlipper,
           Icon,
           PdfOnly,
           PrintOnly,
