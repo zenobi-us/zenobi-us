@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.16](https://github.com/zenobi-us/zenobi-us/compare/v1.0.15...v1.0.16) (2025-09-22)
+
+
+### Bug Fixes
+
+* **deps:** update typescript-eslint monorepo to v8.44.1 ([#616](https://github.com/zenobi-us/zenobi-us/issues/616)) ([535aaec](https://github.com/zenobi-us/zenobi-us/commit/535aaeca0f0167239e6ea6d781f4febdb8fc1334))
+
 ## [1.0.15](https://github.com/zenobi-us/zenobi-us/compare/v1.0.14...v1.0.15) (2025-09-20)
 
 
