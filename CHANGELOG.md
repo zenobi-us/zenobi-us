@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.16](https://github.com/zenobi-us/zenobi-us/compare/v1.0.15...v1.0.16) (2025-10-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency lucide-react to ^0.545.0 ([#651](https://github.com/zenobi-us/zenobi-us/issues/651)) ([97aca40](https://github.com/zenobi-us/zenobi-us/commit/97aca40462f5b5b1413b4ad7431fe799be6c3ecb))
+* **deps:** update typescript-eslint monorepo to v8.44.1 ([#616](https://github.com/zenobi-us/zenobi-us/issues/616)) ([535aaec](https://github.com/zenobi-us/zenobi-us/commit/535aaeca0f0167239e6ea6d781f4febdb8fc1334))
+
 ## [1.0.15](https://github.com/zenobi-us/zenobi-us/compare/v1.0.14...v1.0.15) (2025-09-20)
 
 
