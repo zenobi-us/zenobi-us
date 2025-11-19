@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.17](https://github.com/zenobi-us/zenobi-us/compare/v1.0.16...v1.0.17) (2025-11-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency lucide-react to ^0.546.0 ([#663](https://github.com/zenobi-us/zenobi-us/issues/663)) ([96739be](https://github.com/zenobi-us/zenobi-us/commit/96739beffd7ff13543350180dea6cbe22d0da8b6))
+
 ## [1.0.16](https://github.com/zenobi-us/zenobi-us/compare/v1.0.15...v1.0.16) (2025-10-14)
 
 
