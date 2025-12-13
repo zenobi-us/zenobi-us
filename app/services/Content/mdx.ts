@@ -1,12 +1,5 @@
 import type { Options } from '@content-collections/mdx';
 import remarkGfm from 'remark-gfm';
-import {
-  transformerNotationDiff,
-  transformerNotationErrorLevel,
-  transformerNotationFocus,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
-} from '@shikijs/transformers';
 import { rehypePrettyCode } from 'rehype-pretty-code';
 import remarkSupersub from 'remark-supersub';
 import remarkHeadingId from 'remark-heading-id';
@@ -15,27 +8,11 @@ import remarkEmoji from 'remark-emoji';
 import remarkEmbedImages from 'remark-embed-images';
 import { remarkNomnoml } from '@zenobius/remark-nomnoml';
 import remarkRemoveComments from 'remark-remove-comments';
+
+import { REHYPE_PRETTY_CODE_OPTIONS } from './shikiOptions';
+
 export const rehypeOptions: Options['rehypePlugins'] = [
-  [
-    rehypePrettyCode,
-    {
-      theme: {
-        dark: 'github-dark-dimmed',
-        light: 'github-light',
-      },
-      keepBackground: false,
-      tokensMap: {
-        fn: 'entity.name.function',
-      },
-      transformers: [
-        transformerNotationDiff(),
-        transformerNotationHighlight({}),
-        transformerNotationWordHighlight(),
-        transformerNotationFocus(),
-        transformerNotationErrorLevel(),
-      ],
-    },
-  ],
+  [rehypePrettyCode, REHYPE_PRETTY_CODE_OPTIONS],
 ];
 
 export const remarkOptions: Options['remarkPlugins'] = [

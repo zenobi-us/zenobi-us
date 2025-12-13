@@ -24,3 +24,9 @@ scriptable
 mortem
 runbook
 brainlet
+greppable
+distill
+tradeoff
+zenobi
+opencode
+miniproject

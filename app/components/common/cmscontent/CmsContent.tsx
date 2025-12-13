@@ -26,6 +26,7 @@ import {
 } from './ViewMode';
 import { Notice } from './Notice';
 import { RoleFlipper } from './RoleFlipper/RoleFlipper';
+import { GithubEmbed } from './GithubEmbed';
 
 const Styles = tv({
   base: 'text-text-base text-left flex flex-col mx-0 my-0',
@@ -80,6 +81,7 @@ export function RenderMdxContent({
           pre: CodeBlock,
           code: InlineCodeBlock,
           blockquote: Blockquote,
+          GithubEmbed,
           Button,
           PdfButton,
           RoleFlipper,

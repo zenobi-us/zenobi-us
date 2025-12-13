@@ -11,6 +11,8 @@ import {
   json,
 } from '@remix-run/react';
 import { AnimatePresence } from 'framer-motion';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 
 import {
   getAppVersion,
@@ -70,6 +72,18 @@ export default function App() {
     console.log(`root: Theme changed ${theme}`);
   });
 
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 1000, // 1 minute
+            retry: 1,
+          },
+        },
+      })
+  );
+
   useClientSideFavicon(storage.value);
 
   return (
@@ -109,46 +123,48 @@ export default function App() {
         <Links />
       </head>
       <body className="flex flex-col min-h-lvh">
-        <FullScreenLoader loading={darkmode.loading}>
-          {() => (
-            <LinkProvider component={LinkInterop}>
-              <NavigationProvider currentPath={currentPath}>
-                <Site pathId={location.pathname}>
-                  {handles.globalNav && (
-                    <Site.Header>
-                      <GlobalNav
-                        useLogo
-                        currentPath={currentPath}
-                      />
-                    </Site.Header>
-                  )}
+        <QueryClientProvider client={queryClient}>
+          <FullScreenLoader loading={darkmode.loading}>
+            {() => (
+              <LinkProvider component={LinkInterop}>
+                <NavigationProvider currentPath={currentPath}>
+                  <Site pathId={location.pathname}>
+                    {handles.globalNav && (
+                      <Site.Header>
+                        <GlobalNav
+                          useLogo
+                          currentPath={currentPath}
+                        />
+                      </Site.Header>
+                    )}
 
-                  <AnimatePresence
-                    initial={false}
-                    mode="wait"
-                  >
-                    <Site.Main>{outlet}</Site.Main>
-                  </AnimatePresence>
+                    <AnimatePresence
+                      initial={false}
+                      mode="wait"
+                    >
+                      <Site.Main>{outlet}</Site.Main>
+                    </AnimatePresence>
 
-                  {handles.globalFooter && data.footer?.mdx && (
-                    <Site.Footer>
-                      <GlobalFooter content={data.footer.mdx}></GlobalFooter>
-                    </Site.Footer>
-                  )}
+                    {handles.globalFooter && data.footer?.mdx && (
+                      <Site.Footer>
+                        <GlobalFooter content={data.footer.mdx}></GlobalFooter>
+                      </Site.Footer>
+                    )}
 
-                  <Box className="flex gap-2 justify-center p-4">
-                    <VersionTooltip version={data.version}>
-                      <DisplayVersion
-                        version={data.version}
-                        className="text-text-muted text-xs"
-                      />
-                    </VersionTooltip>
-                  </Box>
-                </Site>
-              </NavigationProvider>
-            </LinkProvider>
-          )}
-        </FullScreenLoader>
+                    <Box className="flex gap-2 justify-center p-4">
+                      <VersionTooltip version={data.version}>
+                        <DisplayVersion
+                          version={data.version}
+                          className="text-text-muted text-xs"
+                        />
+                      </VersionTooltip>
+                    </Box>
+                  </Site>
+                </NavigationProvider>
+              </LinkProvider>
+            )}
+          </FullScreenLoader>
+        </QueryClientProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
