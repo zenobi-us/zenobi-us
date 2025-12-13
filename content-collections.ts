@@ -1,5 +1,6 @@
 import { defineCollection, defineConfig } from '@content-collections/core';
 import { compileMDX } from '@content-collections/mdx';
+import { z } from 'zod';
 import lodash from 'lodash';
 import fs from 'fs';
 import { join } from 'path';
@@ -88,6 +89,46 @@ function normalisedCollection<T extends { glob: string; prefix: string }, R>(
   return fn(globs, { prefix, withOutPrefix });
 }
 
+// Define schemas using Zod
+const meSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  date: z.string().optional().default(''),
+  tags: z.array(z.string()).default([]),
+  content: z.string().default(''),
+});
+
+const siteDataSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  content: z.string().default(''),
+});
+
+const helpSchema = z.object({
+  title: z.string(),
+  date: z.string().optional().default(''),
+  description: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  content: z.string().default(''),
+});
+
+const postsSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  date: z.string(),
+  stage: z.enum(['draft', 'published', 'scheduled']).default('draft'),
+  banner: z
+    .object({
+      src: z.string(),
+      credit: z.string().optional(),
+    })
+    .optional(),
+  template: z.enum(['article', 'summary', 'link']).default('article'),
+  tags: z.array(z.string()).default([]),
+  content: z.string().default(''),
+});
+
 const me = normalisedCollection(
   [
     { prefix: '', glob: 'me/**/*.md' },
@@ -98,13 +139,7 @@ const me = normalisedCollection(
       name: 'me',
       directory: 'content',
       include: globs,
-      schema: (z) => ({
-        title: z.string(),
-        description: z.string().optional(),
-        date: z.string().optional().default(''),
-        tags: z.array(z.string()).default([]),
-        content: z.string().default(''),
-      }),
+      schema: meSchema,
       transform: async (document, context) => {
         assert(
           isDocumentWithContent(document),
@@ -139,12 +174,7 @@ const siteData = normalisedCollection(
       name: 'siteData',
       directory: 'content',
       include: globs,
-      schema: (z) => ({
-        title: z.string(),
-        description: z.string().optional(),
-        tags: z.array(z.string()).default([]),
-        content: z.string().default(''),
-      }),
+      schema: siteDataSchema,
       transform: async (document, context) => {
         assert(
           isDocumentWithContent(document),
@@ -180,13 +210,7 @@ const help = normalisedCollection(
       name: 'help',
       directory: 'content',
       include: globs,
-      schema: (z) => ({
-        title: z.string(),
-        date: z.string().optional().default(''),
-        description: z.string().optional(),
-        tags: z.array(z.string()).default([]),
-        content: z.string().default(''),
-      }),
+      schema: helpSchema,
       transform: async (document, context) => {
         assert(
           isDocumentWithContent(document),
@@ -222,21 +246,7 @@ const posts = normalisedCollection(
       name: 'posts',
       directory: 'content/',
       include: globs,
-      schema: (z) => ({
-        title: z.string(),
-        description: z.string().optional(),
-        date: z.string(),
-        stage: z.enum(['draft', 'published', 'scheduled']).default('draft'),
-        banner: z
-          .object({
-            src: z.string(),
-            credit: z.string().optional(),
-          })
-          .optional(),
-        template: z.enum(['article', 'summary', 'link']).default('article'),
-        tags: z.array(z.string()).default([]),
-        content: z.string().default(''),
-      }),
+      schema: postsSchema,
       transform: async (document, context) => {
         assert(
           isDocumentWithContent(document),
