@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/zenobi-us/zenobi-us/compare/v1.0.16...v1.1.0) (2025-12-14)
+
+
+### Features
+
+* **content:** add dynamic GitHub content embedding to blog posts ([#698](https://github.com/zenobi-us/zenobi-us/issues/698)) ([5046679](https://github.com/zenobi-us/zenobi-us/commit/50466792ded00a06957fd617ca06509594583d94))
+
+
+### Bug Fixes
+
+* **config:** migrate content-collections to Zod schemas (resolves CI build failure) ([#699](https://github.com/zenobi-us/zenobi-us/issues/699)) ([6c2354e](https://github.com/zenobi-us/zenobi-us/commit/6c2354e1461544deb931493f36e90a30103098d8))
+* **deps:** update dependency @content-collections/core to ^0.12.0 ([#694](https://github.com/zenobi-us/zenobi-us/issues/694)) ([97e3b67](https://github.com/zenobi-us/zenobi-us/commit/97e3b6790edac705128f669c146b4b6e55bfd8fb))
+* **deps:** update dependency lucide-react to ^0.546.0 ([#663](https://github.com/zenobi-us/zenobi-us/issues/663)) ([96739be](https://github.com/zenobi-us/zenobi-us/commit/96739beffd7ff13543350180dea6cbe22d0da8b6))
+* **deps:** update dependency lucide-react to ^0.555.0 ([#695](https://github.com/zenobi-us/zenobi-us/issues/695)) ([94eedaa](https://github.com/zenobi-us/zenobi-us/commit/94eedaa270757a293b00928eecf230ee2c7ef403))
+* **deps:** update dependency three to ^0.181.0 ([#696](https://github.com/zenobi-us/zenobi-us/issues/696)) ([01df895](https://github.com/zenobi-us/zenobi-us/commit/01df8951b00c07294ebc22b22edf7078d5c2ee95))
+
 ## [1.0.16](https://github.com/zenobi-us/zenobi-us/compare/v1.0.15...v1.0.16) (2025-10-14)
 
 
