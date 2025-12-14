@@ -41,14 +41,11 @@ The agent's first job in any session: read `summary.md`. Its last job: update it
 
 ```nomnoml
 #direction: right
-[mainthread] -> [miniproject command]
-[miniproject command] -> [subagent 1]
-[miniproject command] -> [subagent 2]
-[miniproject command] -> [subagent 3]
-[subagent 1] -> [.memory/ artifacts]
-[subagent 2] -> [.memory/ artifacts]
-[subagent 3] -> [.memory/ artifacts]
-[.memory/ artifacts] -> [mainthread: read summary]
+[mainthread: /miniproject] -> [see status] -> [result: complete] -> [/miniproject]
+                |                                      /\
+[subthread: work] |                                     |
+[subthread: work] |                                     |
+[subthread: work] ------- [prepare] -------- (fed back)
 ```
 
 ## Examples
