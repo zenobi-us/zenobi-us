@@ -58,6 +58,7 @@ export function Chat(props: PropsWithChildren<{
   </div>;
 }
 
+
 Chat.Message = ChatMessage;
 Chat.User = UserMessage;
 Chat.Assistant = AgentMessage;
@@ -78,28 +79,28 @@ export function ChatMessage(props: {
 }
 
 // Convenience components for better ergonomics in MDX
-export function UserMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
+export function UserMessage(props: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="user" className={classnames(className, "border-l-4 border-l-purple-300")}>
-      {children}
+    <ChatMessage role="user">
+      {props.children}
       <pre className=" m-0 mb-1 p-0 pt-2 text-white/30 text-xs">user</pre>
     </ChatMessage>
   );
 }
 
-export function AgentMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
+export function AgentMessage(props: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="agent" className={classnames(className, "border-none bg-transparent dark:bg-background-shadow")}>
-      {children}
+    <ChatMessage role="agent" className={classnames(props.className, "border-none bg-transparent dark:bg-background-shadow")}>
+      {props.children}
     </ChatMessage>
   );
 }
 
-export function TodoListMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
+export function TodoListMessage(props: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="todo" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-transparent")}>
+    <ChatMessage role="todo" className={classnames(props.className, "m-0 p-0 border-none bg-transparent dark:bg-transparent")}>
       <ul className="m-0 p-0 list-none space-y-1">
-        {children}
+        {props.children}
       </ul>
     </ChatMessage>
   );
@@ -110,35 +111,46 @@ export function TodoListItemMessage(props: {
   status?: 'pending' | 'completed' | 'canceled' | 'in-progress';
   children: React.ReactNode;
 }) {
+  const statusEmoji = {
+    pending: '📝 ',
+    completed: '✅ ',
+    canceled: '❌ ',
+    'in-progress': '⏳ ',
+  };
+
+  const statusLabel = {
+    pending: 'Pending task: ',
+    completed: 'Completed task: ',
+    canceled: 'Canceled task: ',
+    'in-progress': 'In-progress task: ',
+  };
+
+  const statusColor = {
+    pending: '',
+    completed: 'text-green-400 line-through',
+    canceled: 'text-red-400 line-through',
+    'in-progress': 'text-yellow-400',
+  };
+
   return (
     <li className={classnames(
       'flex gap-2 list-none',
-      props.status === 'completed' && 'text-green-400 line-through',
-      props.status === 'canceled' && 'text-red-400 line-through',
-      props.status === 'in-progress' && 'text-yellow-400',
-      !props.status && 'text-white',
+      props.status ? statusColor[props.status] : 'text-white',
     )}>
       <span className="sr-only">
-        {props.status === 'completed' && 'Completed task: '}
-        {props.status === 'canceled' && 'Canceled task: '}
-        {props.status === 'in-progress' && 'In-progress task: '}
-        {!props.status && 'Pending task: '}
+        {props.status ? statusLabel[props.status] : 'Pending task: '}
       </span>
 
-      {props.status === 'pending' && '📝 '}
-      {props.status === 'completed' && '✅ '}
-      {props.status === 'canceled' && '❌ '}
-      {props.status === 'in-progress' && '⏳ '}
-
+      {props.status ? statusEmoji[props.status] : '📝 '}
       {props.children}
     </li>
   );
 }
 
-export function ToolUseMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
+export function ToolUseMessage(props: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="tool" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-background-shadow")}>
-      <pre className=" m-0 mb-2 p-0 text-white/30 text-xs">⚙ {children}</pre>
+    <ChatMessage role="tool" className={classnames(props.className, "m-0 p-0 border-none bg-transparent dark:bg-background-shadow")}>
+      <pre className=" m-0 mb-2 p-0 text-white/30 text-xs">⚙ {props.children}</pre>
     </ChatMessage>
   );
 }
