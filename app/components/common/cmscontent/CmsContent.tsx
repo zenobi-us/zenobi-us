@@ -106,7 +106,6 @@ export async function renderMdxContentToString({
   viewMode,
   stylesheet,
 }: RenderMdxProps & { stylesheet?: React.ReactNode }) {
-  //@ts-expect-error Server dynamic import
   const { renderToString } = await import('react-dom/server');
   const output = renderToString(
     <>

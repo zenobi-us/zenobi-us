@@ -144,5 +144,8 @@
   "type": "module",
   "scripts": {
     "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^19.2.3"
   }
 }
