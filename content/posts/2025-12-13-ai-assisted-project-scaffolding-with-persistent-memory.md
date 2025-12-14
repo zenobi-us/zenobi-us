@@ -14,13 +14,13 @@ Making an AI agent scaffold a new project is easy. Making it remember what it di
 
 So if you want to build something more complex than a landing page, you'll need a way to guide the llm with a consistent strategic plan.
 
-Every time I started a new session with an LLM to scaffold a project, I'd spend the first ten minutes re-explaining context. What we'd decided. What we'd tried. What didn't work. The model had no memory, and neither did I — not reliably, anyway.
+Every time I started a new session with an LLM to scaffold a project, I'd spend the first ten minutes re-explaining context. What we'd decided. What we'd tried. What didn't work. The model had no memory, and neither did I - not reliably, anyway.
 
 So I started writing things down. Not for me. For the agent.
 
 ## Who This Is For
 
-This pattern works anywhere you need to break complex work into chunks and iterate across multiple sessions—whether with an AI agent, a team, or both.
+This pattern works anywhere you need to break complex work into chunks and iterate across multiple sessions - whether with an AI agent, a team, or both.
 
 - **Researchers & Writers**: Cover deep, complex topics across a series of chat sessions without losing context or repeating yourself
 - **Story Writers**: Research and explore the behavioral nuances of characters across multiple conversations
@@ -31,11 +31,11 @@ This pattern works anywhere you need to break complex work into chunks and itera
 
 A `.memory/` directory at the project root. Simple markdown files:
 
-- `summary.md` — project overview, current state, key decisions
-- `todo.md` — pending work, with `[NEEDS-HUMAN]` markers for things the agent shouldn't decide alone
-- `team.md` — which agents have touched this project and what they contributed
+- `summary.md` - project overview, current state, key decisions
+- `todo.md` - pending work, with `[NEEDS-HUMAN]` markers for things the agent shouldn't decide alone
+- `team.md` - which agents have touched this project and what they contributed
 
-Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation-`, `task-`. Each gets an 8-character hash and a title. The naming convention isn't clever — it's just greppable.
+Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation-`, `task-`. Each gets an 8-character hash and a title. The naming convention isn't clever - it's just greppable.
 
 The agent's first job in any session: read `summary.md`. Its last job: update it.
 
@@ -229,7 +229,7 @@ Opencode provides a single tool to allow this pattern: The `task` tool.
 </Chat>
 
 
-The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something consequential — a design tradeoff, a risky deletion, an ambiguous requirement — it tags the item and stops. I review, decide, and the next session picks up where we left off.
+The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something consequential - a design tradeoff, a risky deletion, an ambiguous requirement - it tags the item and stops. I review, decide, and the next session picks up where we left off.
 
 ## What I Learned
 
@@ -237,7 +237,7 @@ The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something con
 
 **Git history of AI decisions is useful.** Each session commits its changes. I can `git log` through the project's evolution and see what the agent was thinking at each step. When something goes wrong, I can trace it back.
 
-**This breaks down at scale.** Once you're past a few dozen `.memory/` files, the pattern needs pruning logic. I haven't solved that yet — for now, I just delete old research artifacts manually when they stop being relevant.
+**This breaks down at scale.** Once you're past a few dozen `.memory/` files, the pattern needs pruning logic. I haven't solved that yet - for now, I just delete old research artifacts manually when they stop being relevant.
 
 **The human-in-the-loop marker works.** `[NEEDS-HUMAN]` is a forcing function. It makes the agent's uncertainty explicit instead of letting it guess at things it shouldn't.
 
