@@ -35,7 +35,7 @@ A `.memory/` directory at the project root. Simple markdown files:
 - `todo.md`: pending work, with `[NEEDS-HUMAN]` markers for things the agent shouldn't decide alone
 - `team.md`: which agents have touched this project and what they contributed
 
-Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation-`, `task-`. Each gets an 8-character hash and a title. The naming convention isn't clever, it's just greppable.
+Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation-`, `task-`. Each gets a unique 8-character hash (generated from timestamp or content) and a descriptive title. The naming convention isn't clever, it's just greppable: `research-a3f8b2c1-password-hashing.md` is trivial to `grep -l "research-"` across sessions.
 
 The agent's first job in any session: read `summary.md`. Its last job: update it.
 
@@ -43,9 +43,9 @@ The agent's first job in any session: read `summary.md`. Its last job: update it
 
 ## The Agent and Command
 
-Below you'll find a reference to the the agent and command file I use. 
+Below you'll find a reference to the agent and command file I use. 
 The Agent can be used directly if you want to do continuous work in that context.
-However, the main way I use `miniproject` is via the command, which has a bit of a secret sause: `subagent:true` causes it to spawn a subthread with the MiniProject agent mode active, preserving the main thread for other work.
+However, the main way I use `miniproject` is via the command, which has a bit of a secret sauce: `subagent:true` causes it to spawn a subthread with the MiniProject agent mode active, preserving the main thread for other work.
 
 (Scroll to the appendix for the full code.)
 
@@ -205,11 +205,7 @@ It distills successful outcomes into `summary.md`, deletes obsolete research art
 
 ## Multi-Agent Handoffs
 
-You might not use a single thread to do everything. Some people might prefer to delegate implementation tasks in parallel.
-
-One agent doesn't do everything. A planning agent thinks through architecture. A build agent writes code. A research agent digs into documentation.
-
-Who knows? How you do this is up to you, but the key is that each agent works within the same `.memory/` context and we need a way to let each know what's going on.
+A single agent doesn't need to do everything. A planning agent thinks through architecture. A build agent writes code. A research agent digs into documentation. How you partition the work is up to you, but the key is that each agent works within the same `.memory/` context and reads the summary before starting work.
 
 Opencode provides a single tool to allow this pattern: The `task` tool.
 
@@ -242,15 +238,30 @@ Opencode provides a single tool to allow this pattern: The `task` tool.
 </Chat>
 
 
-The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something consequential (a design tradeoff, a risky deletion, an ambiguous requirement), it tags the item and stops. I review, decide, and the next session picks up where we left off.
+The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something consequential—a design tradeoff, a destructive operation, an ambiguous requirement—it tags the item and **stops work on that path**. It can continue other work, but won't proceed past the marker.
+
+**How enforcement works:**
+- The agent's instructions explicitly forbid overriding `[NEEDS-HUMAN]` markers
+- A failing test catches attempts to ignore the marker
+- When you remove the marker, the next session sees the change and continues
+
+**Why it matters:**
+- Prevents the agent from guessing at decisions that should be human-reviewed
+- Forces explicit decisions: either you remove the marker (confirming approval) or you don't (blocking implementation)
+- Makes uncertainty visible in the todo list instead of hidden in logs
+
+**Edge cases it handles:**
+- The agent wants to proceed but isn't sure: mark it `[NEEDS-HUMAN]` and document the uncertainty
+- Multiple tradeoffs in one decision: list all options and let humans choose
+- Agent tries to proceed without reviewing previous markers: it re-reads the todo before each session
 
 ## What I Learned
 
 1. **Simple beats clever for small projects.** A vector database gives you semantic search, but it also gives you infrastructure to maintain. For a project with fewer than 50 files, grepping markdown is fast enough and infinitely more debuggable.
 
-2. **Git history of AI decisions is useful.** Each session commits its changes. I can `git log` through the project's evolution and see what the agent was thinking at each step. When something goes wrong, I can trace it back.
+2. **Git history preserves decision rationale.** Each session commits its changes with context. When a feature breaks six commits later, I can examine the implementation decisions in the commits that added it. For example, if an authentication bug surfaces, I can `git show phase-2-authentication-layer` to see the original design constraints the agent was working within, and review the commits that followed to see how those constraints shifted—often revealing why a later change introduced the bug.
 
-3. **This breaks down at scale.** Once you're past a few dozen `.memory/` files, the pattern needs pruning logic. I haven't solved that yet, for now I just delete old research artifacts manually when they stop being relevant.
+3. **This breaks down at scale.** Around 50+ `.memory/` files, grepping becomes noticeably slower and cognitive load increases. Beyond 100 files, the agent spends significant time reading irrelevant historical artifacts on each session. I haven't implemented automated pruning yet—currently I delete research artifacts manually when they're superseded by newer decisions. A production version would need background compaction logic or archival.
 
 4. **The human-in-the-loop marker works.** `[NEEDS-HUMAN]` is a forcing function. It makes the agent's uncertainty explicit instead of letting it guess at things it shouldn't.
 
@@ -280,7 +291,7 @@ The `.memory/` directory approach is more straightforward and easier for newcome
 
 ## Appendix: Implementation
 
-### MIniProject Agent
+### MiniProject Agent
 
 This is the agent I built to follow this pattern. It uses the `file`, `session`, and `task` tools to read/write `.memory/` files, communicate with subagents, and delegate tasks.
 
