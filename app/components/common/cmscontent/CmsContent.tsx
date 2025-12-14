@@ -27,7 +27,7 @@ import {
 import { Notice } from './Notice';
 import { RoleFlipper } from './RoleFlipper/RoleFlipper';
 import { GithubEmbed } from './GithubEmbed';
-import { UserMessage, AgentMessage, ChatMessage, Chat } from './ChatMessage';
+import { UserMessage, AgentMessage, Chat } from './ChatMessage';
 
 const Styles = tv({
   base: 'text-text-base text-left flex flex-col mx-0 my-0',
@@ -106,6 +106,7 @@ export async function renderMdxContentToString({
   viewMode,
   stylesheet,
 }: RenderMdxProps & { stylesheet?: React.ReactNode }) {
+  //@ts-expect-error Server dynamic import
   const { renderToString } = await import('react-dom/server');
   const output = renderToString(
     <>
