@@ -30,3 +30,7 @@ tradeoff
 zenobi
 opencode
 miniproject
+summarize
+distills
+subagents
+subthread

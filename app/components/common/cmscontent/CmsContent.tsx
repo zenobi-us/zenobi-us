@@ -27,6 +27,7 @@ import {
 import { Notice } from './Notice';
 import { RoleFlipper } from './RoleFlipper/RoleFlipper';
 import { GithubEmbed } from './GithubEmbed';
+import { UserMessage, AgentMessage, ChatMessage, Chat } from './ChatMessage';
 
 const Styles = tv({
   base: 'text-text-base text-left flex flex-col mx-0 my-0',
@@ -81,7 +82,10 @@ export function RenderMdxContent({
           pre: CodeBlock,
           code: InlineCodeBlock,
           blockquote: Blockquote,
+          Chat,
           GithubEmbed,
+          UserMessage,
+          AgentMessage,
           Button,
           PdfButton,
           RoleFlipper,

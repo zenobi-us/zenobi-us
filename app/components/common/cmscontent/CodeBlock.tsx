@@ -26,7 +26,7 @@ export function CodeBlock({
 
   return (
     <pre
-      className={classnames(className, styles.block())}
+      className={classnames(styles.block(), className)}
       {...props}
     />
   );

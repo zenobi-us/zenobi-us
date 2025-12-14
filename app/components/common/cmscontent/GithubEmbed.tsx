@@ -16,7 +16,7 @@ const Styles = tv({
     figcaption: ['flex'],
     icon: [],
     link: [],
-    codeWrapper: 'bg-background-card text-text-base text-sm [&_pre]:overflow-x-auto [&_pre]:m-0 ',
+    codeWrapper: 'bg-background-card text-text-base text-sm [&_pre]:overflow-x-auto [&_pre]:m-0 [&_pre]:text-wrap',
     error: [
       'px-4 py-2',
       'bg-background-critical text-text-critical',
