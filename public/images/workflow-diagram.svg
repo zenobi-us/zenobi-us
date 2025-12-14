@@ -1,4 +1,4 @@
-<svg viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
   <!-- Define styles -->
   <defs>
     <style>
@@ -9,7 +9,6 @@
       .status-box { fill: #3b82f6; }
       .result-box { fill: #10b981; }
       .text { fill: white; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; text-anchor: middle; font-weight: 500; }
-      .label { fill: #9ca3af; font-family: 'Monaco', 'Courier New', monospace; font-size: 12px; }
       .lane-label { fill: #6b7280; font-family: 'Monaco', 'Courier New', monospace; font-size: 11px; }
       .line { stroke: #4b5563; stroke-width: 2; fill: none; }
       .arrow { stroke: #4b5563; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
@@ -24,7 +23,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="350" class="bg"/>
+  <rect width="900" height="280" class="bg"/>
 
   <!-- Swimlane backgrounds -->
   <rect x="0" y="0" width="900" height="130" class="swimlane-bg"/>
@@ -73,9 +72,4 @@
 
   <!-- Feedback line up to result -->
   <path d="M 335 165 L 435 165 L 435 70" class="feedback"/>
-
-  <!-- Flow description -->
-  <text x="100" y="315" class="label" style="font-size: 13px; fill: #d1d5db;">Flow:</text>
-  <text x="100" y="335" class="label">• Mainthread initiates /miniproject, checks status, gets result</text>
-  <text x="500" y="335" class="label">• Subthread works in parallel, prepares results, feeds back</text>
 </svg>
