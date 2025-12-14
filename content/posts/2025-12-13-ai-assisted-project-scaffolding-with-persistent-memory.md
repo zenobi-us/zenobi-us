@@ -39,6 +39,18 @@ Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation
 
 The agent's first job in any session: read `summary.md`. Its last job: update it.
 
+```nomnoml
+#direction: right
+[mainthread] -> [miniproject command]
+[miniproject command] -> [subagent 1]
+[miniproject command] -> [subagent 2]
+[miniproject command] -> [subagent 3]
+[subagent 1] -> [.memory/ artifacts]
+[subagent 2] -> [.memory/ artifacts]
+[subagent 3] -> [.memory/ artifacts]
+[.memory/ artifacts] -> [mainthread: read summary]
+```
+
 ## Examples
 
 ### Starting a New Project
