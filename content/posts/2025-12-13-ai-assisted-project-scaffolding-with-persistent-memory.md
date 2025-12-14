@@ -39,8 +39,7 @@ Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation
 
 The agent's first job in any session: read `summary.md`. Its last job: update it.
 
-```nomnoml
-#direction: right
+![Mainthread and subthread workflow diagram showing iterations with parallel work and feedback loops](/images/workflow-diagram.svg)
 [mainthread: /miniproject] -> [see status] -> [result: complete] -> [/miniproject]
                 |                                      /\
 [subthread: work] |                                     |

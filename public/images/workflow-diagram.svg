@@ -1,0 +1,78 @@
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define styles -->
+  <defs>
+    <style>
+      .mainthread-box { fill: #6366f1; }
+      .subthread-box { fill: #8b5cf6; }
+      .status-box { fill: #3b82f6; }
+      .result-box { fill: #10b981; }
+      .text { fill: white; font-family: monospace; font-size: 14px; text-anchor: middle; }
+      .label { fill: #9ca3af; font-family: monospace; font-size: 12px; }
+      .line { stroke: #6b7280; stroke-width: 2; fill: none; }
+      .arrow { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .feedback { stroke: #10b981; stroke-width: 2; fill: none; stroke-dasharray: 5,5; marker-end: url(#arrowhead-green); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Main thread row -->
+  <text x="50" y="50" class="label">mainthread:</text>
+
+  <!-- Main thread boxes -->
+  <rect x="80" y="30" width="120" height="40" rx="4" class="mainthread-box"/>
+  <text x="140" y="58" class="text">/miniproject</text>
+
+  <path d="M 200 50 L 240 50" class="arrow"/>
+
+  <rect x="240" y="30" width="100" height="40" rx="4" class="status-box"/>
+  <text x="290" y="58" class="text">see status</text>
+
+  <path d="M 340 50 L 380 50" class="arrow"/>
+
+  <rect x="380" y="30" width="140" height="40" rx="4" class="result-box"/>
+  <text x="450" y="58" class="text">result: complete</text>
+
+  <path d="M 520 50 L 560 50" class="arrow"/>
+
+  <rect x="560" y="30" width="120" height="40" rx="4" class="mainthread-box"/>
+  <text x="620" y="58" class="text">/miniproject</text>
+
+  <!-- Subthread section -->
+  <text x="50" y="150" class="label">subthreads:</text>
+
+  <!-- Subthread 1 -->
+  <rect x="80" y="130" width="80" height="35" rx="4" class="subthread-box"/>
+  <text x="120" y="152" class="text">work</text>
+
+  <!-- Subthread 2 -->
+  <rect x="80" y="175" width="80" height="35" rx="4" class="subthread-box"/>
+  <text x="120" y="197" class="text">work</text>
+
+  <!-- Subthread 3 -->
+  <rect x="80" y="220" width="80" height="35" rx="4" class="subthread-box"/>
+  <text x="120" y="242" class="text">work</text>
+
+  <!-- Lines from subthreads to prepare -->
+  <path d="M 160 148 L 200 148 L 200 190 L 260 190" class="line"/>
+  <path d="M 160 193 L 230 193 L 230 190 L 260 190" class="line"/>
+  <path d="M 160 238 L 220 238 L 220 190 L 260 190" class="line"/>
+
+  <!-- Prepare box -->
+  <rect x="260" y="170" width="100" height="40" rx="4" class="subthread-box"/>
+  <text x="310" y="198" class="text">prepare</text>
+
+  <!-- Feedback line to result -->
+  <path d="M 360 190 L 480 190 L 480 75" class="feedback"/>
+
+  <!-- Legend -->
+  <text x="80" y="330" class="label">Flow:</text>
+  <text x="80" y="355" class="label">• Mainthread initiates /miniproject command</text>
+  <text x="80" y="375" class="label">• Subthreads perform work in parallel</text>
+  <text x="500" y="355" class="label">• Results fed back to mainthread</text>
+  <text x="500" y="375" class="label">• Process repeats with updated context</text>
+</svg>
