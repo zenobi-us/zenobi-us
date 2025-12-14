@@ -40,12 +40,17 @@ Plus typed artifacts: `research-`, `phase-`, `guide-`, `notes-`, `implementation
 The agent's first job in any session: read `summary.md`. Its last job: update it.
 
 ![Mainthread and subthread workflow diagram showing iterations with parallel work and feedback loops](/images/workflow-diagram.svg)
-[mainthread: /miniproject] -> [see status] -> [result: complete] -> [/miniproject]
-                |                                      /\
-[subthread: work] |                                     |
-[subthread: work] |                                     |
-[subthread: work] ------- [prepare] -------- (fed back)
-```
+
+## The Agent and Command
+
+Below you'll find a reference to the the agent and command file I use. 
+The Agent can be used directly if you want to do continuous work in that context.
+However, the main way I use `miniproject` is via the command, which has a bit of a secret sause: `subagent:true` causes it to spawn a subthread with the MiniProject agent mode active, preserving the main thread for other work.
+
+(Scroll to the appendix for the full code.)
+
+What follows are some example workflows showing how I use this pattern in practice.
+
 
 ## Examples
 
@@ -241,25 +246,35 @@ The `[NEEDS-HUMAN]` marker is the escape hatch. When an agent hits something con
 
 ## What I Learned
 
-**Simple beats clever for small projects.** A vector database gives you semantic search, but it also gives you infrastructure to maintain. For a project with fewer than 50 files, grepping markdown is fast enough and infinitely more debuggable.
+1. **Simple beats clever for small projects.** A vector database gives you semantic search, but it also gives you infrastructure to maintain. For a project with fewer than 50 files, grepping markdown is fast enough and infinitely more debuggable.
 
-**Git history of AI decisions is useful.** Each session commits its changes. I can `git log` through the project's evolution and see what the agent was thinking at each step. When something goes wrong, I can trace it back.
+2. **Git history of AI decisions is useful.** Each session commits its changes. I can `git log` through the project's evolution and see what the agent was thinking at each step. When something goes wrong, I can trace it back.
 
-**This breaks down at scale.** Once you're past a few dozen `.memory/` files, the pattern needs pruning logic. I haven't solved that yet, for now I just delete old research artifacts manually when they stop being relevant.
+3. **This breaks down at scale.** Once you're past a few dozen `.memory/` files, the pattern needs pruning logic. I haven't solved that yet, for now I just delete old research artifacts manually when they stop being relevant.
 
-**The human-in-the-loop marker works.** `[NEEDS-HUMAN]` is a forcing function. It makes the agent's uncertainty explicit instead of letting it guess at things it shouldn't.
+4. **The human-in-the-loop marker works.** `[NEEDS-HUMAN]` is a forcing function. It makes the agent's uncertainty explicit instead of letting it guess at things it shouldn't.
 
 ## When This Fits
 
 - Iterative scaffolding over days or weeks
 - Projects where you want an audit trail of AI-assisted decisions
 - Situations where context exceeds a single session's window
+- You're using this in a git repo and you're the only one working on it
 
 ## When it doesn't fit
 
-- large codebases
-- real-time retrieval
-- or anything requiring semantic similarity search.
+- You're working with many git repos and need cross-repo context. This pattern is per-repo.
+- You work in a team where the presence of the `.memory/` directory would confuse collaborators unfamiliar with the pattern.
+- You rely on a git worktree workflow that doesn't store the worktrees inside the main project directory.
+
+## Alternatives
+
+- **BasicMemory**: we could rewrite the prompts to use the BasicMemory tool. This would instruct the LLM to search, write and read notes via the mcp server.
+- **ZK cli**: Same as above, but using the ZK cli tool to read and write notes.
+
+Both of these alternatives would require more prompt engineering and careful instruction to ensure the agent maintains context across sessions. Which shouldn't be that difficult.
+
+The `.memory/` directory approach is more straightforward and easier for newcomers to get started with. In a follow up post I'll explore these alternatives in more detail.
 
 ---
 
