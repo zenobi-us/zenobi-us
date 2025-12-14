@@ -18,6 +18,15 @@ Every time I started a new session with an LLM to scaffold a project, I'd spend 
 
 So I started writing things down. Not for me. For the agent.
 
+## Who This Is For
+
+This pattern works anywhere you need to break complex work into chunks and iterate across multiple sessions—whether with an AI agent, a team, or both.
+
+- **Researchers & Writers**: Cover deep, complex topics across a series of chat sessions without losing context or repeating yourself
+- **Story Writers**: Research and explore the behavioral nuances of characters across multiple conversations
+- **Developers**: Scaffold and iterate on applications with consistent strategic direction across sessions
+- **Managers**: Explore process changes and organizational decisions with continuity and documented reasoning
+
 ## The Pattern
 
 A `.memory/` directory at the project root. Simple markdown files:
