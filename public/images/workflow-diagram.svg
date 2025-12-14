@@ -57,32 +57,25 @@
 
   <!-- === SUBTHREAD LANE === -->
 
-  <!-- Subthread 1 -->
-  <rect x="100" y="145" width="75" height="35" rx="6" class="subthread-box"/>
-  <text x="137" y="169" class="text">work</text>
+  <!-- Connection line from first /miniproject down to work -->
+  <path d="M 155 65 L 155 130 L 155 145" class="line"/>
 
-  <!-- Subthread 2 -->
-  <rect x="100" y="190" width="75" height="35" rx="6" class="subthread-box"/>
-  <text x="137" y="214" class="text">work</text>
+  <!-- Single work box, aligned with first /miniproject -->
+  <rect x="115" y="145" width="80" height="40" rx="6" class="subthread-box"/>
+  <text x="155" y="172" class="text">work</text>
 
-  <!-- Subthread 3 -->
-  <rect x="100" y="235" width="75" height="35" rx="6" class="subthread-box"/>
-  <text x="137" y="259" class="text">work</text>
-
-  <!-- Lines from all work boxes converging to prepare -->
-  <path d="M 175 163 L 200 163 L 200 210 L 240 210" class="line"/>
-  <path d="M 175 208 L 220 208 L 220 210 L 240 210" class="line"/>
-  <path d="M 175 253 L 210 253 L 210 210 L 240 210" class="line"/>
+  <!-- Line from work to prepare -->
+  <path d="M 195 165 L 240 165" class="line"/>
 
   <!-- Prepare box -->
-  <rect x="240" y="190" width="95" height="40" rx="6" class="subthread-box"/>
-  <text x="287" y="217" class="text">prepare</text>
+  <rect x="240" y="145" width="95" height="40" rx="6" class="subthread-box"/>
+  <text x="287" y="172" class="text">prepare</text>
 
   <!-- Feedback line up to result -->
-  <path d="M 335 210 L 435 210 L 435 70" class="feedback"/>
+  <path d="M 335 165 L 435 165 L 435 70" class="feedback"/>
 
   <!-- Flow description -->
   <text x="100" y="315" class="label" style="font-size: 13px; fill: #d1d5db;">Flow:</text>
   <text x="100" y="335" class="label">• Mainthread initiates /miniproject, checks status, gets result</text>
-  <text x="500" y="335" class="label">• Subthreads work in parallel, prepare results, feed back</text>
+  <text x="500" y="335" class="label">• Subthread works in parallel, prepares results, feeds back</text>
 </svg>
