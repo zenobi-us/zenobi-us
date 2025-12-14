@@ -20,8 +20,16 @@ const Styles = tv({
   },
   variants: {
     role: {
+      tool: {
+        container: 'border-l-2 border-text-muted bg-transparent dark:bg-transparent',
+        codeBlock: 'bg-transparent dark:bg-transparent',
+      },
+      todo: {
+        container: 'border-l-2 border-text-secondary bg-transparent dark:bg-transparent',
+        codeBlock: 'bg-transparent dark:bg-transparent',
+      },
       agent: {
-        container: 'border-l-2 border-text-secondary',
+        container: 'border-l-2 border-text-secondary bg-transparent dark:bg-transparent',
         codeBlock: 'bg-transparent dark:bg-transparent',
       },
       user: {
@@ -32,8 +40,10 @@ const Styles = tv({
   },
 });
 
+type ChatStylesProps = VariantProps<typeof Styles>;
+
 interface ChatMessageProps {
-  role: 'user' | 'agent';
+  role: ChatStylesProps['role'];
   children: React.ReactNode;
   className?: string;
 }
@@ -56,7 +66,7 @@ Chat.TodoList = TodoListMessage;
 Chat.AgentMode = AgentMode;
 
 export function ChatMessage(props: {
-  role: 'user' | 'agent';
+  role: ChatStylesProps['role'];
   children: React.ReactNode;
   className?: string;
 }) {
@@ -87,7 +97,7 @@ export function AgentMessage({ children, className }: Omit<ChatMessageProps, 'ro
 
 export function TodoListMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="agent" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-background-shadow")}>
+    <ChatMessage role="todo" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-transparent")}>
       <ul className="m-0 p-0 list-none space-y-1">
         {children}
       </ul>
@@ -127,7 +137,7 @@ export function TodoListItemMessage(props: {
 
 export function ToolUseMessage({ children, className }: Omit<ChatMessageProps, 'role'>) {
   return (
-    <ChatMessage role="agent" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-background-shadow")}>
+    <ChatMessage role="tool" className={classnames(className, "m-0 p-0 border-none bg-transparent dark:bg-background-shadow")}>
       <pre className=" m-0 mb-2 p-0 text-white/30 text-xs">⚙ {children}</pre>
     </ChatMessage>
   );

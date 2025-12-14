@@ -34,3 +34,4 @@ summarize
 distills
 subagents
 subthread
+behavioral
