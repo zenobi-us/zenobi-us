@@ -35,3 +35,8 @@ distills
 subagents
 subthread
 behavioral
+Mainthread
+mainthread
+worktree
+worktrees
+tradeoffs
