@@ -1,0 +1,70 @@
+<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define styles -->
+  <defs>
+    <style>
+      .bg { fill: #1a1a2e; }
+      .swimlane-bg { fill: #0f0f1e; stroke: #2d2d44; stroke-width: 1; }
+      .mainthread-box { fill: #6366f1; }
+      .subthread-box { fill: #a855f7; }
+      .status-box { fill: #3b82f6; }
+      .result-box { fill: #10b981; }
+      .text { fill: white; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; text-anchor: middle; font-weight: 500; }
+      .lane-label { fill: #6b7280; font-family: 'Monaco', 'Courier New', monospace; font-size: 11px; }
+      .line { stroke: #4b5563; stroke-width: 2; fill: none; }
+      .arrow { stroke: #4b5563; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .feedback { stroke: #10b981; stroke-width: 2.5; fill: none; stroke-dasharray: 4,6; marker-end: url(#arrowhead-green); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4b5563" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="280" class="bg"/>
+
+  <!-- Swimlane backgrounds -->
+  <rect x="0" y="0" width="900" height="130" class="swimlane-bg"/>
+  <rect x="0" y="130" width="900" height="130" class="swimlane-bg"/>
+
+  <!-- Swimlane labels -->
+  <text x="15" y="65" class="lane-label">mainthread</text>
+  <text x="15" y="195" class="lane-label">subthread</text>
+
+  <!-- === MAINTHREAD LANE === -->
+
+  <!-- Main thread boxes -->
+  <rect x="100" y="25" width="110" height="40" rx="6" class="mainthread-box"/>
+  <text x="155" y="52" class="text">/miniproject</text>
+
+  <path d="M 210 45 L 360 45" class="arrow"/>
+
+  <rect x="370" y="25" width="130" height="40" rx="6" class="result-box"/>
+  <text x="435" y="52" class="text">result: complete</text>
+
+  <path d="M 500 45 L 530 45" class="arrow"/>
+
+  <rect x="530" y="25" width="110" height="40" rx="6" class="mainthread-box"/>
+  <text x="585" y="52" class="text">/miniproject</text>
+
+  <!-- === SUBTHREAD LANE === -->
+
+  <!-- Connection line from first /miniproject down to work -->
+  <path d="M 155 65 L 155 130 L 155 145" class="line"/>
+
+  <!-- Single work box, aligned with first /miniproject -->
+  <rect x="115" y="145" width="80" height="40" rx="6" class="subthread-box"/>
+  <text x="155" y="172" class="text">work</text>
+
+  <!-- Line from work to prepare -->
+  <path d="M 195 165 L 240 165" class="line"/>
+
+  <!-- Prepare box -->
+  <rect x="240" y="145" width="95" height="40" rx="6" class="subthread-box"/>
+  <text x="287" y="172" class="text">prepare</text>
+
+  <!-- Feedback line up to result -->
+  <path d="M 335 165 L 435 165 L 435 70" class="feedback"/>
+</svg>

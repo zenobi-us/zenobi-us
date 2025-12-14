@@ -30,3 +30,13 @@ tradeoff
 zenobi
 opencode
 miniproject
+summarize
+distills
+subagents
+subthread
+behavioral
+Mainthread
+mainthread
+worktree
+worktrees
+tradeoffs

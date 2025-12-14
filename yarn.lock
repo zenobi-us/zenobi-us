@@ -8197,6 +8197,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-dom@npm:^19.2.3":
+  version: 19.2.3
+  resolution: "@types/react-dom@npm:19.2.3"
+  peerDependencies:
+    "@types/react": ^19.2.0
+  checksum: 10c0/b486ebe0f4e2fb35e2e108df1d8fc0927ca5d6002d5771e8a739de11239fe62d0e207c50886185253c99eb9dedfeeb956ea7429e5ba17f6693c7acb4c02f8cd1
+  languageName: node
+  linkType: hard
+
 "@types/react-reconciler@npm:^0.26.7":
   version: 0.26.7
   resolution: "@types/react-reconciler@npm:0.26.7"
@@ -25421,6 +25430,7 @@ __metadata:
     "@types/jest": "npm:^29.5.14"
     "@types/micromatch": "npm:^4.0.9"
     "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.2.3"
     "@typescript-eslint/parser": "npm:^8.18.1"
     "@vitejs/plugin-react": "npm:^4.3.3"
     "@zenobius/remark-nomnoml": "npm:^0.0.4"
