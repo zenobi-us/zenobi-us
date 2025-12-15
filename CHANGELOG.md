@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/zenobi-us/zenobi-us/compare/v1.1.0...v1.2.0) (2025-12-15)
+
+
+### Features
+
+* implement 404 page with local skills documentation ([#702](https://github.com/zenobi-us/zenobi-us/issues/702)) ([4097b3b](https://github.com/zenobi-us/zenobi-us/commit/4097b3be76a13ca8a2568b0f708690185bed10b7))
+
 ## [1.1.0](https://github.com/zenobi-us/zenobi-us/compare/v1.0.16...v1.1.0) (2025-12-14)
 
 
