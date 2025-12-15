@@ -1,0 +1,26 @@
+[
+  {
+    "type": "firefox",
+    "request": "launch",
+    "name": "Launch firefox against localhost",
+    "webRoot": "${workspaceFolder}"
+  },
+  {
+    "type": "chrome",
+    "request": "launch",
+    "name": "Launch Chrome against localhost",
+    "webRoot": "${workspaceFolder}"
+  },
+  {
+    "type": "firefox",
+    "request": "attach",
+    "name": "Attach to Firefox",
+    "webRoot": "${workspaceFolder}"
+  },
+  {
+    "type": "chrome",
+    "request": "attach",
+    "name": "Attach to Chrome",
+    "webRoot": "${workspaceFolder}"
+  }
+]
