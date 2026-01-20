@@ -1779,19 +1779,19 @@ __metadata:
   linkType: hard
 
 "@content-collections/cli@npm:^0.1.6":
-  version: 0.1.7
-  resolution: "@content-collections/cli@npm:0.1.7"
+  version: 0.1.8
+  resolution: "@content-collections/cli@npm:0.1.8"
   dependencies:
     "@clerc/core": "npm:^0.44.0"
     "@clerc/plugin-completions": "npm:^0.44.0"
     "@clerc/plugin-help": "npm:^0.44.0"
     "@clerc/plugin-version": "npm:^0.44.0"
-    "@content-collections/integrations": "npm:0.3.0"
+    "@content-collections/integrations": "npm:0.4.0"
   peerDependencies:
     "@content-collections/core": 0.x
   bin:
     content-collections: dist/index.js
-  checksum: 10c0/bf2883164046d99331ec5ffe8c3e76ad26abe8a7d2452c46c0f9a729016f0048796d1bc63e6c395b91b45d941687a5cd54e904c654edca1d32d0b4b5e91214f5
+  checksum: 10c0/df17ef8a2011cb8d15ceac9d250ff10995f2c7be10d04ed181f4b46929f738ab3af383f6f712972358e2cdda829d745160e4ab7643aa037f22b9bf221b77096f
   languageName: node
   linkType: hard
 
@@ -1816,12 +1816,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@content-collections/integrations@npm:0.3.0":
-  version: 0.3.0
-  resolution: "@content-collections/integrations@npm:0.3.0"
+"@content-collections/integrations@npm:0.4.0":
+  version: 0.4.0
+  resolution: "@content-collections/integrations@npm:0.4.0"
   peerDependencies:
     "@content-collections/core": 0.x
-  checksum: 10c0/9c1487ec8e4939e1002ca441acb6e6cbf448a42840cea1ea78fc334417308870c1f3158a33263080a24dcec73f9c7363516eb38a2a7560f1756d8a03b5ac6c1f
+  checksum: 10c0/26dced6364fe64e85ea806ff8b7b7416696c6083ff67f738725fdef0dafc796d214c9da0f89672f76b3a1f88c199b03f460c87f1124f45d462b2289a799cca1f
   languageName: node
   linkType: hard
 
