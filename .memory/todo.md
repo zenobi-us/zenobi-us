@@ -1,5 +1,8 @@
 # Todo
 
 ## Active Tasks
+- _No active task files yet._
 
-- [x] [task-a1b2c3d4-404-page-implementation](.memory/task-a1b2c3d4-404-page-implementation.md)
+## Next Steps
+- Create the first epic file (`.memory/epic-<8_char_hashid>-<title>.md`).
+- Break the epic into phases only after epic definition.

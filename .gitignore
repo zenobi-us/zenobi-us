@@ -12,3 +12,5 @@ content/private/
 *storybook.log
 test-results/
 playwright-report/
+
+!.memory/

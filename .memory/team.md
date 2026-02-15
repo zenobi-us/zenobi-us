@@ -2,10 +2,10 @@
 
 ## Current Session
 
-| Phase | Agent/Session | Status |
-|-------|---------------|--------|
-| 404 Page Feature | build (current) | Planning Complete |
+| Epic | Phase | Session ID | Status |
+|------|-------|------------|--------|
+| _Unassigned_ | `INITIALISE` | `2895170185331448` | Completed |
 
-## Handoff Notes
-
-Research phase complete. Ready for implementation phase.
+## Handoff
+- Initialization complete.
+- `constitution.md` created per human confirmation; ready for refinement when needed.
