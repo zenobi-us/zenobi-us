@@ -93,4 +93,4 @@ Use that when you want the same flow, but automated end-to-end from your agent/t
 - task runner structure,
 - CI/release baseline.
 
-If you publish Bun modules more than occasionally, this is worth standardizing on.
+If you publish Bun modules more than occasionally, this is worth using as your default.
