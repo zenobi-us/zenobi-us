@@ -1,11 +1,12 @@
 # Project Summary
 
 ## Status
-- State: Initialized
-- Current epic: _Not defined yet_
-- Active phase: `INITIALISE` (completed)
-- Next milestone: Define the first epic before creating phases/tasks.
+- State: In progress
+- Current epic: `c4f19b2a` (bun-module post)
+- Active phase: `5d3a17e9` (post planning and draft)
+- Next milestone: Final review and publish.
 
 ## Notes
-- Memory store initialized and required baseline files are present.
-- `.memory/constitution.md` created as an initial draft for project rules.
+- Created planning artifacts: epic, phase, story, and task files.
+- Draft post created in `content/posts/2026-02-19-bun-module-practical-template-for-bun-packages.md`.
+- Source material validated from `zenobi-us/bun-module` README.

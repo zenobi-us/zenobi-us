@@ -4,8 +4,9 @@
 
 | Epic | Phase | Session ID | Status |
 |------|-------|------------|--------|
-| _Unassigned_ | `INITIALISE` | `2895170185331448` | Completed |
+| `c4f19b2a` | `5d3a17e9` | `20260219-1223` | In Progress |
 
 ## Handoff
-- Initialization complete.
-- `constitution.md` created per human confirmation; ready for refinement when needed.
+- Worktree branch `post/bun-module` created.
+- Post planning artifacts created and linked.
+- Draft post written and ready for review.
