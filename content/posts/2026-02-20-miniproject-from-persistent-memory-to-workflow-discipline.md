@@ -2,7 +2,7 @@
 template: article
 date: 2026-02-20
 title: From Persistent Memory to Workflow Discipline with miniproject
-stage: draft
+stage: published
 tags:
   - ai
   - automation
@@ -22,7 +22,7 @@ Instead of "a pile of files", you want a disciplined approach.
 - I now treat `miniproject` as an operating workflow, not a note-taking trick.
 - Big model for planning and deep analysis, smaller model for literal execution.
 - Tasks as individual files beat checklist line items for focus and handoff.
-- `/miniproject status` is the command I use most because its great for reminding me and the LLM in new or longer than anticiapted sessions.
+- `/miniproject status` is the command I use most because its great for reminding me and the LLM in new or longer than anticipated sessions.
 
 ## What evolved
 
