@@ -40,3 +40,8 @@ mainthread
 worktree
 worktrees
 tradeoffs
+codemap
+initialization
+learnings
+operationalized
+skeptical

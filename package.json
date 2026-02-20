@@ -1,6 +1,6 @@
 {
   "name": "zenobi.us",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "dependencies": {
     "@antimatter-labs/eslint-plugin-no-anonymous-use-effect-callback-rule": "^1.0.2",
     "@chromatic-com/storybook": "^3.0.0",
@@ -108,7 +108,7 @@
     "remark-sectionize": "^2.0.0",
     "remark-supersub": "^1.0.0",
     "remix-routes": "^1.7.7",
-    "renovate": "^39.165.1",
+    "renovate": "^42.0.0",
     "safe-routes": "^1.0.2",
     "shiki": "^3.20.0",
     "sirv-cli": "^3.0.0",
