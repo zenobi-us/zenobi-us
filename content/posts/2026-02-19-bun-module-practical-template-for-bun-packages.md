@@ -1,7 +1,7 @@
 ---
 date: 2026-02-19
 title: "bun-module: practical template for Bun packages"
-stage: draft
+stage: published
 tags:
   - bun
   - typescript
