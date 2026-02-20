@@ -1,11 +1,12 @@
 # Project Summary
 
 ## Status
-- State: Initialized
-- Current epic: _Not defined yet_
-- Active phase: `INITIALISE` (completed)
-- Next milestone: Define the first epic before creating phases/tasks.
+- State: Draft complete
+- Current epic: `editorial`
+- Active phase: `writing`
+- Next milestone: Final edit and publish decision.
 
 ## Notes
-- Memory store initialized and required baseline files are present.
-- `.memory/constitution.md` created as an initial draft for project rules.
+- Follow-up article extends 2025-12-13 post.
+- Focus is workflow discipline, artifact intent, and practical command usage.
+- Draft file created and revised per user feedback.

@@ -1,8 +1,11 @@
 # Todo
 
 ## Active Tasks
-- _No active task files yet._
+- [x] .memory/task-9d12ab44-outline-miniproject-followup.md
+- [x] .memory/task-4f8a0d13-draft-miniproject-followup.md
+
+## Related Story
+- .memory/story-c7f42a91-miniproject-followup-post.md
 
 ## Next Steps
-- Create the first epic file (`.memory/epic-<8_char_hashid>-<title>.md`).
-- Break the epic into phases only after epic definition.
+- Optional: run final copy edit and publish when ready.
