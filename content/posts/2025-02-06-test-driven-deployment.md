@@ -1,7 +1,7 @@
 ---
 date: 2025-02-06
 title: Test-Driven Deployment
-draft: true
+stage: published
 ---
 
 I’ve been reworking my release process around one non-negotiable idea:
