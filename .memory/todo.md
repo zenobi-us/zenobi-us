@@ -1,11 +1,9 @@
 # Todo
 
 ## Active Tasks
-- [x] .memory/task-9d12ab44-outline-miniproject-followup.md
-- [x] .memory/task-4f8a0d13-draft-miniproject-followup.md
-
-## Related Story
-- .memory/story-c7f42a91-miniproject-followup-post.md
+- [x] [task-4ce8ad11-bun-module-post-outline.md](./task-4ce8ad11-bun-module-post-outline.md)
+- [x] [task-6a9f0c22-bun-module-post-draft.md](./task-6a9f0c22-bun-module-post-draft.md)
 
 ## Next Steps
-- Optional: run final copy edit and publish when ready.
+- Run final lint/type checks before publishing.
+- Review post copy for final tone pass.

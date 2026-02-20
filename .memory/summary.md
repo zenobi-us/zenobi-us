@@ -1,12 +1,12 @@
 # Project Summary
 
 ## Status
-- State: Draft complete
-- Current epic: `editorial`
-- Active phase: `writing`
-- Next milestone: Final edit and publish decision.
+- State: In progress
+- Current epic: `c4f19b2a` (bun-module post)
+- Active phase: `5d3a17e9` (post planning and draft)
+- Next milestone: Final review and publish.
 
 ## Notes
-- Follow-up article extends 2025-12-13 post.
-- Focus is workflow discipline, artifact intent, and practical command usage.
-- Draft file created and revised per user feedback.
+- Created planning artifacts: epic, phase, story, and task files.
+- Draft post created in `content/posts/2026-02-19-bun-module-practical-template-for-bun-packages.md`.
+- Source material validated from `zenobi-us/bun-module` README.
