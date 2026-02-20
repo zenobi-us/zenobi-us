@@ -8,6 +8,7 @@ tags:
   - automation
   - developer-experience
   - llm
+# cSpell:ignore operationalized learnings codemap initialization skeptical
 ---
 
 In my previous post, [AI-Assisted Project Scaffolding with Persistent Memory](/b/posts/2025-12-13-ai-assisted-project-scaffolding-with-persistent-memory), I focused on one big idea: keep project context in markdown so I do not need to re-explain myself every session.

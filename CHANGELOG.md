@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/zenobi-us/zenobi-us/compare/v1.2.0...v1.3.0) (2026-02-20)
+
+
+### Features
+
+* **miniproject:** implement structured OP-oriented workflow for zenobi.us posts ([f847f35](https://github.com/zenobi-us/zenobi-us/commit/f847f35f1ee9ca5664ac30d3cd20bd013014b368))
+
+
+### Bug Fixes
+
+* **deps:** update dependency storybook to v8.6.15 [security] ([#705](https://github.com/zenobi-us/zenobi-us/issues/705)) ([aff43e0](https://github.com/zenobi-us/zenobi-us/commit/aff43e083f475648a1ac1d1f299bc4d594e48195))
+* **deps:** update storybook monorepo to v8.6.15 ([#723](https://github.com/zenobi-us/zenobi-us/issues/723)) ([114e116](https://github.com/zenobi-us/zenobi-us/commit/114e116f71ddc3eab5063b744b636f07f4875f49))
+
 ## [1.2.0](https://github.com/zenobi-us/zenobi-us/compare/v1.1.0...v1.2.0) (2025-12-15)
 
 
