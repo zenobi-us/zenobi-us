@@ -1,6 +1,6 @@
 ---
 date: 2026-02-19
-title: bun-module: practical template for Bun packages
+title: "bun-module: practical template for Bun packages"
 stage: draft
 tags:
   - bun
@@ -53,16 +53,36 @@ After setup, do the first publish once, then finish trusted publishing setup fro
 mise run publish
 ```
 
-## The workflow in one diagram
+## Workflow diagrams
+
+### 1) Setup
 
 ```nomnoml
 #direction: right
-[Start] -> [Use template]
-[Use template] -> [Run setup.sh]
-[Run setup.sh] -> [Develop + merge]
-[Develop + merge] -> [pre-release .next]
-[Develop + merge] -> [release PR]
-[release PR] -> [stable release]
+[Start] -> [Clone template]
+[Clone template] -> [Run setup.sh]
+[Run setup.sh] -> [Install deps]
+[Install deps] -> [Build + checks]
+[Build + checks] -> [Manual first publish]
+```
+
+### 2) Every day usage
+
+```nomnoml
+#direction: right
+[Open feature PR] -> [CI checks]
+[CI checks] -> [Merge to main]
+[Merge to main] -> [pre-release .next]
+[Merge to main] -> [update or create release PR]
+```
+
+
+```nomnoml
+[update or create release PR] -> [generate release notes]
+[generate release notes] -> [Release PR ready?]
+[Release PR ready?] -> [No] -> [Wait for more changes]
+[Release PR ready?] -> [Yes] -> [Review and merge release PR]
+[Review and merge release PR] -> [git tag] -> [Publish stable release]
 ```
 
 ## Story sequence: where this helps
@@ -82,6 +102,12 @@ If you're already running an agent workflow, I also maintain a dedicated skill f
 
 - Skill: `create-new-bun-package-repo`
 - Repo link: https://github.com/zenobi-us/dotfiles/tree/master/ai/files/skills/devtools/create-new-bun-package-repo
+
+If you have the [gh download plugin](https://github.com/yuler/gh-download) for the [gh cli](https://github.com/cli/cli) you can install this with 
+
+```sh
+gh download zenobi-us/dotfiles --outdir=~/.agent/skills/create-new-bun-package-repo
+```
 
 Use that when you want the same flow, but automated end-to-end from your agent/tooling stack.
 
