@@ -22,7 +22,7 @@ concurrency:
 
 permissions:
   actions: read
-  contents: read
+  contents: write
   deployments: write
   id-token: write
 
@@ -63,8 +63,28 @@ jobs:
           NpmRcFile: .npmrc
 
       - name: Deploy
+        id: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          mise task run deploy --configuration="${TARGET_ENVIRONMENT}"
+          mise task run deploy \
+            --configuration="${TARGET_ENVIRONMENT}" \
+            --branch-name="pr/${{ github.event.number }}" |
+            .github/scripts/extract-cloudflare-deployment-urls.sh \
+              github_output "$GITHUB_OUTPUT"
+
+      - name: Comment on commit
+        uses: peter-evans/commit-comment@v4
+        id: commit-comment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          sha: ${{ github.event.client_payload.sha || github.sha }}
+          body: |
+            Preview deployment complete
+
+            Environment: ${{ env.TARGET_ENVIRONMENT }}
+            URL: ${{ steps.deploy.outputs.url }}
+            ALIAS_URL: ${{ steps.deploy.outputs.alias_url }}
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
