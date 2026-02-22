@@ -1,40 +1,52 @@
 #!/usr/bin/env bash
-#MISE depends=["content", "build", "typecheck"]
-# https://usage.jdx.dev/
+#MISE depends=["setup", "content", "build", "typecheck"]
 #USAGE flag "-c --configuration <configuration>" help="Build with the specified configuration" {
-#USAGE   choices "production" "development" "preview" "localproduction" "localdevelopment" "localpreview"
+#USAGE   choices "production" "development" "preview"
 #USAGE }
+#USAGE flag "-b --branch-name <branch_name>" help="Override Cloudflare Pages --branch label"
+#USAGE flag "-l --local" help="Use local configuration (credentials from gopass)" default="false"
 
-current_branch=$(git branch --show-current)
+function get_environment_name() {
+	case "$1" in
+	production)
+		echo "production"
+		;;
+	development)
+		echo "development"
+		;;
+	preview)
+		git branch --show-current
+		;;
+	esac
+}
+
+cloudflare_environment_name="${usage_branch_name}"
+
+if [ -z "${cloudflare_environment_name}" ]; then
+	cloudflare_environment_name=$(get_environment_name "${usage_configuration}")
+fi
+
+if [ -z "${cloudflare_environment_name}" ]; then
+	echo "No configuration specified"
+	exit 1
+fi
 
 echo "Deploying with configuration: ${usage_configuration}"
-echo "Current branch: ${current_branch}"
+echo "Using gopass: ${usage_local}"
+echo "Cloudflare pages branch label: ${cloudflare_environment_name}"
 
-if [ -z "${usage_configuration}" ]; then
-    echo "No configuration specified"
-    exit 1
-fi
-
-if [ "${usage_configuration}" == "production" ]; then
-    wrangler pages deploy dist --branch main --project-name zenobius
-fi
-
-if [ "${usage_configuration}" == "development" ]; then
-    wrangler pages deploy dist --branch develop --project-name zenobius
-fi
-
-if [ "${usage_configuration}" == "preview" ]; then
-    wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
-fi
-
-if [ "${usage_configuration}" == "localproduction" ]; then
-    gopass env cloudflare/zenobius wrangler pages deploy dist --branch main --project-name zenobius
-fi
-
-if [ "${usage_configuration}" == "localdevelopment" ]; then
-    gopass env cloudflare/zenobius wrangler pages deploy dist --branch develop --project-name zenobius
-fi
-
-if [ "${usage_configuration}" == "localpreview" ]; then
-    gopass env cloudflare/zenobius wrangler pages deploy dist --branch="${current_branch}" --project-name zenobius
+# if it starts with "local" then we use gopass to get the credentials, otherwise we assume they are already set in the environment
+# this allows us to use the same command for both local and CI/CD deployments, while keeping the credentials secure in gopass for local development
+# in CI/CD, the credentials should be set as environment variables, so we don't need to use gopass
+if [[ "${usage_local}" != "false" ]]; then
+	echo "Using gopass to get credentials for local deployment"
+	gopass env cloudflare/zenobius \
+		wrangler pages deploy dist \
+		--branch="${cloudflare_environment_name}" \
+		--project-name zenobius
+else
+	echo "Using environment variables for deployment"
+	wrangler pages deploy dist \
+		--branch="${cloudflare_environment_name}" \
+		--project-name zenobius
 fi
