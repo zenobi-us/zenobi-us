@@ -4,7 +4,7 @@
 - State: In progress
 - Current epic: `c4f19b2a` (bun-module post)
 - Active phase: `5d3a17e9` (post planning and draft)
-- Next milestone: Final review and publish.
+- Next milestone: Review and publish single-repo deployment pattern post draft.
 
 ## Notes
 - Created planning artifacts: epic, phase, story, and task files.
