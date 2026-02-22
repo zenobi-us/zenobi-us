@@ -1,0 +1,70 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Deployment target
+        required: true
+        type: choice
+        options:
+          - production
+          - development
+  repository_dispatch:
+    types: [deploy-site]
+
+env:
+  HUSKY: 0 # https://typicode.github.io/husky/how-to.html#ci-server-and-docker
+  TARGET_ENVIRONMENT: ${{ github.event.client_payload.environment || github.event.inputs.environment }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.client_payload.environment || github.event.inputs.environment || 'manual' }}
+
+permissions:
+  actions: read
+  contents: read
+  deployments: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ env.TARGET_ENVIRONMENT }}
+    steps:
+      - name: Validate target environment
+        run: |
+          case "${TARGET_ENVIRONMENT}" in
+            production|development)
+              echo "Deploy target: ${TARGET_ENVIRONMENT}"
+              ;;
+            *)
+              echo "Invalid environment: ${TARGET_ENVIRONMENT}"
+              exit 1
+              ;;
+          esac
+
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
+
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+        with:
+          experimental: true
+          version: 2024.11.4
+
+      - name: Yarn
+        uses: ./.github/actions/setup-yarn
+
+      - name: Configure Publishing
+        uses: ./.github/actions/setup-npm-publish
+        with:
+          NpmRegistryUrl: https://registry.npmjs.org/
+          NpmRcFile: .npmrc
+
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          mise task run deploy --configuration="${TARGET_ENVIRONMENT}"

@@ -12,28 +12,19 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  actions: read
   contents: write
-  issues: write
-  deployments: write
   pull-requests: write
-  id-token: write
 
 jobs:
-  Process:
+  process:
     runs-on: ubuntu-latest
-    outputs:
-      releases_created: ${{ steps.release-please.outputs.releases_created }}
-      prs_created: ${{ steps.release-please.outputs.prs_created }}
-      prs: ${{ steps.release-please.outputs.prs }}
-      pr: ${{ steps.release-please.outputs.pr }}
-      sha: ${{ steps.release-please.outputs.sha }}
     steps:
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4
         id: release-please
         with:
           token: ${{secrets.ZENOBIUS_MONOREPO_RELEASE_PLEASE_TOKEN}}
           release-type: node
+
       - name: Print Release Data
         run: |
           echo 'Release Data:'
@@ -42,41 +33,18 @@ jobs:
             ${{ toJSON(steps.release-please.outputs) }}
           '''
 
-  Deploy:
-    needs: Process
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Dispatch production deploy
+        if: steps.release-please.outputs.releases_created == 'true'
+        uses: peter-evans/repository-dispatch@v3
         with:
-          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: deploy-site
+          client-payload: '{"environment":"production"}'
 
-      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+      - name: Dispatch development deploy
+        if: steps.release-please.outputs.prs_created == 'true'
+        uses: peter-evans/repository-dispatch@v3
         with:
-          experimental: true
-          version: 2024.11.4
-
-      - name: Yarn
-        uses: ./.github/actions/setup-yarn
-
-      - name: Configure Publishing
-        uses: ./.github/actions/setup-npm-publish
-        with:
-          NpmRegistryUrl: https://registry.npmjs.org/
-          NpmRcFile: .npmrc
-
-      - if: ${{ needs.Process.outputs.releases_created == 'true' }}
-        id: production-deployment
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          mise task run deploy --configuration=production
-
-      - if: ${{ needs.Process.outputs.prs_created == 'true' }}
-        id: development-deployment
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          mise task run deploy --configuration=development
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: deploy-site
+          client-payload: '{"environment":"development"}'

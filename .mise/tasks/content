@@ -4,14 +4,13 @@
 #USAGE flag "-w --watch" help="Run in watch mode"
 
 #MISE description="Prepares content for building the site"
-#MISE depends=["content"]
 #MISE sources=["./content/**/*"]
 #MISE outputs=[".content-collections/**/*"]
 
 # - global
 # shellcheck disable=SC2154
 if [ "$usage_watch" = "true" ]; then
-    content-collections watch
+	content-collections watch
 else
-    content-collections build
+	content-collections build
 fi
