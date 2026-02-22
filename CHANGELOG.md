@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/zenobi-us/zenobi-us/compare/v1.3.0...v1.3.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* **release:** split release/deploy workflows and pages labels (closes [#185](https://github.com/zenobi-us/zenobi-us/issues/185)) ([#730](https://github.com/zenobi-us/zenobi-us/issues/730)) ([623ba88](https://github.com/zenobi-us/zenobi-us/commit/623ba88b86eb6d45097d90b12628b9bc7f7201fa))
+
 ## [1.3.0](https://github.com/zenobi-us/zenobi-us/compare/v1.2.0...v1.3.0) (2026-02-20)
 
 
