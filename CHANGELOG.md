@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/zenobi-us/zenobi-us/compare/v1.4.1...v1.4.2) (2026-02-23)
+
+
+### Bug Fixes
+
+* **ci:** use target environment as deploy branch label ([16a6e7c](https://github.com/zenobi-us/zenobi-us/commit/16a6e7ca2d9ddd55869989d518ffec30292be0fb))
+
 ## [1.4.1](https://github.com/zenobi-us/zenobi-us/compare/v1.4.0...v1.4.1) (2026-02-23)
 
 
