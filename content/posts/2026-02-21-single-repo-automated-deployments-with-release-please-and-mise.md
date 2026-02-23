@@ -15,18 +15,18 @@ I finally landed on a deployment pattern for single-library and single-app repos
 
 If you want the short version:
 
-- use `release-please`
-- skip changesets unless you actually need multi-package orchestration
-- split release from publish/deploy workflows
+- use [`release-please`](https://github.com/googleapis/release-please-action)
+- skip `@changesets/cli` unless you actually need multi-package orchestration.
+- split release from publish/deploy workflows. Don't try to do it in the same workflow.
 - stop stuffing logic into `package.json` scripts, use `mise` tasks instead
 
 ## TL;DR
 
 My pattern now has three explicit rules:
 
-1. **Versioning and changelog:** `release-please`
-2. **Execution model:** separate workflows for release and deploy/publish
-3. **Task runner:** `mise`, not `package.json` scripts
+1. **Versioning and changelog:** `release-please`.
+2. **Execution model:** separate workflows for release and deploy/publish.
+3. **Task runner:** `mise`, not `package.json` scripts.
 
 This gives me:
 
@@ -54,6 +54,8 @@ For single repos, `release-please` hits the sweet spot:
 - keeps release intent close to commits
 
 That is enough.
+
+> I'd argue that release-please is also amazing for monorepos.
 
 ## The workflow split that fixed my deployment friction
 
