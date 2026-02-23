@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/zenobi-us/zenobi-us/compare/v1.3.1...v1.4.0) (2026-02-22)
+
+
+### Features
+
+* **posts:** publish default CI/CD pattern for single repos ([a183a4c](https://github.com/zenobi-us/zenobi-us/commit/a183a4cd8ea122ee87fae33d0f53dfcc7273dd37))
+
 ## [1.3.1](https://github.com/zenobi-us/zenobi-us/compare/v1.3.0...v1.3.1) (2026-02-22)
 
 

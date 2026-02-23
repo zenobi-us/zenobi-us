@@ -4,7 +4,7 @@ date: 2026-02-21
 title: My Default CI/CD Pattern for Single Repos
 stage: published
 tags:
-  - cicd
+  - ci-cd
   - github-actions
   - release-please
   - deployment
@@ -93,7 +93,7 @@ That manual path is not a luxury. It is operational hygiene.
 
 ## Why I avoid `package.json` scripts for deployment logic
 
-I used to centralize everything in `package.json` scripts because it was convenient.
+I used to centralise everything in `package.json` scripts because it was convenient.
 
 Then scripts grew from one-liners into mini orchestration layers.
 
@@ -152,7 +152,7 @@ For growing repos, this scales without turning into script spaghetti.
 
 ## A blunt tradeoff summary
 
-[bias: I optimize for low-operational-friction solo/small-team repos]
+[bias: I optimise for low-operational-friction solo/small-team repos]
 
 - If you run a **single package/app repo**, this pattern is hard to beat.
 - If you run a **large monorepo with many independently versioned packages**, changesets may still be the better fit.
