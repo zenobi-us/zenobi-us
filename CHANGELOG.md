@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/zenobi-us/zenobi-us/compare/v1.4.0...v1.4.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* **ci:** attach deployment URL to environment ([2fa8078](https://github.com/zenobi-us/zenobi-us/commit/2fa80780978de6fd4d18c071dbbac24ddf19b134))
+* **content:** clarify release please guidance ([11c70cf](https://github.com/zenobi-us/zenobi-us/commit/11c70cfc515a8b65e24aecb6bb46e428c2bdf4c9))
+
 ## [1.4.0](https://github.com/zenobi-us/zenobi-us/compare/v1.3.1...v1.4.0) (2026-02-22)
 
 
