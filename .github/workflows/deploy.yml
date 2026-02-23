@@ -29,7 +29,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.client_payload.environment || github.event.inputs.environment }}
+    environment:
+      name: ${{ github.event.client_payload.environment || github.event.inputs.environment }}
+      url: ${{ steps.deploy.outputs.alias_url || steps.deploy.outputs.url }}
     steps:
       - name: Validate target environment
         run: |
