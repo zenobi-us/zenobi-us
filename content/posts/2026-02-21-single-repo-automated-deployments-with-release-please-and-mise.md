@@ -57,26 +57,30 @@ That is enough.
 
 > I'd argue that release-please is also amazing for monorepos.
 
-## The workflow split that fixed my deployment friction
+## The workflow split
 
-The old pattern was one workflow that did everything. It worked, until it didn’t.
+The old pattern was one workflow that did everything. Considering a lot of people 
+hate implementing CI/CD, that is a natural place to start. It's in one place, it's done. bam. they can move 
+on with their lives.
 
-If the final publish/deploy step failed, I had a stupid constraint: I needed another commit to retrigger the pipeline cleanly.
+But as I kept using this, something annoying kept interrupting me... if the final 
+publish/deploy step failed, I had a stupid constraint: 
+I needed another commit to retrigger the pipeline cleanly.
 
-That is unnecessary coupling.
 
 ### Better pattern
 
 - **Workflow A: release**
-  - runs on push
-  - runs `release-please`
-  - creates or updates release PR / tags
+  - runs on push, due to push from local or merge from PR.
+  - runs `release-please`, where it derives version bump and changelog from commits.
+  - emits `repository_dispatch(stage)` where stage could be your stable/beta/next channels or prod/dev/staging environment names.
 
 - **Workflow B: publish/deploy**
-  - runs on release events (or tag pushes)
+  - runs on `repository_dispatch` events.
   - also supports `workflow_dispatch`
 
 Now you still get automated deploys from normal commits, **and** you get a manual button when you need to rerun deployment without changing code.
+
 
 ```nomnoml
 #direction: right
@@ -91,11 +95,15 @@ Now you still get automated deploys from normal commits, **and** you get a manua
 [Manual dispatch] -> [Publish/Deploy workflow]
 ```
 
-That manual path is not a luxury. It is operational hygiene.
+This feels a lot forgiving.
 
 ## Why I avoid `package.json` scripts for deployment logic
 
-I used to centralise everything in `package.json` scripts because it was convenient.
+I've been doing web dev for nearly 20 years now. Early days, I would follow the 
+tutorials and put all my projects orchestration in `package.json` scripts. 
+
+The fact that everyone does this is why projects like `npm-run-all` and `concurrently` exist. 
+They are trying to patch the fact that `package.json` scripts don't have good primitives for composition, branching, or parameter handling.
 
 Then scripts grew from one-liners into mini orchestration layers.
 
@@ -105,7 +113,10 @@ At that point, `package.json` becomes the wrong abstraction:
 - awkward branching and parameter handling
 - poor ergonomics for non-Node tasks
 
-`mise` gives me a cleaner path from simple to complex.
+I notice more and more repos using [Justfile](https://github.com/casey/just) now, which is a much nicer abstraction than `Makefile` (which I've always found confusing).
+
+
+[`mise`](https://mise.jdx.dev) gives me a cleaner path from simple to complex.
 
 ### What changes in practice
 
@@ -131,7 +142,15 @@ run = [
 
 For simple repos, this is still dead simple.
 
-For growing repos, this scales without turning into script spaghetti.
+As tasks become more complex, I can split these into their own files, add parameters, or even write custom task runners in JS/TS/Python/Rust if I want.
+
+> 🤔 Writing more complex scripts as their own file means you get syntax highlighting and easier linting/lsp support by your editor.
+
+### Side Effect: better testing of ci pipeline
+
+I suspect the reason why many of us dislike implementing ci/cd is that they are so tedious to test. You make a change, you push, you wait for the result. If it fails, you fix and repeat.
+
+How ever, by moving your operational steps into separate scripts/files that accept arguments and flags instead of assuming a CI environment, you can test these locally before pushing. This makes the feedback loop much faster and less frustrating.
 
 ## The minimal setup I recommend
 
@@ -139,29 +158,21 @@ For growing repos, this scales without turning into script spaghetti.
 
 - trigger: `push` to main
 - job: run `release-please-action`
+  - **regular commits on mainline**: creates or updates a release PR? `repository_dispatch(dev)` 
+  - **merging a release pr**: doesn't create or update a release PR? `repository_dispatch(prod)` 
 
 ### 2) Deploy workflow (`deploy.yml`)
 
 - triggers:
-  - `release.published` (or tags)
-  - `workflow_dispatch`
+  - `workflow_dispatch` with filters for `dev` and `prod` stages
+  - `repository_dispatch` with filters for `dev` and `prod` stages
+  - if this is a library, we'd probably also trigger this on `tag.v*` events.
 - job: publish package or deploy app
 
 ### 3) Local + CI task orchestration
 
 - move operational commands to `mise`
 - keep `package.json` focused on package metadata and runtime boundaries
-
-## A blunt tradeoff summary
-
-[bias: I optimise for low-operational-friction solo/small-team repos]
-
-- If you run a **single package/app repo**, this pattern is hard to beat.
-- If you run a **large monorepo with many independently versioned packages**, changesets may still be the better fit.
-
-Use the simplest release model that matches the topology of your repo.
-
-Most single repos are over-engineered here.
 
 ## Summary
 
@@ -175,8 +186,8 @@ My default now:
 
 The important part is not the tools. It is decoupling:
 
-- decouple versioning from deployment
-- decouple deployment reruns from source changes
-- decouple operational logic from package metadata
+- decouple versioning from deployment.
+- decouple deployment reruns from source changes.
+- decouple operational logic from package metadata and ci pipeline definitions.
 
-That decoupling is what makes this pattern robust.
+
