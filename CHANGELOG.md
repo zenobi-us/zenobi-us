@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/zenobi-us/zenobi-us/compare/v1.4.2...v1.4.3) (2026-02-24)
+
+
+### Bug Fixes
+
+* **content:** expand deployment workflow guidance ([76b0635](https://github.com/zenobi-us/zenobi-us/commit/76b063513dd01bc85b6be6e0140558e1f61bd65a))
+
 ## [1.4.2](https://github.com/zenobi-us/zenobi-us/compare/v1.4.1...v1.4.2) (2026-02-23)
 
 
