@@ -11,28 +11,32 @@ tags:
   - developer-experience
 ---
 
-I finally landed on a deployment pattern for single-library and single-app repos that is simple, recoverable, and low-ceremony.
-
-If you want the short version:
-
-- use [`release-please`](https://github.com/googleapis/release-please-action)
-- skip `@changesets/cli` unless you actually need multi-package orchestration.
-- split release from publish/deploy workflows. Don't try to do it in the same workflow.
-- stop stuffing logic into `package.json` scripts, use `mise` tasks instead
+Here's my deployment pattern for single-library and single-app repos that is simple, recoverable, and low-ceremony.
 
 ## TL;DR
 
-My pattern now has three explicit rules:
-
-1. **Versioning and changelog:** `release-please`.
-2. **Execution model:** separate workflows for release and deploy/publish.
-3. **Task runner:** `mise`, not `package.json` scripts.
+- use [`release-please`](https://github.com/googleapis/release-please-action)
+- skip `@changesets/cli` for versioning. It's too much ceremony for single repos.
+- split release from publish/deploy workflows. Don't try to do it in the same workflow.
+- stop stuffing logic into `package.json` scripts, use `mise` tasks instead
 
 This gives me:
 
-- automation when commits land
+- automation when commits land, from either direct pushes or PR merges.
 - manual recovery path via `workflow_dispatch`
 - better task composition as CI/CD needs get more complex
+
+For a concrete example of this pattern you can use today: 
+
+- [This Repo](https://github.com/zenobi-us/zenobius/)
+  - [release.yml](https://github.com/zenobi-us/zenobius/blob/main/.github/workflows/release.yml)
+  - [deploy.yml](https://github.com/zenobi-us/zenobius/blob/main/.github/workflows/deploy.yml)
+  - [pr.yml](https://github.com/zenobi-us/zenobius/blob/main/.github/workflows/pr.yml)
+- [My Bun Template Repo](https://github.com/zenobi-us/bun-module)
+  - [release.yml](https://github.com/zenobi-us/bun-module/blob/main/template/.github/workflows/release.yml)
+  - [deploy.yml](https://github.com/zenobi-us/bun-module/blob/main/template/.github/workflows/deploy.yml)
+  - [pr.yml](https://github.com/zenobi-us/bun-module/blob/main/template/.github/workflows/pr.yml)
+
 
 ## Why I stopped using changesets for single repos
 
@@ -48,14 +52,14 @@ For this repo shape, I do not want:
 
 For single repos, `release-please` hits the sweet spot:
 
-- derives version bumps from conventional commits
+- derives version bumps from conventional commits. I squash merge PRs.
 - opens/updates release PR automatically
 - generates changelog entries
 - keeps release intent close to commits
 
 That is enough.
 
-> I'd argue that release-please is also amazing for monorepos.
+> If you squash merge PRs based on title and description, then your changelog creation step is done at the PR stage.
 
 ## The workflow split
 
@@ -66,7 +70,6 @@ on with their lives.
 But as I kept using this, something annoying kept interrupting me... if the final 
 publish/deploy step failed, I had a stupid constraint: 
 I needed another commit to retrigger the pipeline cleanly.
-
 
 ### Better pattern
 
@@ -151,6 +154,8 @@ As tasks become more complex, I can split these into their own files, add parame
 I suspect the reason why many of us dislike implementing ci/cd is that they are so tedious to test. You make a change, you push, you wait for the result. If it fails, you fix and repeat.
 
 How ever, by moving your operational steps into separate scripts/files that accept arguments and flags instead of assuming a CI environment, you can test these locally before pushing. This makes the feedback loop much faster and less frustrating.
+
+> Yes, tools like [Act](https://github.com/nektos/act) exist to simulate running GitHub Actions locally, but I find that just being able to run the underlying commands directly is often faster for iteration. You also have to start adding in conditionals to your actions to make them work both locally and in CI, which adds more complexity.
 
 ## The minimal setup I recommend
 
