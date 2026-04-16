@@ -45,7 +45,7 @@ jobs:
         run: |
           mise task run e2e --reporter=json --output=results.json
 
-      - uses: daun/playwright-report-summary@be9e270edd5ad86038604d3caa84a819a6ff6fed # v3
+      - uses: daun/playwright-report-summary@1229105480a2a4bdd91598d8a146fbab41343fce # v3
         if: always()
         with:
           report-file: results.json
