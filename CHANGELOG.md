@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.4](https://github.com/zenobi-us/zenobi-us/compare/v1.4.3...v1.4.4) (2026-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @content-collections/core to ^0.14.0 ([#748](https://github.com/zenobi-us/zenobi-us/issues/748)) ([d8b1128](https://github.com/zenobi-us/zenobi-us/commit/d8b1128434b2782faa3e47d32e7a5c5e2dbbd4df))
+* **deps:** update dependency lucide-react to ^0.577.0 ([#749](https://github.com/zenobi-us/zenobi-us/issues/749)) ([97c68f5](https://github.com/zenobi-us/zenobi-us/commit/97c68f554b48eea7e7be08bce4fe1a207deae1d8))
+* **deps:** update dependency storybook to v8.6.17 [security] ([#737](https://github.com/zenobi-us/zenobi-us/issues/737)) ([fd3b41e](https://github.com/zenobi-us/zenobi-us/commit/fd3b41e3afa0388b1a808331b4d45b07e3983a5b))
+* **deps:** update dependency three to ^0.183.0 ([#750](https://github.com/zenobi-us/zenobi-us/issues/750)) ([1d61490](https://github.com/zenobi-us/zenobi-us/commit/1d614901e9dca7ec2eb56c63a13a2bfad700faee))
+* **deps:** update storybook monorepo to v8.6.18 ([#763](https://github.com/zenobi-us/zenobi-us/issues/763)) ([b25e446](https://github.com/zenobi-us/zenobi-us/commit/b25e44657f2206087a80cabb73e35fa9f7e16807))
+
 ## [1.4.3](https://github.com/zenobi-us/zenobi-us/compare/v1.4.2...v1.4.3) (2026-02-24)
 
 
