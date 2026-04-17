@@ -24542,8 +24542,8 @@ __metadata:
   linkType: hard
 
 "vite-plugin-glsl@npm:^1.3.1":
-  version: 1.5.5
-  resolution: "vite-plugin-glsl@npm:1.5.5"
+  version: 1.6.0
+  resolution: "vite-plugin-glsl@npm:1.6.0"
   peerDependencies:
     "@rollup/pluginutils": ^5.x
     esbuild: ">= 0.25"
@@ -24553,7 +24553,7 @@ __metadata:
       optional: true
     esbuild:
       optional: true
-  checksum: 10c0/4bb8b32fc3b1c4c8616b7fe1c482f34152205394877b6a2d7f30c4a78c7c90c5bb9062390ebc2747767c77c0d8b482811d0044b4f692decd17842dff43f158e9
+  checksum: 10c0/0349b90c8b7f7f429ff84e97059c240c562a95bd4cc9a55ba60f2e6b18df13ad6ef1f2470be0ea67ed12ea8674d61369502f6ddc07f2557b60b75f05381ee7e1
   languageName: node
   linkType: hard
 
