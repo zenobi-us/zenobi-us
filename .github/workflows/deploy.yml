@@ -77,7 +77,7 @@ jobs:
               github_output "$GITHUB_OUTPUT"
 
       - name: Comment on commit
-        uses: peter-evans/commit-comment@v4
+        uses: peter-evans/commit-comment@f6d60c65d05bb59f750fa51ad3de1d443ba0eb52 # v4
         id: commit-comment
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
