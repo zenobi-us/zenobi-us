@@ -1876,13 +1876,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@content-collections/remix-vite@npm:^0.2.0":
-  version: 0.2.2
-  resolution: "@content-collections/remix-vite@npm:0.2.2"
+"@content-collections/remix-vite@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@content-collections/remix-vite@npm:0.3.0"
   peerDependencies:
     "@content-collections/core": ^0.x
-    vite: ^5 || ^6 || ^7
-  checksum: 10c0/ef217bc19b71eef6240ce3f844f2691189deb872fcf4b1e0bec7bd7c6ea84a2edef405f7cf27382938e92cd1d7eea7d388c756d9bc55fdc8c93c6d5503cc703f
+    vite: ^6 || ^7 || ^8
+  checksum: 10c0/7b1d934943da17d17d9da514329751ef0f30182a79596d79fc01b9f56c1176f105693ba4454f2c1afc04b3b9f9abac1490578a73336e8331a0f3260d06c1b23b
   languageName: node
   linkType: hard
 
@@ -25257,7 +25257,7 @@ __metadata:
     "@content-collections/cli": "npm:^0.1.6"
     "@content-collections/core": "npm:^0.15.0"
     "@content-collections/mdx": "npm:^0.2.0"
-    "@content-collections/remix-vite": "npm:^0.2.0"
+    "@content-collections/remix-vite": "npm:^0.3.0"
     "@cspell/dict-en-au": "npm:^1.0.21"
     "@eslint/js": "npm:^9.16.0"
     "@faker-js/faker": "npm:^9.2.0"
