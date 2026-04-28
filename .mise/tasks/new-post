@@ -1,55 +1,57 @@
 #!/usr/bin/env bash
+#MISE description="Create a new post in content/posts"
+#USAGE arg "<title>" default="" help="Post title. If omitted, you'll be prompted interactively"
 
 PATH_TEMPLATE='"./content/posts/\(.date)-\(.title_slug).md"'
 
 slugify() {
-    echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
+	echo "${@}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
 }
 
 # remove first blank line and any leading whitespace
 dedent() {
-    local text="${1}"
-    local output
+	local text="${1}"
+	local output
 
-    output=$(echo "${text}" | sed 's/^[ \t]*//')
-    output=$(echo "${output}" | sed '1d')
+	output=$(echo "${text}" | sed 's/^[ \t]*//')
+	output=$(echo "${output}" | sed '1d')
 
-    echo "${output}"
+	echo "${output}"
 }
 
 create_context() {
-    local title
-    local date
+	local title
+	local date
 
-    title="${1}"
-    date="${2}"
+	title="${1}"
+	date="${2}"
 
-    # start with a blank context
-    context=$(jq -n '{}')
-    # add the title to the context
-    context=$(echo "${context}" | jq ".title = \"${title}\"")
-    # add the date to the context
-    context=$(echo "${context}" | jq ".date = \"${date}\"")
-    # add the slugified title to the context
-    context=$(echo "${context}" | jq ".title_slug = \"$(slugify "${title}")\"")
+	# start with a blank context
+	context=$(jq -n '{}')
+	# add the title to the context
+	context=$(echo "${context}" | jq ".title = \"${title}\"")
+	# add the date to the context
+	context=$(echo "${context}" | jq ".date = \"${date}\"")
+	# add the slugified title to the context
+	context=$(echo "${context}" | jq ".title_slug = \"$(slugify "${title}")\"")
 
-    echo "${context}" | jq -c
+	echo "${context}" | jq -c
 }
 
 create_new_post() {
 
-    local title
-    local date
+	local title
+	local date
 
-    date=$(date +"%Y-%m-%d")
-    title="${1}"
+	date=$(date +"%Y-%m-%d")
+	title="${1}"
 
-    # transform the context into a path
-    filepath=$(jq -r "$PATH_TEMPLATE" <<<"$(create_context "${title}" "${date}")")
+	# transform the context into a path
+	filepath=$(jq -r "$PATH_TEMPLATE" <<<"$(create_context "${title}" "${date}")")
 
-    touch "${filepath}"
+	touch "${filepath}"
 
-    dedent """
+	dedent """
         ---
         date: ${date}
         title: ${title}
@@ -60,12 +62,12 @@ create_new_post() {
 }
 
 arg_or_prompt() {
-    if [ -z "${*}" ]; then
-        read -r -p "Enter the title of the post: " title
-        echo "${title}"
-    else
-        echo "${*}"
-    fi
+	if [ -z "${*}" ]; then
+		read -r -p "Enter the title of the post: " title
+		echo "${title}"
+	else
+		echo "${*}"
+	fi
 }
 
-create_new_post "$(arg_or_prompt "${*}")"
+create_new_post "$(arg_or_prompt "${usage_title:-${*}}")"
