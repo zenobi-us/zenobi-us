@@ -1,0 +1,60 @@
+name: Preview Cleanup
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Do not delete, only report
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  cleanup-preview-deployments:
+    runs-on: ubuntu-latest
+    env:
+      CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      USE_OPEN_PR_CHECK: '1'
+      REQUIRE_GH_OPEN_PR_CHECK: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+        with:
+          experimental: true
+          version: 2024.11.4
+
+      - name: Run preview cleanup task
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${CF_ACCOUNT_ID}" ]; then
+            echo "Missing CLOUDFLARE_ACCOUNT_ID secret"
+            exit 1
+          fi
+
+          if [ -z "${CLOUDFLARE_API_TOKEN}" ]; then
+            echo "Missing CLOUDFLARE_API_TOKEN secret"
+            exit 1
+          fi
+
+          mise run delete-preview-deployments -- zenobius
