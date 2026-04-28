@@ -29,3 +29,8 @@ For single tests: Use Jest directly via `yarn jest [pattern]` (test files use `.
 - No array/object destructuring in function parameters
 - Curly braces required
 - React hooks linting enforced
+
+
+## Writing Style 
+
+- always follow the [this-repo-writing-style](.pi/skills/writing-style) skill
