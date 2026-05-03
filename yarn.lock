@@ -8029,21 +8029,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.99.2":
-  version: 5.99.2
-  resolution: "@tanstack/query-core@npm:5.99.2"
-  checksum: 10c0/099532b312c8c939bc9a98824e4cded67d567c10bc686f4e0d407bf3f868250cf3cd23be8d4a81b8d7c3e99f6245a08278ddcceed7cd8f290058a6f503163d98
+"@tanstack/query-core@npm:5.100.9":
+  version: 5.100.9
+  resolution: "@tanstack/query-core@npm:5.100.9"
+  checksum: 10c0/119bcfa78f416562d64d6584c9354a0f6eec030818a1010428d4fbe8a8599075b3e45cacca09b166726aea9a159b09c5d24a5a0f55581f43cda007a48b5b4414
   languageName: node
   linkType: hard
 
 "@tanstack/react-query@npm:^5.90.12":
-  version: 5.99.2
-  resolution: "@tanstack/react-query@npm:5.99.2"
+  version: 5.100.9
+  resolution: "@tanstack/react-query@npm:5.100.9"
   dependencies:
-    "@tanstack/query-core": "npm:5.99.2"
+    "@tanstack/query-core": "npm:5.100.9"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10c0/b9fb565e61c864b05227a026e38ef6bc1582f357c1f224c2f45c8cf6522d2ff37404cd85b6c35df178e752a68c8ed38b80692291294aafbae341d1281b2cf635
+  checksum: 10c0/7e9af3334f6eada6fd0e030d19d77f62a2809d91a991caec68811e1e86aef9c93b8cb8fecfcf7efd9517fb1148f0df60fc4103d44cdd38accba991e70b6bb138
   languageName: node
   linkType: hard
 
