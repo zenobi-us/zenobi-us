@@ -3883,9 +3883,9 @@ __metadata:
   linkType: hard
 
 "@fontsource-variable/roboto-mono@npm:^5.1.0":
-  version: 5.2.8
-  resolution: "@fontsource-variable/roboto-mono@npm:5.2.8"
-  checksum: 10c0/24d8471cae1e99b7b8ae5cbae5b3e7719b91ffb55f67a97badfc941cf007496fbbfd192ae58666ab727659c75b5bec331560c5491114a94301689ae10d675eef
+  version: 5.2.9
+  resolution: "@fontsource-variable/roboto-mono@npm:5.2.9"
+  checksum: 10c0/ea02dbdd08199b2fa9dd1091a1e5aa80b17efcee550274828c0b581d945e36a1f6b7ea04cdf46cab965e7d8b6c21666e0909718117bf9c1efb2a0be0994b793a
   languageName: node
   linkType: hard
 
