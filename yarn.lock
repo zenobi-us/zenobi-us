@@ -21252,8 +21252,8 @@ __metadata:
   linkType: hard
 
 "rehype-pretty-code@npm:^0.14.0":
-  version: 0.14.3
-  resolution: "rehype-pretty-code@npm:0.14.3"
+  version: 0.14.5
+  resolution: "rehype-pretty-code@npm:0.14.5"
   dependencies:
     "@types/hast": "npm:^3.0.4"
     hast-util-to-string: "npm:^3.0.0"
@@ -21263,7 +21263,7 @@ __metadata:
     unist-util-visit: "npm:^5.0.0"
   peerDependencies:
     shiki: ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 10c0/dcdfacf476fe3f6186b62f79332bdf3739185dedaf185125efa944653032d9c7c2cfd769cd3f686f46cfbdc7088b5601ee1e3b70847ecd94d5fe9b9fa61fdb97
+  checksum: 10c0/8bc4ebe3d1be8109f0bd8c9e7f0f717c3360de6f26daf16033a298eae78c45314cdf44ec905964be1d607ce9c7963c97088bbfe39ba9de8b21428b7198fdc1de
   languageName: node
   linkType: hard
 
