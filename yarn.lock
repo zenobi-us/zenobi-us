@@ -2099,9 +2099,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-en-au@npm:^1.0.21":
-  version: 1.1.20
-  resolution: "@cspell/dict-en-au@npm:1.1.20"
-  checksum: 10c0/b7bdd265505be8d537bf7119d18ce64ebbb75e8c57aa9e61a50bb4a79119464d8331c0c604b974033ea4120bd6a0ede8431ec2f1669f63a815fb03df730c4bb4
+  version: 1.1.23
+  resolution: "@cspell/dict-en-au@npm:1.1.23"
+  checksum: 10c0/4757d297cf60b9145f2118e0a5483f9204b5212744c7bf67bf52c9c977add16e38018d177a8be0e57b2662c34ba1e680ad7f1f75ff2e20511c5c64fcefef9775
   languageName: node
   linkType: hard
 
