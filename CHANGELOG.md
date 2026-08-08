@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.5](https://github.com/zenobi-us/zenobi-us/compare/v1.4.4...v1.4.5) (2026-08-08)
+
+
+### Bug Fixes
+
+* **content:** add draft post on llm workflow tooling ([17b5670](https://github.com/zenobi-us/zenobi-us/commit/17b56706b28f29eecef472f32e17d7e39cbe6938))
+* **content:** revise release-please deployment post ([50d05df](https://github.com/zenobi-us/zenobi-us/commit/50d05df04c63be644b0d0fef7669dd7bb07f881a))
+* **deps:** update dependency three to ^0.185.0 ([#832](https://github.com/zenobi-us/zenobi-us/issues/832)) ([a68307b](https://github.com/zenobi-us/zenobi-us/commit/a68307b3e67924226c25c0dce9a2a1a61d9bce57))
+* **deps:** update dependency vite to v7 [security] ([#754](https://github.com/zenobi-us/zenobi-us/issues/754)) ([3d4b444](https://github.com/zenobi-us/zenobi-us/commit/3d4b44414513076350d53629e3bc85b29781fa19))
+
 ## [1.4.4](https://github.com/zenobi-us/zenobi-us/compare/v1.4.3...v1.4.4) (2026-04-23)
 
 
