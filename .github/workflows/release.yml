@@ -35,7 +35,7 @@ jobs:
 
       - name: Dispatch production deploy
         if: steps.release-please.outputs.releases_created == 'true'
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: deploy-site
@@ -43,7 +43,7 @@ jobs:
 
       - name: Dispatch development deploy
         if: steps.release-please.outputs.prs_created == 'true'
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: deploy-site
