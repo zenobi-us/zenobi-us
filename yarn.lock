@@ -15866,9 +15866,9 @@ __metadata:
   linkType: hard
 
 "isbot@npm:^5.0.0":
-  version: 5.2.1
-  resolution: "isbot@npm:5.2.1"
-  checksum: 10c0/83bf2852897694f28e46d742dc9a9e722fb650a7412d9288f4eab17247a706d242e98b5794caf93804d6566df54fbe4be9e38cc2604dba04a5018d69a6abe252
+  version: 5.2.2
+  resolution: "isbot@npm:5.2.2"
+  checksum: 10c0/df8356dd8745d7fe1922fc8df894bf5560fe959ad7826ac97311c430dc9c6dd628c8aab68d3e45769b50b61411bd4530d874aae07947f6cd04e25206566a7bb3
   languageName: node
   linkType: hard
 
