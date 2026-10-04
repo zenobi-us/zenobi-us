@@ -10,7 +10,7 @@
     "@content-collections/remix-vite": "^0.3.0",
     "@cspell/dict-en-au": "^1.0.21",
     "@eslint/js": "^9.16.0",
-    "@faker-js/faker": "^9.2.0",
+    "@faker-js/faker": "^10.0.0",
     "@fontsource-variable/open-sans": "^5.1.0",
     "@fontsource-variable/roboto-mono": "^5.1.0",
     "@fontsource-variable/roboto-slab": "^5.1.0",
