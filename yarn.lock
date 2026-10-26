@@ -23712,10 +23712,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:^0.185.0":
-  version: 0.185.1
-  resolution: "three@npm:0.185.1"
-  checksum: 10c0/d15d3fa934f53c9fd6706965ff9946f55653bc728cf582e68acb03421c0179d7662f7d270e14bcf72923e140c36779e7fba6b0f6e542e07deade7342f63c8bdf
+"three@npm:^0.186.0":
+  version: 0.186.1
+  resolution: "three@npm:0.186.1"
+  checksum: 10c0/8c8ed2d421da7cb4459bf3ad2961770d35173ef80885a594cb22fb44d275a9ba534b7ae92e93c99f50691b67febb913363ec5b64105fb7647289771d2bd32bc8
   languageName: node
   linkType: hard
 
@@ -25834,7 +25834,7 @@ __metadata:
     tailwindcss: "npm:^3.4.14"
     tailwindcss-animate: "npm:^1.0.7"
     tailwindcss-grid-areas: "npm:^0.1.1"
-    three: "npm:^0.185.0"
+    three: "npm:^0.186.0"
     tsx: "npm:^4.19.1"
     tw-colors: "npm:^3.3.2"
     typescript: "npm:^5.6.3"
