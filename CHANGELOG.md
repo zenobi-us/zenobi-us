@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.5](https://github.com/zenobi-us/zenobi-us/compare/v1.4.4...v1.4.5) (2026-10-30)
+
+
+### Bug Fixes
+
+* **content:** add draft post on llm workflow tooling ([17b5670](https://github.com/zenobi-us/zenobi-us/commit/17b56706b28f29eecef472f32e17d7e39cbe6938))
+* **content:** revise release-please deployment post ([50d05df](https://github.com/zenobi-us/zenobi-us/commit/50d05df04c63be644b0d0fef7669dd7bb07f881a))
+* **deps:** update dependency storybook to v8.6.19 [security] ([#864](https://github.com/zenobi-us/zenobi-us/issues/864)) ([ed08786](https://github.com/zenobi-us/zenobi-us/commit/ed0878609a9c5d0cd3afcae3820214a095636c0d))
+* **deps:** update dependency three to ^0.185.0 ([#832](https://github.com/zenobi-us/zenobi-us/issues/832)) ([a68307b](https://github.com/zenobi-us/zenobi-us/commit/a68307b3e67924226c25c0dce9a2a1a61d9bce57))
+* **deps:** update dependency three to ^0.186.0 ([#882](https://github.com/zenobi-us/zenobi-us/issues/882)) ([1e8e9c4](https://github.com/zenobi-us/zenobi-us/commit/1e8e9c497cffb46463254840279fe7cebf3b3a44))
+* **deps:** update dependency vite to v7 [security] ([#754](https://github.com/zenobi-us/zenobi-us/issues/754)) ([3d4b444](https://github.com/zenobi-us/zenobi-us/commit/3d4b44414513076350d53629e3bc85b29781fa19))
+* **deps:** update storybook monorepo to v8.6.19 ([#871](https://github.com/zenobi-us/zenobi-us/issues/871)) ([3103f8b](https://github.com/zenobi-us/zenobi-us/commit/3103f8b531089a9b73f83ccfb4ce6190fc1729ac))
+
 ## [1.4.4](https://github.com/zenobi-us/zenobi-us/compare/v1.4.3...v1.4.4) (2026-04-23)
 
 
