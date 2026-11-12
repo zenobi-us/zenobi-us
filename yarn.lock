@@ -10746,9 +10746,9 @@ __metadata:
   linkType: hard
 
 "chroma-js@npm:^3.1.2":
-  version: 3.2.0
-  resolution: "chroma-js@npm:3.2.0"
-  checksum: 10c0/6ff6213d234e096ad3536291b1e1f11a506ea0fccfe163dd8eff69afa5f4f8a905b31a4a7ebc22b7eb722590887fed77073805ce89485f6d563edd1ea2d0a1db
+  version: 3.3.0
+  resolution: "chroma-js@npm:3.3.0"
+  checksum: 10c0/b54b71b280a13b1b280f2bf102408891b28e5e14afcbd9f74f1dd9cdbce43dcc8e4537b913f7cedfad2ce06502c92cfb39815634e9191c4810ab32c48259e98a
   languageName: node
   linkType: hard
 
